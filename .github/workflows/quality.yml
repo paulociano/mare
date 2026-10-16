@@ -15,7 +15,9 @@ jobs:
       - name: Obter projeto
         uses: actions/checkout@v4
       - name: Testar regras e integrações
-        run: node tests/smoke.cjs
+        run: |
+          node tests/smoke.cjs
+          node tests/gameplay.cjs
       - name: Validar pacote publicado
         run: node scripts/build-site.cjs
       - name: Verificar arquivos essenciais
