@@ -165,7 +165,7 @@ assert.ok(!home.includes('assets/brand/recife.svg'),'SVG antigo ainda referencia
 assert.ok(!html.includes('assets/brand/recife.svg'),'SVG antigo ainda referenciado no Recife');
 assert.ok(html.includes('<h2 class="recife-title-lockup">Recife</h2>'),'Título da página Recife ausente');
 const catalogCards=home.split('<article class="mar-game ').slice(1).map(x=>x.split('</article>')[0]);
-assert.equal(catalogCards.length,10,'Catálogo precisa ter dez cards');
+assert.equal(catalogCards.length,12,'Catálogo precisa ter doze cards');
 for(const [i,markup] of catalogCards.entries()){
  assert.equal(markup.split('<h2').length-1,1,'Título duplicado no card '+(i+1));
  assert.ok(markup.includes('<h2 class="recife-card-heading">'),'Card '+(i+1)+' não usa a classe do Recife');
