@@ -185,4 +185,15 @@ for(const [selector,scene] of [['mar-forca','naufrago'],['mar-criptograma','sina
  assert.equal(themeSource.split(marker).length-1,1,'Cenário duplicado no CSS: '+selector);
  assert.ok(themeSource.split(marker)[1].split('}')[0].includes('assets/backgrounds/'+scene+'.svg'),'Cenário incorreto: '+scene);
 }
+for(const game of ['perola','farol']){
+ const page=fs.readFileSync(game+'.html','utf8');
+ assert.ok(page.includes('data-game="'+game+'"'),'Novo jogo não identificado: '+game);
+ assert.ok(page.includes('src="mares-duo.js"'),'Motor compartilhado ausente: '+game);
+ assert.ok(page.includes('href="mares-duo.css"'),'Estilo compartilhado ausente: '+game);
+ assert.ok(page.includes('id="daily"')&&page.includes('id="free"'),'Modos ausentes: '+game);
+ assert.ok(home.includes('href="'+game+'.html"'),'Card não encontrado: '+game);
+}
+const duoSource=fs.readFileSync('mares-duo.js','utf8');
+new vm.Script(duoSource);
+assert.ok(duoSource.includes("perola:[")&&duoSource.includes("farol:["),'Desafios dos jogos ausentes');
 console.log('PASS: sintaxe, integração, modos e '+words.length+' palavras');
