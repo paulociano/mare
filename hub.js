@@ -16,7 +16,7 @@
     savedKeys = Array.from({ length: localStorage.length }, (_, i) => localStorage.key(i)).filter(Boolean);
     lastVisited = localStorage.getItem('mare-last-played');
   } catch { /* O catálogo continua funcional sem armazenamento. */ }
-  const hasProgress = game => savedKeys.some(key => game.prefixes.some(prefix => key.startsWith(prefix)));
+  const hasProgress = game => savedKeys.some(key => game.prefixes.some(prefix => key.startsWith(prefix) && (game.page !== 'abismo.html' || /^mare-semantico-\d+$/.test(key))));
   const selected = games.find(game => game.page === lastVisited && hasProgress(game)) || games.find(hasProgress);
   if (selected) {
     const label = document.getElementById('mar-resume-label');
