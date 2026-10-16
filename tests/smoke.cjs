@@ -206,4 +206,16 @@ for(const page of ['index','recife','abismo','cardume','corrente','concha','tril
  assert.ok(source.includes('mare-finale.js')&&source.includes('mare-finale.css'),'Comemoração ausente: '+page);
 }
 assert.ok(fs.readFileSync('mare-finale.css','utf8').includes('prefers-reduced-motion'),'Efeito deve respeitar movimento reduzido');
+for(const game of ['perola','farol']){
+ const doc=fs.readFileSync(game+'.html','utf8');
+ const symbol='assets/brand/'+game+'-mark.svg';
+ const art=fs.readFileSync(symbol,'utf8');
+ assert.ok(art.startsWith('<svg'),'Símbolo SVG ausente: '+game);
+ assert.ok(home.includes('src="'+symbol+'"'),'Card sem símbolo exclusivo: '+game);
+ assert.ok(doc.includes('src="'+symbol+'"'),'Página sem símbolo no cabeçalho: '+game);
+ assert.ok(doc.includes('class="mare-game-nav__grid"'),'Rodapé sem navegação: '+game);
+ assert.equal((doc.match(/aria-current="page"/g)||[]).length,1,'Item ativo duplicado: '+game);
+ assert.ok(doc.includes('href="'+game+'.html" aria-current="page"'),'Jogo ativo incorreto: '+game);
+ assert.equal((doc.match(/class="mare-game-nav__name"/g)||[]).length,12,'Rodapé precisa dos doze jogos: '+game);
+}
 console.log('PASS: sintaxe, integração, modos e '+words.length+' palavras');
