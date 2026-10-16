@@ -86,5 +86,5 @@ body.mare-trilha{background-image:linear-gradient(90deg,#021421c2,#03172383 55%,
 body.mare-enigma{background-image:linear-gradient(90deg,#021421cf,#03172395),url('assets/backgrounds/enigma.svg'),url('assets/ocean-depth.svg')!important;background-position:center;background-size:cover}
 .mare-hub .mar-enigma{background-image:linear-gradient(180deg,#041c2915,#02121c55),url('assets/backgrounds/enigma.svg')}
 
-body.mare-marulho{background-image:linear-gradient(90deg,#021421cb,#03172390),url('assets/backgrounds/marulho.svg'),url('assets/ocean-depth.svg')!important;background-position:center;background-size:cover}
-.mare-hub .mar-marulho{background-image:linear-gradient(180deg,#041c2915,#02121c55),url('assets/backgrounds/marulho.svg')}
+body.mare-marujo{background-image:linear-gradient(90deg,#021421cb,#03172390),url('assets/backgrounds/marujo.svg'),url('assets/ocean-depth.svg')!important;background-position:center;background-size:cover}
+.mare-hub .mar-marujo{background-image:linear-gradient(180deg,#041c2915,#02121c55),url('assets/backgrounds/marujo.svg')}
