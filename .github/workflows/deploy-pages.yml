@@ -30,6 +30,7 @@ jobs:
       - name: Executar testes de regressão
         run: |
           node scripts/check-repository.cjs
+          node scripts/check-sources.cjs
           node tests/smoke.cjs
           node tests/gameplay.cjs
       - name: Configurar Pages
