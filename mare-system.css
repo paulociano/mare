@@ -64,3 +64,17 @@ body.mare-recife:before,body.mare-recife:after{pointer-events:none}
   background-position:center,64% center,center;
  }
 }
+
+/* Catálogo MARÉ: ambientações exclusivas por jogo, com arte SVG sempre disponível. */
+.mare-hub .mar-game{background-repeat:no-repeat;background-size:cover;background-position:center;isolation:isolate}
+.mare-hub .mar-game::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background:linear-gradient(180deg,#0017260d 5%,#01152168 36%,#01131deb 73%,#01131bf5 100%)}
+.mare-hub .mar-letters{background-image:linear-gradient(180deg,#041c2915,#02121c55),url('assets/backgrounds/recife.webp'),url('assets/backgrounds/recife.svg')}
+.mare-hub .mar-abyss{background-image:linear-gradient(180deg,#041c2915,#02121c55),url('assets/backgrounds/abismo.webp'),url('assets/backgrounds/abismo.svg')}
+.mare-hub .mar-school{background-image:linear-gradient(180deg,#041c2915,#02121c55),url('assets/backgrounds/cardume.webp'),url('assets/backgrounds/cardume.svg')}
+.mare-hub .mar-current{background-image:linear-gradient(180deg,#041c2915,#02121c55),url('assets/backgrounds/corrente.webp'),url('assets/backgrounds/corrente.svg')}
+.mare-hub .mar-shell{background-image:linear-gradient(180deg,#041c2915,#02121c55),url('assets/backgrounds/concha.webp'),url('assets/backgrounds/concha.svg')}
+.mare-hub .mar-catalog{grid-template-columns:repeat(3,minmax(0,1fr))}
+.mare-hub .mar-game{min-height:390px;background-color:#05263a}
+.mare-hub .mar-game-info{position:relative;z-index:1}
+@media(max-width:1050px){.mare-hub .mar-catalog{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:650px){.mare-hub .mar-catalog{grid-template-columns:minmax(0,1fr)}.mare-hub .mar-game{min-height:300px}}
