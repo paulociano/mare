@@ -90,12 +90,21 @@ jobs:
       - name: Renderizar vídeo ambiente a partir do cenário MARÉ
         run: |
           mkdir -p _site/assets/videos
-          python3 -m pip install --quiet --user cairosvg
+          python3 -m pip install --quiet --user cairosvg imageio-ffmpeg
           python3 - <<'PY'
           import cairosvg
           cairosvg.svg2png(url='assets/backgrounds/recife.svg',write_to='/tmp/mare-fundo.png',output_width=1280,output_height=720)
           PY
-          ffmpeg -hide_banner -loglevel error -y -loop 1 -framerate 18 -i /tmp/mare-fundo.png -vf "zoompan=z='min(zoom+0.00035,1.07)':d=1:s=960x540:fps=18,format=yuv420p" -t 7 -an -c:v libx264 -preset veryfast -crf 30 -movflags +faststart _site/assets/videos/oceano.mp4
+          python3 - <<'PY'
+          import subprocess, imageio_ffmpeg
+          subprocess.run([
+            imageio_ffmpeg.get_ffmpeg_exe(),'-hide_banner','-loglevel','error','-y',
+            '-loop','1','-framerate','18','-i','/tmp/mare-fundo.png',
+            '-vf',"zoompan=z='min(zoom+0.00035,1.07)':d=1:s=960x540:fps=18,format=yuv420p",
+            '-t','7','-an','-c:v','libx264','-preset','veryfast','-crf','30',
+            '-movflags','+faststart','_site/assets/videos/oceano.mp4'
+          ],check=True)
+          PY
           test -s _site/assets/videos/oceano.mp4
       - name: Enviar artefato
         uses: actions/upload-pages-artifact@v3
