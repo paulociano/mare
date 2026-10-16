@@ -70,6 +70,6 @@ O vocabulário é limitado às palavras dos desafios mais o arquivo `palavras-pt
 
 ## Cardume
 
-Novo jogo em `cardume.html`, inspirado na mecânica de grupos de palavras: escolha quatro palavras relacionadas entre 16, encontre quatro categorias, com quatro erros possíveis, aviso de quase acerto, embaralhamento, compartilhamento e salvamento local. Há um desafio diário determinado pela data de Brasília e partidas extras. O conjunto inicial reúne **12 tabuleiros originais e curados** em `data/cardume-puzzles.json`. Depois desse conjunto, os desafios se repetem. Não reproduz os puzzles, a marca nem os dados do Cardume.
+Novo jogo em `cardume.html`, de agrupamento de palavras: escolha quatro palavras relacionadas entre 16, encontre quatro categorias, com quatro erros possíveis, aviso de quase acerto, embaralhamento, compartilhamento e salvamento local. Há um desafio diário determinado pela data de Brasília e partidas extras. O conjunto inicial reúne **12 tabuleiros originais e curados** em `data/cardume-puzzles.json`. Depois desse conjunto, os desafios se repetem. Não reproduz os puzzles, a marca nem os dados do Cardume.
 
 O workflow do GitHub Pages inclui `cardume.html`, `cardume.css`, `cardume.js` e os dados JSON. Os smoke tests verificam a integridade de 16 palavras exclusivas em cada puzzle.
