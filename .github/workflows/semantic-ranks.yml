@@ -43,5 +43,7 @@ jobs:
           git add data/semantic-ranks.json
           if ! git diff --cached --quiet; then
             git commit -m "data: atualiza rankings vetoriais multilíngues"
-            git push
+            git fetch origin main
+            git rebase origin/main
+            git push origin HEAD:main
           fi
