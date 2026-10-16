@@ -34,7 +34,7 @@ jobs:
       - name: Preparar arquivos
         run: |
           mkdir -p _site
-          cp index.html recife.html hub.js mare-system.css modos.js modos.css visual-v3.css abismo.html abismo.js abismo.css cardume.html cardume.js cardume.css corrente.html corrente.js corrente.css concha.html concha.js concha.css trilha.html trilha.js trilha.css enigma.html enigma.js enigma.css marulho.html marulho.js marulho.css palavras-ptbr-5.txt _site/
+          cp index.html recife.html hub.js mare-system.css modos.js modos.css visual-v3.css abismo.html abismo.js abismo.css cardume.html cardume.js cardume.css corrente.html corrente.js corrente.css concha.html concha.js concha.css trilha.html trilha.js trilha.css enigma.html enigma.js enigma.css marujo.html marujo.js marujo.css palavras-ptbr-5.txt _site/
           mkdir -p _site/assets
           cp assets/ocean-depth.svg _site/assets/
           mkdir -p _site/assets/backgrounds
@@ -78,10 +78,10 @@ jobs:
           test -s _site/enigma.html
           test -s _site/enigma.js
           test -s _site/enigma.css
-          test -s _site/marulho.html
-          test -s _site/marulho.js
-          test -s _site/marulho.css
-          test -s _site/assets/backgrounds/marulho.svg
+          test -s _site/marujo.html
+          test -s _site/marujo.js
+          test -s _site/marujo.css
+          test -s _site/assets/backgrounds/marujo.svg
           test -s _site/assets/backgrounds/enigma.svg
           test -s _site/assets/backgrounds/trilha.svg
           test -s _site/palavras-ptbr-5.txt
