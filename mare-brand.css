@@ -49,3 +49,22 @@ body.mare-hub .mar-catalog > article.mar-game > .mar-game-info{
   font-size:clamp(2.15rem,10vw,3.3rem)!important;
  }
 }
+
+/* Uma linha por título: tipografia responsiva calibrada por comprimento. */
+body.mare-hub .mar-catalog > article.mar-game > h2.recife-card-heading{
+  white-space:nowrap!important;overflow-wrap:normal!important;word-break:normal!important;
+  font-size:clamp(2rem,3.5vw,3.55rem)!important;letter-spacing:-.075em!important;
+}
+body.mare-hub .mar-catalog > article.mar-game.mar-school > h2.recife-card-heading,
+body.mare-hub .mar-catalog > article.mar-game.mar-current > h2.recife-card-heading{
+  font-size:clamp(1.8rem,3.05vw,3.08rem)!important;
+}
+body.mare-hub .mar-catalog > article.mar-game.mar-forca > h2.recife-card-heading,
+body.mare-hub .mar-catalog > article.mar-game.mar-criptograma > h2.recife-card-heading{
+  font-size:clamp(2rem,3.3vw,3.3rem)!important;
+}
+@media(max-width:650px){
+ body.mare-hub .mar-catalog > article.mar-game > h2.recife-card-heading{font-size:clamp(2rem,8.1vw,3rem)!important}
+ body.mare-hub .mar-catalog > article.mar-game.mar-school > h2.recife-card-heading,
+ body.mare-hub .mar-catalog > article.mar-game.mar-current > h2.recife-card-heading{font-size:clamp(1.65rem,6.9vw,2.6rem)!important}
+}
