@@ -50,15 +50,15 @@ Cada palpite aparece nos tabuleiros ainda não resolvidos; todas as soluções p
 
 Os arquivos `modos.js` e `modos.css` adicionam estes modos sobre a interface existente. Para jogar localmente, sirva o diretório por HTTP, por exemplo com `python -m http.server 8000`, permitindo o carregamento de ambos os arquivos.
 
-## Abismo (modo inspirado em Contexto)
+## Abismo (modo inspirado em Abismo)
 
-Acesse `contexto.html` ou use o cartão na página principal. Digite palavras de qualquer tamanho e veja um indicador **aproximado** de proximidade semântica com o segredo. O jogo oferece dicas, persistência local e sucessivas partidas sem limite de palpites por rodada.
+Acesse `abismo.html` ou use o cartão na página principal. Digite palavras de qualquer tamanho e veja um indicador **aproximado** de proximidade semântica com o segredo. O jogo oferece dicas, persistência local e sucessivas partidas sem limite de palpites por rodada.
 
-**Limitação transparente:** esta primeira edição usa 42 conjuntos temáticos de associações curadas, com posições heurísticas. Não consulta o Contexto original, não calcula embeddings ou distâncias semânticas de um modelo de IA, e após 12 expedições os conjuntos se repetem. Não equivale ao vocabulário ou ranqueamento completo do Contexto. Arquivos: `contexto.html`, `contexto.css`, `contexto.js`.
+**Limitação transparente:** esta primeira edição usa 42 conjuntos temáticos de associações curadas, com posições heurísticas. Não consulta o Abismo original, não calcula embeddings ou distâncias semânticas de um modelo de IA, e após 12 expedições os conjuntos se repetem. Não equivale ao vocabulário ou ranqueamento completo do Abismo. Arquivos: `abismo.html`, `abismo.css`, `abismo.js`.
 
 ### Metodologia REA e motor semântico
 
-A referência [morluto/rea](https://github.com/morluto/rea) é um utilitário MIT de investigação de sites/aplicativos, **não** um clone nem fonte do algoritmo Contexto. O MARÉ utiliza uma implementação própria: 42 temas e grafo de associações; palavras relacionadas pelo banco são classificadas antes das desconhecidas. Sem embeddings treinados, corpus amplo e ranking integral, resultados não são comparáveis aos do Contexto. Não foram executadas ferramentas REA MCP ou capturas de rede do site original nesta etapa.
+A referência [morluto/rea](https://github.com/morluto/rea) é um utilitário MIT de investigação de sites/aplicativos, **não** um clone nem fonte do algoritmo Abismo. O MARÉ utiliza uma implementação própria: 42 temas e grafo de associações; palavras relacionadas pelo banco são classificadas antes das desconhecidas. Sem embeddings treinados, corpus amplo e ranking integral, resultados não são comparáveis aos do Abismo. Não foram executadas ferramentas REA MCP ou capturas de rede do site original nesta etapa.
 
 ## Rankings por embeddings (pipeline experimental)
 
@@ -66,10 +66,10 @@ O workflow [Gerar rankings semânticos](.github/workflows/semantic-ranks.yml) in
 
 **Ativação condicionada:** até o workflow gerar e confirmar o arquivo, o Abismo utiliza o grafo de associações curadas. O processo pode falhar por limites de rede, tempo ou dependências; a presença do código não comprova que o ranking vetorial já esteja publicado.
 
-O vocabulário é limitado às palavras dos desafios mais o arquivo `palavras-ptbr-5.txt`; termos fora dele continuam recebendo pontuação heurística distante. Embeddings são aproximações de significado, não rankings originais do Contexto. A seleção de 42 soluções também continua limitada e cíclica. Para reproduzir uma experiência com cobertura comparável, ainda seria necessário expandir e revisar o léxico e testar empiricamente a qualidade das associações.
+O vocabulário é limitado às palavras dos desafios mais o arquivo `palavras-ptbr-5.txt`; termos fora dele continuam recebendo pontuação heurística distante. Embeddings são aproximações de significado, não rankings originais do Abismo. A seleção de 42 soluções também continua limitada e cíclica. Para reproduzir uma experiência com cobertura comparável, ainda seria necessário expandir e revisar o léxico e testar empiricamente a qualidade das associações.
 
 ## Cardume
 
-Novo jogo em `conexoes.html`, inspirado na mecânica de grupos de palavras: escolha quatro palavras relacionadas entre 16, encontre quatro categorias, com quatro erros possíveis, aviso de quase acerto, embaralhamento, compartilhamento e salvamento local. Há um desafio diário determinado pela data de Brasília e partidas extras. O conjunto inicial reúne **12 tabuleiros originais e curados** em `data/conexoes-puzzles.json`. Depois desse conjunto, os desafios se repetem. Não reproduz os puzzles, a marca nem os dados do Conexo.
+Novo jogo em `cardume.html`, inspirado na mecânica de grupos de palavras: escolha quatro palavras relacionadas entre 16, encontre quatro categorias, com quatro erros possíveis, aviso de quase acerto, embaralhamento, compartilhamento e salvamento local. Há um desafio diário determinado pela data de Brasília e partidas extras. O conjunto inicial reúne **12 tabuleiros originais e curados** em `data/cardume-puzzles.json`. Depois desse conjunto, os desafios se repetem. Não reproduz os puzzles, a marca nem os dados do Cardume.
 
-O workflow do GitHub Pages inclui `conexoes.html`, `conexoes.css`, `conexoes.js` e os dados JSON. Os smoke tests verificam a integridade de 16 palavras exclusivas em cada puzzle.
+O workflow do GitHub Pages inclui `cardume.html`, `cardume.css`, `cardume.js` e os dados JSON. Os smoke tests verificam a integridade de 16 palavras exclusivas em cada puzzle.
