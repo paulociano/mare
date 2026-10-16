@@ -12,7 +12,14 @@
    {answer:'OCEANO',hint:'Extensa massa de água salgada'},
    {answer:'MARUJO',hint:'Pessoa que trabalha em um navio'},
    {answer:'TESOURO',hint:'Riqueza escondida a ser encontrada'},
-   {answer:'NAVEGAR',hint:'Conduzir uma embarcação em viagem'}
+   {answer:'NAVEGAR',hint:'Conduzir uma embarcação em viagem'},
+   {answer:'FAROL',hint:'Estrutura luminosa que orienta os navegantes'},
+   {answer:'PORTO',hint:'Lugar onde os navios atracam'},
+   {answer:'ILHOTA',hint:'Pequena ilha'},
+   {answer:'TIMÃO',hint:'Roda ou mecanismo usado para dirigir uma embarcação'},
+   {answer:'GAIVOTA',hint:'Ave costeira de voo ágil'},
+   {answer:'LITORAL',hint:'Região próxima ao mar'},
+   {answer:'MARÉS',hint:'Movimentos periódicos de subida e descida do nível do mar'}
   ],
   farol:[
    {answer:'NAVEGAR É PRECISO',hint:'Expressão célebre sobre seguir viagem'},
@@ -24,7 +31,12 @@
    {answer:'O SABER NÃO OCUPA LUGAR',hint:'Ditado sobre o valor de aprender'},
    {answer:'A PRESSA É INIMIGA DA PERFEIÇÃO',hint:'Conselho para não agir precipitadamente'},
    {answer:'QUEM NÃO ARRISCA NÃO PETISCA',hint:'Ditado sobre aproveitar oportunidades'},
-   {answer:'CADA COISA A SEU TEMPO',hint:'Expressão sobre respeitar o ritmo das coisas'}
+   {answer:'CADA COISA A SEU TEMPO',hint:'Expressão sobre respeitar o ritmo das coisas'},
+   {answer:'DEVAGAR SE VAI AO LONGE',hint:'Ditado sobre perseverança'},
+   {answer:'QUEM PROCURA ACHA',hint:'Ditado sobre investigação e persistência'},
+   {answer:'UMA ANDORINHA SÓ NÃO FAZ VERÃO',hint:'Ditado sobre ações individuais'},
+   {answer:'O SEGURO MORREU DE VELHO',hint:'Ditado sobre a importância da cautela'},
+   {answer:'NEM TUDO QUE RELUZ É OURO',hint:'Aviso sobre aparências'}
   ]
  };
  if(!puzzles[type])return;
