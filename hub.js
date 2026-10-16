@@ -8,6 +8,8 @@
     { name: 'Concha', page: 'concha.html', prefixes: ['mare-concha-daily-', 'mare-concha-free-'] },
     { name: 'Trilha', page: 'trilha.html', prefixes: ['mare-trilha-daily-', 'mare-trilha-free-'] },
     { name: 'Enigma', page: 'enigma.html', prefixes: ['mare-enigma-daily-', 'mare-enigma-free-'] },
+    { name: 'Forca', page: 'forca.html', prefixes: ['mare-forca-daily-', 'mare-forca-free-'] },
+    { name: 'Criptograma', page: 'criptograma.html', prefixes: ['mare-criptograma-daily-', 'mare-criptograma-free-'] },
     { name: 'Marujo', page: 'marujo.html', prefixes: ['mare-marujo-daily-', 'mare-marujo-free-', 'mare-marulho-daily-', 'mare-marulho-free-'] }
   ];
   let savedKeys = [];
