@@ -179,4 +179,10 @@ assert.ok(brandStyles.includes('white-space:nowrap!important'),'Títulos devem p
 assert.ok(brandStyles.includes('mar-school,.mar-current'),'Regra de títulos longos ausente');
 assert.ok(brandStyles.includes('body.mare-recife .recife-title-lockup'),'Título da página Recife ausente');
 assert.equal((brandStyles.match(/\/\* Catálogo: título único/g)||[]).length,1,'Sessão de títulos duplicada');
+const themeSource=fs.readFileSync('mare-3.css','utf8');
+for(const [selector,scene] of [['mar-forca','naufrago'],['mar-criptograma','sinais']]){
+ const matches=[...themeSource.matchAll(new RegExp('\\\\.mare-hub \\\\.mar-game\\\\.'+selector+'\\\\{background-image:[^}]+\\\\}','g'))];
+ assert.equal(matches.length,1,'Cenário duplicado no CSS: '+selector);
+ assert.ok(matches[0][0].includes('assets/backgrounds/'+scene+'.svg'),'Cenário incorreto: '+scene);
+}
 console.log('PASS: sintaxe, integração, modos e '+words.length+' palavras');
