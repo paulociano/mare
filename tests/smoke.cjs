@@ -163,4 +163,13 @@ assert.equal(recifeCard.split('<h2').length-1,1,'Título duplicado no card');
 assert.ok(!home.includes('assets/brand/recife.svg'),'SVG antigo ainda referenciado na home');
 assert.ok(!html.includes('assets/brand/recife.svg'),'SVG antigo ainda referenciado no Recife');
 assert.ok(html.includes('<h2 class="recife-title-lockup">Recife</h2>'),'Título da página Recife ausente');
+const catalogCards=[...home.matchAll(/<article class="mar-game [^"]+">([\\s\\S]*?)<\\/article>/g)];
+assert.equal(catalogCards.length,10,'Catálogo precisa ter dez cards');
+for(const [i,card] of catalogCards.entries()){
+ const markup=card[1];
+ assert.equal((markup.match(/<h2\\b/g)||[]).length,1,'Card '+(i+1)+' tem título duplicado');
+ assert.ok(/<h2 class="(?:recife-card-heading|mare-card-heading)">[^<]+<\\/h2>/.test(markup),'Título destacado ausente no card '+(i+1));
+ assert.ok(markup.indexOf('<h2 ')<markup.indexOf('mar-game-info'),'Título precisa ficar acima dos detalhes');
+ assert.ok(markup.includes('class="mar-cta"'),'Ação principal ausente no card '+(i+1));
+}
 console.log('PASS: sintaxe, integração, modos e '+words.length+' palavras');
