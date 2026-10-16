@@ -3,16 +3,16 @@ const fs=require('node:fs');
 const path=require('node:path');
 const assert=require('node:assert/strict');
 const root=process.cwd(),out=path.join(root,'_site');
-const pages=['index','recife','abismo','cardume','corrente','concha','trilha','enigma','marujo','forca','criptograma'];
+const manifest=require('../config/site-manifest.json');
+const pages=manifest.pages;
 const copied=new Set();
 function copy(rel){if(copied.has(rel))return;assert.ok(!rel.startsWith('/')&&!rel.includes('..'),'Caminho não permitido: '+rel);const src=path.join(root,rel),dst=path.join(out,rel);assert.ok(fs.existsSync(src),'Arquivo de publicação ausente: '+rel);assert.ok(fs.statSync(src).isFile(),'Asset não é arquivo: '+rel);fs.mkdirSync(path.dirname(dst),{recursive:true});fs.copyFileSync(src,dst);copied.add(rel)}
 fs.rmSync(out,{recursive:true,force:true});fs.mkdirSync(out,{recursive:true});
 for(const p of pages)copy(p+'.html');
-for(const p of ['hub.js','modos.js','palavras-ptbr-5.txt','data/cardume-puzzles.json'])copy(p);
-if(fs.existsSync('data/semantic-ranks.json'))copy('data/semantic-ranks.json');
-copy('assets/ocean-depth.svg');
-const backgrounds=fs.readdirSync('assets/backgrounds').filter(x=>/\.(svg|webp)$/.test(x));
-for(const file of backgrounds)copy('assets/backgrounds/'+file);
+for(const p of manifest.requiredFiles)copy(p);
+for(const p of manifest.optionalFiles)if(fs.existsSync(p))copy(p);
+const backgrounds=fs.readdirSync(manifest.backgroundsDirectory).filter(x=>/\.(svg|webp)$/.test(x));
+for(const file of backgrounds)copy(manifest.backgroundsDirectory+'/'+file);
 for(const page of pages){
  const doc=fs.readFileSync(page+'.html','utf8');
  for(const m of doc.matchAll(/<(?:script|link|img)\b[^>]*?(?:src|href)=["']([^"']+)["']/g)){
