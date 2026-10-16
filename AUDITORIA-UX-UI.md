@@ -71,3 +71,5 @@ Alterações incorporadas em `modos.js` e `modos.css`:
 - Consistência visual após mudança: **UNKNOWN** sem captura real.
 
 Conclusão: implementação de UI entregue em código para 9 de 10 itens; a consolidação final do CSS e a comprovação visual estão pendentes. Não interpretar como auditoria visual final aprovada.
+
+**Complemento UX-07:** tokens de cores duplicados em `:root` foram consolidados em um único bloco no `index.html`; refatoração completa dos overrides visuais continua sujeita a baseline de navegador para preservar a aparência.
