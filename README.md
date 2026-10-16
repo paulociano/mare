@@ -101,3 +101,7 @@ O design system define `assets/backgrounds/{recife,abismo,cardume,corrente,conch
 ## Enigma
 
 O jogo **Enigma** (`enigma.html`) oferece palavras cruzadas em uma grade 9×9, com pistas horizontais e verticais, seleção de casas, escrita por teclado, navegação por pistas, cronômetro, dicas de letra, salvamento local e desafios diários/livres. Os desafios originais são gerados a partir de seis conjuntos temáticos; a distribuição automática pode descartar palavras que não couberem nos cruzamentos. A base atual é reduzida e os desafios se repetem.
+
+## Marulho
+
+O **Marulho** (`marulho.html`) é um caça-palavras original do MARÉ em grade 10×10, com palavras em oito direções, inclusive invertidas, seleção por duas pontas ou arrasto, seis conjuntos temáticos curados, cronômetro, dicas, desafios diários e livres, compartilhamento e salvamento local. A base inicial é limitada e os temas se repetem. Interface, palavras e cenário são próprios.
