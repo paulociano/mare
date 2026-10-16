@@ -1,0 +1,41 @@
+
+.mare-modes{display:flex;gap:6px;padding:5px;border:1px solid #8df5df29;border-radius:14px;background:#041e2dc2;margin-bottom:18px}
+.mare-modes button{flex:1;min-width:0;border:1px solid transparent;background:transparent;border-radius:10px;padding:9px 4px;color:#a2c9d1;font-weight:800;font-size:12px}
+.mare-modes button small{display:block;font-size:9px;font-weight:500;margin-top:3px}
+.mare-modes button.active{background:linear-gradient(135deg,#2b917f,#14647d);border-color:#a4fff057;color:white;box-shadow:0 3px 14px #00ddbd24}
+.mare-boards{display:grid;grid-template-columns:1fr;gap:14px;width:100%;margin:auto}
+.mare-pane{min-width:0;padding:9px;border:1px solid #92fff226;border-radius:14px;background:#031a2880}
+.mare-pane.solved{border-color:#42e5c977}
+.mare-pane-head{color:#9fcdd1;font-size:9px;font-weight:800;letter-spacing:1px;margin:0 2px 8px}
+.mare-pane.solved .mare-pane-head{color:#58e7d0}
+.mare-grid{display:grid;gap:5px}
+.mare-row{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:5px}
+.mare-row .tile{width:100%;height:auto;aspect-ratio:1;display:flex;align-items:center;justify-content:center;min-width:0}
+.game[data-mode=duo],.game[data-mode=quartet]{width:min(100%,760px)}
+.game[data-mode=duo] .mare-boards,.game[data-mode=quartet] .mare-boards{grid-template-columns:repeat(2,minmax(0,1fr))}
+.game[data-mode=quartet] .mare-pane{padding:7px}
+.game[data-mode=quartet] .mare-grid,.game[data-mode=quartet] .mare-row{gap:3px}
+.game[data-mode=duo] .tile,.game[data-mode=quartet] .tile{font-size:clamp(14px,2vw,24px)}
+.game[data-mode=quartet] .tile{font-size:clamp(12px,1.5vw,19px)}
+.game[data-mode=quartet] .mare-row .tile{max-height:35px;aspect-ratio:auto;height:clamp(23px,3.2vw,35px)}
+.game[data-mode=solo] .mare-boards{width:min(100%,326px)}
+.game[data-mode=solo] .mare-pane{padding:0;border:0;background:transparent}
+.game[data-mode=solo] .mare-pane-head{display:none}
+main:has(.game[data-mode=duo]),main:has(.game[data-mode=quartet]){gap:22px}
+main:has(.game[data-mode=duo]) .leftPanel,main:has(.game[data-mode=quartet]) .leftPanel{width:260px}
+@media(max-width:950px){
+ main:has(.game[data-mode=duo]),main:has(.game[data-mode=quartet]){flex-direction:column;align-items:center}
+ main:has(.game[data-mode=duo]) .leftPanel,main:has(.game[data-mode=quartet]) .leftPanel{width:100%;max-width:650px}
+ .game[data-mode=duo],.game[data-mode=quartet]{width:min(100%,660px)}
+}
+@media(max-width:540px){
+ .game[data-mode=duo],.game[data-mode=quartet]{padding:13px 7px}
+ .game[data-mode=duo] .mare-pane,.game[data-mode=quartet] .mare-pane{padding:5px}
+ .mare-pane-head{font-size:7px;letter-spacing:0}
+ .game[data-mode=quartet] .mare-row .tile{height:clamp(21px,5.9vw,30px)}
+ .game[data-mode=duo] .mare-row .tile{aspect-ratio:1}
+ .game[data-mode=quartet] .mare-boards,.game[data-mode=duo] .mare-boards{gap:7px}
+ .game[data-mode=quartet] .tile{font-size:12px}
+ .game[data-mode=duo] .tile{font-size:clamp(13px,4vw,21px)}
+ .mare-modes button{font-size:11px}.mare-modes button small{font-size:8px}
+}
