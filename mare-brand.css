@@ -7,3 +7,8 @@ body.mare-recife .topbar .mare-brand-lockup img{width:clamp(150px,20vw,225px)!im
 body.mar-app .newgame-header .newgame-brand img{width:clamp(160px,20vw,230px)!important}
 @media(max-width:650px){.mare-hub .mar-logo img,body.mar-app :is(a.brand,a.logo,a.newgame-brand) img,body.mare-recife .mare-brand-lockup img{width:clamp(145px,39vw,188px)!important;max-height:49px!important}}
 @media(max-width:360px){.mare-hub .mar-logo img,body.mar-app :is(a.brand,a.logo,a.newgame-brand) img,body.mare-recife .mare-brand-lockup img{width:135px!important}}
+
+/* Acessibilidade: atalho visível ao receber foco para o conteúdo principal. */
+.mare-skip-link{position:fixed;z-index:99999;top:12px;left:12px;transform:translateY(-160%);padding:12px 18px;background:#9bf2d6;color:#061c27;border:2px solid #061c27;border-radius:9px;font:700 15px system-ui,sans-serif;text-decoration:none;box-shadow:0 5px 18px #001b27aa}
+.mare-skip-link:focus,.mare-skip-link:focus-visible{transform:translateY(0);outline:3px solid #ffffff;outline-offset:2px}
+#conteudo-principal:focus{outline:none}
