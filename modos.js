@@ -11,7 +11,7 @@ panel.setAttribute('role','group');
 panel.setAttribute('aria-label','Modo de jogo');
 panel.innerHTML='<button data-m="solo">Clássico<small>1 palavra</small></button><button data-m="duo">Dueto<small>2 palavras</small></button><button data-m="quartet">Quarteto<small>4 palavras</small></button>';
 game.insertBefore(panel,game.querySelector('.gameheading'));
-const progress=document.createElement('div');progress.className='mare-progress';progress.setAttribute('aria-live','polite');game.querySelector('.gameheading').after(progress);
+const progress=document.createElement('div');progress.className='mare-progress';progress.setAttribute('aria-live','off');game.querySelector('.gameheading').after(progress);
 const quickGuide=document.createElement('div');quickGuide.className='mare-legend';quickGuide.innerHTML='<span><i class="legend-good">✓</i> Lugar certo</span><span><i class="legend-near">↔</i> Outro lugar</span><span><i class="legend-miss">×</i> Ausente</span>';game.querySelector('.mare-boards, #board').before(quickGuide);
 const title=game.querySelector('.gameheading h2'),sub=game.querySelector('.gameheading p'),description=document.querySelector('.leftPanel .desc');
 function targetsFor(m) {
@@ -32,6 +32,7 @@ function grade(guess,secret){
  return out;
 }
 function setMode(m){
+ delete statusEl.dataset.notice;
  mode=m;targets=targetsFor(m);
  key='mare-game-'+(m==='solo'?'':m+'-')+day;
  statsKey=m==='solo'?'mare-stats-v1':'mare-stats-'+m+'-v1';
@@ -51,6 +52,7 @@ function setMode(m){
  render();
 }
 render=function(){
+ const focusedKey=document.activeElement?.classList?.contains('key')?document.activeElement.getAttribute('aria-label'):null;
  boardEl.className='mare-boards';boardEl.innerHTML='';progress.textContent=targets.filter((_,i)=>wonBoard(i)).length+' de '+targets.length+' palavras descobertas · '+(MODES[mode].tries-state.guesses.length)+' tentativas restantes';
  const max=MODES[mode].tries,scores={},ranks={absent:1,present:2,correct:3};
  targets.forEach((secret,i)=>{
@@ -84,7 +86,8 @@ render=function(){
   }keyboard.append(row);
  }
  if(mode==='quartet'){let picker=document.createElement('div');picker.className='mare-sonda-picker';picker.setAttribute('role','group');picker.setAttribute('aria-label','Ampliar tabuleiro');targets.forEach((_,i)=>{const b=document.createElement('button');b.textContent='Sonda '+(i+1)+(wonBoard(i)?' ✓':'');b.className=i===activePane?'chosen':'';b.setAttribute('aria-pressed',String(i===activePane));b.onclick=()=>{activePane=i;boardEl.dataset.focus=String(i);render()};picker.append(b)});boardEl.prepend(picker);boardEl.dataset.focus=String(activePane)}else boardEl.removeAttribute('data-focus');
- statusEl.textContent=state.finished?(targets.every((_,i)=>wonBoard(i))?'✦ Todos os tesouros encontrados!':'As palavras eram '+targets.join(', ')+'. Volte amanhã!'):state.guesses.length+'/'+max+' palpites';
+ if(focusedKey){const next=[...keyboard.querySelectorAll('button')].find(b=>b.getAttribute('aria-label')===focusedKey);next?.focus()}
+ if(!statusEl.dataset.notice)statusEl.textContent=state.finished?(targets.every((_,i)=>wonBoard(i))?'✦ Todos os tesouros encontrados!':'As palavras eram '+targets.join(', ')+'. Volte amanhã!'):state.guesses.length+'/'+max+' palpites';
 };
 type=function(ch){
  if(state.finished||document.getElementById('overlay').classList.contains('open'))return;
@@ -93,6 +96,7 @@ type=function(ch){
   if(state.current.length<5){message('A palavra precisa ter 5 letras');return}
   if(!DICTIONARY.has(state.current)){message('Palavra não encontrada no dicionário');return}
   state.guesses.push(state.current);state.current='';
+  delete statusEl.dataset.notice;
   const victory=targets.every((_,i)=>wonBoard(i));
   if(victory||state.guesses.length>=MODES[mode].tries){
    state.finished=true;stats.played++;
@@ -103,8 +107,8 @@ type=function(ch){
  save();render();
 };
 message=function(value){
- statusEl.textContent=value;clearTimeout(oldStatusTimeout);
- oldStatusTimeout=setTimeout(()=>{if(!state.finished)render()},2700);
+ statusEl.dataset.notice='1';statusEl.textContent=value;clearTimeout(oldStatusTimeout);
+ oldStatusTimeout=setTimeout(()=>{delete statusEl.dataset.notice;if(!state.finished)render()},2700);
 };
 showResult=function(victory){
  const rows=targets.map((target,i)=>'SONDA '+(i+1)+': '+(wonBoard(i)?'✓':'✕')+' '+target).join('<br>');
