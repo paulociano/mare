@@ -29,6 +29,7 @@ jobs:
         uses: actions/checkout@v4
       - name: Executar testes de regressão
         run: |
+          node scripts/check-repository.cjs
           node tests/smoke.cjs
           node tests/gameplay.cjs
       - name: Configurar Pages
