@@ -14,3 +14,7 @@ body.mare-criptograma{background-image:linear-gradient(180deg,#041622d2,#031521d
 .mare-forca .wreck-illustration{width:min(100%,310px);height:auto;max-height:228px;margin:5px auto 8px;display:block;overflow:visible}
 .mare-forca .wreck-progress [data-part]{transition:opacity .2s ease}
 @media(prefers-reduced-motion:reduce){.mare-forca .wreck-progress [data-part]{transition:none}}
+
+/* Feedback imediato do código em Sinais. */
+.crypto-tile.crypto-correct{border-color:#93f3bc!important;background:#164b41!important;box-shadow:inset 0 -3px 0 #5cdf9a}
+.crypto-tile.crypto-correct .crypto-letter{color:#d9ffe6!important;font-weight:900}
