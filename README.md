@@ -31,3 +31,9 @@ O projeto é compatível com hospedagem estática e GitHub Pages. É necessário
 ## Observações
 
 Projeto inspirado na mecânica de jogos de palavras de cinco letras, com identidade visual própria. O vocabulário e a experiência podem ser ampliados em versões futuras.
+
+## Dicionário de palavras
+
+O jogo inclui **8.611 formas únicas de cinco letras** extraídas e normalizadas de [pythonprobr/palavras](https://github.com/pythonprobr/palavras), que distribui uma base PT-BR derivada do corretor ortográfico LibreOffice sob licença **MPL-2.0**. Os acentos são removidos e o vocabulário é convertido para maiúsculas para combinar com o teclado do jogo. As palavras também são incorporadas ao `index.html` para funcionamento offline. O arquivo `palavras-ptbr-5.txt` preserva o conjunto filtrado.
+
+**Cobertura:** trata-se de um léxico amplo, não literalmente todas as palavras existentes do português brasileiro. Flexões raras, neologismos, regionalismos e expressões podem estar ausentes. A lista de soluções diárias permanece curada e separada das palavras aceitas como palpite.
