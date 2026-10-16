@@ -20,3 +20,9 @@ Lote 5: medição performance, PWA opcional, sharing e monitoramento (#17–20).
 
 ## Política
 Preservar URLs e chaves locais, manter assets SVG existentes e usar PRs com qualidade em vez de um merge monolítico sem QA.
+
+## Lote 2A · Persistência de Náufrago e Sinais (2026-10-16)
+- #3 (parcial): os saves dos dois jogos passam a persistir a identidade do desafio livre (`seed` em Náufrago e `index` em Sinais), evitando mudança da solução após a virada do dia. Mantidas as chaves antigas e o carregamento de saves anteriores.
+- #4 (parcial): consistência do desafio livre entre sessões e validação de payloads do navegador.
+- #1 (parcial): smoke tests de sintaxe e contratos de gravação/restauração da identidade do desafio.
+- Pendente: testes ponta a ponta de vitória, derrota, dicas, modos e recarga em navegador, incluindo os oito jogos anteriores.

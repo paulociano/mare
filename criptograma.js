@@ -7,9 +7,9 @@ const date=today(),day=Math.floor((Date.parse(date+'T12:00:00Z')-Date.UTC(2025,0
 let mode='daily',round=0,index=day%phrases.length,state,selected=null,code={};
 const key=()=> 'mare-criptograma-'+mode+'-'+(mode==='daily'?date:round);
 function setup(){const letters=[...new Set(phrases[index].replace(/[^A-Z]/g,''))];code={};const order=[...Array(26)].map((_,i)=>i+1);let n=(index+1)*7919;for(let i=order.length-1;i>0;i--){n=(1664525*n+1013904223)>>>0;const j=n%(i+1);[order[i],order[j]]=[order[j],order[i]]}letters.forEach((l,i)=>code[l]=order[i]);}
-function save(){try{localStorage.setItem(key(),JSON.stringify(state))}catch{}}
-function load(){try{const s=JSON.parse(localStorage.getItem(key()));if(s&&typeof s.map==='object'&&s.map!==null&&typeof s.done==='boolean'&&Number.isInteger(s.hints))return s}catch{}return {map:{},hints:0,done:false}}
-function begin(){setup();state=load();selected=null;render()}
+function save(){try{state.index=index;localStorage.setItem(key(),JSON.stringify(state))}catch{}}
+function load(){try{const s=JSON.parse(localStorage.getItem(key()));if(s&&typeof s.map==='object'&&s.map!==null&&typeof s.done==='boolean'&&Number.isInteger(s.hints)&&s.hints>=0&&s.hints<=100&&Object.keys(s.map).length<=26&&Object.entries(s.map).every(([k,v])=>/^\d+$/.test(k)&&Number(k)>=1&&Number(k)<=26&&typeof v==='string'&&/^[A-Z]$/.test(v)))return s}catch{}return {map:{},hints:0,done:false}}
+function begin(){state=load();if(mode==='free'&&Number.isInteger(state.index)&&state.index>=0&&state.index<phrases.length)index=state.index;setup();selected=null;render()}
 function render(){const text=phrases[index];$('daily').setAttribute('aria-pressed',String(mode==='daily'));$('free').setAttribute('aria-pressed',String(mode==='free'));$('edition').textContent=mode==='daily'?'DESAFIO DIÁRIO':'JOGO LIVRE';
 let unique=new Set(text.replace(/[^A-Z]/g,''));let guessed=[...unique].filter(l=>state.map[code[l]]===l).length;$('progress').textContent=guessed+' de '+unique.size+' letras';
 const fragment=document.createDocumentFragment();for(const ch of text){if(ch===' '){let sp=document.createElement('span');sp.className='crypto-space';fragment.append(sp);continue}const num=code[ch];let b=document.createElement('button');b.type='button';b.className='crypto-tile'+(selected===num?' selected':'');b.setAttribute('aria-label','Número '+num+', letra '+(state.map[num]||'vazia'));b.innerHTML='<span class="crypto-letter"></span><span class="crypto-number"></span>';b.querySelector('.crypto-letter').textContent=state.map[num]||'·';b.querySelector('.crypto-number').textContent=num;b.addEventListener('click',()=>{selected=num;render();$('guess').focus()});fragment.append(b)}$('cipher').replaceChildren(fragment);$('selected').textContent=selected??'?';$('guess').value=selected&&state.map[selected]||'';$('guess').disabled=selected===null||state.done;$('check').disabled=state.done;$('share').disabled=!state.done;$('notice').textContent=state.done?'Parabéns! Frase decifrada.':'Cada número corresponde sempre à mesma letra.'}
@@ -20,5 +20,5 @@ $('clear').onclick=()=>{state.map={};state.done=false;save();render()};$('next')
 $('daily').onclick=()=>{mode='daily';index=day%phrases.length;begin()};$('free').onclick=()=>{mode='free';index=(day+round*3+1)%phrases.length;begin()};
 $('share').onclick=async()=>{const s='MARÉ · Sinais ✓ · '+state.hints+' dicas';try{await navigator.clipboard.writeText(s);$('notice').textContent='Resultado copiado!'}catch{$('notice').textContent=s}};
 $('help').onclick=()=>$('rules').showModal();$('close').onclick=$('gotit').onclick=()=>$('rules').close();
-try{round=Number(localStorage.getItem('mare-criptograma-free-round'))||0}catch{}begin();
+try{round=Math.max(0,Math.min(100000,Number(localStorage.getItem('mare-criptograma-free-round'))||0))}catch{}begin();
 })();

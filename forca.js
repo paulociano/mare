@@ -7,9 +7,9 @@ const today=date(),day=Math.floor((Date.parse(today+'T12:00:00Z')-Date.UTC(2025,
 let mode='daily',seed=day,round=0,state;
 const answer=()=>puzzles[((seed%puzzles.length)+puzzles.length)%puzzles.length];
 const key=()=> 'mare-forca-'+mode+'-'+(mode==='daily'?today:round);
-function save(){try{localStorage.setItem(key(),JSON.stringify(state))}catch{}}
-function load(){try{const s=JSON.parse(localStorage.getItem(key()));if(s&&Array.isArray(s.used)&&typeof s.won==='boolean'&&typeof s.lost==='boolean'&&Number.isInteger(s.misses))return s}catch{}return {used:[],misses:0,won:false,lost:false}}
-function begin(){state=load();render()}
+function save(){try{state.seed=seed;localStorage.setItem(key(),JSON.stringify(state))}catch{}}
+function load(){try{const s=JSON.parse(localStorage.getItem(key()));if(s&&Array.isArray(s.used)&&s.used.length<=26&&s.used.every(l=>typeof l==='string'&&/^[A-Z]$/.test(l))&&new Set(s.used).size===s.used.length&&typeof s.won==='boolean'&&typeof s.lost==='boolean'&&Number.isInteger(s.misses)&&s.misses>=0&&s.misses<=6)return s}catch{}return {used:[],misses:0,won:false,lost:false}}
+function begin(){state=load();if(mode==='free'&&Number.isInteger(state.seed)&&state.seed>=0)seed=state.seed;render()}
 function newRound(){mode='free';round++;seed=day+round*7+3;state={used:[],misses:0,won:false,lost:false};try{localStorage.setItem('mare-forca-free-round',String(round))}catch{}save();render()}
 function guess(letter,asHint=false){if(state.won||state.lost||state.used.includes(letter))return;const word=answer()[0];state.used.push(letter);if(!word.includes(letter)||asHint)state.misses++;state.won=[...word].every(x=>state.used.includes(x));state.lost=state.misses>=6&&!state.won;save();render()}
 function render(){let [word,category]=answer();$('category').textContent='TEMA · '+category;$('edition').textContent=mode==='daily'?'DESAFIO DIÁRIO':'JOGO LIVRE';$('remaining').textContent=Math.max(0,6-state.misses)+' erros disponíveis';
@@ -24,5 +24,5 @@ $('hint').onclick=()=>{let missing=[...new Set([...answer()[0]].filter(x=>!state
 $('share').onclick=async()=>{let s='MARÉ · Náufrago '+(state.won?'✓':'×')+' '+state.used.length+' letras';try{await navigator.clipboard.writeText(s);$('notice').textContent='Resultado copiado!'}catch{$('notice').textContent=s}};
 document.addEventListener('keydown',e=>{if($('rules').open||e.altKey||e.ctrlKey||e.metaKey||/INPUT|TEXTAREA/.test(document.activeElement?.tagName||''))return;let l=e.key.toUpperCase();if(/^[A-Z]$/.test(l))guess(l)});
 $('help').onclick=()=>$('rules').showModal();$('close').onclick=$('gotit').onclick=()=>$('rules').close();
-try{round=Number(localStorage.getItem('mare-forca-free-round'))||0}catch{}begin();
+try{round=Math.max(0,Math.min(100000,Number(localStorage.getItem('mare-forca-free-round'))||0))}catch{}begin();
 })();
