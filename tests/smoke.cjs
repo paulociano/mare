@@ -196,4 +196,14 @@ for(const game of ['perola','farol']){
 const duoSource=fs.readFileSync('mares-duo.js','utf8');
 new vm.Script(duoSource);
 assert.ok(duoSource.includes("perola:[")&&duoSource.includes("farol:["),'Desafios dos jogos ausentes');
+const signals=fs.readFileSync('criptograma.js','utf8');
+assert.ok(signals.includes('crypto-correct'),'Sinais sem sinalização visual de letra certa');
+assert.ok(signals.includes('Associação correta!'),'Sinais sem feedback imediato');
+const finish=fs.readFileSync('mare-finale.js','utf8');
+new vm.Script(finish);
+for(const page of ['index','recife','abismo','cardume','corrente','concha','trilha','enigma','marujo','forca','criptograma','perola','farol']){
+ const source=fs.readFileSync(page+'.html','utf8');
+ assert.ok(source.includes('mare-finale.js')&&source.includes('mare-finale.css'),'Comemoração ausente: '+page);
+}
+assert.ok(fs.readFileSync('mare-finale.css','utf8').includes('prefers-reduced-motion'),'Efeito deve respeitar movimento reduzido');
 console.log('PASS: sintaxe, integração, modos e '+words.length+' palavras');
