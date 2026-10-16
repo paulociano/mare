@@ -146,7 +146,7 @@ assert.ok(fs.readFileSync('criptograma.js','utf8').includes("aria-pressed"));
 for(const page of ['index','recife','abismo','cardume','corrente','concha','trilha','enigma','marujo','forca','criptograma']){
  const doc=fs.readFileSync(page+'.html','utf8');
  assert.ok(doc.includes('class="mare-skip-link" href="#conteudo-principal"'),page+': atalho de teclado ausente');
- assert.ok(/<main\\b[^>]*id="conteudo-principal"/.test(doc),page+': destino do atalho ausente');
+ assert.ok(/<main\b[^>]*id="conteudo-principal"/.test(doc),page+': destino do atalho ausente');
 }
 assert.ok(fs.readFileSync('mare-brand.css','utf8').includes('.mare-skip-link:focus'));
 console.log('PASS: sintaxe, integração, modos e '+words.length+' palavras');
