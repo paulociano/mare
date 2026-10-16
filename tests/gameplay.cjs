@@ -50,4 +50,17 @@ assert.equal(h.misses,1,'Dica deve custar um erro');
 assert.ok(h.used.length===1 && word.includes(h.used[0]),'Dica revela letra da resposta');
 const badSaved=runGame('forca.js',{[forcaKey]:JSON.stringify({used:['?',42],misses:999,won:false,lost:false})});
 assert.equal(badSaved.el('remaining').textContent,'6 erros disponíveis','Save inválido deve ser ignorado');
+
+// Sinais: dica preenche uma correspondência única e salva o estado.
+const sinaisHint=runGame('criptograma.js');
+sinaisHint.el('hint').onclick();
+const signsKey=[...sinaisHint.store.keys()].find(k=>k.startsWith('mare-criptograma-daily-'));
+assert.ok(signsKey,'Sinais deve salvar o desafio diário');
+const signsSaved=JSON.parse(sinaisHint.store.get(signsKey));
+assert.equal(signsSaved.hints,1,'A dica em Sinais deve ser contabilizada');
+assert.equal(Object.keys(signsSaved.map).length,1,'A dica deve revelar uma correspondência');
+const signsReload=runGame('criptograma.js',Object.fromEntries(sinaisHint.store));
+assert.ok(signsReload.el('progress').textContent.startsWith('1 de '),'A dica deve persistir após recarregar');
+const signsBroken=runGame('criptograma.js',{[signsKey]:JSON.stringify({map:{'99':'INVALIDA'},done:true,hints:-1})});
+assert.equal(signsBroken.el('progress').textContent.startsWith('0 de '),true,'Sinais deve ignorar salvamento inválido');
 console.log('PASS: inicialização, vitória, derrota, dica, validação de saves e persistência dos desafios Náufrago/Sinais');
