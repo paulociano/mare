@@ -18,7 +18,7 @@ $('guess').addEventListener('input',e=>setLetter(e.target.value));$('check').onc
 $('hint').onclick=()=>{if(state.done)return;const unknown=[...new Set(phrases[index].replace(/[^A-Z]/g,''))].find(l=>state.map[code[l]]!==l);if(!unknown)return;selected=code[unknown];for(const [k,v] of Object.entries(state.map))if(v===unknown&&Number(k)!==selected)delete state.map[k];state.map[selected]=unknown;state.hints++;save();render();$('notice').textContent='Uma letra foi revelada.'};
 $('clear').onclick=()=>{state.map={};state.done=false;save();render()};$('next').onclick=()=>{mode='free';round++;index=(day+round*3+1)%phrases.length;try{localStorage.setItem('mare-criptograma-free-round',String(round))}catch{}state={map:{},hints:0,done:false};save();begin()};
 $('daily').onclick=()=>{mode='daily';index=day%phrases.length;begin()};$('free').onclick=()=>{mode='free';index=(day+round*3+1)%phrases.length;begin()};
-$('share').onclick=async()=>{const s='MARÉ · Criptograma ✓ · '+state.hints+' dicas';try{await navigator.clipboard.writeText(s);$('notice').textContent='Resultado copiado!'}catch{$('notice').textContent=s}};
+$('share').onclick=async()=>{const s='MARÉ · Sinais ✓ · '+state.hints+' dicas';try{await navigator.clipboard.writeText(s);$('notice').textContent='Resultado copiado!'}catch{$('notice').textContent=s}};
 $('help').onclick=()=>$('rules').showModal();$('close').onclick=$('gotit').onclick=()=>$('rules').close();
 try{round=Number(localStorage.getItem('mare-criptograma-free-round'))||0}catch{}begin();
 })();
