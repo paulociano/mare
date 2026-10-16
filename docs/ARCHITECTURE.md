@@ -43,3 +43,13 @@ Extrair gradualmente o JavaScript embutido de `recife.html` e reduzir o número 
 O jogo Recife carrega `recife.js` antes de `modos.js`, mantendo a ordem original de inicialização e as mesmas chaves locais. `recife.html` define a interface, `recife.js` mantém as regras de jogo e eventos existentes, e `modos.js` adiciona os modos. A extração não modifica lógica, mas permite testar sintaxe separadamente e remover o JavaScript embutido da página.
 
 Qualquer mudança futura nos modos deve manter esta ordem até que as dependências entre os scripts sejam eliminadas por refatoração acompanhada de testes funcionais em navegador.
+
+## Dívida técnica ainda relevante
+
+O histórico de auditorias pontuais foi removido por estar desatualizado. Permanecem como hipóteses e pendências para revisão antes de novas alterações:
+- Verificar a coexistência entre o controlador de Recife em `recife.js` e os patches em `modos.js` antes de consolidá-los.
+- Avaliar a duplicação do dicionário de Recife em `recife.js` e `palavras-ptbr-5.txt` e definir geração a partir de uma fonte única.
+- Revisar consistência do desafio diário entre fusos horários e curadoria lexicográfica.
+- Validar navegação real em desktop/mobile, leitor de tela, performance e GitHub Actions. Testes estáticos não substituem essas verificações.
+
+Estas são **pendências**, não falhas reproduzidas nesta atualização. Git mantém o histórico dos relatórios antigos para consulta retrospectiva.
