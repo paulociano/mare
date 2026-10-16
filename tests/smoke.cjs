@@ -85,7 +85,7 @@ const pages = ['index.html','recife.html','abismo.html','cardume.html','corrente
 for (const page of pages) {
   const document = fs.readFileSync(page, 'utf8');
   for (const match of document.matchAll(/<link\s+rel="stylesheet"\s+href="([^"]+)"/g)) {
-    const stylesheet = match[1];
+    const stylesheet = match[1].split(/[?#]/)[0];
     assert.ok(fs.existsSync(stylesheet), page + ': CSS ausente ' + stylesheet);
   }
   assert.ok(document.includes('href="mare-3.css"'), page + ': design system não carregado');
@@ -172,4 +172,5 @@ for(const [i,markup] of catalogCards.entries()){
  assert.ok(markup.includes('class="mar-cta"'),'Botão ausente no card '+(i+1));
 }
 assert.ok(home.includes('mare-brand.css?v=card-layout-2'),'CSS da home deve evitar cache antigo');
+assert.ok(fs.existsSync('mare-brand.css'),'Arquivo físico do CSS versionado ausente');
 console.log('PASS: sintaxe, integração, modos e '+words.length+' palavras');
