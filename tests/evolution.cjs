@@ -43,3 +43,14 @@ assert.ok(cards.every(card=>card.children.length===0||!card.hidden));
 assert.ok(cards.every(card=>card.querySelector('.mar-game-info').children.length===2),'Metadados presentes em cada card');
 assert.equal(body.dataset.depth,'surface','Sem progresso, cenário básico');
 console.log('PASS: catálogo de 12 jogos, filtros, acessibilidade e fallback de armazenamento');
+
+const manifest=require('../config/site-manifest.json');
+for(const page of manifest.pages){
+ const source=fs.readFileSync(page+'.html','utf8');
+ assert.ok(source.includes('href="mare-evolution.css"'),page+': camada oceânica não carregada');
+ assert.equal((source.match(/href="mare-evolution.css"/g)||[]).length,1,page+': stylesheet duplicado');
+}
+const evolutionCss=fs.readFileSync('mare-evolution.css','utf8');
+assert.ok(evolutionCss.includes('prefers-reduced-motion:reduce'),'Motion reduzido obrigatório');
+assert.ok(evolutionCss.includes(':focus-visible'),'Foco visível obrigatório');
+console.log('PASS: camada compartilhada nos 13 documentos, foco e movimento reduzido');
