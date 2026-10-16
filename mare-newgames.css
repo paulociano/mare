@@ -5,3 +5,7 @@ body.mare-criptograma{background-image:linear-gradient(180deg,#041622dd,#031521e
 @media(max-width:700px){.newgame-intro{flex-direction:column;align-items:flex-start;padding:18px 0}.forca-keyboard{grid-template-columns:repeat(9,minmax(0,1fr))}.newgame-shell .mare-game-nav__grid{grid-template-columns:repeat(4,minmax(0,1fr))}.crypto-tile{width:32px;height:53px}.crypto-space{width:12px}}
 @media(max-width:430px){.forca-keyboard{grid-template-columns:repeat(7,minmax(0,1fr))}.newgame-shell .mare-game-nav__grid{grid-template-columns:repeat(3,minmax(0,1fr))}.crypto-tile{width:29px;height:49px}.crypto-space{width:9px}.newgame-actions button{flex:1 1 35%}}
 @media(prefers-reduced-motion:reduce){.newgame-shell *{animation:none!important;transition:none!important}}
+
+/* Identidade submarina dos novos jogos com cenas SVG locais. */
+body.mare-forca{background-image:linear-gradient(180deg,#041622d2,#031521df),url('assets/backgrounds/naufrago.svg')!important}
+body.mare-criptograma{background-image:linear-gradient(180deg,#041622d2,#031521df),url('assets/backgrounds/sinais.svg')!important}
