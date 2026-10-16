@@ -79,3 +79,7 @@ O workflow do GitHub Pages inclui `cardume.html`, `cardume.css`, `cardume.js` e 
 O modo [Corrente](corrente.html) desafia o jogador a encontrar uma palavra de comprimento desconhecido, entre 3 e 10 letras. Cada palpite apresenta letras existentes e conexões entre pares consecutivos de letras, com tentativas ilimitadas, dica inicial, salvamento local e modalidades diária e livre. A lista de soluções foi selecionada para essa primeira versão; é um conjunto limitado que se repete.
 
 O catálogo público do MARÉ usa somente os nomes próprios **Clássico**, **Dueto**, **Quarteto**, **Abismo**, **Cardume** e **Corrente**. Os arquivos publicados seguem os mesmos nomes, sem redirecionamentos antigos.
+
+## Catálogo e Recife
+
+A página inicial (`index.html`) apresenta o catálogo MARÉ. O jogo de cinco letras chama-se **Recife**, acessível em `recife.html`, com três modos: Clássico, Dueto e Quarteto. Abismo, Cardume e Corrente permanecem em suas próprias páginas. O CSS compartilhado `mare-system.css` consolida a identidade do catálogo e os ajustes do Recife; `hub.js` identifica uma expedição local para facilitar a retomada. URLs antigas de `letras.html` não são mais publicadas.
