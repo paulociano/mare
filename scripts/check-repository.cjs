@@ -34,4 +34,8 @@ assert.equal(cards.length,games.length,'Quantidade de cards divergente do manife
 for(const name of games){
  assert.ok(home.includes('href="'+name+'.html"'),'Jogo sem link na home: '+name);
 }
+assert.ok(exists('README.md'),'README obrigatório ausente');
+assert.ok(exists('docs/ARCHITECTURE.md'),'Documentação arquitetural ausente');
+assert.ok(!exists('AUDITORIA.md'),'Auditoria histórica obsoleta ressurgiu na raiz');
+assert.ok(!exists('docs/roadmap-20-melhorias-execucao.md'),'Roadmap histórico obsoleto ressurgiu');
 console.log('PASS: estrutura, manifesto, 11 páginas e 10 jogos');
