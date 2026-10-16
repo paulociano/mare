@@ -68,7 +68,7 @@ body.mar-app,body.mare-recife,body.mare-abismo,body.mare-cardume,body.mare-corre
 :is(.enigma-layout,.trilha-layout,.marujo-layout){grid-template-columns:minmax(0,1.25fr) minmax(270px,.75fr);gap:clamp(16px,2.3vw,28px)}
 :is(.enigma-card,.trilha-panel,.marujo-panel,.enigma-clues,.enigma-stats,.trilha-info,.trilha-mode,.marujo-card,.concha-play,.concha-discover){background:var(--mar-2-panel)!important;border:1px solid var(--mar-2-edge)!important;border-radius:24px!important;box-shadow:var(--mar-2-shadow)!important;padding:clamp(18px,2.6vw,30px)!important}
 :is(.enigma-meta,.trilha-meta,.marujo-meta,.concha-top,.concha-stat){padding-bottom:15px;border-bottom:1px solid rgba(156,229,223,.15);color:#c1dce0;align-items:center;font-weight:700}
-:is(.enigma-meta,.trilha-meta,.marujo-meta) #clock{font-700:20px 'Outfit',sans-serif;font-variant-numeric:tabular-nums;color:#e9f9f7}
+:is(.enigma-meta,.trilha-meta,.marujo-meta) #clock{font:700 20px 'Outfit',sans-serif;font-variant-numeric:tabular-nums;color:#e9f9f7}
 .trilha-clue{padding:25px 15px 20px;text-align:center}
 .trilha-clue small,.enigma-current>span,.marujo-selection span{font-size:10px;font-weight:800;letter-spacing:.16em;color:#91dfd4}
 .trilha-clue h2{font:700 clamp(22px,3vw,30px)/1.25 'Outfit',sans-serif;letter-spacing:-.03em;margin:12px auto;max-width:480px}
