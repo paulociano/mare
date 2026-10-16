@@ -97,3 +97,7 @@ O design system define `assets/backgrounds/{recife,abismo,cardume,corrente,conch
 ## Trilha
 
 **Trilha** (`trilha.html`) é um desafio autoral de conectar letras em um tabuleiro 4×4, descobrindo uma palavra por pista temática. Os movimentos são exclusivamente horizontais ou verticais, entre casas vizinhas, sem repetir casas; a primeira casa pode ser qualquer uma. Inclui cronômetro, tentativas ilimitadas, desafio diário por data de Brasília, jogo livre, dica da primeira letra, salvamento local e compartilhamento do resultado. O lançamento tem 16 pistas/soluções, que se repetem; não utiliza conteúdo de terceiros.
+
+## Enigma
+
+O jogo **Enigma** (`enigma.html`) oferece palavras cruzadas em uma grade 9×9, com pistas horizontais e verticais, seleção de casas, escrita por teclado, navegação por pistas, cronômetro, dicas de letra, salvamento local e desafios diários/livres. Os desafios originais são gerados a partir de seis conjuntos temáticos; a distribuição automática pode descartar palavras que não couberem nos cruzamentos. A base atual é reduzida e os desafios se repetem.
