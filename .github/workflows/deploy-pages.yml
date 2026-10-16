@@ -28,7 +28,10 @@ jobs:
       - name: Preparar arquivos
         run: |
           mkdir -p _site
-          cp index.html _site/index.html
+          cp index.html modos.js modos.css _site/
+          test -s _site/index.html
+          test -s _site/modos.js
+          test -s _site/modos.css
           touch _site/.nojekyll
       - name: Enviar artefato
         uses: actions/upload-pages-artifact@v3
