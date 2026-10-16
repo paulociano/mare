@@ -12,3 +12,13 @@ body.mar-app .newgame-header .newgame-brand img{width:clamp(160px,20vw,230px)!im
 .mare-skip-link{position:fixed;z-index:99999;top:12px;left:12px;transform:translateY(-160%);padding:12px 18px;background:#9bf2d6;color:#061c27;border:2px solid #061c27;border-radius:9px;font:700 15px system-ui,sans-serif;text-decoration:none;box-shadow:0 5px 18px #001b27aa}
 .mare-skip-link:focus,.mare-skip-link:focus-visible{transform:translateY(0);outline:3px solid #ffffff;outline-offset:2px}
 #conteudo-principal:focus{outline:none}
+
+/* Recife: logotipo exclusivo do jogo na home e no título central. */
+.recife-title-lockup{display:flex!important;align-items:center!important;justify-content:center!important;text-align:center!important;width:100%;min-width:0;margin-inline:auto}
+.recife-title-lockup img{display:block;width:min(100%,300px);height:auto;max-height:140px;object-fit:contain}
+.mare-hub .mar-letters .recife-title-lockup{justify-content:flex-start!important;margin:0 0 4px}
+.mare-hub .mar-letters .recife-title-lockup img{width:min(100%,205px);max-height:98px}
+.recife-title-lockup img:not([hidden])+span{position:absolute;width:1px;height:1px;clip:rect(0,0,0,0);white-space:nowrap;overflow:hidden}
+.recife-title-lockup img[hidden]{display:none!important}
+.recife-title-lockup img[hidden]+span{position:static;width:auto;height:auto;clip:auto;white-space:normal;overflow:visible}
+@media(max-width:650px){.recife-title-lockup img{width:min(100%,235px);max-height:105px}.mare-hub .mar-letters .recife-title-lockup img{width:min(100%,180px)}}
