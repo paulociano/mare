@@ -218,4 +218,12 @@ for(const game of ['perola','farol']){
  assert.ok(doc.includes('href="'+game+'.html" aria-current="page"'),'Jogo ativo incorreto: '+game);
  assert.equal((doc.match(/class="mare-game-nav__name"/g)||[]).length,12,'Rodapé precisa dos doze jogos: '+game);
 }
+for(const game of ['recife','abismo','cardume','corrente','concha','trilha','enigma','marujo']){
+ const mark='assets/brand/'+game+'-mark.svg';
+ const svg=fs.readFileSync(mark,'utf8');
+ const page=fs.readFileSync(game+'.html','utf8');
+ assert.ok(svg.startsWith('<svg')&&svg.includes('viewBox'),'Símbolo inválido: '+game);
+ assert.ok(home.includes('src="'+mark+'"'),'Símbolo ausente no card: '+game);
+ assert.ok(page.includes('src="'+mark+'"'),'Símbolo ausente no jogo: '+game);
+}
 console.log('PASS: sintaxe, integração, modos e '+words.length+' palavras');
