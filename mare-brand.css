@@ -129,3 +129,49 @@ body.mare-hub .mar-catalog > article.mar-game .mar-cta{margin-top:auto!important
  body.mare-hub .mar-catalog > article.mar-game > h2.recife-card-heading{font-size:clamp(1.8rem,7.6vw,2.55rem)!important}
  body.mare-hub .mar-catalog > article.mar-game:is(.mar-school,.mar-current,.mar-forca,.mar-criptograma) > h2.recife-card-heading{font-size:clamp(1.55rem,6.4vw,2.25rem)!important}
 }
+
+/* MARÉ Ocean Motion: two compositor-friendly decorative layers, no JS or videos. */
+body.mare-hub,body.mar-app,body.mare-recife{isolation:isolate}
+body:is(.mare-hub,.mar-app,.mare-recife)::before,
+body:is(.mare-hub,.mar-app,.mare-recife)::after{
+ content:"";position:fixed;inset:-8vh -8vw;pointer-events:none;
+ z-index:0;contain:paint;will-change:transform;transform:translate3d(0,0,0);
+}
+body:is(.mare-hub,.mar-app,.mare-recife)::before{
+ background:
+ radial-gradient(ellipse 80vw 16vh at 16% 91%,rgba(48,177,192,.17) 0,rgba(13,78,110,.09) 64%,transparent 72%),
+ radial-gradient(ellipse 85vw 18vh at 88% 100%,rgba(44,177,178,.15) 0,rgba(15,80,106,.08) 63%,transparent 73%),
+ radial-gradient(ellipse 70vw 18vh at 49% 108%,rgba(120,236,220,.09),transparent 72%);
+ opacity:.85;animation:mare-ocean-swell 15s ease-in-out infinite alternate;
+}
+body:is(.mare-hub,.mar-app,.mare-recife)::after{
+ background-image:
+ radial-gradient(circle,rgba(158,246,230,.38) 0 2px,transparent 3px),
+ radial-gradient(circle,rgba(171,244,230,.24) 0 4px,transparent 5px),
+ radial-gradient(circle,rgba(128,222,224,.22) 0 3px,transparent 4px),
+ radial-gradient(circle,rgba(203,255,239,.16) 0 1px,transparent 2px);
+ background-size:193px 239px,307px 349px,263px 301px,127px 191px;
+ background-position:18px 46px,102px 123px,36px 171px,66px 27px;
+ opacity:.56;animation:mare-bubbles-rise 24s linear infinite;
+}
+body.mare-hub > :is(header,main,footer),
+body.mar-app > :is(header,main,footer,.newgame-shell,.depth-shell,.shell,.app,.container,.wrap),
+body.mare-recife > :is(header,main,footer,.shell){position:relative;z-index:1}
+@keyframes mare-ocean-swell{
+ from{transform:translate3d(-3%,1%,0) scale(1)}
+ to{transform:translate3d(3%,-2%,0) scale(1.035)}
+}
+@keyframes mare-bubbles-rise{
+ from{transform:translate3d(0,7vh,0)}
+ to{transform:translate3d(12px,-21vh,0)}
+}
+@media(max-width:650px){
+ body:is(.mare-hub,.mar-app,.mare-recife)::after{opacity:.34}
+ body:is(.mare-hub,.mar-app,.mare-recife)::before{opacity:.6}
+}
+@media(prefers-reduced-motion:reduce){
+ body:is(.mare-hub,.mar-app,.mare-recife)::before,
+ body:is(.mare-hub,.mar-app,.mare-recife)::after{
+  animation:none!important;transform:none!important;will-change:auto!important;
+ }
+}
