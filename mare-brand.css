@@ -58,3 +58,7 @@ body.mare-hub .mar-catalog > article.mar-game:is(.mar-forca,.mar-criptograma) > 
   font-size:clamp(2.15rem,10vw,3.3rem)!important;
  }
 }
+
+/* Cartões dos dois novos jogos na mesma linguagem visual do Recife. */
+.mare-hub .mar-catalog .mar-perola{background-image:linear-gradient(180deg,#02121c8a,#02121ce3),url('assets/backgrounds/concha.svg')!important;background-size:cover!important;background-position:center!important}
+.mare-hub .mar-catalog .mar-farol{background-image:linear-gradient(180deg,#02121c8a,#02121ce3),url('assets/backgrounds/corrente.svg')!important;background-size:cover!important;background-position:center!important}
