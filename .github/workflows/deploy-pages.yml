@@ -36,7 +36,9 @@ jobs:
       - name: Configurar Pages
         uses: actions/configure-pages@v5
       - name: Preparar e validar os arquivos publicados
-        run: node scripts/build-site.cjs
+        run: |
+          node scripts/build-site.cjs
+          node scripts/check-build.cjs
       - name: Enviar artefato
         uses: actions/upload-pages-artifact@v3
         with:

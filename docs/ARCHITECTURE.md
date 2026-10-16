@@ -59,3 +59,5 @@ Estas são **pendências**, não falhas reproduzidas nesta atualização. Git ma
 `scripts/check-sources.cjs` confere os onze documentos públicos e valida, sem dependências externas, sintaxe dos scripts `.js`, estilos referenciados sem duplicações, ordem da camada `mare-brand.css`, caminhos locais de imagens e estilos, e os cenários finais de Náufrago/Sinais. Ele roda no PR, no deploy e no comando `npm run check`.
 
 As três folhas históricas `mare-system.css`, `mare-v2.css` e `mare-3.css` ainda são carregadas em cascata. Não movê-las nem eliminar seletores potencialmente usados sem baseline visual e inspeção de cada jogo. Próximo critério de conclusão: testes em navegador de layouts responsivos, tabuleiros e persistência, mais confirmação do workflow Pages. A checagem estática acrescentada é preventiva, não comprova equivalência visual.
+
+O pacote final também é verificado por `scripts/check-build.cjs`, executado depois de `scripts/build-site.cjs`: confere as onze páginas, navegação HTML e assets essenciais dentro de `_site/`. Isso evita o falso positivo em que fontes estão presentes no repositório, mas não são incluídas na publicação.
