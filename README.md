@@ -89,3 +89,7 @@ A página inicial (`index.html`) apresenta o catálogo MARÉ. O jogo de cinco le
 O jogo **Concha** (`concha.html`) utiliza sete letras, uma central obrigatória, palavras de quatro ou mais letras, repetições permitidas, pontuação e bônus para palavra que use as sete letras. Conta com desafio diário, partidas livres e salvamento local. A versão inicial usa o léxico de cinco letras do projeto complementado por palavras curadas e palavras-semente, por isso não cobre todo o idioma.
 
 O fundo vetorial `assets/ocean-depth.svg` foi atualizado com **submarino, feixes de luz e corais**, inspirados na direção visual aprovada. A arte raster gerada anteriormente não foi copiada para o GitHub nesta execução; esta entrega usa uma interpretação vetorial, compartilhada entre as telas, e preserva legibilidade com overlays.
+
+## Fundos exclusivos WebP
+
+O design system define `assets/backgrounds/{recife,abismo,cardume,corrente,concha}.webp` com overlay escuro e fundo vetorial SVG de reserva. O workflow de Pages publica os WebP quando estão presentes no repositório. **Os cinco WebP precisam ser enviados à pasta indicada**; enquanto não estiverem versionados no GitHub, a interface mantém somente o fundo vetorial. O pacote foi gerado nesta conversa para instalação.
