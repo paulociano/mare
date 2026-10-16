@@ -54,4 +54,8 @@ Os arquivos `modos.js` e `modos.css` adicionam estes modos sobre a interface exi
 
 Acesse `contexto.html` ou use o cartão na página principal. Digite palavras de qualquer tamanho e veja um indicador **aproximado** de proximidade semântica com o segredo. O jogo oferece dicas, persistência local e sucessivas partidas sem limite de palpites por rodada.
 
-**Limitação transparente:** esta primeira edição usa 12 conjuntos de associações previamente curados, com posições heurísticas. Não consulta o Contexto original, não calcula embeddings ou distâncias semânticas de um modelo de IA, e após 12 expedições os conjuntos se repetem. Não equivale ao vocabulário ou ranqueamento completo do Contexto. Arquivos: `contexto.html`, `contexto.css`, `contexto.js`.
+**Limitação transparente:** esta primeira edição usa 42 conjuntos temáticos de associações curadas, com posições heurísticas. Não consulta o Contexto original, não calcula embeddings ou distâncias semânticas de um modelo de IA, e após 12 expedições os conjuntos se repetem. Não equivale ao vocabulário ou ranqueamento completo do Contexto. Arquivos: `contexto.html`, `contexto.css`, `contexto.js`.
+
+### Metodologia REA e motor semântico
+
+A referência [morluto/rea](https://github.com/morluto/rea) é um utilitário MIT de investigação de sites/aplicativos, **não** um clone nem fonte do algoritmo Contexto. O MARÉ utiliza uma implementação própria: 42 temas e grafo de associações; palavras relacionadas pelo banco são classificadas antes das desconhecidas. Sem embeddings treinados, corpus amplo e ranking integral, resultados não são comparáveis aos do Contexto. Não foram executadas ferramentas REA MCP ou capturas de rede do site original nesta etapa.
