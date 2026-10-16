@@ -59,3 +59,11 @@ Acesse `contexto.html` ou use o cartão na página principal. Digite palavras de
 ### Metodologia REA e motor semântico
 
 A referência [morluto/rea](https://github.com/morluto/rea) é um utilitário MIT de investigação de sites/aplicativos, **não** um clone nem fonte do algoritmo Contexto. O MARÉ utiliza uma implementação própria: 42 temas e grafo de associações; palavras relacionadas pelo banco são classificadas antes das desconhecidas. Sem embeddings treinados, corpus amplo e ranking integral, resultados não são comparáveis aos do Contexto. Não foram executadas ferramentas REA MCP ou capturas de rede do site original nesta etapa.
+
+## Rankings por embeddings (pipeline experimental)
+
+O workflow [Gerar rankings semânticos](.github/workflows/semantic-ranks.yml) instala `sentence-transformers`, usa `sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2` e calcula similaridades vetoriais entre palavras do léxico do MARÉ. O resultado é `data/semantic-ranks.json`, gerado na infraestrutura do GitHub e publicado como arquivo estático pelo Pages. Assim, os dispositivos não precisam baixar o modelo.
+
+**Ativação condicionada:** até o workflow gerar e confirmar o arquivo, o Abismo Semântico utiliza o grafo de associações curadas. O processo pode falhar por limites de rede, tempo ou dependências; a presença do código não comprova que o ranking vetorial já esteja publicado.
+
+O vocabulário é limitado às palavras dos desafios mais o arquivo `palavras-ptbr-5.txt`; termos fora dele continuam recebendo pontuação heurística distante. Embeddings são aproximações de significado, não rankings originais do Contexto. A seleção de 42 soluções também continua limitada e cíclica. Para reproduzir uma experiência com cobertura comparável, ainda seria necessário expandir e revisar o léxico e testar empiricamente a qualidade das associações.
