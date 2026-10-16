@@ -46,6 +46,8 @@ jobs:
           test -s _site/assets/backgrounds/abismo.svg
           test -s _site/assets/backgrounds/cardume.svg
           test -s _site/assets/backgrounds/corrente.svg
+          test -s _site/assets/backgrounds/naufrago.svg
+          test -s _site/assets/backgrounds/sinais.svg
           test -s _site/assets/backgrounds/concha.svg
           mkdir -p _site/data
           cp data/cardume-puzzles.json _site/data/

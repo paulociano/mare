@@ -349,3 +349,7 @@ body.mar-app :is(.panel,.game,.concha-play,.concha-discover,.trilha-panel,.enigm
 body:is(.mare-recife,.mare-abismo,.mare-cardume,.mare-corrente,.mare-concha,.mare-trilha,.mare-enigma,.mare-marujo) .mare-game-nav__grid{grid-template-columns:repeat(5,minmax(0,1fr))}
 @media(max-width:760px){body:is(.mare-recife,.mare-abismo,.mare-cardume,.mare-corrente,.mare-concha,.mare-trilha,.mare-enigma,.mare-marujo) .mare-game-nav__grid{grid-template-columns:repeat(4,minmax(0,1fr))}}
 @media(max-width:450px){body:is(.mare-recife,.mare-abismo,.mare-cardume,.mare-corrente,.mare-concha,.mare-trilha,.mare-enigma,.mare-marujo) .mare-game-nav__grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+
+/* Artes oficiais MARÉ: Náufrago e Sinais */
+.mare-hub .mar-game.mar-forca{background-image:linear-gradient(180deg,#02121c91,#02121cdd),url('assets/backgrounds/naufrago.svg')!important}
+.mare-hub .mar-game.mar-criptograma{background-image:linear-gradient(180deg,#02121c91,#02121cdd),url('assets/backgrounds/sinais.svg')!important}
