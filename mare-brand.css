@@ -22,3 +22,11 @@ body.mar-app .newgame-header .newgame-brand img{width:clamp(160px,20vw,230px)!im
 .recife-title-lockup img[hidden]{display:none!important}
 .recife-title-lockup img[hidden]+span{position:static;width:auto;height:auto;clip:auto;white-space:normal;overflow:visible}
 @media(max-width:650px){.recife-title-lockup img{width:min(100%,235px);max-height:105px}.mare-hub .mar-letters .recife-title-lockup img{width:min(100%,180px)}}
+
+/* Recife: uma única identidade visual na área ilustrada do card. */
+.mare-hub .mar-game.mar-letters .recife-card-heading{margin:6px 0 10px;padding:0;min-height:142px;display:flex;align-items:center;justify-content:center;width:100%;flex:1 0 auto}
+.mare-hub .mar-game.mar-letters .recife-card-heading img{display:block;width:min(100%,345px);height:auto;max-height:182px;object-fit:contain;filter:drop-shadow(0 8px 13px rgba(0,14,23,.3))}
+.mare-hub .mar-game.mar-letters .recife-card-heading img[hidden]{display:none}
+.mare-hub .mar-game.mar-letters .recife-card-heading span:not([hidden]){display:block}
+.mare-hub .mar-game.mar-letters .mar-game-info{margin-top:auto}
+@media(max-width:650px){.mare-hub .mar-game.mar-letters .recife-card-heading{min-height:120px;margin:4px 0 8px}.mare-hub .mar-game.mar-letters .recife-card-heading img{width:min(100%,310px);max-height:160px}}
