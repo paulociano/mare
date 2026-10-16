@@ -1,7 +1,8 @@
 const fs = require('node:fs');
 const vm = require('node:vm');
 const assert = require('node:assert/strict');
-const html = fs.readFileSync('index.html','utf8');
+const home = fs.readFileSync('index.html','utf8');
+const html = fs.readFileSync('recife.html','utf8');
 const modes = fs.readFileSync('modos.js','utf8');
 const css = fs.readFileSync('modos.css','utf8');
 const inline = html.match(/<script>([\s\S]*?)<\/script>/);
@@ -46,4 +47,8 @@ assert.ok(html.includes('href="abismo.html"'));
 assert.ok(html.includes('href="cardume.html"'));
 assert.ok(html.includes('href="corrente.html"'));
 for(const old of ['contexto.html','contexto.js','contexto.css','conexoes.html','conexoes.js','conexoes.css'])assert.ok(!fs.existsSync(old),'Arquivo legado ainda existe: '+old);
+assert.ok(home.includes('recife.html') && home.includes('cardume.html'));
+assert.ok(home.includes('mare-system.css') && fs.existsSync('hub.js'));
+new vm.Script(fs.readFileSync('hub.js','utf8'));
+assert.ok(fs.existsSync('mare-system.css'));
 console.log('PASS: sintaxe, integração, modos e '+words.length+' palavras');
