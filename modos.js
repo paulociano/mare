@@ -48,7 +48,8 @@ function setMode(m){
  sub.textContent=m==='solo'?'Cinco letras. Seis tentativas. Um oceano de possibilidades.':m==='duo'?'Dois mistérios. Sete palpites compartilhados.':'Quatro mistérios. Nove palpites compartilhados.';
  description.textContent=m==='solo'?'Uma palavra misteriosa se esconde nas profundezas. Você tem 6 tentativas para encontrá-la.':m==='duo'?'Duas palavras de cinco letras, sete tentativas compartilhadas.':'Quatro palavras de cinco letras, nove tentativas compartilhadas.';
  localStorage.setItem('mare-mode',m);
- clearTimeout(oldStatusTimeout);statusEl.textContent='';
+ if(state.guesses.length&&!state.finished){statusEl.dataset.notice='1';statusEl.textContent='Partida retomada: '+state.guesses.length+' palpites registrados.';clearTimeout(oldStatusTimeout);oldStatusTimeout=setTimeout(()=>{delete statusEl.dataset.notice;render()},3000)}
+ if(!statusEl.dataset.notice)statusEl.textContent='';
  render();
 }
 render=function(){
