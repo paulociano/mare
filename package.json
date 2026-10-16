@@ -1,0 +1,14 @@
+{
+  "name": "mare-word-games",
+  "private": true,
+  "version": "1.0.0",
+  "description": "MARÉ: dez jogos de palavras estáticos",
+  "scripts": {
+    "test": "node tests/smoke.cjs && node tests/gameplay.cjs",
+    "build": "node scripts/build-site.cjs",
+    "check": "node scripts/check-repository.cjs && npm test && npm run build"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
