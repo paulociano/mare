@@ -21,7 +21,7 @@ $('notice').textContent=state.won?'Você venceu! Palavra: '+word:state.lost?'Fim
 $('hint').disabled=state.won||state.lost;$('share').disabled=!(state.won||state.lost)}
 $('daily').onclick=()=>{mode='daily';seed=day;begin()};$('free').onclick=()=>{mode='free';seed=day+round*7+3;begin()};$('next').onclick=newRound;
 $('hint').onclick=()=>{let missing=[...new Set([...answer()[0]].filter(x=>!state.used.includes(x)))];if(missing.length)guess(missing[0],true)};
-$('share').onclick=async()=>{let s='MARÉ · Forca '+(state.won?'✓':'×')+' '+state.used.length+' letras';try{await navigator.clipboard.writeText(s);$('notice').textContent='Resultado copiado!'}catch{$('notice').textContent=s}};
+$('share').onclick=async()=>{let s='MARÉ · Náufrago '+(state.won?'✓':'×')+' '+state.used.length+' letras';try{await navigator.clipboard.writeText(s);$('notice').textContent='Resultado copiado!'}catch{$('notice').textContent=s}};
 document.addEventListener('keydown',e=>{if($('rules').open||e.altKey||e.ctrlKey||e.metaKey||/INPUT|TEXTAREA/.test(document.activeElement?.tagName||''))return;let l=e.key.toUpperCase();if(/^[A-Z]$/.test(l))guess(l)});
 $('help').onclick=()=>$('rules').showModal();$('close').onclick=$('gotit').onclick=()=>$('rules').close();
 try{round=Number(localStorage.getItem('mare-forca-free-round'))||0}catch{}begin();
