@@ -36,8 +36,9 @@ function setMode(m){
  state={guesses:[],current:'',finished:false};stats={played:0,wins:0,streak:0,best:0};
  try {Object.assign(state,JSON.parse(localStorage.getItem(key)||'{}'));Object.assign(stats,JSON.parse(localStorage.getItem(statsKey)||'{}'))}catch(e){}
  if(!Array.isArray(state.guesses))state.guesses=[];
- state.guesses=state.guesses.slice(0,MODES[m].tries);
- if(typeof state.current!=='string')state.current='';
+ state.guesses=state.guesses.filter(g=>typeof g==='string'&&/^[A-Z]{5}$/.test(g)&&DICTIONARY.has(g)).slice(0,MODES[m].tries);
+ if(typeof state.current!=='string'||!/^[A-Z]{0,5}$/.test(state.current))state.current='';
+ state.finished=targets.every(t=>state.guesses.includes(t))||state.guesses.length>=MODES[m].tries;
  document.querySelectorAll('.mare-modes button').forEach(b=>{const on=b.dataset.m===m;b.classList.toggle('active',on);b.setAttribute('aria-pressed',String(on))});
  game.dataset.mode=m;
  title.textContent=m==='solo'?'Descubra a palavra':m==='duo'?'Desvende duas palavras':'Explore quatro palavras';
@@ -56,14 +57,14 @@ render=function(){
   pane.setAttribute('aria-label','Palavra '+(i+1)+(done?' resolvida':''));
   const heading=document.createElement('div');heading.className='mare-pane-head';
   heading.textContent='SONDA '+String(i+1).padStart(2,'0')+(done?'  ✓ DESCOBERTA':'  ◈ EM BUSCA');pane.append(heading);
-  const grid=document.createElement('div');grid.className='mare-grid';
+  const grid=document.createElement('div');grid.className='mare-grid';grid.setAttribute('role','grid');grid.setAttribute('aria-label','Tentativas da palavra '+(i+1));
   for(let r=0;r<max;r++){
-   const row=document.createElement('div');row.className='mare-row';
+   const row=document.createElement('div');row.className='mare-row';row.setAttribute('role','row');
    const guess=state.guesses[r],letters=guess||(r===state.guesses.length&&!state.finished&&!done?state.current:'');
    const evaluations=guess?grade(guess,secret):[];
    for(let c=0;c<5;c++){
     const tile=document.createElement('div');tile.className='tile'+(letters[c]?' filled':'')+(evaluations[c]?' '+evaluations[c]:'');
-    tile.textContent=letters[c]||'';tile.setAttribute('aria-label',letters[c]?(letters[c]+' '+(evaluations[c]||'')):'vazio');row.append(tile);
+    tile.textContent=letters[c]||'';tile.setAttribute('role','gridcell');tile.setAttribute('aria-label',letters[c]?(letters[c]+' '+(evaluations[c]||'')):'vazio');row.append(tile);
    }
    grid.append(row);
    if(guess&&(!done||r<=state.guesses.indexOf(secret))) evaluations.forEach((v,c)=>{const k=guess[c];if(!scores[k]||ranks[v]>ranks[scores[k]])scores[k]=v});
