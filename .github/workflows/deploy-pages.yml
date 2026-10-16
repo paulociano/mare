@@ -34,7 +34,7 @@ jobs:
       - name: Preparar arquivos
         run: |
           mkdir -p _site
-          cp index.html recife.html hub.js mare-system.css modos.js modos.css visual-v3.css abismo.html abismo.js abismo.css cardume.html cardume.js cardume.css corrente.html corrente.js corrente.css concha.html concha.js concha.css trilha.html trilha.js trilha.css enigma.html enigma.js enigma.css marujo.html marujo.js marujo.css palavras-ptbr-5.txt _site/
+          cp index.html recife.html hub.js mare-system.css mare-editorial.css modos.js modos.css visual-v3.css abismo.html abismo.js abismo.css cardume.html cardume.js cardume.css corrente.html corrente.js corrente.css concha.html concha.js concha.css trilha.html trilha.js trilha.css enigma.html enigma.js enigma.css marujo.html marujo.js marujo.css palavras-ptbr-5.txt _site/
           mkdir -p _site/assets
           cp assets/ocean-depth.svg _site/assets/
           mkdir -p _site/assets/backgrounds
@@ -87,6 +87,16 @@ jobs:
           test -s _site/palavras-ptbr-5.txt
           test -s _site/assets/ocean-depth.svg
           touch _site/.nojekyll
+      - name: Renderizar vídeo ambiente a partir do cenário MARÉ
+        run: |
+          mkdir -p _site/assets/videos
+          python3 -m pip install --quiet --user cairosvg
+          python3 - <<'PY'
+          import cairosvg
+          cairosvg.svg2png(url='assets/backgrounds/recife.svg',write_to='/tmp/mare-fundo.png',output_width=1280,output_height=720)
+          PY
+          ffmpeg -hide_banner -loglevel error -y -loop 1 -framerate 18 -i /tmp/mare-fundo.png -vf "zoompan=z='min(zoom+0.00035,1.07)':d=1:s=960x540:fps=18,format=yuv420p" -t 7 -an -c:v libx264 -preset veryfast -crf 30 -movflags +faststart _site/assets/videos/oceano.mp4
+          test -s _site/assets/videos/oceano.mp4
       - name: Enviar artefato
         uses: actions/upload-pages-artifact@v3
         with:
