@@ -209,3 +209,47 @@ body:is(.mare-abismo,.mare-cardume,.mare-corrente,.mare-concha,.mare-trilha,.mar
  .mare-recife .board{width:min(86vw,325px)}
  .mare-recife .keyboard{width:100%}
 }
+
+/* MARÉ 3.2: shared functional HUD / actions for deduction games */
+:is(.mare-abismo,.mare-cardume,.mare-corrente) :is(.layout,.wrap){width:min(100% - 32px,920px);margin-inline:auto}
+:is(.mare-abismo,.mare-cardume,.mare-corrente) header{padding:15px 0;border-bottom:1px solid var(--m3-stroke);display:flex;align-items:center;justify-content:space-between;gap:15px}
+:is(.mare-abismo,.mare-cardume,.mare-corrente) :is(.brand,.logo){font:700 25px 'Outfit',sans-serif;letter-spacing:.15em;color:var(--m3-ink);text-decoration:none}
+:is(.mare-abismo,.mare-cardume,.mare-corrente) :is(.brand,.logo) small{display:block;font:700 8px 'DM Sans',sans-serif;letter-spacing:.14em;color:var(--m3-muted)}
+:is(.mare-abismo,.mare-cardume,.mare-corrente) .back{font-size:12px;color:var(--m3-muted);text-decoration:none}
+:is(.mare-abismo,.mare-cardume,.mare-corrente) :is(.eyebrow,.overline){letter-spacing:.1em;font-size:10px;font-weight:800;color:var(--m3-accent)}
+:is(.mare-abismo,.mare-cardume,.mare-corrente) :is(.hero,.heading,.intro){padding:18px 0 16px!important}
+:is(.mare-abismo,.mare-cardume,.mare-corrente) :is(.hero,.heading,.intro) h1{font-size:clamp(37px,5vw,54px)!important;margin:4px 0!important}
+:is(.mare-abismo,.mare-cardume,.mare-corrente) :is(.hero,.heading,.intro) p{font-size:13px;max-width:570px;line-height:1.45}
+:is(.mare-abismo,.mare-cardume,.mare-corrente) :is(.panel,.game){padding:clamp(14px,2vw,24px)!important;background:#0b2633!important;border:1px solid var(--m3-stroke)!important;box-shadow:none!important;border-radius:17px!important}
+:is(.mare-abismo,.mare-cardume,.mare-corrente) :is(.progress,.statusline,.meta){display:flex;align-items:center;justify-content:space-between;gap:8px;font-size:11px;color:#b9d7d8;padding-bottom:12px;margin-bottom:12px;border-bottom:1px solid var(--m3-stroke);letter-spacing:.03em}
+:is(.mare-abismo,.mare-cardume,.mare-corrente) :is(.entry input){min-height:46px;padding:12px 15px;border-radius:10px;background:#071c29;color:#f3faf7;border:1px solid #456e7b;font-size:16px}
+:is(.mare-abismo,.mare-cardume,.mare-corrente) :is(.entry input):focus-visible{border-color:var(--m3-accent)}
+:is(.mare-abismo,.mare-cardume,.mare-corrente) :is(.entry button,#go){background:var(--m3-accent);border-color:var(--m3-accent);color:#0a2b35;font-weight:800;min-height:46px;padding-inline:19px}
+:is(.mare-abismo,.mare-cardume,.mare-corrente) :is(.legend){gap:13px;margin:12px 0 16px;color:#c1d9da;font-size:11px}
+:is(.mare-abismo,.mare-cardume,.mare-corrente) :is(.listtitle,.heading):not(.mar-section-head){font-size:12px}
+:is(.mare-abismo,.mare-cardume,.mare-corrente) :is(.guesses,.history,.solved){gap:8px}
+:is(.mare-abismo,.mare-cardume,.mare-corrente) :is(.empty){background:rgba(8,32,43,.45);border:1px dashed rgba(159,216,214,.19);border-radius:11px;padding:18px}
+:is(.mare-abismo,.mare-cardume,.mare-corrente) :is(.actions,.lower,.controls,.switch){gap:8px}
+:is(.mare-abismo,.mare-cardume,.mare-corrente) :is(.actions,.lower,.controls,.switch) button{min-height:42px;font-weight:700;padding:10px 13px}
+.mare-cardume .heading{text-align:left}
+.mare-cardume .tile{min-height:clamp(54px,7vw,78px);font-size:clamp(11px,1.65vw,15px);border-radius:10px;background:#193f4d;border:1px solid #507582;box-shadow:none}
+.mare-cardume .tile[aria-pressed=true]{background:#a9eddb;color:#0c2c35;border-color:#d9fff3}
+.mare-cardume .solution{padding:12px;border-radius:10px}
+.mare-cardume .lower{margin-top:12px}
+.mare-corrente .intro{padding:18px 0 16px!important}
+.mare-corrente .depth{margin:8px 0 15px;font-size:11px}
+.mare-corrente form{margin:12px 0}
+.mare-corrente .guess{padding:11px;border-radius:12px;background:#113544!important}
+.mare-corrente .letter{box-shadow:none;min-width:clamp(27px,4vw,36px);height:clamp(36px,4.5vw,43px)}
+.mare-abismo form{margin:13px 0}
+.mare-abismo .item{padding:11px 14px;box-shadow:none}
+:is(.mare-abismo,.mare-cardume,.mare-corrente) footer{padding:15px 0;font-size:10px;color:#85a8af}
+@media(max-width:560px){
+ :is(.mare-abismo,.mare-cardume,.mare-corrente) :is(.layout,.wrap){width:min(100% - 22px,920px)}
+ :is(.mare-abismo,.mare-cardume,.mare-corrente) :is(.hero,.heading,.intro){padding:12px 0!important}
+ :is(.mare-abismo,.mare-cardume,.mare-corrente) :is(.hero,.heading,.intro) h1{font-size:39px!important}
+ .mare-cardume .grid{gap:5px}
+ .mare-cardume .tile{min-height:53px;font-size:clamp(9px,2.5vw,12px)}
+ :is(.mare-corrente,.mare-abismo) .entry{display:flex;flex-direction:column}
+ :is(.mare-corrente,.mare-abismo) .entry button{width:100%}
+}
