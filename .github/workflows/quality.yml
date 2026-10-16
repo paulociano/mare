@@ -1,0 +1,30 @@
+name: Validar MARÉ
+
+on:
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  quality:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Obter projeto
+        uses: actions/checkout@v4
+      - name: Testar regras e integrações
+        run: node tests/smoke.cjs
+      - name: Validar pacote publicado
+        run: node scripts/build-site.cjs
+      - name: Verificar arquivos essenciais
+        run: |
+          test -s _site/index.html
+          test -s _site/recife.html
+          test -s _site/forca.html
+          test -s _site/criptograma.html
+          test -s _site/mare-3.css
+          test -s _site/mare-newgames.css
+          test -s _site/assets/backgrounds/naufrago.svg
+          test -s _site/assets/backgrounds/sinais.svg
