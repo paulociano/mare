@@ -34,7 +34,7 @@ jobs:
       - name: Preparar arquivos
         run: |
           mkdir -p _site
-          cp index.html modos.js modos.css visual-v3.css abismo.html abismo.js abismo.css cardume.html cardume.js cardume.css corrente.html corrente.js corrente.css _site/
+          cp index.html recife.html hub.js mare-system.css modos.js modos.css visual-v3.css abismo.html abismo.js abismo.css cardume.html cardume.js cardume.css corrente.html corrente.js corrente.css _site/
           mkdir -p _site/assets
           cp assets/ocean-depth.svg _site/assets/
           mkdir -p _site/data
@@ -44,6 +44,9 @@ jobs:
             cp data/semantic-ranks.json _site/data/
           fi
           test -s _site/index.html
+          test -s _site/recife.html
+          test -s _site/mare-system.css
+          test -s _site/hub.js
           test -s _site/modos.js
           test -s _site/modos.css
           test -s _site/visual-v3.css
