@@ -250,3 +250,20 @@ body.mare-corrente{
  :is(.mare-abismo .hero,.mare-cardume .heading,.mare-corrente .intro,.mare-concha .concha-hero,.mare-trilha .trilha-hero,.mare-enigma .enigma-hero,.mare-marujo .marujo-hero) h1{font-size:clamp(37px,10vw,53px)!important}
  .mare-cardume .tile{min-height:51px}
 }
+
+/* Recife: retain hints and keyboard while making the grid the primary object. */
+@media(min-width:651px){
+ .mare-recife .shell{max-width:1050px}
+ .mare-recife main{gap:clamp(22px,4vw,52px);padding:18px 0!important}
+ .mare-recife .leftPanel{width:215px}
+ .mare-recife .leftPanel h2{font-size:31px;margin:12px 0!important}
+ .mare-recife .leftPanel .desc{font-size:12px;line-height:1.5;margin-bottom:15px}
+ .mare-recife .leftPanel .rule{margin:8px 0}
+ .mare-recife .leftfoot{margin-top:14px}
+ .mare-recife .gameheading{margin-bottom:10px}
+}
+.mare-recife .topbar{height:68px!important}
+.mare-recife .gameheading h2{margin:4px 0!important}
+.mare-recife .bottomnote{margin-top:8px}
+.mare-recife .foot{height:42px}
+@media(max-width:650px){.mare-recife main{padding:10px 0!important}.mare-recife .gameheading{margin-bottom:9px}.mare-recife .keyboard{margin-top:4px}.mare-recife .bottomnote{margin-top:7px}}
