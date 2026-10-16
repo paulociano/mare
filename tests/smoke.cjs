@@ -32,4 +32,10 @@ assert.ok(!semantic.includes('const prefix='), 'Ranking não deve depender de le
 assert.ok(semanticHtml.includes('contexto.js'));
 assert.ok(semanticHtml.includes('contexto.css'));
 assert.ok(fs.existsSync('contexto.css'));
+const cx=fs.readFileSync('conexoes.js','utf8');
+new vm.Script(cx);
+const puzzles=JSON.parse(fs.readFileSync('data/conexoes-puzzles.json','utf8'));
+assert.ok(puzzles.length>=10);
+assert.ok(puzzles.every(p=>p.length===4&&new Set(p.flatMap(g=>g.words)).size===16));
+assert.ok(fs.readFileSync('conexoes.html','utf8').includes('conexoes.js'));
 console.log('PASS: sintaxe, integração, modos e '+words.length+' palavras');
