@@ -1,1 +1,37 @@
-'use strict';(()=>{const entries=[{keys:['mare-mode','mare-solo-','mare-duo-','mare-quartet-'],label:'Recife',url:'recife.html'},{keys:['mare-semantico-round','mare-semantico-'],label:'Abismo',url:'abismo.html'},{keys:['mare-cardume-'],label:'Cardume',url:'cardume.html'},{keys:['mare-corrente-'],label:'Corrente',url:'corrente.html'}];let found=null;try{for(const game of entries){for(let i=0;i<localStorage.length;i++){const k=localStorage.key(i);if(game.keys.some(v=>k.startsWith(v))){found=game;break}}if(found)break}}catch{}if(found){document.getElementById('mar-resume-label').textContent='Retome sua expedição em '+found.label+'.';const l=document.getElementById('mar-resume-link');l.href=found.url;l.textContent='Continuar em '+found.label+' ↗'}})();
+'use strict';
+(() => {
+  const games = [
+    { name: 'Recife', page: 'recife.html', prefixes: ['mare-solo-', 'mare-duo-', 'mare-quartet-'] },
+    { name: 'Abismo', page: 'abismo.html', prefixes: ['mare-semantico-'] },
+    { name: 'Cardume', page: 'cardume.html', prefixes: ['mare-cardume-daily-', 'mare-cardume-free-'] },
+    { name: 'Corrente', page: 'corrente.html', prefixes: ['mare-corrente-daily-', 'mare-corrente-free-'] },
+    { name: 'Concha', page: 'concha.html', prefixes: ['mare-concha-daily-', 'mare-concha-free-'] },
+    { name: 'Trilha', page: 'trilha.html', prefixes: ['mare-trilha-daily-', 'mare-trilha-free-'] },
+    { name: 'Enigma', page: 'enigma.html', prefixes: ['mare-enigma-daily-', 'mare-enigma-free-'] },
+    { name: 'Marujo', page: 'marujo.html', prefixes: ['mare-marujo-daily-', 'mare-marujo-free-', 'mare-marulho-daily-', 'mare-marulho-free-'] }
+  ];
+  let savedKeys = [];
+  let lastVisited = null;
+  try {
+    savedKeys = Array.from({ length: localStorage.length }, (_, i) => localStorage.key(i)).filter(Boolean);
+    lastVisited = localStorage.getItem('mare-last-played');
+  } catch { /* O catálogo continua funcional sem armazenamento. */ }
+  const hasProgress = game => savedKeys.some(key => game.prefixes.some(prefix => key.startsWith(prefix)));
+  const selected = games.find(game => game.page === lastVisited && hasProgress(game)) || games.find(hasProgress);
+  if (selected) {
+    const label = document.getElementById('mar-resume-label');
+    const link = document.getElementById('mar-resume-link');
+    if (label && link) {
+      label.textContent = 'Retome sua expedição em ' + selected.name + '.';
+      link.href = selected.page;
+      link.textContent = 'Continuar em ' + selected.name + ' ↗';
+    }
+  }
+  document.querySelectorAll('a[href]').forEach(link => {
+    const game = games.find(item => link.getAttribute('href')?.split('?')[0] === item.page);
+    if (!game) return;
+    link.addEventListener('click', () => {
+      try { localStorage.setItem('mare-last-played', game.page); } catch {}
+    });
+  });
+})();
