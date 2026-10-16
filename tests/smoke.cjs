@@ -174,4 +174,9 @@ for(const [i,markup] of catalogCards.entries()){
 }
 assert.ok(home.includes('mare-brand.css?v=card-layout-3'),'CSS da home deve evitar cache antigo');
 assert.ok(fs.existsSync('mare-brand.css'),'Arquivo físico do CSS versionado ausente');
+const brandStyles=fs.readFileSync('mare-brand.css','utf8');
+assert.ok(brandStyles.includes('white-space:nowrap!important'),'Títulos devem permanecer em linha única');
+assert.ok(brandStyles.includes('mar-school,.mar-current'),'Regra de títulos longos ausente');
+assert.ok(brandStyles.includes('body.mare-recife .recife-title-lockup'),'Título da página Recife ausente');
+assert.equal((brandStyles.match(/\/\* Catálogo: título único/g)||[]).length,1,'Sessão de títulos duplicada');
 console.log('PASS: sintaxe, integração, modos e '+words.length+' palavras');
