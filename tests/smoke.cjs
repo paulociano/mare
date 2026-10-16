@@ -118,4 +118,6 @@ for (const game of ['recife','abismo','cardume','corrente','concha','trilha','en
   for(const added of newGames)assert.ok(page.includes('href="'+added+'.html"'));
 }
 assert.ok(fs.existsSync('mare-newgames.css'));
+for (const scene of ['naufrago','sinais']) assert.ok(fs.existsSync('assets/backgrounds/'+scene+'.svg'));
+assert.ok(home.includes('Náufrago') && home.includes('Sinais'));
 console.log('PASS: sintaxe, integração, modos e '+words.length+' palavras');
