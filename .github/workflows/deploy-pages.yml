@@ -4,6 +4,9 @@ on:
   push:
     branches: [main]
   workflow_dispatch:
+  workflow_run:
+    workflows: ['Gerar rankings semânticos']
+    types: [completed]
 
 permissions:
   contents: read
@@ -16,6 +19,7 @@ concurrency:
 
 jobs:
   deploy:
+    if: github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success'
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
@@ -33,6 +37,10 @@ jobs:
           cp index.html modos.js modos.css visual-v3.css contexto.html contexto.js contexto.css _site/
           mkdir -p _site/assets
           cp assets/ocean-depth.svg _site/assets/
+          if [ -s data/semantic-ranks.json ]; then
+            mkdir -p _site/data
+            cp data/semantic-ranks.json _site/data/
+          fi
           test -s _site/index.html
           test -s _site/modos.js
           test -s _site/modos.css
