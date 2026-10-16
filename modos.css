@@ -77,3 +77,8 @@ main:has(.game[data-mode=duo]) .leftPanel,main:has(.game[data-mode=quartet]) .le
  .game[data-mode=duo] .mare-pane-head{font-size:10px}
  .bottomnote{font-size:12px}
 }
+
+/* Progressive enhancement: older / lower-power devices */
+@media(prefers-reduced-motion:reduce){.scene .bubble,.scene .fish,.scene .light{display:none!important}.key,.mare-modes button{transition:none!important}}
+@media(max-width:650px){.scene .bubble:nth-of-type(n+13){display:none}.light{filter:blur(16px)}.game{box-shadow:0 12px 38px #0005}}
+@media(max-width:400px){.brand small{letter-spacing:.5px}.mare-legend{gap:5px 9px}.mare-legend span{font-size:11px}}
