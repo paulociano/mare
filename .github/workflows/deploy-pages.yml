@@ -34,9 +34,11 @@ jobs:
       - name: Preparar arquivos
         run: |
           mkdir -p _site
-          cp index.html modos.js modos.css visual-v3.css contexto.html contexto.js contexto.css _site/
+          cp index.html modos.js modos.css visual-v3.css contexto.html contexto.js contexto.css conexoes.html conexoes.js conexoes.css _site/
           mkdir -p _site/assets
           cp assets/ocean-depth.svg _site/assets/
+          mkdir -p _site/data
+          cp data/conexoes-puzzles.json _site/data/
           if [ -s data/semantic-ranks.json ]; then
             mkdir -p _site/data
             cp data/semantic-ranks.json _site/data/
@@ -48,6 +50,9 @@ jobs:
           test -s _site/contexto.html
           test -s _site/contexto.js
           test -s _site/contexto.css
+          test -s _site/conexoes.html
+          test -s _site/conexoes.js
+          test -s _site/conexoes.css
           test -s _site/assets/ocean-depth.svg
           touch _site/.nojekyll
       - name: Enviar artefato
