@@ -156,4 +156,10 @@ for (const game of ['trilha','enigma']) {
  assert.ok(source.includes('document.activeElement'),'Foco não preservado em '+game);
  new vm.Script(source);
 }
+const recifeCard=home.match(/<article class="mar-game mar-letters">([\\s\\S]*?)<\\/article>/)?.[1];
+assert.ok(recifeCard,'Card do Recife ausente');
+assert.ok(recifeCard.includes('class="recife-card-heading"'),'Logo principal não está no card');
+assert.ok(recifeCard.includes('alt="Recife"'),'Logo do Recife precisa de texto alternativo');
+assert.equal((recifeCard.match(/<h2\\b/g)||[]).length,1,'Título do Recife duplicado no card');
+assert.ok(recifeCard.indexOf('recife-card-heading')<recifeCard.indexOf('mar-game-info'),'Logo deve estar na parte superior');
 console.log('PASS: sintaxe, integração, modos e '+words.length+' palavras');
