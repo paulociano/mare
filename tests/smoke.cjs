@@ -135,4 +135,12 @@ assert.ok(naufragoCode.includes('state.seed=seed'),'Náufrago não salva a palav
 assert.ok(naufragoCode.includes('seed=state.seed'),'Náufrago não restaura a palavra da partida livre');
 assert.ok(sinaisCode.includes('state.index=index'),'Sinais não salva a frase da partida livre');
 assert.ok(sinaisCode.includes('index=state.index'),'Sinais não restaura a frase da partida livre');
+const accessibleNaufrago=fs.readFileSync('forca.html','utf8');
+const accessibleSinais=fs.readFileSync('criptograma.html','utf8');
+assert.ok(accessibleNaufrago.includes('aria-label="Partida de Náufrago"'));
+assert.ok(accessibleNaufrago.includes('id="remaining" role="status"'));
+assert.ok(accessibleSinais.includes('id="cipher-help"'));
+assert.ok(accessibleSinais.includes('aria-describedby="cipher-help"'));
+assert.ok(fs.readFileSync('forca.js','utf8').includes("aria-pressed"));
+assert.ok(fs.readFileSync('criptograma.js','utf8').includes("aria-pressed"));
 console.log('PASS: sintaxe, integração, modos e '+words.length+' palavras');
