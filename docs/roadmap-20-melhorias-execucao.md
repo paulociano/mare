@@ -26,3 +26,8 @@ Preservar URLs e chaves locais, manter assets SVG existentes e usar PRs com qual
 - #4 (parcial): consistência do desafio livre entre sessões e validação de payloads do navegador.
 - #1 (parcial): smoke tests de sintaxe e contratos de gravação/restauração da identidade do desafio.
 - Pendente: testes ponta a ponta de vitória, derrota, dicas, modos e recarga em navegador, incluindo os oito jogos anteriores.
+
+## Lote 2B · Teste de gameplay em ambiente simulado
+- #1 (parcial): `tests/gameplay.cjs` exercita inicialização, modo livre e restauração das identidades das partidas de Náufrago e Sinais.
+- Workflows de PR e Pages passam a executar smoke e gameplay.
+- Pendente: observar execução real do workflow, ampliar para vitória/derrota/dicas e testar todos os dez jogos com navegador real.
