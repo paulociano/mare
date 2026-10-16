@@ -1,0 +1,26 @@
+{
+  "pages": [
+    "index",
+    "recife",
+    "abismo",
+    "cardume",
+    "corrente",
+    "concha",
+    "trilha",
+    "enigma",
+    "marujo",
+    "forca",
+    "criptograma"
+  ],
+  "requiredFiles": [
+    "hub.js",
+    "modos.js",
+    "palavras-ptbr-5.txt",
+    "data/cardume-puzzles.json",
+    "assets/ocean-depth.svg"
+  ],
+  "optionalFiles": [
+    "data/semantic-ranks.json"
+  ],
+  "backgroundsDirectory": "assets/backgrounds"
+}
