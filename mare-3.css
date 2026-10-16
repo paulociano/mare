@@ -343,9 +343,7 @@ body.mar-app :is(.panel,.game,.concha-play,.concha-discover,.trilha-panel,.enigm
  .mare-hub .mar-game{background-position:center center!important}
 }
 
-/* Additional game tiles in the ten-game launcher */
-.mare-hub .mar-game.mar-forca{background-image:linear-gradient(180deg,#02121cb0,#02121cda),url("assets/backgrounds/recife.svg")!important;background-size:cover!important}
-.mare-hub .mar-game.mar-criptograma{background-image:linear-gradient(180deg,#02121cb0,#02121cda),url("assets/backgrounds/enigma.svg")!important;background-size:cover!important}
+/* Náufrago e Sinais usam exclusivamente os cenários próprios abaixo. */
 body:is(.mare-recife,.mare-abismo,.mare-cardume,.mare-corrente,.mare-concha,.mare-trilha,.mare-enigma,.mare-marujo) .mare-game-nav__grid{grid-template-columns:repeat(5,minmax(0,1fr))}
 @media(max-width:760px){body:is(.mare-recife,.mare-abismo,.mare-cardume,.mare-corrente,.mare-concha,.mare-trilha,.mare-enigma,.mare-marujo) .mare-game-nav__grid{grid-template-columns:repeat(4,minmax(0,1fr))}}
 @media(max-width:450px){body:is(.mare-recife,.mare-abismo,.mare-cardume,.mare-corrente,.mare-concha,.mare-trilha,.mare-enigma,.mare-marujo) .mare-game-nav__grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
