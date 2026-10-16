@@ -23,6 +23,8 @@ jobs:
     steps:
       - name: Obter projeto
         uses: actions/checkout@v4
+      - name: Executar testes de regressão
+        run: node tests/smoke.cjs
       - name: Configurar Pages
         uses: actions/configure-pages@v5
       - name: Preparar arquivos
