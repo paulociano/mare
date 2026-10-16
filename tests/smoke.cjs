@@ -120,4 +120,11 @@ for (const game of ['recife','abismo','cardume','corrente','concha','trilha','en
 assert.ok(fs.existsSync('mare-newgames.css'));
 for (const scene of ['naufrago','sinais']) assert.ok(fs.existsSync('assets/backgrounds/'+scene+'.svg'));
 assert.ok(home.includes('Náufrago') && home.includes('Sinais'));
+for (const asset of ['mare-logo.svg','mare-logo-transparent.svg','mare-favicon.svg']) assert.ok(fs.readFileSync('assets/brand/'+asset,'utf8').includes('<svg'), 'Marca SVG ausente: '+asset);
+for (const page of ['index','recife','abismo','cardume','corrente','concha','trilha','enigma','marujo','forca','criptograma']) {
+ const html=fs.readFileSync(page+'.html','utf8');
+ assert.ok(html.includes('assets/brand/mare-logo-transparent.svg'), 'Logo MARÉ ausente: '+page);
+ assert.ok(html.includes('assets/brand/mare-favicon.svg'), 'Favicon MARÉ ausente: '+page);
+ assert.ok(html.includes('mare-brand.css'), 'Estilo da marca ausente: '+page);
+}
 console.log('PASS: sintaxe, integração, modos e '+words.length+' palavras');
