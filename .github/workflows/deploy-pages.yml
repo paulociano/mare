@@ -34,7 +34,7 @@ jobs:
       - name: Preparar arquivos
         run: |
           mkdir -p _site
-          cp index.html recife.html hub.js mare-system.css modos.js modos.css visual-v3.css abismo.html abismo.js abismo.css cardume.html cardume.js cardume.css corrente.html corrente.js corrente.css _site/
+          cp index.html recife.html hub.js mare-system.css modos.js modos.css visual-v3.css abismo.html abismo.js abismo.css cardume.html cardume.js cardume.css corrente.html corrente.js corrente.css concha.html concha.js concha.css palavras-ptbr-5.txt _site/
           mkdir -p _site/assets
           cp assets/ocean-depth.svg _site/assets/
           mkdir -p _site/data
@@ -59,6 +59,10 @@ jobs:
           test -s _site/corrente.html
           test -s _site/corrente.js
           test -s _site/corrente.css
+          test -s _site/concha.html
+          test -s _site/concha.js
+          test -s _site/concha.css
+          test -s _site/palavras-ptbr-5.txt
           test -s _site/assets/ocean-depth.svg
           touch _site/.nojekyll
       - name: Enviar artefato
