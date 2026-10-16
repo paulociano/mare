@@ -49,3 +49,9 @@ O jogo inclui **8.611 formas únicas de cinco letras** extraídas e normalizadas
 Cada palpite aparece nos tabuleiros ainda não resolvidos; todas as soluções precisam ser encontradas dentro do limite do modo. Respostas diárias determinísticas e diferentes por modo; progresso e estatísticas independentes no armazenamento local.
 
 Os arquivos `modos.js` e `modos.css` adicionam estes modos sobre a interface existente. Para jogar localmente, sirva o diretório por HTTP, por exemplo com `python -m http.server 8000`, permitindo o carregamento de ambos os arquivos.
+
+## Abismo Semântico (modo inspirado em Contexto)
+
+Acesse `contexto.html` ou use o cartão na página principal. Digite palavras de qualquer tamanho e veja um indicador **aproximado** de proximidade semântica com o segredo. O jogo oferece dicas, persistência local e sucessivas partidas sem limite de palpites por rodada.
+
+**Limitação transparente:** esta primeira edição usa 12 conjuntos de associações previamente curados, com posições heurísticas. Não consulta o Contexto original, não calcula embeddings ou distâncias semânticas de um modelo de IA, e após 12 expedições os conjuntos se repetem. Não equivale ao vocabulário ou ranqueamento completo do Contexto. Arquivos: `contexto.html`, `contexto.css`, `contexto.js`.
