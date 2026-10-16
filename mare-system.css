@@ -15,3 +15,18 @@
 @media(max-width:1120px){.mar-catalog{grid-template-columns:repeat(2,minmax(0,1fr))}.mar-game{min-height:355px}}
 @media(max-width:650px){.mar-top,.mar-container,.mar-footer{width:calc(100% - 24px)}.mar-top{padding:12px 0}.mar-logo{font-size:25px;letter-spacing:5px}.mar-logo small{font-size:8px;letter-spacing:1px}.mar-top nav{gap:12px;font-size:12px}.mar-hero{padding:40px 2px 22px}.mar-hero h1{letter-spacing:-.7px}.mar-catalog{grid-template-columns:1fr;gap:12px}.mar-game{min-height:285px;padding:16px}.mar-game-info p{min-height:0}.mar-continue{flex-direction:column;align-items:stretch;padding:18px}.mar-footer{flex-direction:column;gap:8px}.return-link{padding:0 12px}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.mar-game{transition:none}.mar-game:hover{transform:none}}
+/* Shared application shell: all MARÉ experiences */
+.mar-app{font-family:'DM Sans',sans-serif;color:var(--text);background-color:var(--ocean)}
+.mar-app header{min-height:76px;border-bottom:1px solid #73d2e144}
+.mar-app header .brand,.mar-app header .logo{font:600 28px 'Outfit',sans-serif;letter-spacing:7px}
+.mar-app header .brand small,.mar-app header .logo small{font:600 9px 'DM Sans',sans-serif;letter-spacing:2px;color:#8bdae0;margin-top:4px}
+.mar-app header .back{font-weight:700;color:#9fe7e9}
+.mar-app .hero h1,.mar-app .heading h1,.mar-app .intro h1{font-family:'Outfit',sans-serif;letter-spacing:-1px}
+.mar-app .panel,.mar-app .game{border-color:#4096aaa8;box-shadow:0 20px 65px #00101c80,inset 0 1px #baf7ff17}
+.mar-app button{min-height:43px;transition:background .16s ease,border-color .16s ease}
+.mar-app input{min-height:48px}
+.mar-app button:focus-visible,.mar-app a:focus-visible,.mar-app input:focus-visible{outline:3px solid #f9d781;outline-offset:3px}
+.mar-app footer{border-top:1px solid #60c8de3d;margin-top:24px}
+.mar-app .empty{color:#b4d6e0}
+@media(max-width:600px){.mar-app header{min-height:64px}.mar-app header .brand,.mar-app header .logo{font-size:22px;letter-spacing:4px}.mar-app button{min-height:44px}.mar-app .panel,.mar-app .game{border-radius:15px}.mar-app .grid .tile{font-size:clamp(12px,2.8vw,15px);line-height:1.15;min-height:67px;padding:6px 2px;hyphens:auto;overflow-wrap:anywhere}}
+@media(prefers-reduced-motion:reduce){.mar-app button{transition:none}}
