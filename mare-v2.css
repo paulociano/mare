@@ -199,3 +199,71 @@ body.mare-corrente{
   .mare-hub .mar-game::after{width:75px;height:75px}
 }
 @media(prefers-reduced-motion:reduce){.mare-hub .mar-hero-video,.mare-hub .mar-water-motion{display:none!important}}
+
+/* MARÉ 2.3 / Gameplay-first: reduce dead space and keep core input above fold */
+.mare-hub .mar-hero{height:auto!important;min-height:clamp(290px,46vh,480px)!important;padding-top:clamp(100px,11vw,145px)!important;padding-bottom:clamp(42px,5vw,70px)!important}
+.mare-hub .mar-hero h1{font-size:clamp(52px,8vw,112px);margin:10px 0 25px}
+.mare-hub .mar-hero-copy{max-width:720px}
+.mare-hub .mar-section-head{padding:36px 0 20px;margin-top:0}
+.mare-hub .mar-section-head h2{margin:0;font-size:clamp(30px,5vw,48px)}
+.mare-hub .mar-game{min-height:280px;padding:20px}
+.mare-hub .mar-game-info h2{font-size:clamp(29px,3vw,37px);margin-bottom:5px}
+.mare-hub .mar-game-info p{min-height:0;margin-bottom:12px}
+.mare-hub .mar-continue{margin-top:25px;padding:24px 28px}
+.mare-hub .mar-footer{padding-top:30px}
+:is(.mare-abismo .hero,.mare-cardume .heading,.mare-corrente .intro,.mare-concha .concha-hero,.mare-trilha .trilha-hero,.mare-enigma .enigma-hero,.mare-marujo .marujo-hero){padding-block:clamp(14px,2.4vw,28px)!important;margin:0}
+:is(.mare-abismo .hero,.mare-cardume .heading,.mare-corrente .intro,.mare-concha .concha-hero,.mare-trilha .trilha-hero,.mare-enigma .enigma-hero,.mare-marujo .marujo-hero) h1{font-size:clamp(39px,6vw,65px)!important;line-height:1.04!important;margin:5px 0 7px!important;letter-spacing:-.055em!important}
+:is(.mare-abismo .hero,.mare-cardume .heading,.mare-corrente .intro,.mare-concha .concha-hero,.mare-trilha .trilha-hero,.mare-enigma .enigma-hero,.mare-marujo .marujo-hero) p{font-size:14px;line-height:1.5;margin:0;max-width:560px}
+:is(.mare-abismo .controls,.mare-corrente .switch,.mare-concha .concha-tabs,.mare-enigma .enigma-modes,.mare-marujo .marujo-modes){margin-top:13px;gap:8px}
+:is(.mare-abismo .panel,.mare-cardume .game,.mare-corrente .panel,.mare-concha .concha-play,.mare-concha .concha-discover,.mare-trilha .trilha-panel,.mare-enigma .enigma-card,.mare-marujo .marujo-panel){padding:clamp(14px,2vw,23px)!important}
+.mare-corrente .depth{margin:11px 0}
+.mare-corrente form{margin:13px 0 8px}
+.mare-corrente .legend{margin:12px 0}
+.mare-corrente .history{gap:7px;margin-top:9px}
+.mare-abismo form{margin:13px 0 8px}
+.mare-abismo .legend{margin:12px 0}
+.mare-abismo .hero .controls button{min-height:40px}
+.mare-cardume .heading{padding-bottom:15px!important}
+.mare-cardume .game .statusline{margin-bottom:12px;padding-bottom:11px}
+.mare-cardume .tile{min-height:clamp(54px,7vw,76px)}
+.mare-cardume .notice{margin:12px auto}
+.mare-cardume .lower{margin-top:12px;padding-top:12px}
+.mare-concha .concha-progress{margin:14px 0}
+.mare-concha .concha-wheel{margin:17px auto 14px}
+.mare-concha .concha-board{gap:14px}
+.mare-trilha .trilha-clue{padding:12px 5px}
+.mare-trilha .trilha-clue h2{font-size:clamp(20px,2vw,26px)}
+.mare-trilha .trilha-result,.mare-enigma .enigma-current,.mare-marujo .marujo-selection{margin:10px 0;padding:11px 14px;min-height:60px}
+.mare-enigma .enigma-board,.mare-marujo .marujo-grid{margin:12px auto}
+.mare-enigma .enigma-actions,.mare-marujo .marujo-actions{gap:7px}
+.mare-enigma .enigma-clues button{min-height:40px;padding:10px}
+:is(.mare-trilha,.mare-enigma,.mare-marujo) :is(.trilha-info,.marujo-card,.enigma-clues,.enigma-stats){padding:16px!important}
+:is(.mare-trilha,.mare-enigma,.mare-marujo) footer{padding:15px 0}
+@media(max-width:650px){
+ .mare-hub .mar-hero{min-height:290px!important;height:auto!important;padding:96px 20px 35px!important}
+ .mare-hub .mar-hero h1{font-size:clamp(48px,12vw,72px)}
+ .mare-hub .mar-section-head{padding:28px 0 15px}
+ .mare-hub .mar-game{min-height:235px}
+ .mare-hub .mar-catalog{gap:12px}
+ .mare-hub .mar-continue{padding:18px}
+ :is(.mare-abismo .hero,.mare-cardume .heading,.mare-corrente .intro,.mare-concha .concha-hero,.mare-trilha .trilha-hero,.mare-enigma .enigma-hero,.mare-marujo .marujo-hero){padding-block:13px!important}
+ :is(.mare-abismo .hero,.mare-cardume .heading,.mare-corrente .intro,.mare-concha .concha-hero,.mare-trilha .trilha-hero,.mare-enigma .enigma-hero,.mare-marujo .marujo-hero) h1{font-size:clamp(37px,10vw,53px)!important}
+ .mare-cardume .tile{min-height:51px}
+}
+
+/* Recife: retain hints and keyboard while making the grid the primary object. */
+@media(min-width:651px){
+ .mare-recife .shell{max-width:1050px}
+ .mare-recife main{gap:clamp(22px,4vw,52px);padding:18px 0!important}
+ .mare-recife .leftPanel{width:215px}
+ .mare-recife .leftPanel h2{font-size:31px;margin:12px 0!important}
+ .mare-recife .leftPanel .desc{font-size:12px;line-height:1.5;margin-bottom:15px}
+ .mare-recife .leftPanel .rule{margin:8px 0}
+ .mare-recife .leftfoot{margin-top:14px}
+ .mare-recife .gameheading{margin-bottom:10px}
+}
+.mare-recife .topbar{height:68px!important}
+.mare-recife .gameheading h2{margin:4px 0!important}
+.mare-recife .bottomnote{margin-top:8px}
+.mare-recife .foot{height:42px}
+@media(max-width:650px){.mare-recife main{padding:10px 0!important}.mare-recife .gameheading{margin-bottom:9px}.mare-recife .keyboard{margin-top:4px}.mare-recife .bottomnote{margin-top:7px}}
