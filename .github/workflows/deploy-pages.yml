@@ -37,6 +37,10 @@ jobs:
           cp index.html recife.html hub.js mare-system.css modos.js modos.css visual-v3.css abismo.html abismo.js abismo.css cardume.html cardume.js cardume.css corrente.html corrente.js corrente.css concha.html concha.js concha.css palavras-ptbr-5.txt _site/
           mkdir -p _site/assets
           cp assets/ocean-depth.svg _site/assets/
+          if [ -d assets/backgrounds ]; then
+            mkdir -p _site/assets/backgrounds
+            cp assets/backgrounds/*.webp _site/assets/backgrounds/
+          fi
           mkdir -p _site/data
           cp data/cardume-puzzles.json _site/data/
           if [ -s data/semantic-ranks.json ]; then
