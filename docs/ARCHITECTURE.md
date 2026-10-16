@@ -37,3 +37,9 @@ Requer Node.js 20+; não exige `npm install`.
 
 ## Migração futura
 Extrair gradualmente o JavaScript embutido de `recife.html` e reduzir o número de folhas CSS de sobreposição **em PRs separados**, com regressões e baseline visual. Não executar reorganização massiva de caminhos em uma única mudança.
+
+## Recife: código extraído do HTML
+
+O jogo Recife carrega `recife.js` antes de `modos.js`, mantendo a ordem original de inicialização e as mesmas chaves locais. `recife.html` define a interface, `recife.js` mantém as regras de jogo e eventos existentes, e `modos.js` adiciona os modos. A extração não modifica lógica, mas permite testar sintaxe separadamente e remover o JavaScript embutido da página.
+
+Qualquer mudança futura nos modos deve manter esta ordem até que as dependências entre os scripts sejam eliminadas por refatoração acompanhada de testes funcionais em navegador.
