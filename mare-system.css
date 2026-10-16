@@ -82,3 +82,6 @@ body.mare-recife:before,body.mare-recife:after{pointer-events:none}
 /* Trilha: novo cenário e card do catálogo */
 body.mare-trilha{background-image:linear-gradient(90deg,#021421c2,#03172383 55%,#021623a2),url('assets/backgrounds/trilha.svg'),url('assets/ocean-depth.svg')!important;background-position:center;background-size:cover}
 .mare-hub .mar-trail{background-image:linear-gradient(180deg,#041c2915,#02121c55),url('assets/backgrounds/trilha.svg')}
+
+body.mare-enigma{background-image:linear-gradient(90deg,#021421cf,#03172395),url('assets/backgrounds/enigma.svg'),url('assets/ocean-depth.svg')!important;background-position:center;background-size:cover}
+.mare-hub .mar-enigma{background-image:linear-gradient(180deg,#041c2915,#02121c55),url('assets/backgrounds/enigma.svg')}
