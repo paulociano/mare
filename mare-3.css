@@ -1,0 +1,184 @@
+/* MARÉ 3.0 / Oceanic Play Studio
+   Single component layer. No external UI framework or images.
+   Older styles remain temporarily for safe rollout of eight games. */
+:root{
+  color-scheme:dark;
+  --m3-bg:#071923;--m3-base:#0c2733;--m3-surface:#123443;
+  --m3-raised:#194451;--m3-stroke:rgba(178,233,226,.2);
+  --m3-ink:#f3faf7;--m3-muted:#aec8cc;--m3-accent:#87dfcf;
+  --m3-warm:#efca82;--m3-radius:18px;--m3-shadow:0 12px 35px rgba(0,12,24,.18);
+}
+html{scroll-padding-top:20px}
+body.mare-hub,body.mar-app,body.mare-recife{
+  background:#071923!important;color:var(--m3-ink);
+}
+body.mare-hub,body.mar-app,body.mare-recife{font-family:'DM Sans',system-ui,sans-serif}
+/* Clear obsolete illustrated wallpaper without taking focus away from the board */
+body:is(.mare-hub,.mar-app,.mare-recife)::before{
+  background:none!important;box-shadow:none!important;
+}
+body:is(.mare-hub,.mar-app,.mare-recife){
+ background-image:radial-gradient(ellipse 65% 36% at 75% 0%,rgba(29,111,129,.13),transparent 80%),linear-gradient(180deg,#091f2b,#071923 55%)!important;
+}
+body:is(.mare-hub,.mar-app,.mare-recife) :is(button,a,input):focus-visible{
+  outline:3px solid var(--m3-warm);outline-offset:3px
+}
+body:is(.mare-hub,.mar-app,.mare-recife) button:not(:disabled){cursor:pointer}
+body:is(.mare-hub,.mar-app,.mare-recife) :is(button,input){font-family:'DM Sans',system-ui,sans-serif}
+body:is(.mare-hub,.mar-app) :is(h1,h2,h3){font-family:'Outfit',system-ui,sans-serif;letter-spacing:-.045em}
+/* Home: design as a play launcher, not a marketing landing page */
+.mare-hub .mar-container{max-width:1360px;margin:0 auto}
+.mare-hub .mar-top{
+  position:relative;transform:none;left:auto;z-index:2;
+  width:min(1200px,calc(100% - 40px));margin:0 auto;
+  padding:17px 0;border-bottom:1px solid var(--m3-stroke);
+  background:transparent;backdrop-filter:none
+}
+.mare-hub .mar-logo{font-weight:700;font-size:26px;letter-spacing:.16em;line-height:1.1}
+.mare-hub .mar-logo small{font-size:8px;letter-spacing:.15em;margin-top:5px}
+.mare-hub .mar-top nav{gap:20px;text-transform:none;letter-spacing:0;font-size:13px}
+.mare-hub .mar-top nav a{color:#b9d9d8}
+.mare-hub .mar-top nav a:hover{color:var(--m3-accent)}
+.mare-hub .mar-section-head{
+ width:min(1200px,calc(100% - 40px));margin:0 auto;
+ padding:29px 0 17px
+}
+.mare-hub .mar-section-head h1{
+ font:700 clamp(27px,3.8vw,42px)/1.1 'Outfit',sans-serif!important;
+ letter-spacing:-.045em;color:var(--m3-ink);margin:0
+}
+.mare-hub .mar-catalog{
+ width:min(1200px,calc(100% - 40px));
+ margin:0 auto;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));
+ gap:14px;align-items:stretch
+}
+.mare-hub .mar-game,.mare-hub .mar-game:nth-child(1),.mare-hub .mar-game:nth-child(6){
+ grid-column:auto;min-height:245px;padding:20px;
+ border-radius:20px;display:flex;flex-direction:column;justify-content:space-between;
+ border:1px solid var(--m3-stroke);
+ background:linear-gradient(160deg,rgba(24,65,76,.96),rgba(10,35,47,.98))!important;
+ box-shadow:none;overflow:hidden;filter:none;
+ transition:transform .2s ease,border-color .2s ease,background .2s ease;
+}
+.mare-hub .mar-game::before,.mare-hub .mar-game::after{content:none!important}
+.mare-hub .mar-game:hover{transform:translateY(-3px);border-color:rgba(135,223,207,.65);box-shadow:none}
+.mare-hub .mar-game:focus-within{border-color:var(--m3-accent)}
+.mare-hub .mar-game.mar-abyss{background:linear-gradient(155deg,#202c52,#102239)!important}
+.mare-hub .mar-game.mar-school{background:linear-gradient(155deg,#1b4644,#102e35)!important}
+.mare-hub .mar-game.mar-current{background:linear-gradient(155deg,#12485b,#102b3a)!important}
+.mare-hub .mar-game.mar-shell{background:linear-gradient(155deg,#4a3d40,#242936)!important}
+.mare-hub .mar-game.mar-trail{background:linear-gradient(155deg,#20445c,#132a40)!important}
+.mare-hub .mar-game.mar-enigma{background:linear-gradient(155deg,#333b60,#172a43)!important}
+.mare-hub .mar-game.mar-marujo{background:linear-gradient(155deg,#174a44,#102e32)!important}
+.mare-hub .mar-tag{
+  align-self:flex-start;border:0;border-radius:7px;
+  background:rgba(5,23,32,.31);color:#c8e6e2;
+  padding:7px 9px;font-size:10px;letter-spacing:.065em;font-weight:800;
+}
+.mare-hub .mar-game-info h2{
+ font:700 clamp(26px,2.7vw,34px)/1.1 'Outfit',sans-serif;
+ margin:0 0 5px;color:#f4fbf9;letter-spacing:-.04em
+}
+.mare-hub .mar-game-info p{
+ font-size:12px;line-height:1.4;color:#c5d9dc;min-height:0;margin:0 0 17px
+}
+.mare-hub .mar-cta{
+ display:flex;align-items:center;justify-content:space-between;
+ padding:11px 13px;border-radius:11px;background:#b3f0e2;
+ color:#0a2a32!important;font:800 12px 'DM Sans',sans-serif;box-shadow:none
+}
+.mare-hub .mar-cta:hover{background:#e0fff5}
+.mare-hub .mar-mode-links{display:flex;gap:5px;margin:0 0 9px}
+.mare-hub .mar-mode-links a{
+ min-width:0;border:1px solid rgba(202,241,234,.25);border-radius:8px;
+ padding:7px 4px;background:rgba(4,25,35,.35);
+ color:#e6f8f4;font-size:10px;white-space:nowrap
+}
+.mare-hub .mar-mode-links a:hover{background:#1d5361}
+.mare-hub .mar-continue{
+ width:min(1200px,calc(100% - 40px));margin:24px auto 0;
+ background:#102e3b;border:1px solid var(--m3-stroke);
+ box-shadow:none;border-radius:17px;padding:20px 24px;gap:15px
+}
+.mare-hub .mar-continue h2{font:700 22px 'Outfit',sans-serif;margin:5px 0}
+.mare-hub .mar-continue p{color:#b8d5d6;font-size:13px}
+.mare-hub .mar-continue .mar-cta{min-width:0}
+.mare-hub .mar-continue[hidden]{display:none!important}
+.mare-hub .mar-footer{
+ width:min(1200px,calc(100% - 40px));padding:20px 0 26px;color:#92b2b9;font-size:11px
+}
+/* Game screens: compact identity, dominant playable component */
+body:is(.mare-abismo,.mare-cardume,.mare-corrente,.mare-concha,.mare-trilha,.mare-enigma,.mare-marujo) :is(.hero,.heading,.intro,.concha-hero,.trilha-hero,.enigma-hero,.marujo-hero){
+  padding:16px 0 17px!important;text-align:left!important
+}
+body:is(.mare-abismo,.mare-cardume,.mare-corrente,.mare-concha,.mare-trilha,.mare-enigma,.mare-marujo) :is(.hero,.heading,.intro,.concha-hero,.trilha-hero,.enigma-hero,.marujo-hero) h1{
+ font:700 clamp(35px,5vw,55px)/1.04 'Outfit',sans-serif!important;
+ letter-spacing:-.055em!important;margin:4px 0 6px!important;color:#f3faf7!important
+}
+body:is(.mare-abismo,.mare-cardume,.mare-corrente,.mare-concha,.mare-trilha,.mare-enigma,.mare-marujo) :is(.hero,.heading,.intro,.concha-hero,.trilha-hero,.enigma-hero,.marujo-hero) p{
+ font-size:13px;line-height:1.45;color:var(--m3-muted);margin:0;max-width:620px
+}
+body:is(.mare-abismo,.mare-cardume,.mare-corrente,.mare-concha,.mare-trilha,.mare-enigma,.mare-marujo) :is(.panel,.game,.concha-play,.concha-discover,.trilha-panel,.trilha-info,.trilha-mode,.enigma-card,.enigma-clues,.enigma-stats,.marujo-panel,.marujo-card){
+ background:var(--m3-base)!important;border:1px solid var(--m3-stroke)!important;
+ box-shadow:none!important;border-radius:var(--m3-radius)!important
+}
+body:is(.mare-abismo,.mare-cardume,.mare-corrente,.mare-concha,.mare-trilha,.mare-enigma,.mare-marujo) :is(.controls,.switch,.concha-tabs,.enigma-modes,.marujo-modes){
+ margin-top:11px;gap:7px
+}
+body:is(.mare-abismo,.mare-cardume,.mare-corrente,.mare-concha,.mare-trilha,.mare-enigma,.mare-marujo) :is(button):not(.tile,.letter,.key,.enigma-cell,.marujo-cell,.concha-letter){
+ border-radius:10px;box-shadow:none;min-height:40px
+}
+body:is(.mare-abismo,.mare-cardume,.mare-corrente,.mare-concha,.mare-trilha,.mare-enigma,.mare-marujo) :is(button.primary,button.main-action,button#go,.trilha-actions .primary,.switch [aria-pressed=true],.marujo-modes [aria-pressed=true],.enigma-modes [aria-pressed=true]){
+ background:#9be8da;color:#082c34;border-color:#9be8da
+}
+.mare-cardume .tile,.mare-trilha .trilha-grid button,.mare-enigma .enigma-cell,.mare-marujo .marujo-cell{
+ box-shadow:none!important;transition:background .15s ease,border-color .15s ease!important
+}
+.mare-cardume .tile{border-radius:11px;min-height:clamp(55px,7vw,76px)}
+.mare-trilha .trilha-grid{width:min(100%,415px)}
+.mare-enigma .enigma-board{width:min(100%,475px)}
+.mare-marujo .marujo-grid{width:min(100%,495px)}
+:is(.mare-trilha,.mare-enigma,.mare-marujo) :is(.trilha-layout,.enigma-layout,.marujo-layout){gap:16px}
+:is(.mare-trilha,.mare-enigma,.mare-marujo) :is(.trilha-side,.enigma-sidebar,.marujo-side){gap:10px}
+.mare-corrente .intro::after{content:none!important}
+.mare-corrente .panel{border:1px solid var(--m3-stroke)!important}
+.mare-concha .concha-wheel{margin:12px auto}
+:is(.mare-trilha,.mare-enigma,.mare-marujo) :is(.trilha-result,.enigma-current,.marujo-selection){
+ box-shadow:none;border-radius:12px
+}
+/* Access and density */
+@media(max-width:1080px){
+ .mare-hub .mar-catalog{grid-template-columns:repeat(3,minmax(0,1fr))}
+}
+@media(max-width:750px){
+ .mare-hub .mar-catalog{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .mare-hub .mar-top{width:calc(100% - 28px)}
+ .mare-hub .mar-section-head,.mare-hub .mar-catalog,.mare-hub .mar-continue,.mare-hub .mar-footer{width:calc(100% - 28px)}
+ .mare-hub .mar-game{min-height:225px}
+ :is(.mare-trilha,.mare-enigma,.mare-marujo) :is(.trilha-layout,.enigma-layout,.marujo-layout){grid-template-columns:1fr}
+}
+@media(max-width:480px){
+ .mare-hub .mar-top{padding:14px 0}
+ .mare-hub .mar-section-head{padding:21px 0 13px}
+ .mare-hub .mar-section-head h1{font-size:30px!important}
+ .mare-hub .mar-catalog{gap:10px}
+ .mare-hub .mar-game{min-height:210px;padding:14px;border-radius:14px}
+ .mare-hub .mar-game-info h2{font-size:24px}
+ .mare-hub .mar-game-info p{font-size:11px;margin-bottom:10px}
+ .mare-hub .mar-tag{font-size:9px;padding:5px}
+ .mare-hub .mar-cta{padding:10px;font-size:11px}
+ .mare-hub .mar-mode-links{flex-wrap:wrap}
+ .mare-hub .mar-mode-links a{font-size:9px}
+ .mare-hub .mar-continue{padding:17px}
+ .mare-hub .mar-logo{font-size:22px}
+ .mare-hub .mar-logo small{font-size:7px}
+ .mare-hub .mar-top nav{font-size:12px;gap:12px}
+}
+@media(max-width:355px){
+ .mare-hub .mar-catalog{grid-template-columns:1fr}
+ .mare-hub .mar-game{min-height:170px}
+}
+@media(prefers-reduced-motion:reduce){
+ .mare-hub .mar-game,.mare-hub .mar-cta,.mare-cardume .tile{transition:none!important}
+ .mare-hub .mar-game:hover{transform:none}
+}
