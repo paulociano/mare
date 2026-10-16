@@ -18,6 +18,10 @@
   } catch { /* O catálogo continua funcional sem armazenamento. */ }
   const hasProgress = game => savedKeys.some(key => game.prefixes.some(prefix => key.startsWith(prefix) && (game.page !== 'abismo.html' || /^mare-semantico-\d+$/.test(key))));
   const selected = games.find(game => game.page === lastVisited && hasProgress(game)) || games.find(hasProgress);
+  const resumeSection = document.getElementById('continuar');
+  const resumeNavLink = document.querySelector('.mar-top nav a[href="#continuar"]');
+  if (resumeSection) resumeSection.hidden = !selected;
+  if (resumeNavLink) resumeNavLink.hidden = !selected;
   if (selected) {
     const label = document.getElementById('mar-resume-label');
     const link = document.getElementById('mar-resume-link');
