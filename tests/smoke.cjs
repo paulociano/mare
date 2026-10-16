@@ -156,10 +156,11 @@ for (const game of ['trilha','enigma']) {
  assert.ok(source.includes('document.activeElement'),'Foco não preservado em '+game);
  new vm.Script(source);
 }
-const recifeCard=home.match(/<article class="mar-game mar-letters">([\\s\\S]*?)<\\/article>/)?.[1];
+const recifeCard=home.split('<article class="mar-game mar-letters">')[1]?.split('</article>')[0];
 assert.ok(recifeCard,'Card do Recife ausente');
-assert.ok(recifeCard.includes('class="recife-card-heading"'),'Logo principal não está no card');
-assert.ok(recifeCard.includes('alt="Recife"'),'Logo do Recife precisa de texto alternativo');
-assert.equal((recifeCard.match(/<h2\\b/g)||[]).length,1,'Título do Recife duplicado no card');
-assert.ok(recifeCard.indexOf('recife-card-heading')<recifeCard.indexOf('mar-game-info'),'Logo deve estar na parte superior');
+assert.ok(recifeCard.includes('<h2 class="recife-card-heading">Recife</h2>'),'Título textual do Recife ausente');
+assert.equal(recifeCard.split('<h2').length-1,1,'Título duplicado no card');
+assert.ok(!home.includes('assets/brand/recife.svg'),'SVG antigo ainda referenciado na home');
+assert.ok(!html.includes('assets/brand/recife.svg'),'SVG antigo ainda referenciado no Recife');
+assert.ok(html.includes('<h2 class="recife-title-lockup">Recife</h2>'),'Título da página Recife ausente');
 console.log('PASS: sintaxe, integração, modos e '+words.length+' palavras');
