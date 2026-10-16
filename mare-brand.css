@@ -77,3 +77,12 @@ body.mare-hub .mar-catalog > article.mar-game:is(.mar-perola,.mar-farol){min-hei
  body.mare-hub .mar-catalog > article.mar-game:is(.mar-perola,.mar-farol) > .mar-game-symbol{width:76px}
  body.mare-hub .mar-catalog > article.mar-game:is(.mar-perola,.mar-farol) > h2.recife-card-heading{font-size:2.4rem!important}
 }
+
+/* Identidade de cada jogo: símbolo acima do título em todos os cards. */
+body.mare-hub .mar-catalog > article.mar-game > .mar-game-symbol{display:block;align-self:center;width:clamp(70px,7vw,106px);height:100px;object-fit:contain;flex:0 0 auto;margin:2px auto 0;filter:drop-shadow(0 9px 18px rgba(0,10,19,.4))}
+body.mare-hub .mar-catalog > article.mar-game > h2.recife-card-heading{flex:0 0 auto!important;min-height:54px!important;margin:3px 0 12px!important;font-size:clamp(2rem,3vw,3.1rem)!important}
+body.mare-hub .mar-catalog > article.mar-game:is(.mar-school,.mar-current,.mar-forca,.mar-criptograma) > h2.recife-card-heading{font-size:clamp(1.8rem,2.7vw,2.9rem)!important}
+body.mare-hub .mar-catalog > article.mar-game{min-height:285px}
+.mare-game-symbol-lockup{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.mare-game-symbol-lockup img{width:clamp(62px,8vw,86px);height:auto;flex:0 0 auto;filter:drop-shadow(0 7px 14px rgba(0,10,19,.3))}
+@media(max-width:650px){body.mare-hub .mar-catalog > article.mar-game > .mar-game-symbol{height:80px;width:80px}body.mare-hub .mar-catalog > article.mar-game > h2.recife-card-heading{font-size:clamp(1.85rem,8vw,2.6rem)!important}body.mare-hub .mar-catalog > article.mar-game:is(.mar-school,.mar-current) > h2.recife-card-heading{font-size:clamp(1.65rem,6.8vw,2.4rem)!important}}
