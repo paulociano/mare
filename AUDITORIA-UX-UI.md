@@ -45,3 +45,29 @@ Revisão estática de `index.html`, `modos.js` e `modos.css` na branch main. Ski
 **Depois de teste real:** UX-07 e UX-09 com baseline visual/performance.
 
 Critérios: preservar gameplay em todos os modos, sem redesign de marca; rodar reteste de teclado e mobile após mudanças. Este documento é auditoria, não declaração de correções executadas.
+
+
+## Implementação de melhorias — 16/10/2026
+
+Alterações incorporadas em `modos.js` e `modos.css`:
+
+- UX-01: fontes de navegação e legenda ampliadas em telas pequenas — **IMPLEMENTADO NO CÓDIGO; visual pendente**.
+- UX-02: Quarteto recebe seleção de sonda com tabuleiro ampliado em mobile — **IMPLEMENTADO NO CÓDIGO; teste de dispositivos pendente**.
+- UX-03: diálogo com ciclo de foco, Tab limitado ao modal, retorno ao acionador e bloqueio de rolagem — **IMPLEMENTADO NO CÓDIGO; leitor de tela pendente**.
+- UX-04: legenda persistente e compacta disponível também em mobile — **IMPLEMENTADO NO CÓDIGO**.
+- UX-05: preservação de foco no teclado virtual e mensagens temporárias protegidas de novos renders — **IMPLEMENTADO NO CÓDIGO**.
+- UX-06: progresso (palavras descobertas/tentativas), sonda resolvida destacada e seleção ativa — **IMPLEMENTADO NO CÓDIGO**.
+- UX-07: tokens e estilos originais ainda permanecem em camadas; consolidação estrutural é **PENDENTE** para evitar regressão visual sem baseline real.
+- UX-08: legenda usa texto e símbolos (✓, ↔, ×), evitando depender somente da cor — **IMPLEMENTADO NO CÓDIGO; simulação assistiva pendente**.
+- UX-09: redução de bolhas e filtros no mobile e respeito a reduced-motion — **IMPLEMENTADO NO CÓDIGO; ganho de performance não medido**.
+- UX-10: progresso persistido e aviso de retomada de partida ao trocar modo — **IMPLEMENTADO NO CÓDIGO**.
+
+### Gate de validação
+
+- JS parsing: **PASS** na verificação de sintaxe via JavaScript.
+- Arquivos e integração referenciados: **PASS**.
+- Renderização em navegadores, 320/375/430px, zoom e leitores de tela: **UNKNOWN**.
+- Contraste calculado, Lighthouse e métricas móveis: **UNKNOWN**.
+- Consistência visual após mudança: **UNKNOWN** sem captura real.
+
+Conclusão: implementação de UI entregue em código para 9 de 10 itens; a consolidação final do CSS e a comprovação visual estão pendentes. Não interpretar como auditoria visual final aprovada.
