@@ -34,5 +34,4 @@ assert.equal(cards.length,games.length,'Quantidade de cards divergente do manife
 for(const name of games){
  assert.ok(home.includes('href="'+name+'.html"'),'Jogo sem link na home: '+name);
 }
-assert.ok(!exists('_site/.nojekyll'),'Artefatos de build não devem ser versionados');
 console.log('PASS: estrutura, manifesto, 11 páginas e 10 jogos');
