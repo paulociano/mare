@@ -46,7 +46,7 @@ function setMode(m){
  game.dataset.mode=m;activePane=0;
  title.textContent=m==='solo'?'Descubra a palavra':m==='duo'?'Desvende duas palavras':'Explore quatro palavras';
  sub.textContent=m==='solo'?'Cinco letras. Seis tentativas. Um oceano de possibilidades.':m==='duo'?'Dois mistérios. Sete palpites compartilhados.':'Quatro mistérios. Nove palpites compartilhados.';
- description.textContent=m==='solo'?'Uma palavra misteriosa se esconde nas profundezas. Você tem 6 tentativas para encontrá-la.':m==='duo'?'Duas palavras de cinco letras, sete tentativas compartilhadas.':'Quatro palavras de cinco letras, nove tentativas compartilhadas.';
+ if(description)description.textContent=m==='solo'?'Uma palavra misteriosa se esconde nas profundezas. Você tem 6 tentativas para encontrá-la.':m==='duo'?'Duas palavras de cinco letras, sete tentativas compartilhadas.':'Quatro palavras de cinco letras, nove tentativas compartilhadas.';
  localStorage.setItem('mare-mode',m);
  if(state.guesses.length&&!state.finished){statusEl.dataset.notice='1';statusEl.textContent='Partida retomada: '+state.guesses.length+' palpites registrados.';clearTimeout(oldStatusTimeout);oldStatusTimeout=setTimeout(()=>{delete statusEl.dataset.notice;render()},3000)}
  if(!statusEl.dataset.notice)statusEl.textContent='';
