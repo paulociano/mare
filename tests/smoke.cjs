@@ -12,6 +12,8 @@ new vm.Script(recifeSource);
 new vm.Script(modes);
 assert.ok(html.includes('src="modos.js"'));
 assert.ok(html.includes('href="modos.css"'));
+assert.ok(!html.includes('class="leftPanel"'),'Recife não possui a antiga barra lateral');
+assert.ok(modes.includes('if(description)description.textContent='),'Modo não pode depender da barra lateral removida');
 assert.ok(modes.includes('quartet:{count:4,tries:9'));
 assert.ok(modes.includes('duo:{count:2,tries:7'));
 assert.ok(modes.includes("setAttribute('role','gridcell')"));
