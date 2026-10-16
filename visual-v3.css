@@ -1,0 +1,74 @@
+
+/* MARÉ v3 — Direção visual Expedição Abissal */
+:root{--ocean-ink:#02131f;--ocean-deep:#031b2c;--ocean-panel:#06263a;--ocean-line:#29657a;--glow:#42e4e0;--aqua:#4fe9d0;--gold:#f1c34f}
+html{scroll-behavior:smooth}body{background:#02131f url('assets/ocean-depth.svg') center center/cover fixed no-repeat;color:#f1fafc}
+body:after{content:"";position:fixed;inset:0;pointer-events:none;background:linear-gradient(90deg,#01121d86,#01121d10 50%,#01121d86);z-index:-1}
+.shell{width:min(100%,1480px);max-width:1480px;padding:0 clamp(12px,2.5vw,36px)}
+.topbar{height:96px;background:#041d2bb8;padding:0 clamp(10px,2vw,24px);border:1px solid #5acee447;border-top:0;border-radius:0 0 24px 24px;box-shadow:0 20px 60px #00111c60}
+.brand h1{font-weight:600;font-size:34px;letter-spacing:9px;line-height:1}
+.brand small{color:#66cddd;letter-spacing:1.5px;font-size:10px;margin-top:7px}
+.brandmark{width:46px;height:46px;border-radius:50%;box-shadow:0 0 25px #19ead624}
+.nav-intro{font-size:10px;font-weight:800;letter-spacing:1.8px;color:#7ec7cf;margin-right:12px}
+.round{background:#092e42;border:1px solid #52819b80;border-radius:14px}
+main{align-items:stretch;gap:18px;padding:24px 0 36px}
+.leftPanel{width:clamp(270px,30vw,405px);position:relative;overflow:hidden;border:1px solid #2786a8a3;background:linear-gradient(180deg,#05384b55 0%,#021622ea 100%),url('assets/ocean-depth.svg') 37% center/cover;border-radius:22px;padding:clamp(23px,2.7vw,38px);box-shadow:inset 0 1px #d8ffff2e,0 16px 48px #0005;align-self:stretch;display:flex;flex-direction:column;min-height:660px}
+.leftPanel:before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,#00253535,#02152374 60%,#011018d9);pointer-events:none}
+.leftPanel>*{position:relative;z-index:1}
+.panel-art{height:44px;display:flex;align-items:center;justify-content:space-between;color:#67d0da;margin-bottom:18px}
+.panel-sonar{font-size:34px;color:#4af2e1;text-shadow:0 0 15px #22ffe1}
+.panel-coordinate{font-size:10px;letter-spacing:1.5px}
+.leftPanel h2{font-size:clamp(36px,3.6vw,54px);line-height:1.07;letter-spacing:-1.6px;margin:17px 0}
+.leftPanel h2 span{color:#71f4e0}
+.leftPanel .desc{color:#d1e4ed;font-size:15px;line-height:1.65}
+.leftPanel .rule{font-size:12px;color:#d4e8ec;margin:8px 0}
+.explore-points{display:grid;gap:16px;margin-top:25px;padding-top:22px;border-top:1px solid #55cbe54a}
+.explore-points>div{display:flex;align-items:center;gap:12px}
+.point-icon{width:38px;height:38px;border:1px solid #27bfd081;border-radius:50%;display:grid;place-items:center;background:#063d52b3;color:#7cf3e8;flex-shrink:0;font-size:19px}
+.explore-points p{margin:0;display:grid;gap:2px}
+.explore-points b{font-size:12px}
+.explore-points small{font-size:11px;color:#accbd4;line-height:1.4}
+.ocean-tag{margin-top:auto;padding-top:25px}.leftfoot{margin-top:12px}
+.game,.game[data-mode=duo],.game[data-mode=quartet]{width:min(100%,820px);flex:1;background:linear-gradient(145deg,#05273aeb,#021b2cfa);border:1px solid #269cbaa1;box-shadow:inset 0 1px #a7ffff2f,0 25px 80px #0008;border-radius:22px;padding:clamp(16px,2.1vw,28px);align-self:center}
+.game:before{background:linear-gradient(125deg,#28cfe80d,transparent 42%)}
+.mare-modes{margin:0 0 18px;background:transparent;border:0;padding:0;gap:8px}
+.mare-modes button{background:linear-gradient(180deg,#183a50,#0b283b);border:1px solid #456f8799;box-shadow:inset 0 1px #b9eff31a;border-radius:10px;min-height:48px;color:#d9e8ef;font-size:14px}
+.mare-modes button.active{background:linear-gradient(135deg,#07677c,#024760);border:1px solid #39e5f9;box-shadow:0 0 0 1px #45eafb48,inset 0 1px #dcffff61,0 0 23px #1ce8ff26}
+.mare-modes button small{font-size:10px;color:#a6ccd5}
+.gameheading{margin-bottom:14px;position:relative}
+.gameheading h2{font-size:clamp(21px,2vw,28px);color:#ecfcff}
+.gameheading p{font-size:13px}
+.sonar-indicator{color:#29e5ef;font-size:24px;text-shadow:0 0 14px #32e6ff;display:inline-block;margin-bottom:4px}
+.mare-progress{font-size:14px;text-align:left;color:#daffff;border-bottom:1px solid #32677a;padding-bottom:12px;margin:0 0 11px}
+.mare-progress:after{content:"";display:block;height:7px;margin-top:9px;border-radius:99px;background:linear-gradient(90deg,#3de6b4 0 26%,#32bcde 26% 50%,#153c51 50%);box-shadow:inset 0 1px #b3ffff35}
+.mare-legend{justify-content:flex-start;gap:14px;margin-bottom:14px;color:#cadde6}
+.mare-legend i{height:17px;width:17px;border-radius:4px}
+.mare-boards{gap:10px}
+.mare-pane{background:#02192af2;border:1px solid #23708b9c;border-radius:13px;padding:12px;box-shadow:inset 0 1px #8aefff17}
+.mare-pane.solved{background:#0a3f4188;border-color:#3bdcb8}
+.mare-pane-head{font-size:12px;font-weight:800;letter-spacing:.7px;color:#b6e3ed}
+.mare-pane.focused:not(.solved){border-color:#41dce3}
+.mare-row .tile{background:linear-gradient(155deg,#213b52,#0c2a3f);border:1px solid #456c84;border-radius:6px;box-shadow:inset 0 1px #ffffff1e;color:#fff;font-weight:800}
+.mare-row .tile.correct{background:linear-gradient(160deg,#2bcf8e,#078c6a);border-color:#48f4bf}
+.mare-row .tile.present{background:linear-gradient(160deg,#f5cb48,#c89b1c);border-color:#ffe17b;color:#091f2b}
+.mare-row .tile.absent{background:#263d51;color:#a9bcca;border-color:#365d72}
+.game[data-mode=solo] .mare-boards{max-width:340px}
+.game[data-mode=solo] .mare-pane{background:#021b2bc4;border:1px solid #246b8299;padding:14px}
+.game[data-mode=solo] .mare-pane-head{display:block}
+.keyboard{width:min(100%,540px);margin:14px auto 0;gap:7px}
+.keyrow{gap:5px}
+.key{background:linear-gradient(180deg,#26445a,#132d42);border:1px solid #42687d;border-radius:6px;height:48px;color:#f0fcff;box-shadow:inset 0 1px #ccffff18}
+.key:hover{background:#2d6573}.key.correct{background:#11a981}.key.present{background:#d9ad2d;color:#051b28}.key.absent{background:#0c2635;color:#6f95a8}
+.key.wide:last-child{background:linear-gradient(160deg,#0f829d,#09526e);border-color:#29d5e9;color:#fff}
+.status{min-height:30px;height:auto;font-size:13px;color:#a6f2e5}
+.bottomnote{color:#a2c8d1;font-size:12px}
+.expedition-footer{display:flex;align-items:center;gap:11px;margin-top:17px;padding:12px;background:#062b4099;border:1px solid #195b79;border-radius:12px}
+.sonar-small{height:36px;width:36px;border:1px solid #20c3d9;border-radius:50%;display:grid;place-items:center;color:#43edec;font-size:24px}
+.expedition-footer div{display:grid;gap:4px}.expedition-footer b{font-size:12px}.expedition-footer small{color:#9ec4d1;font-size:11px}
+.depth-line{opacity:.6}
+.mare-sonda-picker button{border:1px solid #2e7899;background:linear-gradient(180deg,#10374c,#092639);font-size:12px;min-height:42px}
+.mare-sonda-picker button.chosen{background:#07506a;border-color:#40e8e8;box-shadow:0 0 16px #2de4e32b}
+@media(max-width:1050px){main{gap:12px}.leftPanel{width:280px;padding:22px}.leftPanel h2{font-size:38px}.game{padding:16px}}
+@media(max-width:850px){main{display:flex;flex-direction:column;padding-top:15px}.leftPanel{width:100%!important;min-height:unset;padding:17px 20px}.leftPanel .explore-points,.leftPanel .rule,.leftPanel .ocean-tag,.leftPanel .leftfoot,.leftPanel .panel-art{display:none}.leftPanel h2{font-size:28px;margin:8px 0}.leftPanel h2 br{display:none}.leftPanel .desc{font-size:13px;margin:0}.game{width:100%!important;max-width:720px}.nav-intro{display:none}}
+@media(max-width:650px){.shell{padding:0 9px}.topbar{height:66px;padding:0 11px;border-radius:0 0 14px 14px}.brand h1{font-size:22px;letter-spacing:4px}.brand small{font-size:8px;letter-spacing:.8px}.leftPanel{display:none!important}.game{border-radius:15px;padding:13px 9px!important}.mare-progress{font-size:12px}.mare-legend{gap:7px;font-size:10px}.mare-legend span{font-size:10px}.gameheading h2{font-size:21px}.gameheading p{font-size:11px}.expedition-footer{padding:8px}.keyboard{margin-top:11px}.key{height:45px}}
+@media(max-width:380px){.mare-modes{gap:4px}.mare-modes button{font-size:11px;padding:8px 2px}.mare-modes button small{font-size:9px}.mare-legend span{font-size:9px}.game{padding:10px 5px!important}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
