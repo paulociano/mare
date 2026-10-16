@@ -30,3 +30,37 @@
 .mar-app .empty{color:#b4d6e0}
 @media(max-width:600px){.mar-app header{min-height:64px}.mar-app header .brand,.mar-app header .logo{font-size:22px;letter-spacing:4px}.mar-app button{min-height:44px}.mar-app .panel,.mar-app .game{border-radius:15px}.mar-app .grid .tile{font-size:clamp(12px,2.8vw,15px);line-height:1.15;min-height:67px;padding:6px 2px;hyphens:auto;overflow-wrap:anywhere}}
 @media(prefers-reduced-motion:reduce){.mar-app button{transition:none}}
+
+
+/* MARÉ • Galeria de fundos exclusivos (imagem WebP + fallback vetorial) */
+:root{--mare-fundo-reserva:url('assets/ocean-depth.svg')}
+body.mare-hub,body.mare-recife,body.mare-abismo,body.mare-cardume,body.mare-corrente,body.mare-concha{
+ background-color:#021523;
+ background-repeat:no-repeat,no-repeat,no-repeat;
+ background-position:center,center,center;
+ background-size:cover,cover,cover;
+ background-attachment:fixed,fixed,fixed;
+}
+body.mare-hub,body.mare-recife{
+ background-image:linear-gradient(90deg,#021521b0,#03162683 55%,#02152196),url('assets/backgrounds/recife.webp'),var(--mare-fundo-reserva)!important
+}
+body.mare-abismo{
+ background-image:linear-gradient(90deg,#021421b7,#0415238c 55%,#02162398),url('assets/backgrounds/abismo.webp'),var(--mare-fundo-reserva)!important
+}
+body.mare-cardume{
+ background-image:linear-gradient(90deg,#021421b0,#03172383 55%,#0216239e),url('assets/backgrounds/cardume.webp'),var(--mare-fundo-reserva)!important
+}
+body.mare-corrente{
+ background-image:linear-gradient(90deg,#021421b8,#03172388 55%,#0216239e),url('assets/backgrounds/corrente.webp'),var(--mare-fundo-reserva)!important
+}
+body.mare-concha{
+ background-image:linear-gradient(90deg,#021421b0,#03172383 55%,#0216239e),url('assets/backgrounds/concha.webp'),var(--mare-fundo-reserva)!important
+}
+/* Fundo do Recife tem outras camadas visuais legadas: mantenha o jogo à frente da arte. */
+body.mare-recife:before,body.mare-recife:after{pointer-events:none}
+@media(max-width:720px){
+ body.mare-hub,body.mare-recife,body.mare-abismo,body.mare-cardume,body.mare-corrente,body.mare-concha{
+  background-attachment:scroll,scroll,scroll;
+  background-position:center,64% center,center;
+ }
+}
