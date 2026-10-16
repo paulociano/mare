@@ -20,4 +20,7 @@ assert.equal(new Set(words).size, words.length);
 assert.ok(words.every(w => /^[A-Z]{5}$/.test(w)));
 assert.ok(html.includes('const DICTIONARY=new Set('));
 assert.ok(html.includes(words[0]+' '+words[1]));
+assert.ok(html.includes('href="visual-v3.css"'));
+assert.ok(fs.readFileSync('visual-v3.css','utf8').includes('assets/ocean-depth.svg'));
+assert.ok(fs.readFileSync('assets/ocean-depth.svg','utf8').startsWith('<svg'));
 console.log('PASS: sintaxe, integração, modos e '+words.length+' palavras');
