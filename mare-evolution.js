@@ -45,7 +45,6 @@
   const saved=Object.keys(localStorage).filter(key=>key.startsWith('mare-')&&!key.includes('last-played'));
   document.body.dataset.depth=saved.length>=12?'deep':saved.length>=4?'explorer':'surface';
  }catch{document.body.dataset.depth='surface'}
-}
  // A lightweight next-game recommendation without external tracking or a login.
  // Prefer a game not previously opened, falling back to the first available game.
  const candidate=cards.find(card=>{
