@@ -96,4 +96,11 @@ for (const game of pages.slice(1)) {
   assert.equal((document.match(/aria-current="page"/g) || []).length, 1, game + ': jogo ativo incorreto');
 }
 assert.ok(fs.existsSync('mare-editorial.css'));
+// Cenários publicados: apenas SVGs presentes no repositório.
+const seaDesign = fs.readFileSync('mare-3.css', 'utf8');
+for (const name of ['recife','abismo','cardume','corrente','concha','trilha','enigma','marujo']) {
+  const asset = 'assets/backgrounds/' + name + '.svg';
+  assert.ok(fs.existsSync(asset), 'Arte ausente: ' + asset);
+  assert.ok(seaDesign.includes('url("'+asset+'")'), 'Arte não usada no tema: '+asset);
+}
 console.log('PASS: sintaxe, integração, modos e '+words.length+' palavras');
