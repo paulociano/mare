@@ -253,3 +253,41 @@ body:is(.mare-abismo,.mare-cardume,.mare-corrente,.mare-concha,.mare-trilha,.mar
  :is(.mare-corrente,.mare-abismo) .entry{display:flex;flex-direction:column}
  :is(.mare-corrente,.mare-abismo) .entry button{width:100%}
 }
+
+/* MARÉ 3.3: shared icon navigation. Respects each game's native footer container. */
+body:is(.mare-recife,.mare-abismo,.mare-cardume,.mare-corrente,.mare-concha,.mare-trilha,.mare-enigma,.mare-marujo) footer:has(.mare-game-nav){
+ display:block!important;width:100%;height:auto!important;min-height:0!important;
+ margin:clamp(24px,4vw,40px) auto 0;padding:18px 0 30px!important;
+ border-top:1px solid rgba(162,218,216,.17);background:none;color:var(--m3-muted)
+}
+.mare-game-nav{display:block;width:100%;max-width:1100px;margin:0 auto}
+.mare-game-nav__title{
+ display:block;margin:0 0 12px;color:#9abfc4;font:800 10px 'DM Sans',sans-serif;
+ letter-spacing:.16em;text-align:left
+}
+.mare-game-nav__grid{
+ display:grid;grid-template-columns:repeat(8,minmax(0,1fr));gap:8px
+}
+.mare-game-nav__link{
+ display:flex;min-width:0;min-height:74px;flex-direction:column;align-items:center;
+ justify-content:center;gap:6px;padding:9px 3px;
+ border:1px solid rgba(161,213,212,.19);border-radius:13px;
+ background:#0c2b38;color:#c4dce0!important;text-decoration:none!important;
+ transition:background .18s ease,border-color .18s ease,transform .18s ease
+}
+.mare-game-nav__icon{font:700 22px/1 'Outfit','DM Sans',sans-serif;color:#93d8d1}
+.mare-game-nav__name{font:700 11px/1.2 'DM Sans',sans-serif;white-space:nowrap}
+.mare-game-nav__link:hover{background:#164251;border-color:#84d9ce;transform:translateY(-2px)}
+.mare-game-nav__link.is-active{
+ background:#194c50;border-color:#9be8d8;color:#f5fffc!important;pointer-events:none
+}
+.mare-game-nav__link.is-active .mare-game-nav__icon{color:#c2ffec}
+.mare-game-nav__link:focus-visible{outline:3px solid #efca82!important;outline-offset:3px}
+@media(max-width:860px){.mare-game-nav__grid{grid-template-columns:repeat(4,minmax(0,1fr))}}
+@media(max-width:420px){
+ .mare-game-nav__grid{gap:6px}
+ .mare-game-nav__link{min-height:65px;padding:7px 2px;border-radius:10px}
+ .mare-game-nav__icon{font-size:19px}
+ .mare-game-nav__name{font-size:10px}
+}
+@media(prefers-reduced-motion:reduce){.mare-game-nav__link{transition:none!important}.mare-game-nav__link:hover{transform:none!important}}
