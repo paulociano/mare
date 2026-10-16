@@ -4,7 +4,7 @@
 
 ### Entre de cabeça.
 
-**Oito jogos de palavras. Um mar de possibilidades.**
+**Dez jogos de palavras. Um mar de possibilidades.**
 
 Uma coleção de desafios em português para quem gosta de descobrir, conectar e brincar com palavras. Tudo em um universo inspirado nas profundezas do oceano.
 
@@ -26,6 +26,12 @@ Uma coleção de desafios em português para quem gosta de descobrir, conectar e
 | **[Trilha](https://paulociano.github.io/mare/trilha.html)** | Ligue letras vizinhas e trace o caminho da palavra. |
 | **[Enigma](https://paulociano.github.io/mare/enigma.html)** | Palavras cruzadas para quem gosta de navegar entre pistas. |
 | **[Marujo](https://paulociano.github.io/mare/marujo.html)** | Um caça-palavras com descobertas em todas as direções. |
+| **[Náufrago](https://paulociano.github.io/mare/forca.html)** | Descubra a palavra antes de seis erros. |
+| **[Sinais](https://paulociano.github.io/mare/criptograma.html)** | Decifre frases a partir de códigos numéricos. |
+
+## Desenvolvimento
+
+Consulte [Arquitetura e convenções](docs/ARCHITECTURE.md) para conhecer a organização do código. Para verificar o repositório use `npm run check` (Node.js 20+).
 
 ## Marinheiro de primeira viagem?
 
