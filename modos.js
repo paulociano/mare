@@ -124,6 +124,8 @@ document.getElementById('stats').onclick=()=>openModal('<div class="eyebrow">DIÃ
 const originalOpenModal=openModal,originalCloseModal=closeModal;
 openModal=function(markup){modalOpener=document.activeElement;originalOpenModal(markup);overlay.setAttribute('aria-labelledby','mare-modal-title');const heading=content.querySelector('h3');if(heading)heading.id='mare-modal-title';document.body.classList.add('modal-active')};
 closeModal=function(){originalCloseModal();document.body.classList.remove('modal-active');if(modalOpener?.isConnected)modalOpener.focus();modalOpener=null};
+document.getElementById('close').onclick=()=>closeModal();
+overlay.addEventListener('click',e=>{if(e.target===overlay&&modalOpener){document.body.classList.remove('modal-active');modalOpener?.focus();modalOpener=null}});
 overlay.addEventListener('keydown',e=>{if(e.key!=='Tab')return;const items=[...overlay.querySelectorAll('button:not([disabled]),input:not([disabled]),a[href]')].filter(el=>el.getClientRects().length);if(!items.length)return;const first=items[0],last=items[items.length-1];if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus()}else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus()}});
 panel.addEventListener('click',e=>{const button=e.target.closest('button[data-m]');if(!button||button.dataset.m===mode)return;setMode(button.dataset.m);history.replaceState(null,'',location.pathname+'?modo='+mode)});
 setMode(mode);
