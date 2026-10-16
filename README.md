@@ -93,3 +93,7 @@ O fundo vetorial `assets/ocean-depth.svg` foi atualizado com **submarino, feixes
 ## Fundos exclusivos WebP
 
 O design system define `assets/backgrounds/{recife,abismo,cardume,corrente,concha}.webp` com overlay escuro e fundo vetorial SVG de reserva. O workflow de Pages publica os WebP quando estão presentes no repositório. **Os cinco WebP precisam ser enviados à pasta indicada**; enquanto não estiverem versionados no GitHub, a interface mantém somente o fundo vetorial. O pacote foi gerado nesta conversa para instalação.
+
+## Trilha
+
+**Trilha** (`trilha.html`) é um desafio autoral de conectar letras em um tabuleiro 4×4, descobrindo uma palavra por pista temática. Os movimentos são exclusivamente horizontais ou verticais, entre casas vizinhas, sem repetir casas; a primeira casa pode ser qualquer uma. Inclui cronômetro, tentativas ilimitadas, desafio diário por data de Brasília, jogo livre, dica da primeira letra, salvamento local e compartilhamento do resultado. O lançamento tem 16 pistas/soluções, que se repetem; não utiliza conteúdo de terceiros.
