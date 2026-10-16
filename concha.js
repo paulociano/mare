@@ -1,6 +1,6 @@
 'use strict';
 const $=id=>document.getElementById(id);
-const SEEDS=['MARINHO','CORAGEM','PINTURA','ESCOLAR','BRINCAR','JARDINS','VENTURA','MONTESA','GRANITO','DOMINAR','VIOLETA','TRIUNFO'];
+const SEEDS=['MARINHO','CORAGEM','PINTURA','ESCOLAR','BRINCOS','JARDINS','VENTURA','MONTESA','GRANITO','DOMINAR','VIOLETA','TRIUNFO'];
 const norm=s=>s.normalize('NFD').replace(/[\u0300-\u036f]/g,'').toUpperCase().replace(/[^A-Z]/g,'');
 const today=()=>new Intl.DateTimeFormat('en-CA',{timeZone:'America/Sao_Paulo',year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date());
 function hash(s){let h=2166136261;for(const c of s)h=Math.imul(h^c.charCodeAt(0),16777619);return h>>>0}
