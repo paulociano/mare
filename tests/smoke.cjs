@@ -77,4 +77,7 @@ assert.ok(fs.readFileSync('marujo.html','utf8').includes('marujo.js'));
 assert.ok(fs.existsSync('marujo.css'));
 assert.ok(fs.existsSync('assets/backgrounds/marujo.svg'));
 assert.ok(home.includes('href="marujo.html"'));
+assert.ok(home.includes('mare-editorial.css'));
+assert.ok(home.includes('mar-hero-video'));
+assert.ok(fs.existsSync('mare-editorial.css'));
 console.log('PASS: sintaxe, integração, modos e '+words.length+' palavras');
