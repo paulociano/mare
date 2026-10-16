@@ -34,7 +34,7 @@ jobs:
       - name: Preparar arquivos
         run: |
           mkdir -p _site
-          cp index.html recife.html hub.js mare-system.css mare-editorial.css modos.js modos.css visual-v3.css abismo.html abismo.js abismo.css cardume.html cardume.js cardume.css corrente.html corrente.js corrente.css concha.html concha.js concha.css trilha.html trilha.js trilha.css enigma.html enigma.js enigma.css marujo.html marujo.js marujo.css palavras-ptbr-5.txt _site/
+          cp index.html recife.html hub.js mare-system.css mare-editorial.css mare-v2.css mare-3.css recife-layout.css modos.js modos.css visual-v3.css abismo.html abismo.js abismo.css cardume.html cardume.js cardume.css corrente.html corrente.js corrente.css concha.html concha.js concha.css trilha.html trilha.js trilha.css enigma.html enigma.js enigma.css marujo.html marujo.js marujo.css palavras-ptbr-5.txt _site/
           mkdir -p _site/assets
           cp assets/ocean-depth.svg _site/assets/
           mkdir -p _site/assets/backgrounds
@@ -56,6 +56,9 @@ jobs:
           test -s _site/index.html
           test -s _site/recife.html
           test -s _site/mare-system.css
+          test -s _site/mare-v2.css
+          test -s _site/mare-3.css
+          test -s _site/recife-layout.css
           test -s _site/hub.js
           test -s _site/modos.js
           test -s _site/modos.css
