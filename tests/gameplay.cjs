@@ -26,7 +26,7 @@ assert.equal(JSON.parse(sReload.store.get(skey)).index,phrase.index);
 
 // Cenários de resultado: simula jogos já próximos do desfecho, sem navegador externo.
 const forcaSource=fs.readFileSync('forca.js','utf8');
-const words=vm.runInNewContext(forcaSource.match(/const puzzles=(\\[[^;]+\\]);/)[1]).map(x=>x[0]);
+const words=vm.runInNewContext(forcaSource.match(/const puzzles=(\[[^;]+\]);/)[1]).map(x=>x[0]);
 const day=Math.floor((Date.parse(new Intl.DateTimeFormat('en-CA',{timeZone:'America/Sao_Paulo',year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date())+'T12:00:00Z')-Date.UTC(2025,0,1))/86400000);
 const word=words[((day%words.length)+words.length)%words.length];
 const letters=[...new Set(word)];
