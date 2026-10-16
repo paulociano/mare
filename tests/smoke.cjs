@@ -171,6 +171,6 @@ for(const [i,markup] of catalogCards.entries()){
  assert.ok(markup.indexOf('<h2 ')<markup.indexOf('mar-game-info'),'Título deve ficar acima da descrição');
  assert.ok(markup.includes('class="mar-cta"'),'Botão ausente no card '+(i+1));
 }
-assert.ok(home.includes('mare-brand.css?v=card-layout-2'),'CSS da home deve evitar cache antigo');
+assert.ok(home.includes('mare-brand.css?v=card-layout-3'),'CSS da home deve evitar cache antigo');
 assert.ok(fs.existsSync('mare-brand.css'),'Arquivo físico do CSS versionado ausente');
 console.log('PASS: sintaxe, integração, modos e '+words.length+' palavras');
