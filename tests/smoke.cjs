@@ -84,7 +84,7 @@ assert.ok(home.includes('id="jogos"'));
 const pages = ['index.html','recife.html','abismo.html','cardume.html','corrente.html','concha.html','trilha.html','enigma.html','marujo.html'];
 for (const page of pages) {
   const document = fs.readFileSync(page, 'utf8');
-  for (const match of document.matchAll(/<link\\s+rel="stylesheet"\\s+href="([^"]+)"/g)) {
+  for (const match of document.matchAll(/<link\s+rel="stylesheet"\s+href="([^"]+)"/g)) {
     const stylesheet = match[1];
     assert.ok(fs.existsSync(stylesheet), page + ': CSS ausente ' + stylesheet);
   }
