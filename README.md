@@ -73,3 +73,9 @@ O vocabulário é limitado às palavras dos desafios mais o arquivo `palavras-pt
 Novo jogo em `cardume.html`, de agrupamento de palavras: escolha quatro palavras relacionadas entre 16, encontre quatro categorias, com quatro erros possíveis, aviso de quase acerto, embaralhamento, compartilhamento e salvamento local. Há um desafio diário determinado pela data de Brasília e partidas extras. O conjunto inicial reúne **12 tabuleiros originais e curados** em `data/cardume-puzzles.json`. Depois desse conjunto, os desafios se repetem. Não reproduz os puzzles, a marca nem os dados do Cardume.
 
 O workflow do GitHub Pages inclui `cardume.html`, `cardume.css`, `cardume.js` e os dados JSON. Os smoke tests verificam a integridade de 16 palavras exclusivas em cada puzzle.
+
+## Corrente
+
+O modo [Corrente](corrente.html) desafia o jogador a encontrar uma palavra de comprimento desconhecido, entre 3 e 10 letras. Cada palpite apresenta letras existentes e conexões entre pares consecutivos de letras, com tentativas ilimitadas, dica inicial, salvamento local e modalidades diária e livre. A lista de soluções foi selecionada para essa primeira versão; é um conjunto limitado que se repete.
+
+O catálogo público do MARÉ usa somente os nomes próprios **Clássico**, **Dueto**, **Quarteto**, **Abismo**, **Cardume** e **Corrente**. Os arquivos publicados seguem os mesmos nomes, sem redirecionamentos antigos.
