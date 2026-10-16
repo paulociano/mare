@@ -10,7 +10,9 @@
     "enigma",
     "marujo",
     "forca",
-    "criptograma"
+    "criptograma",
+    "perola",
+    "farol"
   ],
   "requiredFiles": [
     "hub.js",
