@@ -78,3 +78,7 @@ body.mare-recife:before,body.mare-recife:after{pointer-events:none}
 .mare-hub .mar-game-info{position:relative;z-index:1}
 @media(max-width:1050px){.mare-hub .mar-catalog{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:650px){.mare-hub .mar-catalog{grid-template-columns:minmax(0,1fr)}.mare-hub .mar-game{min-height:300px}}
+
+/* Trilha: novo cenário e card do catálogo */
+body.mare-trilha{background-image:linear-gradient(90deg,#021421c2,#03172383 55%,#021623a2),url('assets/backgrounds/trilha.svg'),url('assets/ocean-depth.svg')!important;background-position:center;background-size:cover}
+.mare-hub .mar-trail{background-image:linear-gradient(180deg,#041c2915,#02121c55),url('assets/backgrounds/trilha.svg')}
