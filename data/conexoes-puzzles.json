@@ -1,0 +1,458 @@
+[
+  [
+    {
+      "name": "Peixes",
+      "words": [
+        "ATUM",
+        "SALMÃO",
+        "ROBALO",
+        "SARDINHA"
+      ]
+    },
+    {
+      "name": "Instrumentos musicais",
+      "words": [
+        "PIANO",
+        "VIOLÃO",
+        "FLAUTA",
+        "TAMBOR"
+      ]
+    },
+    {
+      "name": "Planetas",
+      "words": [
+        "MARTE",
+        "VÊNUS",
+        "JÚPITER",
+        "SATURNO"
+      ]
+    },
+    {
+      "name": "Frutas cítricas",
+      "words": [
+        "LIMÃO",
+        "LARANJA",
+        "TANGERINA",
+        "TORANJA"
+      ]
+    }
+  ],
+  [
+    {
+      "name": "Objetos de cozinha",
+      "words": [
+        "PANELA",
+        "COLHER",
+        "GARFO",
+        "PENEIRA"
+      ]
+    },
+    {
+      "name": "Meios de transporte",
+      "words": [
+        "ÔNIBUS",
+        "TREM",
+        "METRÔ",
+        "BARCO"
+      ]
+    },
+    {
+      "name": "Aves",
+      "words": [
+        "ÁGUIA",
+        "CORUJA",
+        "TUCANO",
+        "PARDAL"
+      ]
+    },
+    {
+      "name": "Cores",
+      "words": [
+        "AZUL",
+        "VERDE",
+        "ROXO",
+        "AMARELO"
+      ]
+    }
+  ],
+  [
+    {
+      "name": "Esportes com bola",
+      "words": [
+        "TÊNIS",
+        "FUTEBOL",
+        "BASQUETE",
+        "VÔLEI"
+      ]
+    },
+    {
+      "name": "Partes de uma árvore",
+      "words": [
+        "RAIZ",
+        "TRONCO",
+        "GALHO",
+        "FOLHA"
+      ]
+    },
+    {
+      "name": "Tipos de massa",
+      "words": [
+        "PENNE",
+        "RAVIÓLI",
+        "ESPAGUETE",
+        "LASANHA"
+      ]
+    },
+    {
+      "name": "Instrumentos de navegação",
+      "words": [
+        "BÚSSOLA",
+        "MAPA",
+        "RADAR",
+        "SONAR"
+      ]
+    }
+  ],
+  [
+    {
+      "name": "Animais marinhos",
+      "words": [
+        "POLVO",
+        "BALEIA",
+        "TUBARÃO",
+        "GOLFINHO"
+      ]
+    },
+    {
+      "name": "Metais",
+      "words": [
+        "FERRO",
+        "COBRE",
+        "OURO",
+        "PRATA"
+      ]
+    },
+    {
+      "name": "Móveis",
+      "words": [
+        "SOFÁ",
+        "CAMA",
+        "MESA",
+        "CADEIRA"
+      ]
+    },
+    {
+      "name": "Fenômenos do tempo",
+      "words": [
+        "CHUVA",
+        "NEVE",
+        "VENTO",
+        "GEADA"
+      ]
+    }
+  ],
+  [
+    {
+      "name": "Elementos de praia",
+      "words": [
+        "AREIA",
+        "ONDA",
+        "CONCHA",
+        "GUARDA-SOL"
+      ]
+    },
+    {
+      "name": "Cidades brasileiras",
+      "words": [
+        "RECIFE",
+        "NATAL",
+        "MANAUS",
+        "BELÉM"
+      ]
+    },
+    {
+      "name": "Temperos",
+      "words": [
+        "SAL",
+        "PIMENTA",
+        "ORÉGANO",
+        "COMINHO"
+      ]
+    },
+    {
+      "name": "Peças de roupa",
+      "words": [
+        "CAMISA",
+        "CALÇA",
+        "VESTIDO",
+        "CASACO"
+      ]
+    }
+  ],
+  [
+    {
+      "name": "Profissões da saúde",
+      "words": [
+        "MÉDICO",
+        "DENTISTA",
+        "ENFERMEIRO",
+        "FISIOTERAPEUTA"
+      ]
+    },
+    {
+      "name": "Formas geométricas",
+      "words": [
+        "CÍRCULO",
+        "QUADRADO",
+        "TRIÂNGULO",
+        "LOSANGO"
+      ]
+    },
+    {
+      "name": "Objetos de escritório",
+      "words": [
+        "GRAMPEADOR",
+        "CANETA",
+        "BORRACHA",
+        "PASTA"
+      ]
+    },
+    {
+      "name": "Gêneros musicais",
+      "words": [
+        "SAMBA",
+        "ROCK",
+        "JAZZ",
+        "FORRÓ"
+      ]
+    }
+  ],
+  [
+    {
+      "name": "Mamíferos terrestres",
+      "words": [
+        "ELEFANTE",
+        "LEÃO",
+        "GIRAFA",
+        "ZEBRA"
+      ]
+    },
+    {
+      "name": "Itens de viagem",
+      "words": [
+        "MALA",
+        "PASSAPORTE",
+        "BILHETE",
+        "MOCHILA"
+      ]
+    },
+    {
+      "name": "Partes do corpo",
+      "words": [
+        "COTOVELO",
+        "JOELHO",
+        "OMBRO",
+        "TORNOZELO"
+      ]
+    },
+    {
+      "name": "Doces brasileiros",
+      "words": [
+        "BRIGADEIRO",
+        "QUINDIM",
+        "PAÇOCA",
+        "PÉ-DE-MOLEQUE"
+      ]
+    }
+  ],
+  [
+    {
+      "name": "Tipos de nuvem",
+      "words": [
+        "CIRRO",
+        "ESTRATO",
+        "CÚMULO",
+        "NIMBO"
+      ]
+    },
+    {
+      "name": "Ferramentas",
+      "words": [
+        "MARTELO",
+        "ALICATE",
+        "SERROTE",
+        "CHAVE"
+      ]
+    },
+    {
+      "name": "Flores",
+      "words": [
+        "ROSA",
+        "LÍRIO",
+        "ORQUÍDEA",
+        "TULIPA"
+      ]
+    },
+    {
+      "name": "Animais de fazenda",
+      "words": [
+        "VACA",
+        "CABRA",
+        "PORCO",
+        "GALINHA"
+      ]
+    }
+  ],
+  [
+    {
+      "name": "Capitais europeias",
+      "words": [
+        "PARIS",
+        "ROMA",
+        "LISBOA",
+        "BERLIM"
+      ]
+    },
+    {
+      "name": "Partes de um livro",
+      "words": [
+        "CAPA",
+        "LOMBADA",
+        "PÁGINA",
+        "ÍNDICE"
+      ]
+    },
+    {
+      "name": "Pedras preciosas",
+      "words": [
+        "RUBI",
+        "SAFIRA",
+        "ESMERALDA",
+        "DIAMANTE"
+      ]
+    },
+    {
+      "name": "Tipos de dança",
+      "words": [
+        "TANGO",
+        "SALSA",
+        "BALÉ",
+        "FREVO"
+      ]
+    }
+  ],
+  [
+    {
+      "name": "Insetos",
+      "words": [
+        "FORMIGA",
+        "ABELHA",
+        "BESOURO",
+        "BORBOLETA"
+      ]
+    },
+    {
+      "name": "Cômodos da casa",
+      "words": [
+        "SALA",
+        "COZINHA",
+        "QUARTO",
+        "BANHEIRO"
+      ]
+    },
+    {
+      "name": "Satélites e astros",
+      "words": [
+        "LUA",
+        "SOL",
+        "ESTRELA",
+        "COMETA"
+      ]
+    },
+    {
+      "name": "Modalidades aquáticas",
+      "words": [
+        "NATAÇÃO",
+        "SURFE",
+        "MERGULHO",
+        "CANOAGEM"
+      ]
+    }
+  ],
+  [
+    {
+      "name": "Especiarias",
+      "words": [
+        "CRAVO",
+        "CANELA",
+        "NOZ-MOSCADA",
+        "AÇAFRÃO"
+      ]
+    },
+    {
+      "name": "Material escolar",
+      "words": [
+        "RÉGUA",
+        "LÁPIS",
+        "CADERNO",
+        "ESTOJO"
+      ]
+    },
+    {
+      "name": "Veículos aéreos",
+      "words": [
+        "AVIÃO",
+        "HELICÓPTERO",
+        "PLANADOR",
+        "BALÃO"
+      ]
+    },
+    {
+      "name": "Tipos de tecido",
+      "words": [
+        "LINHO",
+        "SEDA",
+        "ALGODÃO",
+        "VELUDO"
+      ]
+    }
+  ],
+  [
+    {
+      "name": "Elementos musicais",
+      "words": [
+        "NOTA",
+        "ACORDE",
+        "RITMO",
+        "MELODIA"
+      ]
+    },
+    {
+      "name": "Formas de relevo",
+      "words": [
+        "VALE",
+        "MORRO",
+        "PLANALTO",
+        "DEPRESSÃO"
+      ]
+    },
+    {
+      "name": "Utensílios de limpeza",
+      "words": [
+        "VASSOURA",
+        "RODO",
+        "BALDE",
+        "ESPONJA"
+      ]
+    },
+    {
+      "name": "Tipos de embarcação",
+      "words": [
+        "CANOA",
+        "IATE",
+        "JANGADA",
+        "VELEIRO"
+      ]
+    }
+  ]
+]
