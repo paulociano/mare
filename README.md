@@ -50,7 +50,7 @@ Cada palpite aparece nos tabuleiros ainda não resolvidos; todas as soluções p
 
 Os arquivos `modos.js` e `modos.css` adicionam estes modos sobre a interface existente. Para jogar localmente, sirva o diretório por HTTP, por exemplo com `python -m http.server 8000`, permitindo o carregamento de ambos os arquivos.
 
-## Abismo Semântico (modo inspirado em Contexto)
+## Abismo (modo inspirado em Contexto)
 
 Acesse `contexto.html` ou use o cartão na página principal. Digite palavras de qualquer tamanho e veja um indicador **aproximado** de proximidade semântica com o segredo. O jogo oferece dicas, persistência local e sucessivas partidas sem limite de palpites por rodada.
 
@@ -64,11 +64,11 @@ A referência [morluto/rea](https://github.com/morluto/rea) é um utilitário MI
 
 O workflow [Gerar rankings semânticos](.github/workflows/semantic-ranks.yml) instala `sentence-transformers`, usa `sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2` e calcula similaridades vetoriais entre palavras do léxico do MARÉ. O resultado é `data/semantic-ranks.json`, gerado na infraestrutura do GitHub e publicado como arquivo estático pelo Pages. Assim, os dispositivos não precisam baixar o modelo.
 
-**Ativação condicionada:** até o workflow gerar e confirmar o arquivo, o Abismo Semântico utiliza o grafo de associações curadas. O processo pode falhar por limites de rede, tempo ou dependências; a presença do código não comprova que o ranking vetorial já esteja publicado.
+**Ativação condicionada:** até o workflow gerar e confirmar o arquivo, o Abismo utiliza o grafo de associações curadas. O processo pode falhar por limites de rede, tempo ou dependências; a presença do código não comprova que o ranking vetorial já esteja publicado.
 
 O vocabulário é limitado às palavras dos desafios mais o arquivo `palavras-ptbr-5.txt`; termos fora dele continuam recebendo pontuação heurística distante. Embeddings são aproximações de significado, não rankings originais do Contexto. A seleção de 42 soluções também continua limitada e cíclica. Para reproduzir uma experiência com cobertura comparável, ainda seria necessário expandir e revisar o léxico e testar empiricamente a qualidade das associações.
 
-## Conexões Abissais
+## Cardume
 
 Novo jogo em `conexoes.html`, inspirado na mecânica de grupos de palavras: escolha quatro palavras relacionadas entre 16, encontre quatro categorias, com quatro erros possíveis, aviso de quase acerto, embaralhamento, compartilhamento e salvamento local. Há um desafio diário determinado pela data de Brasília e partidas extras. O conjunto inicial reúne **12 tabuleiros originais e curados** em `data/conexoes-puzzles.json`. Depois desse conjunto, os desafios se repetem. Não reproduz os puzzles, a marca nem os dados do Conexo.
 
