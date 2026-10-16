@@ -103,4 +103,19 @@ for (const name of ['recife','abismo','cardume','corrente','concha','trilha','en
   assert.ok(fs.existsSync(asset), 'Arte ausente: ' + asset);
   assert.ok(seaDesign.includes('url("'+asset+'")'), 'Arte não usada no tema: '+asset);
 }
+const newGames=['forca','criptograma'];
+for (const game of newGames){
+  const page=fs.readFileSync(game+'.html','utf8');
+  new vm.Script(fs.readFileSync(game+'.js','utf8'));
+  assert.ok(page.includes('src="'+game+'.js"'));
+  assert.ok(page.includes('mare-newgames.css'));
+  assert.ok(page.includes('aria-current="page"'));
+  assert.ok(home.includes('href="'+game+'.html"'));
+  assert.ok(page.includes('id="daily"') && page.includes('id="free"'));
+}
+for (const game of ['recife','abismo','cardume','corrente','concha','trilha','enigma','marujo']){
+  const page=fs.readFileSync(game+'.html','utf8');
+  for(const added of newGames)assert.ok(page.includes('href="'+added+'.html"'));
+}
+assert.ok(fs.existsSync('mare-newgames.css'));
 console.log('PASS: sintaxe, integração, modos e '+words.length+' palavras');
