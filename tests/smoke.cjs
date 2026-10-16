@@ -78,6 +78,22 @@ assert.ok(fs.existsSync('marujo.css'));
 assert.ok(fs.existsSync('assets/backgrounds/marujo.svg'));
 assert.ok(home.includes('href="marujo.html"'));
 assert.ok(home.includes('mare-editorial.css'));
-assert.ok(home.includes('mar-hero-video'));
+assert.ok(!home.includes('mar-hero-video'), 'Home deve abrir diretamente no catálogo, sem banner');
+assert.ok(home.includes('id="jogos"'));
+// Testa a integridade das folhas compartilhadas citadas pelas páginas publicadas.
+const pages = ['index.html','recife.html','abismo.html','cardume.html','corrente.html','concha.html','trilha.html','enigma.html','marujo.html'];
+for (const page of pages) {
+  const document = fs.readFileSync(page, 'utf8');
+  for (const match of document.matchAll(/<link\\s+rel="stylesheet"\\s+href="([^"]+)"/g)) {
+    const stylesheet = match[1];
+    assert.ok(fs.existsSync(stylesheet), page + ': CSS ausente ' + stylesheet);
+  }
+  assert.ok(document.includes('href="mare-3.css"'), page + ': design system não carregado');
+}
+for (const game of pages.slice(1)) {
+  const document = fs.readFileSync(game, 'utf8');
+  assert.equal((document.match(/class="mare-game-nav"/g) || []).length, 1, game + ': rodapé ausente');
+  assert.equal((document.match(/aria-current="page"/g) || []).length, 1, game + ': jogo ativo incorreto');
+}
 assert.ok(fs.existsSync('mare-editorial.css'));
 console.log('PASS: sintaxe, integração, modos e '+words.length+' palavras');
