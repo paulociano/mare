@@ -238,4 +238,10 @@ assert.equal(new Set(allSymbols.map(x=>x[1])).size,12,'Cada jogo precisa de um s
 const unifiedCSS=fs.readFileSync('mare-brand.css','utf8');
 assert.ok(unifiedCSS.includes('background-image:none!important'),'Cards não devem repetir artes de fundo');
 assert.ok(unifiedCSS.includes('height:410px!important'),'Altura dos cards deve ser uniforme');
+const motionCSS=fs.readFileSync('mare-brand.css','utf8');
+for(const token of ['mare-ocean-swell','mare-bubbles-rise','pointer-events:none','prefers-reduced-motion:reduce']){
+ assert.ok(motionCSS.includes(token),'Movimento oceânico sem '+token);
+}
+assert.ok(motionCSS.includes('body.mare-hub'),'Efeito da home ausente');
+assert.ok(motionCSS.includes('body.mar-app'),'Efeito das páginas internas ausente');
 console.log('PASS: sintaxe, integração, modos e '+words.length+' palavras');
