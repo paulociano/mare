@@ -39,3 +39,41 @@ main:has(.game[data-mode=duo]) .leftPanel,main:has(.game[data-mode=quartet]) .le
  .game[data-mode=duo] .tile{font-size:clamp(13px,4vw,21px)}
  .mare-modes button{font-size:11px}.mare-modes button small{font-size:8px}
 }
+
+/* UX/UI audit refinements */
+.mare-modes button{min-height:52px;font-size:14px}.mare-modes button small{font-size:11px}
+.mare-modes button:focus-visible,.mare-sonda-picker button:focus-visible{outline:3px solid #ffe4a1;outline-offset:2px}
+.mare-progress{text-align:center;color:#b8ebe2;font-size:13px;font-weight:700;margin:-8px auto 13px}
+.mare-legend{display:flex;justify-content:center;flex-wrap:wrap;gap:8px 13px;color:#c8e0e5;font-size:12px;margin:0 0 14px}
+.mare-legend span{display:inline-flex;align-items:center;gap:5px;white-space:nowrap}
+.mare-legend i{display:inline-grid;place-items:center;font-style:normal;font-weight:900;width:18px;height:18px;border-radius:4px;color:#092635}
+.legend-good{background:#37cdb0}.legend-near{background:#ffd27d}.legend-miss{background:#a4b9c3}
+.mare-pane-head{font-size:12px;letter-spacing:.4px}
+.mare-pane.solved{box-shadow:inset 0 0 0 1px #43e9d061;background:#10473d55}
+.mare-pane.focused:not(.solved){border-color:#a5f6f3;box-shadow:0 0 0 2px #40d5bd30}
+.mare-sonda-picker{display:none}
+.modal-active{overflow:hidden}
+.modalwrap.open{overflow-y:auto}
+.modal{max-height:min(92vh,900px);overflow-y:auto}
+@media(max-width:650px){
+ .mare-legend{margin-bottom:10px;font-size:11px}
+ .mare-progress{font-size:12px;margin-bottom:10px}
+ .mare-pane-head{font-size:10px;line-height:1.4}
+}
+@media(max-width:540px){
+ .mare-modes button{font-size:13px;min-height:48px}
+ .mare-modes button small{font-size:10px}
+ .game[data-mode=quartet] .mare-sonda-picker{display:flex;grid-column:1/-1;gap:6px;flex-wrap:wrap}
+ .mare-sonda-picker button{flex:1;min-width:68px;padding:9px 5px;border:1px solid #6bbfb8;border-radius:9px;background:#103c4f;color:#d9f8f1;font-size:12px}
+ .mare-sonda-picker button.chosen{background:#1e827c;border-color:#c7fff4}
+ .game[data-mode=quartet] .mare-boards{grid-template-columns:minmax(0,1fr)}
+ .game[data-mode=quartet] .mare-pane{display:none;max-width:390px;width:100%;margin:auto;padding:10px}
+ .game[data-mode=quartet] .mare-boards[data-focus="0"] .mare-pane[data-pane="0"],
+ .game[data-mode=quartet] .mare-boards[data-focus="1"] .mare-pane[data-pane="1"],
+ .game[data-mode=quartet] .mare-boards[data-focus="2"] .mare-pane[data-pane="2"],
+ .game[data-mode=quartet] .mare-boards[data-focus="3"] .mare-pane[data-pane="3"]{display:block}
+ .game[data-mode=quartet] .mare-row .tile{height:clamp(29px,8vw,43px);font-size:19px}
+ .game[data-mode=quartet] .mare-pane-head{font-size:12px}
+ .game[data-mode=duo] .mare-pane-head{font-size:10px}
+ .bottomnote{font-size:12px}
+}
