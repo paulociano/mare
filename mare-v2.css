@@ -125,3 +125,77 @@ body.mar-app,body.mare-recife,body.mare-abismo,body.mare-cardume,body.mare-corre
 @media(max-width:840px){.enigma-layout,.trilha-layout,.marujo-layout{grid-template-columns:minmax(0,1fr)}.concha-board{grid-template-columns:1fr}.marujo-hero,.trilha-hero,.enigma-hero{padding-block:28px!important}}
 @media(max-width:450px){.enigma-shell,.trilha-shell,.marujo-shell{padding-inline:10px}.enigma-card,.trilha-panel,.marujo-panel,.enigma-clues,.enigma-stats,.trilha-info,.trilha-mode,.marujo-card,.concha-play,.concha-discover{padding:15px!important;border-radius:17px!important}.enigma-board{border-width:3px;gap:2px;padding:3px}.enigma-cell{border-radius:4px!important}.trilha-grid{gap:7px}.trilha-grid button{border-radius:12px!important}.marujo-grid{gap:2px}.marujo-cell{border-radius:4px!important}.mare-cardume .tile{min-height:64px;border-radius:9px}.enigma-modes,.marujo-modes,.concha-tabs{gap:7px}.enigma-modes button,.marujo-modes button,.concha-tabs button{padding:10px 12px}}
 @media(prefers-reduced-motion:reduce){.trilha-grid button,.mare-cardume .tile{transition:none!important}}
+
+
+/* MARÉ 2.2 | Art direction: luminous bathymetry, not clip-art.
+   Intentional CSS light fields replace legacy vector and broken image fallbacks. */
+:root{--mar-depth-0:#030e19;--mar-depth-1:#071c2a;--mar-depth-2:#0c3341;--mar-glass:rgba(10,36,50,.93)}
+body.mare-hub,body.mare-recife,body.mare-abismo,body.mare-cardume,body.mare-corrente,body.mare-concha,body.concha-page,body.mare-trilha,body.mare-enigma,body.mare-marujo{
+  background-color:var(--mar-depth-0)!important;
+  background-image:
+    radial-gradient(ellipse 54% 35% at 82% 7%,rgba(82,188,177,.2),transparent 78%),
+    radial-gradient(ellipse 50% 50% at 0% 65%,rgba(34,120,151,.19),transparent 78%),
+    radial-gradient(ellipse 70% 65% at 83% 115%,rgba(24,86,128,.22),transparent 80%),
+    linear-gradient(155deg,#071e2e 0%,#041420 45%,#020e19 100%)!important;
+  background-repeat:no-repeat!important;
+  background-size:cover!important;
+  background-position:center!important;
+  background-attachment:fixed!important
+}
+/* Older fixed body overlays hid the actual backgrounds, especially in Corrente. */
+body.mare-corrente::before,body.mare-cardume::before,body.mare-recife::before,
+body.mare-trilha::before,body.mare-enigma::before,body.mare-marujo::before,
+body.concha-page::before,body.mare-concha::before,body.mare-abismo::before{
+  background:none!important;box-shadow:none!important
+}
+/* Corrente gets an independent visual signature with subtle streaming light. */
+body.mare-corrente{
+  background-image:
+    radial-gradient(ellipse 46% 35% at 86% 14%,rgba(98,224,212,.3),transparent 78%),
+    radial-gradient(ellipse 42% 60% at 3% 65%,rgba(30,122,177,.25),transparent 75%),
+    repeating-linear-gradient(116deg,transparent 0 135px,rgba(126,226,223,.018) 136px 137px,transparent 138px 270px),
+    linear-gradient(158deg,#0b2b3a 0%,#061a2b 46%,#020f1c 100%)!important
+}
+.mare-corrente .wrap{width:min(100% - 36px,980px);isolation:isolate}
+.mare-corrente .intro{text-align:left;position:relative;padding:clamp(44px,7vw,90px) 0 40px}
+.mare-corrente .intro h1{font:700 clamp(66px,10vw,118px)/.95 'Outfit',sans-serif;color:#f1fcf8;letter-spacing:-.075em;margin:15px 0}
+.mare-corrente .intro p{margin-left:0;max-width:590px;font-size:clamp(15px,1.8vw,19px)}
+.mare-corrente .intro .switch{justify-content:flex-start;margin-top:30px}
+.mare-corrente .intro::after{content:"";position:absolute;z-index:-1;pointer-events:none;right:-6%;top:2%;width:clamp(160px,39vw,400px);aspect-ratio:1;border-radius:50%;border:1px solid rgba(138,235,226,.14);background:radial-gradient(circle at 45% 43%,rgba(115,229,224,.09),rgba(4,42,62,.06) 42%,transparent 70%);box-shadow:0 0 0 30px rgba(125,218,219,.025),0 0 0 70px rgba(109,203,208,.014)}
+.mare-corrente .panel{background:linear-gradient(145deg,rgba(16,51,67,.96),rgba(5,25,39,.98))!important;border:1px solid rgba(153,236,225,.27)!important;box-shadow:0 36px 80px rgba(0,8,20,.44),inset 0 1px 0 rgba(219,255,249,.07)!important}
+.mare-corrente .meta,.mare-corrente .heading{border-color:rgba(155,229,219,.17)}
+.mare-corrente .entry input{background:#071c2b;border-color:#487d8a;border-radius:13px}
+.mare-corrente #go{background:#b1f3df;color:#052b32;border-color:#b1f3df}
+.mare-corrente .guess{background:rgba(15,50,65,.9)!important;border-color:rgba(151,218,218,.22)!important;border-radius:15px}
+.mare-corrente .letter{border-radius:9px;background:#284d5b;border-color:#557d88}
+.mare-corrente .letter.found{background:#146e72;border-color:#78e4d3}
+.mare-corrente .letter.linked{background:#1a879e;border-color:#9cecf3}
+.mare-corrente .empty{border:1px dashed rgba(146,221,215,.21);border-radius:14px;background:rgba(7,29,44,.38)}
+/* Remove duplicated vector covers from the catalogue and vary each game with color. */
+.mare-hub .mar-hero-art{background:radial-gradient(ellipse at 72% 25%,rgba(95,207,196,.21),transparent 50%),linear-gradient(135deg,#0b3444 0%,#072331 48%,#03131f 100%)!important}
+.mare-hub .mar-hero-video{opacity:.26;filter:saturate(.62) contrast(1.08)}
+.mare-hub .mar-hero-shade{background:linear-gradient(90deg,rgba(2,16,27,.95) 0%,rgba(3,22,32,.79) 46%,rgba(2,20,29,.35) 100%),linear-gradient(0deg,#031320 0%,transparent 39%)}
+.mare-hub .mar-water-motion{opacity:.46}
+.mare-hub .mar-game{--card-glow:rgba(89,216,194,.22);background-image:radial-gradient(ellipse at 80% 18%,var(--card-glow),transparent 58%),linear-gradient(155deg,#153847 0%,#092637 50%,#041725 100%)!important;background-color:#071b28!important}
+.mare-hub .mar-game.mar-letters{--card-glow:rgba(100,212,205,.3)}
+.mare-hub .mar-game.mar-abyss{--card-glow:rgba(70,113,198,.33)}
+.mare-hub .mar-game.mar-school{--card-glow:rgba(128,179,154,.31)}
+.mare-hub .mar-game.mar-current{--card-glow:rgba(55,182,203,.32)}
+.mare-hub .mar-game.mar-shell{--card-glow:rgba(194,156,117,.25)}
+.mare-hub .mar-game.mar-trail{--card-glow:rgba(97,165,206,.3)}
+.mare-hub .mar-game.mar-enigma{--card-glow:rgba(124,126,202,.3)}
+.mare-hub .mar-game.mar-marujo{--card-glow:rgba(52,156,139,.32)}
+.mare-hub .mar-game::before{background:linear-gradient(180deg,rgba(5,23,32,.02),rgba(4,19,31,.19) 43%,rgba(2,13,23,.94) 92%)!important}
+.mare-hub .mar-game::after{content:"";position:absolute;right:21px;top:26px;bottom:auto;left:auto;width:clamp(70px,7vw,110px);height:clamp(70px,7vw,110px);border:1px solid rgba(191,242,233,.11);border-radius:50%;box-shadow:0 0 0 17px rgba(181,236,224,.025),0 0 0 37px rgba(170,231,222,.012);background:none;pointer-events:none}
+.mare-hub .mar-game-info,.mare-hub .mar-tag{position:relative;z-index:1}
+.mare-hub .mar-game:hover{filter:none}
+@media(max-width:650px){
+  body.mare-corrente{background-attachment:scroll!important}
+  .mare-corrente .wrap{width:min(100% - 24px,980px)}
+  .mare-corrente .intro{padding:34px 0 27px}
+  .mare-corrente .intro h1{font-size:clamp(53px,14vw,78px)}
+  .mare-corrente .intro::after{opacity:.45;right:-16%}
+  .mare-corrente .depth{flex-wrap:wrap}
+  .mare-hub .mar-game::after{width:75px;height:75px}
+}
+@media(prefers-reduced-motion:reduce){.mare-hub .mar-hero-video,.mare-hub .mar-water-motion{display:none!important}}
