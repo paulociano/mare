@@ -182,3 +182,30 @@ body:is(.mare-abismo,.mare-cardume,.mare-corrente,.mare-concha,.mare-trilha,.mar
  .mare-hub .mar-game,.mare-hub .mar-cta,.mare-cardume .tile{transition:none!important}
  .mare-hub .mar-game:hover{transform:none}
 }
+
+/* MARÉ 3.1 / Recife game surface: focus the board, no promotional sidebar. */
+.mare-recife .shell{max-width:880px}
+.mare-recife .topbar{height:64px!important}
+.mare-recife .return-link{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:12px 0 4px}
+.mare-recife .return-link h2{font:700 22px/1.1 'Outfit',sans-serif;letter-spacing:-.04em;margin:0}
+.mare-recife .return-link a{font-size:13px;text-decoration:none;color:#b4d9d9}
+.mare-recife .return-link a:hover{color:#a5f0df}
+.mare-recife .return-link p{display:none}
+.mare-recife main{flex:1;display:flex;align-items:flex-start;justify-content:center;padding:10px 0 16px!important;gap:0!important}
+.mare-recife .game{width:min(100%,450px);margin:0 auto}
+.mare-recife .gameheading{margin:0 0 10px}
+.mare-recife .gameheading h2{font:700 23px 'Outfit',sans-serif;margin:4px 0!important}
+.mare-recife .gameheading p{margin:0;color:#b0cdd1}
+.mare-recife .board{width:min(100%,325px)}
+.mare-recife .keyboard{width:min(100%,430px)}
+.mare-recife .scene{opacity:.22}
+.mare-recife .seaweed{display:none!important}
+.mare-recife .foot{border-top:1px solid rgba(165,225,217,.13)}
+@media(max-width:650px){
+ .mare-recife .shell{padding:0 12px}
+ .mare-recife main{display:flex!important;padding:7px 0 12px!important}
+ .mare-recife .return-link{padding:9px 0 5px}
+ .mare-recife .gameheading{margin-bottom:8px}
+ .mare-recife .board{width:min(86vw,325px)}
+ .mare-recife .keyboard{width:100%}
+}
