@@ -127,4 +127,12 @@ for (const page of ['index','recife','abismo','cardume','corrente','concha','tri
  assert.ok(html.includes('assets/brand/mare-favicon.svg'), 'Favicon MARÉ ausente: '+page);
  assert.ok(html.includes('mare-brand.css'), 'Estilo da marca ausente: '+page);
 }
+const naufragoCode=fs.readFileSync('forca.js','utf8');
+const sinaisCode=fs.readFileSync('criptograma.js','utf8');
+new vm.Script(naufragoCode);
+new vm.Script(sinaisCode);
+assert.ok(naufragoCode.includes('state.seed=seed'),'Náufrago não salva a palavra da partida livre');
+assert.ok(naufragoCode.includes('seed=state.seed'),'Náufrago não restaura a palavra da partida livre');
+assert.ok(sinaisCode.includes('state.index=index'),'Sinais não salva a frase da partida livre');
+assert.ok(sinaisCode.includes('index=state.index'),'Sinais não restaura a frase da partida livre');
 console.log('PASS: sintaxe, integração, modos e '+words.length+' palavras');
