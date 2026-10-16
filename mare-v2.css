@@ -1,0 +1,53 @@
+/* MARÉ 2.0 · Oceanic design system, shared across eight games */
+:root{--ocean:#06131d;--surface:#102a37;--line:#4e7883;--text:#effaf8;--muted:#bad5d9;--cyan:#88ebe0;--teal:#55d8c6;--gold:#ffcd7c;--mare-radius:22px;--mare-shadow:0 24px 60px rgba(0,8,17,.36)}
+body.mar-app,body.mare-recife,body.mare-abismo,body.mare-cardume,body.mare-corrente,body.mare-concha,body.mare-trilha,body.mare-enigma,body.mare-marujo{color:var(--text);background-color:#06131d;font-family:'DM Sans',sans-serif;-webkit-font-smoothing:antialiased}
+.mar-app :is(h1,h2,h3),.mare-recife :is(h1,h2),.mare-abismo :is(h1,h2),.mare-cardume :is(h1,h2),.mare-corrente :is(h1,h2),.mare-concha :is(h1,h2){font-family:'Outfit',sans-serif;letter-spacing:-.035em;text-wrap:balance}
+.mar-app :is(.hero,.heading,.intro,.trilha-hero,.enigma-hero,.marujo-hero){position:relative}
+.mar-app :is(.panel,.game,.enigma-card,.enigma-sidebar,.trilha-panel,.trilha-side>div,.marujo-panel,.card),.mare-recife :is(.panel,.game),.mare-cardume :is(.panel,.game){border:1px solid rgba(169,226,224,.2);border-radius:var(--mare-radius);background:linear-gradient(145deg,rgba(24,61,72,.9),rgba(7,28,41,.96));box-shadow:var(--mare-shadow)}
+.mar-app :is(button,input,select),.mare-recife :is(button,input),.mare-abismo :is(button,input),.mare-cardume button,.mare-corrente button,.mare-concha :is(button,input){font-family:inherit}
+.mar-app button,.mare-recife button,.mare-abismo button,.mare-cardume button,.mare-corrente button,.mare-concha button{border-radius:12px;min-height:44px;transition:background .2s ease,border-color .2s ease,transform .2s ease,box-shadow .2s ease}
+.mar-app button:not(:disabled):active,.mare-recife button:not(:disabled):active,.mare-cardume button:not(:disabled):active{transform:scale(.975)}
+.mar-app :is(button,a,input):focus-visible,.mare-recife :is(button,a,input):focus-visible,.mare-abismo :is(button,a,input):focus-visible,.mare-cardume :is(button,a,input):focus-visible,.mare-corrente :is(button,a,input):focus-visible,.mare-concha :is(button,a,input):focus-visible{outline:3px solid #ffdc92;outline-offset:4px}
+.mar-app :is(.brand,.logo),.mare-recife :is(.brand,.logo){letter-spacing:.14em}
+.mar-app :is(.back,.brand),.mare-recife :is(.back,.brand){text-decoration:none}
+.mar-app :is(.enigma-board,.trilha-grid),.mare-cardume .grid{gap:clamp(4px,1vw,10px)}
+.mar-app :is(.enigma-cell,.trilha-grid button){border-radius:clamp(6px,1vw,12px);font-weight:800;box-shadow:inset 0 1px 0 rgba(255,255,255,.09)}
+.mar-app :is(.enigma-cell.selected,.trilha-grid button.chosen){box-shadow:0 0 0 2px #b5f8eb,0 7px 24px rgba(30,204,183,.24)}
+.mar-app :is(.enigma-actions,.trilha-actions,.enigma-modes,.trilha-mode){gap:10px;flex-wrap:wrap}
+.mar-app :is(.enigma-hero,.trilha-hero){padding-block:clamp(28px,5vw,58px)}
+.mar-app :is(.enigma-hero,.trilha-hero) h1{font-size:clamp(48px,7vw,88px);line-height:1;letter-spacing:-.065em}
+.mar-app :is(.enigma-card,.trilha-panel){padding:clamp(14px,2.5vw,32px)}
+.mar-app :is(.enigma-layout,.trilha-layout){gap:clamp(16px,2.6vw,32px)}
+.mar-app :is(.notice,[role="status"]){line-height:1.5}
+@media(max-width:650px){.mar-app :is(.enigma-card,.trilha-panel){border-radius:16px;padding:14px}.mar-app :is(.enigma-hero,.trilha-hero){padding-block:22px}.mar-app :is(.enigma-hero,.trilha-hero) h1{font-size:49px}.mar-app :is(.enigma-actions,.trilha-actions) button{flex:1 1 auto}.mar-app :is(.enigma-layout,.trilha-layout){gap:16px}}
+@media(prefers-reduced-motion:reduce){.mar-app *, .mare-recife *, .mare-abismo *, .mare-cardume *, .mare-corrente *, .mare-concha *{transition-duration:.01ms!important;animation-duration:.01ms!important;animation-iteration-count:1!important}}
+
+/* Home: typographic gallery, visible atmosphere, confident tactile interactions */
+.mare-hub{--mar-aqua:#a5f0df;--mar-ink:#06131d;--mar-white:#f1faf7;--mar-mist:#bcd5d7;background:#06131d!important}
+.mare-hub .mar-top{backdrop-filter:blur(18px);background:linear-gradient(180deg,rgba(4,22,34,.8),rgba(4,22,34,.05));border-bottom-color:rgba(210,246,237,.2)}
+.mare-hub .mar-hero{min-height:600px;height:min(790px,95svh);background:radial-gradient(ellipse at 80% 40%,#184d59 0%,transparent 52%),#041521}
+.mare-hub .mar-hero-shade{background:linear-gradient(90deg,#04141ff2 0%,#041724b5 48%,#05253024 95%),linear-gradient(0deg,#04131de8,transparent 35%)}
+.mare-hub .mar-hero h1{font-weight:700;letter-spacing:-.075em;max-width:760px}
+.mare-hub .mar-hero p{max-width:460px;line-height:1.6}
+.mare-hub .mar-explore{border-radius:999px;padding:17px 25px;background:#b9f4de;color:#092931;box-shadow:0 12px 45px #04101955;transition:transform .2s ease,background .2s}
+.mare-hub .mar-explore:hover{transform:translateY(-3px);background:#e3fff1}
+.mare-hub .mar-section-head{padding-top:100px}
+.mare-hub .mar-section-head h2{font-weight:700;letter-spacing:-.06em}
+.mare-hub .mar-catalog{gap:20px;grid-template-columns:repeat(4,minmax(0,1fr))}
+.mare-hub .mar-game{min-height:390px;border-radius:23px;border:1px solid rgba(175,225,224,.2);padding:22px;box-shadow:0 18px 55px rgba(0,7,18,.35);filter:none;transition:transform .25s cubic-bezier(.22,1,.36,1),border-color .25s,box-shadow .25s;isolation:isolate}
+.mare-hub .mar-game:nth-child(1),.mare-hub .mar-game:nth-child(6){grid-column:span 2}
+.mare-hub .mar-game:hover{transform:translateY(-7px);box-shadow:0 26px 65px rgba(0,7,18,.55);border-color:#a5e9db}
+.mare-hub .mar-game::before{background:linear-gradient(180deg,rgba(3,20,31,.14),rgba(3,20,31,.36) 32%,#031521f2 93%)}
+.mare-hub .mar-tag{border-radius:999px;padding:9px 13px;background:#062b39ae;backdrop-filter:blur(8px)}
+.mare-hub .mar-game-info h2{font-size:clamp(32px,3.5vw,46px);font-weight:700;letter-spacing:-.055em}
+.mare-hub .mar-game-info p{font-size:14px;line-height:1.5}
+.mare-hub .mar-mode-links{gap:8px}
+.mare-hub .mar-mode-links a{border:1px solid rgba(189,248,236,.25);border-radius:10px;padding:10px 7px;background:#052331bd;font-size:11px}
+.mare-hub .mar-cta{border-radius:12px;padding:15px 18px;background:#b8f0dc;color:#09222c!important;font-weight:800;border:0}
+.mare-hub .mar-cta:hover{background:#e6fff1}
+.mare-hub .mar-continue{border-radius:22px;background:linear-gradient(110deg,#123849,#0a2634);border:1px solid #82cbc74a;box-shadow:0 20px 55px #010d1899;padding:36px}
+.mare-hub .mar-continue h2{font-size:clamp(25px,3vw,38px);letter-spacing:-.04em;font-weight:700}
+.mare-hub .mar-continue .mar-cta{min-width:230px}
+@media(max-width:1050px){.mare-hub .mar-catalog{grid-template-columns:repeat(2,minmax(0,1fr))}.mare-hub .mar-game:nth-child(1),.mare-hub .mar-game:nth-child(6){grid-column:span 1}}
+@media(max-width:650px){.mare-hub .mar-hero{height:83svh;min-height:540px}.mare-hub .mar-hero h1{font-size:clamp(54px,14vw,85px)}.mare-hub .mar-section-head{padding-top:65px}.mare-hub .mar-catalog{grid-template-columns:1fr;gap:15px}.mare-hub .mar-game{min-height:310px;padding:19px;border-radius:18px}.mare-hub .mar-game-info h2{font-size:38px}.mare-hub .mar-continue{padding:22px}.mare-hub .mar-continue .mar-cta{min-width:0}}
+@media(prefers-reduced-motion:reduce){.mare-hub .mar-explore,.mare-hub .mar-game{transition:none}.mare-hub .mar-explore:hover,.mare-hub .mar-game:hover{transform:none}}
