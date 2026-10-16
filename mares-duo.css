@@ -23,3 +23,14 @@ body.mare-perola,body.mare-farol{background:linear-gradient(160deg,#061c2de8,#0b
 @media(max-width:580px){.depth-header img{max-width:140px}.depth-panel{padding:18px}.depth-scramble{letter-spacing:.07em}}
 
 .depth-shell [hidden]{display:none!important}
+
+/* Cabeçalho e navegação seguem o padrão dos demais jogos. */
+.depth-title-lockup{display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin:10px 0}
+.depth-title-lockup img{width:clamp(64px,9vw,84px);height:auto;filter:drop-shadow(0 6px 18px rgba(0,12,23,.5))}
+.depth-title-lockup h1{margin:0}
+.depth-footer .mare-game-nav{margin:24px 0 14px}
+.depth-footer .mare-game-nav__grid{grid-template-columns:repeat(6,minmax(0,1fr))}
+.depth-footer .mare-game-nav__title{display:block;margin-bottom:16px}
+.depth-footer .mare-game-nav__link.is-active{border-color:#9df1dd;background:#19554d;color:#f3fff9!important}
+@media(max-width:760px){.depth-footer .mare-game-nav__grid{grid-template-columns:repeat(4,minmax(0,1fr))}}
+@media(max-width:450px){.depth-footer .mare-game-nav__grid{grid-template-columns:repeat(3,minmax(0,1fr))}.depth-title-lockup{gap:10px}}
