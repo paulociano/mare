@@ -149,4 +149,6 @@ for(const page of ['index','recife','abismo','cardume','corrente','concha','tril
  assert.ok(/<main\b[^>]*id="conteudo-principal"/.test(doc),page+': destino do atalho ausente');
 }
 assert.ok(fs.readFileSync('mare-brand.css','utf8').includes('.mare-skip-link:focus'));
+assert.ok(fs.readFileSync('marujo.html','utf8').includes('Use as setas para navegar'));
+assert.ok(fs.readFileSync('marujo.js','utf8').includes("addEventListener('keydown'"));
 console.log('PASS: sintaxe, integração, modos e '+words.length+' palavras');
