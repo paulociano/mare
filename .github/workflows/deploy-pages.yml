@@ -30,13 +30,16 @@ jobs:
       - name: Preparar arquivos
         run: |
           mkdir -p _site
-          cp index.html modos.js modos.css visual-v3.css _site/
+          cp index.html modos.js modos.css visual-v3.css contexto.html contexto.js contexto.css _site/
           mkdir -p _site/assets
           cp assets/ocean-depth.svg _site/assets/
           test -s _site/index.html
           test -s _site/modos.js
           test -s _site/modos.css
           test -s _site/visual-v3.css
+          test -s _site/contexto.html
+          test -s _site/contexto.js
+          test -s _site/contexto.css
           test -s _site/assets/ocean-depth.svg
           touch _site/.nojekyll
       - name: Enviar artefato
