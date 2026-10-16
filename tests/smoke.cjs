@@ -226,4 +226,16 @@ for(const game of ['recife','abismo','cardume','corrente','concha','trilha','eni
  assert.ok(home.includes('src="'+mark+'"'),'Símbolo ausente no card: '+game);
  assert.ok(page.includes('src="'+mark+'"'),'Símbolo ausente no jogo: '+game);
 }
+for(const [game,page] of [['naufrago','forca'],['sinais','criptograma']]){
+ const symbol='assets/brand/'+game+'-mark.svg';
+ assert.ok(fs.readFileSync(symbol,'utf8').includes('<svg'),'Emblema inválido: '+game);
+ assert.ok(home.includes('src="'+symbol+'"'),'Card sem símbolo: '+game);
+ assert.ok(fs.readFileSync(page+'.html','utf8').includes('src="'+symbol+'"'),'Cabeçalho sem símbolo: '+page);
+}
+const allSymbols=[...home.matchAll(/class="mar-game-symbol" src="([^"]+)"/g)];
+assert.equal(allSymbols.length,12,'Os doze cards precisam de símbolos próprios');
+assert.equal(new Set(allSymbols.map(x=>x[1])).size,12,'Cada jogo precisa de um símbolo exclusivo');
+const unifiedCSS=fs.readFileSync('mare-brand.css','utf8');
+assert.ok(unifiedCSS.includes('background-image:none!important'),'Cards não devem repetir artes de fundo');
+assert.ok(unifiedCSS.includes('height:410px!important'),'Altura dos cards deve ser uniforme');
 console.log('PASS: sintaxe, integração, modos e '+words.length+' palavras');

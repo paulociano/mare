@@ -86,3 +86,46 @@ body.mare-hub .mar-catalog > article.mar-game{min-height:285px}
 .mare-game-symbol-lockup{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
 .mare-game-symbol-lockup img{width:clamp(62px,8vw,86px);height:auto;flex:0 0 auto;filter:drop-shadow(0 7px 14px rgba(0,10,19,.3))}
 @media(max-width:650px){body.mare-hub .mar-catalog > article.mar-game > .mar-game-symbol{height:80px;width:80px}body.mare-hub .mar-catalog > article.mar-game > h2.recife-card-heading{font-size:clamp(1.85rem,8vw,2.6rem)!important}body.mare-hub .mar-catalog > article.mar-game:is(.mar-school,.mar-current) > h2.recife-card-heading{font-size:clamp(1.65rem,6.8vw,2.4rem)!important}}
+
+/* Catálogo uniforme: 12 cards do mesmo tamanho e sem imagens de cenário.
+   A marca de cada jogo é o único elemento ilustrativo de destaque. */
+body.mare-hub .mar-catalog{align-items:stretch!important}
+body.mare-hub .mar-catalog > article.mar-game{
+ box-sizing:border-box!important;display:flex!important;flex-direction:column!important;
+ height:410px!important;min-height:410px!important;max-height:410px!important;
+ background:#061e2c!important;background-image:none!important;
+ border:1px solid rgba(162,224,215,.26)!important;overflow:hidden!important;
+}
+body.mare-hub .mar-catalog > article.mar-game::before,
+body.mare-hub .mar-catalog > article.mar-game::after{background-image:none!important}
+body.mare-hub .mar-catalog > article.mar-game > .mar-tag{
+ flex:0 0 auto!important;margin-bottom:12px!important
+}
+body.mare-hub .mar-catalog > article.mar-game > .mar-game-symbol{
+ display:block!important;flex:0 0 104px!important;align-self:center!important;
+ width:104px!important;height:104px!important;max-height:104px!important;
+ object-fit:contain!important;margin:0 auto 8px!important
+}
+body.mare-hub .mar-catalog > article.mar-game > h2.recife-card-heading{
+ display:flex!important;flex:0 0 65px!important;align-items:center!important;
+ min-height:65px!important;max-height:65px!important;
+ font-size:clamp(2rem,2.8vw,3.05rem)!important;line-height:1!important;
+ margin:0 0 10px!important;white-space:nowrap!important
+}
+body.mare-hub .mar-catalog > article.mar-game:is(.mar-school,.mar-current,.mar-forca,.mar-criptograma) > h2.recife-card-heading{
+ font-size:clamp(1.75rem,2.5vw,2.8rem)!important
+}
+body.mare-hub .mar-catalog > article.mar-game > .mar-game-info{
+ display:flex!important;flex:1 1 auto!important;flex-direction:column!important;
+ justify-content:flex-end!important;width:100%!important;margin-top:auto!important;
+}
+body.mare-hub .mar-catalog > article.mar-game .mar-game-info p{
+ margin-bottom:auto!important;min-height:44px!important
+}
+body.mare-hub .mar-catalog > article.mar-game .mar-cta{margin-top:auto!important;flex-shrink:0!important}
+@media(max-width:650px){
+ body.mare-hub .mar-catalog > article.mar-game{height:390px!important;min-height:390px!important;max-height:390px!important}
+ body.mare-hub .mar-catalog > article.mar-game > .mar-game-symbol{width:86px!important;height:86px!important;flex-basis:86px!important}
+ body.mare-hub .mar-catalog > article.mar-game > h2.recife-card-heading{font-size:clamp(1.8rem,7.6vw,2.55rem)!important}
+ body.mare-hub .mar-catalog > article.mar-game:is(.mar-school,.mar-current,.mar-forca,.mar-criptograma) > h2.recife-card-heading{font-size:clamp(1.55rem,6.4vw,2.25rem)!important}
+}
