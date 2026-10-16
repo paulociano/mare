@@ -85,3 +85,20 @@ body:is(.mar-app,.mare-recife) :is(.notice,.status,[role="status"],[aria-live="p
 @media(prefers-reduced-motion:reduce){
  body:is(.mar-app,.mare-recife) :is(button,a,input,[role="button"]){transition:none!important;animation:none!important;transform:none!important}
 }
+
+/* UX game-first: keep meaningful controls visible without changing gameplay structure. */
+body.mar-app :is(.heading,.hero,.newgame-intro){margin-bottom:clamp(10px,1.8vw,20px)}
+body.mar-app :is(.heading,.hero,.newgame-intro) p{max-width:64ch;line-height:1.5}
+body.mar-app :is(.game,.panel,.newgame-panel){scroll-margin-top:16px}
+body.mar-app :is(.game,.panel,.newgame-panel) :is(button,input){font:inherit}
+body.mar-app :is(.game,.panel,.newgame-panel) :is(button,input):disabled{cursor:not-allowed}
+body.mar-app :is(.game,.panel,.newgame-panel) :is(button,[role="button"]){touch-action:manipulation}
+body.mar-app :is(.game,.panel,.newgame-panel) :is(.statusline,.newgame-hud,.progress){font-variant-numeric:tabular-nums}
+body.mare-recife .game{scroll-margin-top:12px}
+body.mare-hub .mare-recommendation{order:2;display:flex;align-items:center;justify-content:space-between;gap:18px;padding:16px 20px;border:1px solid #67cbbb6e;border-radius:18px;background:linear-gradient(105deg,#0e4051d9,#072638ec)}
+body.mare-hub .mare-recommendation[hidden]{display:none!important}
+body.mare-hub .mare-recommendation__title{font-size:1.05rem;color:var(--mare-evo-foam);font-weight:800}
+body.mare-hub .mare-recommendation__copy{font-size:.84rem;color:#c6e3e5;margin-top:3px}
+body.mare-hub .mare-recommendation__link{display:inline-flex;justify-content:center;align-items:center;min-height:44px;padding:10px 18px;flex-shrink:0;text-align:center;text-decoration:none;border-radius:12px;background:var(--mare-evo-aqua);color:#042b31;font-weight:800}
+body.mare-hub .mare-recommendation__link:is(:hover,:focus-visible){background:#a2f7df;color:#042b31}
+@media(max-width:600px){body.mare-hub .mare-recommendation{flex-direction:column;align-items:stretch}body.mare-hub .mare-recommendation__link{width:100%}body.mar-app :is(.heading,.hero,.newgame-intro){margin-bottom:10px}}

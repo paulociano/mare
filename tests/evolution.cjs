@@ -20,7 +20,7 @@ const cards=entries.map((match,i)=>{
  const card=new Node('article');card.className='mar-game '+match[1];
  card.classList={contains:name=>card.className.split(/\s+/).includes(name)};
  const heading=new Node('h2');heading.textContent='Jogo '+i;
- const action=new Node('a');
+ const action=new Node('a');action.setAttribute('href','game-'+i+'.html');
  const info=new Node('div');info.className='mar-game-info';info.children=[action];
  card.querySelector=selector=>selector==='h2'?heading:selector==='.mar-game-info'?info:null;
  info.querySelector=selector=>selector==='.mar-cta'?action:null;
@@ -54,3 +54,7 @@ const evolutionCss=fs.readFileSync('mare-evolution.css','utf8');
 assert.ok(evolutionCss.includes('prefers-reduced-motion:reduce'),'Motion reduzido obrigatório');
 assert.ok(evolutionCss.includes(':focus-visible'),'Foco visível obrigatório');
 console.log('PASS: camada compartilhada nos 13 documentos, foco e movimento reduzido');
+
+assert.ok(toolbar.afterNode?.className==='mare-recommendation','Sugestão acessível deve aparecer no hub');
+assert.equal(toolbar.afterNode.children[1].getAttribute('href'),'game-0.html','Recomendação abre um jogo existente');
+console.log('PASS: recomendação sem dependência de cadastro ou rede');

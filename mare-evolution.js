@@ -45,4 +45,23 @@
   const saved=Object.keys(localStorage).filter(key=>key.startsWith('mare-')&&!key.includes('last-played'));
   document.body.dataset.depth=saved.length>=12?'deep':saved.length>=4?'explorer':'surface';
  }catch{document.body.dataset.depth='surface'}
+ // A lightweight next-game recommendation without external tracking or a login.
+ // Prefer a game not previously opened, falling back to the first available game.
+ const candidate=cards.find(card=>{
+  const href=card.querySelector('.mar-cta')?.getAttribute('href')?.split('?')[0];
+  if(!href)return false;
+  try{return localStorage.getItem('mare-last-played')!==href}catch{return true}
+ })||cards[0];
+ const suggestedLink=candidate?.querySelector('.mar-cta');
+ const suggestedName=candidate?.querySelector('h2')?.textContent?.trim();
+ if(suggestedLink&&suggestedName){
+  const recommendation=document.createElement('section');
+  recommendation.className='mare-recommendation';
+  recommendation.setAttribute('aria-label','Sugestão de jogo');
+  const summary=document.createElement('div');
+  const label=document.createElement('div');label.className='mare-recommendation__title';label.textContent='Que tal jogar '+suggestedName+'?';
+  const hint=document.createElement('p');hint.className='mare-recommendation__copy';hint.textContent='Um novo desafio, quando você quiser. Todos os jogos continuam disponíveis abaixo.';
+  const open=document.createElement('a');open.className='mare-recommendation__link';open.href=suggestedLink.getAttribute('href');open.textContent='Jogar '+suggestedName+' ↗';
+  summary.append(label,hint);recommendation.append(summary,open);toolbar.after(recommendation);
+ }
 })();
