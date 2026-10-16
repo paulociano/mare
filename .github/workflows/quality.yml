@@ -21,7 +21,9 @@ jobs:
           node tests/smoke.cjs
           node tests/gameplay.cjs
       - name: Validar pacote publicado
-        run: node scripts/build-site.cjs
+        run: |
+          node scripts/build-site.cjs
+          node scripts/check-build.cjs
       - name: Verificar arquivos essenciais
         run: |
           test -s _site/index.html
