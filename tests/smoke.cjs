@@ -151,4 +151,9 @@ for(const page of ['index','recife','abismo','cardume','corrente','concha','tril
 assert.ok(fs.readFileSync('mare-brand.css','utf8').includes('.mare-skip-link:focus'));
 assert.ok(fs.readFileSync('marujo.html','utf8').includes('Use as setas para navegar'));
 assert.ok(fs.readFileSync('marujo.js','utf8').includes("addEventListener('keydown'"));
+for (const game of ['trilha','enigma']) {
+ const source=fs.readFileSync(game+'.js','utf8');
+ assert.ok(source.includes('document.activeElement'),'Foco não preservado em '+game);
+ new vm.Script(source);
+}
 console.log('PASS: sintaxe, integração, modos e '+words.length+' palavras');
