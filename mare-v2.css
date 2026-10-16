@@ -267,3 +267,10 @@ body.mare-corrente{
 .mare-recife .bottomnote{margin-top:8px}
 .mare-recife .foot{height:42px}
 @media(max-width:650px){.mare-recife main{padding:10px 0!important}.mare-recife .gameheading{margin-bottom:9px}.mare-recife .keyboard{margin-top:4px}.mare-recife .bottomnote{margin-top:7px}}
+
+/* Home opens directly onto game selection, without a hero banner. */
+.mare-hub .mar-top{position:relative;left:auto;transform:none;margin:0 auto;width:min(1280px,calc(100% - 48px));padding:17px 0;background:transparent;backdrop-filter:none}
+.mare-hub .mar-section-head{padding:30px 0 19px}
+.mare-hub .mar-section-head h1{font:700 clamp(30px,4.5vw,48px)/1.1 "Outfit",sans-serif;letter-spacing:-.055em;margin:0;color:#f1faf7}
+.mare-hub .mar-catalog{scroll-margin-top:24px}
+@media(max-width:650px){.mare-hub .mar-top{width:calc(100% - 32px);padding:14px 0}.mare-hub .mar-section-head{padding:22px 0 14px}.mare-hub .mar-section-head h1{font-size:31px}}
