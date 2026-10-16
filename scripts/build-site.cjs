@@ -27,6 +27,7 @@ for(const css of [...copied].filter(x=>x.endsWith('.css'))){
  for(const m of data.matchAll(/url\(\s*['"]?([^'")]+)['"]?\s*\)/g)){
   const url=m[1].trim();if(/^(data:|https?:|#)/.test(url))continue;
   const rel=path.normalize(path.join(path.dirname(css),url));
+  if(rel.endsWith('.webp')&&!fs.existsSync(rel)&&fs.existsSync(rel.replace(/\.webp$/,'.svg')))continue;
   copy(rel);
  }
 }
