@@ -19,34 +19,33 @@ body.mare-recife .recife-title-lockup{margin:0;text-align:center;font-weight:900
 .mare-hub .mar-game.mar-letters .mar-game-info{margin-top:auto}
 @media(max-width:650px){.mare-hub .mar-game.mar-letters .recife-card-heading{min-height:115px;font-size:clamp(3rem,13vw,4.3rem)}}
 
-/* Cards do catálogo: um título protagonista por jogo, seguindo o Recife. */
-.mare-hub .mar-catalog .mar-game{--mare-card-ink:#a8f1e1;--mare-card-depth:#0d5965}
-.mare-hub .mar-catalog .mar-game .mare-card-heading,
-.mare-hub .mar-catalog .mar-game .recife-card-heading{
- display:flex;align-items:center;justify-content:center;text-align:center;
- flex:1 0 auto;min-height:135px;width:100%;max-width:100%;
- margin:8px 0 12px;padding:0;font-family:'Outfit',system-ui,sans-serif;
- font-size:clamp(2.5rem,5vw,4.4rem);font-weight:900;line-height:1;
- letter-spacing:-.065em;overflow-wrap:anywhere;color:var(--mare-card-ink);
- text-shadow:0 5px 0 var(--mare-card-depth),0 12px 25px rgba(0,0,0,.5)
+/* Todos os cards usam o mesmo título protagonista do Recife. */
+body.mare-hub .mar-catalog > article.mar-game{
+  display:flex!important;flex-direction:column!important;
 }
-.mare-hub .mar-catalog .mar-game .mar-game-info{margin-top:auto;width:100%}
-.mare-hub .mar-catalog .mar-abyss{--mare-card-ink:#c4d9ff;--mare-card-depth:#2c406e}
-.mare-hub .mar-catalog .mar-school{--mare-card-ink:#b7f4d4;--mare-card-depth:#195a53}
-.mare-hub .mar-catalog .mar-current{--mare-card-ink:#b9ecff;--mare-card-depth:#14546c}
-.mare-hub .mar-catalog .mar-shell{--mare-card-ink:#f3d7cc;--mare-card-depth:#78535a}
-.mare-hub .mar-catalog .mar-trail{--mare-card-ink:#b8e4ff;--mare-card-depth:#265879}
-.mare-hub .mar-catalog .mar-enigma{--mare-card-ink:#dfd8ff;--mare-card-depth:#4a477c}
-.mare-hub .mar-catalog .mar-marujo{--mare-card-ink:#b8f6df;--mare-card-depth:#16564d}
-.mare-hub .mar-catalog .mar-forca{--mare-card-ink:#ffe2ae;--mare-card-depth:#775a3f}
-.mare-hub .mar-catalog .mar-criptograma{--mare-card-ink:#c6ebff;--mare-card-depth:#245a74}
+body.mare-hub .mar-catalog > article.mar-game > h2.recife-card-heading{
+  display:flex!important;align-items:center!important;justify-content:center!important;
+  align-self:stretch!important;flex:1 0 135px!important;min-height:135px!important;
+  max-width:100%!important;width:100%!important;
+  margin:8px 0 12px!important;padding:0!important;
+  font-family:'Outfit',system-ui,sans-serif!important;
+  font-size:clamp(3rem,5.5vw,4.8rem)!important;
+  font-weight:900!important;line-height:1!important;letter-spacing:-.065em!important;
+  text-align:center!important;overflow-wrap:anywhere!important;
+  color:#a8f1e1!important;
+  text-shadow:0 5px 0 #0d5965,0 12px 25px rgba(0,0,0,.5)!important;
+}
+body.mare-hub .mar-catalog > article.mar-game > .mar-game-info{
+  flex:0 0 auto!important;margin-top:auto!important;width:100%!important;
+}
 @media(max-width:650px){
- .mare-hub .mar-catalog .mar-game .mare-card-heading,
- .mare-hub .mar-catalog .mar-game .recife-card-heading{
-  min-height:115px;margin:4px 0 10px;font-size:clamp(2.55rem,10vw,4.1rem)
+ body.mare-hub .mar-catalog > article.mar-game > h2.recife-card-heading{
+  flex-basis:115px!important;min-height:115px!important;
+  font-size:clamp(2.55rem,10vw,4.3rem)!important;
  }
 }
 @media(max-width:350px){
- .mare-hub .mar-catalog .mar-game .mare-card-heading,
- .mare-hub .mar-catalog .mar-game .recife-card-heading{font-size:clamp(2.15rem,10vw,3.3rem)}
+ body.mare-hub .mar-catalog > article.mar-game > h2.recife-card-heading{
+  font-size:clamp(2.15rem,10vw,3.3rem)!important;
+ }
 }
