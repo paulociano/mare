@@ -1,0 +1,9 @@
+/* Marca oficial recebida em mare-assets-svg.zip. Não altera as identidades dos jogos. */
+:root{--mare-brand-mint:#9BF2D6;--mare-brand-teal:#38A3A5;--mare-brand-abyss:#07151C}
+.mare-hub .mar-logo,body.mar-app :is(a.brand,a.logo,a.newgame-brand),body.mare-recife .mare-brand-lockup{display:inline-flex!important;align-items:center!important;justify-content:flex-start!important;min-width:0!important;line-height:1!important;text-decoration:none!important;padding:0!important;background:transparent!important;border:0!important;box-shadow:none!important}
+.mare-hub .mar-logo img,body.mar-app :is(a.brand,a.logo,a.newgame-brand) img,body.mare-recife .mare-brand-lockup img{display:block!important;width:clamp(170px,19vw,240px)!important;max-width:100%!important;height:auto!important;max-height:65px!important;object-fit:contain!important;object-position:left center}
+body.mare-recife .topbar .mare-brand-lockup{flex:0 1 auto}
+body.mare-recife .topbar .mare-brand-lockup img{width:clamp(150px,20vw,225px)!important}
+body.mar-app .newgame-header .newgame-brand img{width:clamp(160px,20vw,230px)!important}
+@media(max-width:650px){.mare-hub .mar-logo img,body.mar-app :is(a.brand,a.logo,a.newgame-brand) img,body.mare-recife .mare-brand-lockup img{width:clamp(145px,39vw,188px)!important;max-height:49px!important}}
+@media(max-width:360px){.mare-hub .mar-logo img,body.mar-app :is(a.brand,a.logo,a.newgame-brand) img,body.mare-recife .mare-brand-lockup img{width:135px!important}}

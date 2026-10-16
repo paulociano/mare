@@ -15,7 +15,7 @@ const backgrounds=fs.readdirSync('assets/backgrounds').filter(x=>/\.(svg|webp)$/
 for(const file of backgrounds)copy('assets/backgrounds/'+file);
 for(const page of pages){
  const doc=fs.readFileSync(page+'.html','utf8');
- for(const m of doc.matchAll(/<(?:script|link)\b[^>]*?(?:src|href)=["']([^"']+)["']/g)){
+ for(const m of doc.matchAll(/<(?:script|link|img)\b[^>]*?(?:src|href)=["']([^"']+)["']/g)){
   const value=m[1];if(/^(?:https?:|#|data:|mailto:)/.test(value))continue;
   const rel=value.split(/[?#]/)[0];if(!rel)continue;
   if(rel.endsWith('.html')){assert.ok(pages.includes(path.basename(rel,'.html')),page+': destino não publicado '+rel);continue}
