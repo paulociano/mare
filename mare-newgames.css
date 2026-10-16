@@ -9,3 +9,8 @@ body.mare-criptograma{background-image:linear-gradient(180deg,#041622dd,#031521e
 /* Identidade submarina dos novos jogos com cenas SVG locais. */
 body.mare-forca{background-image:linear-gradient(180deg,#041622d2,#031521df),url('assets/backgrounds/naufrago.svg')!important}
 body.mare-criptograma{background-image:linear-gradient(180deg,#041622d2,#031521df),url('assets/backgrounds/sinais.svg')!important}
+
+/* Progressão náutica de seis etapas. */
+.mare-forca .wreck-illustration{width:min(100%,310px);height:auto;max-height:228px;margin:5px auto 8px;display:block;overflow:visible}
+.mare-forca .wreck-progress [data-part]{transition:opacity .2s ease}
+@media(prefers-reduced-motion:reduce){.mare-forca .wreck-progress [data-part]{transition:none}}
