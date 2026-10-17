@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc" viewBox="0 0 1000 348" width="1000" height="348">
+<title id="title">Linguagens utilizadas no MARÉ</title>
+<desc id="desc">Distribuição aproximada dos bytes de arquivos de código versionados: JavaScript 41.2 por cento, CSS 35.5 por cento, Python 12.5 por cento, HTML 10.8 por cento. Contagem inclui scripts e testes.</desc>
+<rect x="1" y="1" width="998" height="346" rx="16" fill="#fffdf7" stroke="#b9cbd1" stroke-width="2"/>
+<rect x="1" y="1" width="998" height="81" rx="16" fill="#e8f1f1"/>
+<path d="M1 65H999V82H1Z" fill="#e8f1f1"/>
+<text x="47" y="43" font-size="29" font-weight="700" fill="#173e5e" font-family="Georgia,serif">Linguagens do projeto</text>
+<text x="49" y="67" font-size="15.5" fill="#446578" font-family="system-ui,sans-serif">Proporção do código versionado, em bytes</text>
+  <text x="50" y="137" font-size="22" font-weight="650" fill="#173e5e" font-family="system-ui,sans-serif">JavaScript</text>
+  <rect x="229" y="119" width="590" height="24" rx="8" fill="#dce9e9"/>
+  <rect x="229" y="119" width="243.1" height="24" rx="8" fill="#315f87"/>
+  <text x="855" y="138" font-size="21" font-weight="750" fill="#173e5e" font-family="system-ui,sans-serif">41,2%</text>
+  <text x="50" y="191" font-size="22" font-weight="650" fill="#173e5e" font-family="system-ui,sans-serif">CSS</text>
+  <rect x="229" y="173" width="590" height="24" rx="8" fill="#dce9e9"/>
+  <rect x="229" y="173" width="209.4" height="24" rx="8" fill="#6f9fba"/>
+  <text x="855" y="192" font-size="21" font-weight="750" fill="#173e5e" font-family="system-ui,sans-serif">35,5%</text>
+  <text x="50" y="245" font-size="22" font-weight="650" fill="#173e5e" font-family="system-ui,sans-serif">Python</text>
+  <rect x="229" y="227" width="590" height="24" rx="8" fill="#dce9e9"/>
+  <rect x="229" y="227" width="73.8" height="24" rx="8" fill="#b88a43"/>
+  <text x="855" y="246" font-size="21" font-weight="750" fill="#173e5e" font-family="system-ui,sans-serif">12,5%</text>
+  <text x="50" y="299" font-size="22" font-weight="650" fill="#173e5e" font-family="system-ui,sans-serif">HTML</text>
+  <rect x="229" y="281" width="590" height="24" rx="8" fill="#dce9e9"/>
+  <rect x="229" y="281" width="63.7" height="24" rx="8" fill="#7fa993"/>
+  <text x="855" y="300" font-size="21" font-weight="750" fill="#173e5e" font-family="system-ui,sans-serif">10,8%</text>
+<text x="50" y="333" font-size="14" fill="#446578" font-family="system-ui,sans-serif">Inclui aplicação, ferramentas e testes · fotografia do repositório</text>
+</svg>
