@@ -418,3 +418,13 @@ body.mar-app dialog::backdrop{
     color:#fff;
   }
 }
+
+/* WCAG navigation: motion reduction must not reveal the keyboard-only skip link.
+   The reduced-motion rule above disables decorative transforms, not the skip
+   link's essential off-screen / focused positions. */
+body:is(.mar-app,.mare-recife) > .mare-skip-link:not(:focus):not(:focus-visible){
+  transform:translateY(-190%)!important;
+}
+body:is(.mar-app,.mare-recife) > .mare-skip-link:is(:focus,:focus-visible){
+  transform:translateY(0)!important;
+}
