@@ -64,6 +64,13 @@ def main():
       row=page.evaluate(SCRIPT)
       row.update(route=name,device=label)
       rows.append(row)
+      # Large dark slabs are a visual regression in the LIGHT theme. Indigo
+      # action buttons are intentionally dark, but never occupy 55k px².
+      slabs=[item for item in row["top"] if item["area"]>=55000]
+      assert not slabs, f"{label}/{name}: dark legacy slabs: {slabs[:4]}"
+      if name in ("index","recife","concha","enigma","farol"):
+       page.screenshot(path=str(OUT/f"kanagawa-polish-{name}-{label}.png"),
+                       full_page=True,animations="disabled")
       print('SURFACES',label,name,'dark',row["stats"]["count"],json.dumps(row["top"][:10],ensure_ascii=False),flush=True)
      finally:page.close()
     context.close()
