@@ -32,6 +32,53 @@ for(const css of [...copied].filter(x=>x.endsWith('.css'))){
   copy(rel);
  }
 }
+
+/*
+ * Combine stylesheets after dependency discovery, preserving cascade order.
+ * Sources remain individually testable; published pages need one CSS request.
+ * Hoist @import rules because CSS requires them before normal rules.
+ */
+const bundles=new Map();
+for(const page of pages){
+ const filename=page+'.html';
+ let html=fs.readFileSync(path.join(out,filename),'utf8');
+ const links=[...html.matchAll(/<link\b[^>]*rel=["']stylesheet["'][^>]*href=["']([^"']+\.css)["'][^>]*>/gi)];
+ if(links.length===0)continue;
+ const styles=links.map(match=>match[1]);
+ if(styles.some(file=>file.startsWith('/')||file.includes('..')||!copied.has(file))){
+  throw new Error(page+': stylesheet fora do inventário');
+ }
+ const bundleKey=JSON.stringify(styles);
+ let bundle=bundles.get(bundleKey);
+ if(!bundle){
+  const imports=[],chunks=[];
+  for(const file of styles){
+   let css=fs.readFileSync(path.join(root,file),'utf8');
+   css=css.replace(/@import\s+(?:url\([^;]+\)|["'][^"']+["'])\s*;/g,rule=>{
+    if(!imports.includes(rule))imports.push(rule);
+    return '';
+   });
+   chunks.push('/* Source: '+file+' */\n'+css);
+  }
+  const combined=imports.join('\n')+'\n'+chunks.join('\n');
+  const id=crypto.createHash('sha256').update(bundleKey+'\0'+combined).digest('hex').slice(0,12);
+  bundle='styles/mare-'+id+'.css';
+  fs.mkdirSync(path.join(out,'styles'),{recursive:true});
+  fs.writeFileSync(path.join(out,bundle),combined);
+  copied.add(bundle);
+  bundles.set(bundleKey,bundle);
+ }
+ // Replace only stylesheet links, keeping other link elements unchanged.
+ let first=true;
+ html=html.replace(/<link\b[^>]*rel=["']stylesheet["'][^>]*href=["'][^"']+\.css["'][^>]*>/gi,()=>{
+  if(!first)return '';
+  first=false;
+  return '<link rel="stylesheet" href="'+bundle+'">';
+ });
+ fs.writeFileSync(path.join(out,filename),html);
+}
+console.log('CSS: '+bundles.size+' bundles para '+pages.length+' páginas');
+
 fs.writeFileSync(path.join(out,'.nojekyll'),'');
 
 // PWA shell is generated only AFTER all assets are copied. Version includes
