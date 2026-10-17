@@ -11,6 +11,7 @@ permissions:
 jobs:
   quality:
     runs-on: ubuntu-latest
+    timeout-minutes: 25
     steps:
       - name: Obter projeto
         uses: actions/checkout@v4
@@ -33,7 +34,12 @@ jobs:
           python -m pip install --quiet playwright==1.56.0
           python -m playwright install --with-deps chromium
           python scripts/check-play-runtime.py
+          python scripts/check-phase4-e2e.py
           python scripts/check-phase3-runtime.py
+      - name: Auditar WCAG, reflow, toque e sinais de performance
+        run: |
+          npm install --no-save --no-package-lock --no-audit --no-fund --ignore-scripts axe-core@4.10.3
+          python scripts/check-phase4-quality.py
       - name: Preservar screenshots e relatório de QA
         if: always()
         uses: actions/upload-artifact@v4
