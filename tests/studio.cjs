@@ -22,6 +22,7 @@ for(const guard of ['prefers-reduced-motion','saveData','max-width: 720px','Inte
   assert.ok(scene.includes(guard),'Proteção da GPU ausente: '+guard);
 }
 assert.ok(scene.includes("import('https://cdn.jsdelivr.net/npm/three@0.180.0/"),'Dependência Three.js deve estar fixada');
+assert.match(css,/article\.mar-game\[hidden\]\{display:none!important\}/,'Filtragem precisa ocultar cards');
 assert.match(css,/grid-template-columns:repeat\(3,minmax\(0,1fr\)\)/);
 assert.match(css,/@media\(max-width:520px\)/);
 console.log('PASS: Oceanic Studio semantic structure, all games, shader source and GPU bypass gates');
