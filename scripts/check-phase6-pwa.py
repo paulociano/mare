@@ -78,6 +78,19 @@ def main():
           assert diary.locator(".mare-logbook__stat-value").first.inner_text()=="1","Dashboard verified win count incorrect"
           assert diary.locator(".mare-explorer__missions").count()==1,"Mission panel missing"
           page.screenshot(path=str(ART/"phase6-diary-mobile.png"),full_page=True)
+          stage="populated diary accessibility"
+          axe_file=ROOT/"node_modules/axe-core/axe.min.js"
+          assert axe_file.is_file(),"axe-core unavailable for populated Diary WCAG audit"
+          page.add_script_tag(path=str(axe_file))
+          serious=page.evaluate("""async () => {
+            const r=await axe.run(document,{runOnly:{
+              type:'tag',values:['wcag2a','wcag2aa','wcag21a','wcag21aa','wcag22aa']
+            }});
+            return r.violations.filter(v=>v.impact==='critical'||v.impact==='serious')
+              .map(v=>({id:v.id,impact:v.impact,nodes:v.nodes.map(n=>n.target).slice(0,5)}));
+          }""")
+          report["populatedDiaryA11y"]={"seriousAndCritical":serious}
+          assert not serious,"Populated Diary WCAG failures: "+json.dumps(serious,ensure_ascii=False)
           stage="offline gameplay"
           # Reuse the Phase 3 real-action oracles with the browser disconnected,
           # proving that the cached game scripts/data drive user interactions.
