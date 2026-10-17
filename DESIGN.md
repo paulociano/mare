@@ -75,3 +75,18 @@ O CSS compartilhado dos jogos está isolado em `mare-play.css`. Para reverter, t
 
 ## Gate de release
 Não confundir `npm run check` verde com aprovação de UX. Merge para `main` só depois de testes CI; em seguida verificar workflow Pages e, quando houver acesso a browser remoto, fazer revisão cruzada de viewport/touch/keyboard e aplicar correções adicionais.
+
+## Fase 3: Gameplay Finesse (17/10/2026)
+Esta camada adiciona tratamentos individuais para os 12 tabuleiros em mare-finesse.css, carregado depois de mare-play.css. mare-finesse.js lê mensagens de feedback e aplica somente variações visuais de dica/tentativa, sem criar resultados ou mudar a jogabilidade.
+
+### Resultado verificável
+mare-progress.js preserva o formato e as chaves de localStorage, emitindo mare:round-finished apenas depois de persistir uma vitória ou derrota válida e não duplicada. O evento tem somente game e outcome, sem histórico privado. mare-finale.js utiliza o evento para mostrar resumo acessível, fechar e navegar ao jogo seguinte ou catálogo. Texto da UI, brilho ou um registro incompleto nunca são interpretados como vitória. Quando storage falha ou a rodada já existe, não há evento novo.
+
+### Superfícies aprimoradas
+Recife: letras e teclado. Abismo: sondagens. Cardume: seleções. Corrente: entrada/histórico. Concha: roda. Trilha: percurso. Enigma: cruzadas e pista ativa. Marujo: seleção/achados. Náufrago: palavra e teclado. Sinais: associação símbolo/letra. Pérola: anagramas. Farol: sequência de palavras.
+
+### Testes e limites
+tests/finesse.cjs verifica contrato de persistência/evento, ausência de duplicação, painel win/loss e 12 referências. scripts/check-phase3-runtime.py valida uma interação real por jogo em Chromium mobile 390px e a apresentação de um evento de rodada confirmado por ledger sintético isolado. O evento sintético é prova de integração do painel, não prova de E2E da vitória de cada jogo. scripts/check-play-runtime.py mantém 24 capturas em 390/1440px. Permanece UNKNOWN a conformidade WCAG 2.2 completa, zoom 200%, comportamento de touch em dispositivos reais, Web Vitals p75 e conclusão jogada de cada modalidade. Sem Three.js adicional durante as partidas.
+
+### Rollback
+Reverter o PR restaura os comportamentos antigos sem alterar a persistência. Para desativar apenas os novos estilos, retirar as referências a mare-finesse.css e mare-finesse.js das 12 páginas.
