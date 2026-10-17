@@ -66,7 +66,7 @@ def check():
                             if not response or response.status != 200:
                                 findings.append(f"{device} {page_name}: HTTP {response.status if response else 'none'}")
                             # Real rendered DOM/viewport checks.
-                            observed = page.evaluate("""() => ({
+                            observed = page.evaluate("""async () => ({
                                 headings: document.querySelectorAll('h1').length,
                                 title: document.querySelector('h1')?.textContent?.trim() || '',
                                 skip: !!document.querySelector('.mare-skip-link[href="#conteudo-principal"]'),
@@ -75,7 +75,7 @@ def check():
                                 scrollWidth: document.documentElement.scrollWidth,
                                 viewport: window.innerWidth,
                                 display: getComputedStyle(document.querySelector('main')).display,
-                                css: [...document.styleSheets].some(s => s.href?.includes('mare-play.css'))
+                                css: (await Promise.all([...document.styleSheets].filter(s => s.href).map(async s => s.href.includes('mare-play.css') || (s.href.includes('/styles/mare-') && (await (await fetch(s.href)).text()).includes('/* Source: mare-play.css */'))))).some(Boolean)
                             })""")
                             if observed["headings"] != 1:
                                 findings.append(f"{device} {page_name}: {observed['headings']} H1")
