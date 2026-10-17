@@ -44,7 +44,11 @@ def main():
             page.get_by_role('button',name='Aplicar ao modo livre').click()
             assert page.evaluate("localStorage.getItem('mare-difficulty-v1')")=='intensa'
             assert 'aplicada' in page.locator('.mare-content-control__status').inner_text()
-            if game!='abismo':
+            if game=='cardume':
+              assert 'LIVRE' in page.locator('#edition').inner_text(),game+': not in free mode'
+            elif game=='concha':
+              assert 'active' in (page.locator('#free').get_attribute('class') or ''),game+': not in free mode'
+            elif game!='abismo':
               assert page.locator('#free').get_attribute('aria-pressed')=='true',game+': not in free mode'
             for width in [320,390,1280]:
               page.set_viewport_size({'width':width,'height':844})
