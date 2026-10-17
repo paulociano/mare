@@ -1,0 +1,396 @@
+/* MARÉ Oceanic Studio | Homepage redesign, isolated from the 12 game runtimes.
+   Existing card rules are progressively retired in a future consolidation PR. */
+body.mare-hub.mare-studio{
+  --studio-bg:#06141f;
+  --studio-surface:#0d2632;
+  --studio-edge:rgba(142,217,210,.21);
+  --studio-mint:#a1f3d9;
+  --studio-text:#f1f8f5;
+  --studio-muted:#aec7cb;
+  --studio-sand:#e9c88b;
+  background:#06141f!important;
+  color:var(--studio-text);
+}
+body.mare-hub.mare-studio::before,
+body.mare-hub.mare-studio::after{content:none!important}
+body.mare-hub.mare-studio .mar-container{
+  width:min(1340px,calc(100% - 64px));
+  max-width:none;
+  gap:0;
+}
+body.mare-hub.mare-studio .mar-top{
+  width:min(1340px,calc(100% - 64px));
+  padding:16px 0 19px;
+  border-bottom:1px solid var(--studio-edge);
+}
+body.mare-hub.mare-studio .mar-top nav a{
+  color:#d0e8e5;
+  font-weight:600;
+  transition:color .2s ease;
+}
+body.mare-hub.mare-studio .mar-top nav a:is(:hover,:focus-visible){color:var(--studio-mint)}
+/* Semantically real hero; WebGL is optional and never holds content or actions. */
+.mare-studio .mare-studio-hero{
+  order:-2;
+  display:grid;
+  grid-template-columns:minmax(0,1.06fr) minmax(0,.94fr);
+  position:relative;
+  isolation:isolate;
+  overflow:hidden;
+  min-height:370px;
+  margin:28px 0 30px;
+  border:1px solid rgba(162,231,222,.27);
+  border-radius:28px;
+  background:radial-gradient(circle at 78% 53%,rgba(17,100,111,.29),transparent 42%),linear-gradient(117deg,#0b2b38 0%,#071e2c 54%,#06151f 100%);
+  box-shadow:0 30px 85px rgba(0,5,13,.24),inset 0 1px rgba(255,255,255,.08);
+}
+.mare-studio .mare-studio-hero::before{
+  content:"";
+  position:absolute;
+  pointer-events:none;
+  inset:0;
+  opacity:.25;
+  background:linear-gradient(transparent 98%,rgba(156,225,213,.15) 100%) 0 0/100% 34px;
+}
+.mare-studio .mare-studio-hero__copy{
+  z-index:2;
+  padding:clamp(28px,4.3vw,60px) 12px clamp(28px,4vw,52px) clamp(30px,5vw,74px);
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
+  justify-content:center;
+}
+.mare-studio .mare-studio-hero__eyebrow{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  color:var(--studio-mint);
+  font-size:11px;
+  font-weight:800;
+  letter-spacing:.2em;
+  text-transform:uppercase;
+}
+.mare-studio .mare-studio-hero__eyebrow::before{
+  content:"";
+  width:27px;
+  height:1px;
+  background:currentColor;
+}
+.mare-studio .mare-studio-hero h1{
+  margin:23px 0 17px;
+  max-width:12ch;
+  color:var(--studio-text);
+  font:700 clamp(2.8rem,5.35vw,5.5rem)/.99 'Outfit',system-ui,sans-serif;
+  letter-spacing:-.07em;
+  text-wrap:balance;
+}
+.mare-studio .mare-studio-hero h1 em{
+  color:var(--studio-mint);
+  font-style:normal;
+}
+.mare-studio .mare-studio-hero__copy > p{
+  max-width:44ch;
+  margin:0;
+  color:#c8dfe0;
+  font-size:clamp(.92rem,1.15vw,1.08rem);
+  line-height:1.65;
+}
+.mare-studio .mare-studio-hero__actions{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  margin-top:27px;
+}
+.mare-studio .mare-studio-hero__actions a{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-height:46px;
+  padding:11px 19px;
+  border-radius:999px;
+  border:1px solid rgba(160,232,215,.4);
+  color:#e1f8ef;
+  background:rgba(13,53,64,.65);
+  font-weight:700;
+  font-size:.86rem;
+  text-decoration:none;
+  transition:transform .2s ease,background .2s ease,border-color .2s ease;
+}
+.mare-studio .mare-studio-hero__actions a:first-child{
+  background:var(--studio-mint);
+  color:#062b30;
+  border-color:var(--studio-mint);
+}
+.mare-studio .mare-studio-hero__actions a:is(:hover,:focus-visible){
+  transform:translateY(-2px);
+  border-color:#d6fff1;
+}
+.mare-studio .mare-studio-hero__actions a:focus-visible{
+  outline:3px solid var(--studio-sand);
+  outline-offset:3px;
+}
+.mare-studio .mare-studio-hero__visual{
+  position:relative;
+  min-height:325px;
+  overflow:hidden;
+  pointer-events:none;
+  background:radial-gradient(circle at 58% 55%,rgba(48,163,162,.16),transparent 52%);
+}
+.mare-studio .mare-studio-hero__visual::before{
+  content:"";
+  position:absolute;
+  width:min(70%,370px);
+  aspect-ratio:1;
+  left:13%;
+  top:10%;
+  border-radius:50%;
+  border:1px solid rgba(146,232,215,.21);
+  box-shadow:0 0 0 35px rgba(123,210,202,.035),0 0 0 88px rgba(123,210,202,.035),0 0 110px rgba(44,200,184,.14);
+}
+.mare-studio .mare-studio-hero__visual::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(90deg,#071d2a 0%,transparent 36%),linear-gradient(0deg,rgba(6,21,31,.7),transparent 38%);
+  pointer-events:none;
+}
+.mare-studio .mare-studio-hero__visual canvas{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  display:block;
+  opacity:.93;
+}
+.mare-studio .mare-studio-hero__coordinates{
+  position:absolute;
+  z-index:1;
+  right:26px;
+  bottom:23px;
+  font-size:10px;
+  letter-spacing:.18em;
+  color:#a9c8c7;
+}
+.mare-studio .mare-studio-hero__seal{
+  position:absolute;
+  top:35px;
+  right:30px;
+  font:600 11px/1 'DM Sans',system-ui,sans-serif;
+  letter-spacing:.18em;
+  color:#bbf2e1;
+  border:1px solid rgba(173,240,224,.33);
+  border-radius:999px;
+  padding:10px 13px;
+}
+/* Keep the catalog and real choices prominent, not a marketing-only landing page. */
+body.mare-hub.mare-studio .mar-section-head{
+  order:0;
+  width:100%;
+  padding:7px 0 18px;
+  margin:0;
+  align-items:end;
+}
+body.mare-hub.mare-studio .mar-section-head::after{content:none}
+body.mare-hub.mare-studio .mar-section-head h2{
+  margin:0;
+  font:700 clamp(1.8rem,3vw,2.75rem)/1.1 'Outfit',system-ui,sans-serif;
+  letter-spacing:-.055em;
+  color:var(--studio-text);
+}
+body.mare-hub.mare-studio .mar-section-head p{
+  margin:7px 0 0;
+  color:var(--studio-muted);
+  line-height:1.5;
+  font-size:.92rem;
+}
+body.mare-hub.mare-studio .mar-continue{order:1}
+body.mare-hub.mare-studio .mare-recommendation{order:2}
+body.mare-hub.mare-studio .mare-discover{
+  order:3;
+  padding:14px 0 20px;
+  border-top:1px solid var(--studio-edge);
+  gap:18px;
+}
+body.mare-hub.mare-studio .mare-discover-title strong{
+  font:600 1rem/1.3 'Outfit',system-ui,sans-serif;
+  color:#e7f9f5;
+}
+body.mare-hub.mare-studio .mare-filter{
+  background:#0a2936;
+  border:1px solid rgba(140,205,199,.27);
+  border-radius:999px;
+  padding:11px 16px;
+}
+body.mare-hub.mare-studio .mare-filter[aria-pressed=true]{background:var(--studio-mint);border-color:var(--studio-mint);color:#073039}
+body.mare-hub.mare-studio .mar-catalog{
+  order:4;
+  width:100%;
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:16px;
+  scroll-margin-top:32px;
+}
+body.mare-hub.mare-studio .mar-catalog > article.mar-game{
+  height:auto!important;
+  min-height:312px!important;
+  max-height:none!important;
+  grid-column:auto!important;
+  box-sizing:border-box;
+  display:flex!important;
+  flex-direction:column;
+  justify-content:flex-start;
+  padding:25px!important;
+  border:1px solid var(--studio-edge)!important;
+  border-radius:21px!important;
+  background:radial-gradient(circle at 82% 32%,var(--card-glow,rgba(60,178,174,.16)),transparent 49%),linear-gradient(155deg,#123744,#0b2432 74%,#081b29)!important;
+  box-shadow:inset 0 1px rgba(255,255,255,.045),0 15px 40px rgba(0,8,17,.18)!important;
+  transition:transform .28s cubic-bezier(.22,1,.36,1),border-color .28s,box-shadow .28s!important;
+}
+body.mare-hub.mare-studio .mar-catalog > article.mar-game:first-child{
+  background:radial-gradient(circle at 83% 30%,rgba(65,213,184,.28),transparent 51%),linear-gradient(140deg,#164c51,#0a2e3b 66%,#09212c)!important;
+  border-color:rgba(135,238,210,.45)!important;
+}
+body.mare-hub.mare-studio .mar-catalog > article.mar-game:is(:hover,:focus-within){
+  border-color:rgba(163,244,217,.76)!important;
+  box-shadow:inset 0 1px rgba(255,255,255,.09),0 25px 55px rgba(0,8,17,.3)!important;
+}
+body.mare-hub.mare-studio .mar-catalog > article.mar-game > .mar-tag{
+  align-self:flex-start;
+  margin:0!important;
+  padding:7px 10px;
+  letter-spacing:.13em;
+  color:#d7efea;
+  border:1px solid rgba(158,221,207,.2);
+  border-radius:999px;
+  background:rgba(3,26,35,.34);
+  font-size:10px;
+}
+body.mare-hub.mare-studio .mar-catalog > article.mar-game > .mar-game-symbol{
+  position:absolute!important;
+  top:67px;
+  right:27px;
+  margin:0!important;
+  width:100px!important;
+  height:100px!important;
+  max-height:100px!important;
+  object-fit:contain;
+  opacity:.9;
+  filter:drop-shadow(0 14px 27px rgba(4,17,27,.3));
+  transition:transform .35s ease;
+}
+body.mare-hub.mare-studio .mar-catalog > article.mar-game:hover > .mar-game-symbol{
+  transform:translate3d(0,-5px,0) rotate(-5deg);
+}
+body.mare-hub.mare-studio .mar-catalog > article.mar-game > h2.recife-card-heading,
+body.mare-hub.mare-studio .mar-catalog > article.mar-game:is(.mar-school,.mar-current,.mar-forca,.mar-criptograma) > h2.recife-card-heading{
+  display:block!important;
+  align-self:flex-start!important;
+  text-align:left!important;
+  width:auto!important;
+  min-height:0!important;
+  max-height:none!important;
+  flex:0 0 auto!important;
+  margin:84px 0 8px!important;
+  padding:0!important;
+  font:700 clamp(1.95rem,2.7vw,2.8rem)/1.05 'Outfit',system-ui,sans-serif!important;
+  letter-spacing:-.055em!important;
+  color:#e9fff5!important;
+  text-shadow:none!important;
+}
+body.mare-hub.mare-studio .mar-catalog > article.mar-game > .mar-game-info{
+  margin:0!important;
+  flex:1 1 auto!important;
+  display:flex!important;
+  flex-direction:column!important;
+  justify-content:flex-end!important;
+}
+body.mare-hub.mare-studio .mar-catalog > article.mar-game .mar-game-info p{
+  min-height:0!important;
+  max-width:37ch;
+  margin:0 0 12px!important;
+  color:#bcd7d8;
+  line-height:1.5;
+  font-size:.86rem;
+}
+body.mare-hub.mare-studio .mar-catalog > article.mar-game .mare-card-meta{
+  margin:0 0 14px;
+  color:#91c7c5;
+  font-size:.72rem;
+}
+body.mare-hub.mare-studio .mar-catalog > article.mar-game .mar-cta{
+  min-height:44px;
+  margin-top:auto!important;
+  background:rgba(6,37,47,.65)!important;
+  border:1px solid rgba(150,233,215,.37)!important;
+  color:#e8fff7!important;
+  border-radius:12px!important;
+  box-shadow:none!important;
+}
+body.mare-hub.mare-studio .mar-catalog > article.mar-game .mar-cta:is(:hover,:focus-visible){
+  background:var(--studio-mint)!important;
+  color:#062b32!important;
+}
+body.mare-hub.mare-studio .mare-explorer{order:5;margin-top:24px}
+body.mare-hub.mare-studio .mare-empty{order:6}
+body.mare-hub.mare-studio .mar-footer{
+  margin-top:38px;
+  border-top:1px solid var(--studio-edge);
+  color:#9cbcbf;
+  letter-spacing:.08em;
+  font-size:.78rem;
+}
+@media(max-width:1080px){
+  body.mare-hub.mare-studio .mar-catalog{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .mare-studio .mare-studio-hero{grid-template-columns:1.08fr .92fr}
+  .mare-studio .mare-studio-hero h1{font-size:clamp(2.7rem,5.4vw,4.6rem)}
+}
+@media(max-width:720px){
+  body.mare-hub.mare-studio .mar-container,
+  body.mare-hub.mare-studio .mar-top{width:calc(100% - 32px)}
+  .mare-studio .mare-studio-hero{
+    grid-template-columns:1fr;
+    min-height:0;
+    margin:16px 0 24px;
+    border-radius:21px;
+  }
+  .mare-studio .mare-studio-hero__copy{padding:33px 24px 30px}
+  .mare-studio .mare-studio-hero h1{font-size:clamp(2.65rem,9.3vw,4.25rem);margin:19px 0 14px}
+  .mare-studio .mare-studio-hero__visual{
+    position:absolute;
+    inset:0;
+    min-height:0;
+    opacity:.26;
+  }
+  .mare-studio .mare-studio-hero__visual::after{background:linear-gradient(90deg,rgba(5,20,30,.9),rgba(5,20,30,.25))}
+  .mare-studio .mare-studio-hero__coordinates,.mare-studio .mare-studio-hero__seal{display:none}
+  body.mare-hub.mare-studio .mar-catalog{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+  body.mare-hub.mare-studio .mar-catalog > article.mar-game{padding:20px!important;min-height:310px!important}
+  body.mare-hub.mare-studio .mar-catalog > article.mar-game > .mar-game-symbol{
+    width:80px!important;height:80px!important;max-height:80px!important;top:57px;right:15px;
+  }
+  body.mare-hub.mare-studio .mar-catalog > article.mar-game > h2.recife-card-heading,
+  body.mare-hub.mare-studio .mar-catalog > article.mar-game:is(.mar-school,.mar-current,.mar-forca,.mar-criptograma) > h2.recife-card-heading{
+    margin-top:81px!important;
+    font-size:clamp(1.6rem,4.5vw,2.3rem)!important;
+  }
+}
+@media(max-width:520px){
+  body.mare-hub.mare-studio .mar-catalog{grid-template-columns:minmax(0,1fr)}
+  body.mare-hub.mare-studio .mar-catalog > article.mar-game{min-height:278px!important}
+  body.mare-hub.mare-studio .mar-catalog > article.mar-game > h2.recife-card-heading,
+  body.mare-hub.mare-studio .mar-catalog > article.mar-game:is(.mar-school,.mar-current,.mar-forca,.mar-criptograma) > h2.recife-card-heading{
+    font-size:clamp(2rem,8vw,2.65rem)!important;
+    margin-top:70px!important;
+  }
+  body.mare-hub.mare-studio .mare-discover{align-items:stretch}
+  body.mare-hub.mare-studio .mar-section-head{padding-top:4px}
+  body.mare-hub.mare-studio .mar-section-head p{font-size:.85rem}
+}
+@media(prefers-reduced-motion:reduce){
+  .mare-studio .mare-studio-hero__actions a,
+  body.mare-hub.mare-studio .mar-catalog > article.mar-game,
+  body.mare-hub.mare-studio .mar-catalog > article.mar-game > .mar-game-symbol{
+    transition:none!important;
+    transform:none!important;
+  }
+}
