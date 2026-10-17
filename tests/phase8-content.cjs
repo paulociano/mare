@@ -25,11 +25,11 @@ function value(path,marker){
 const words=read('palavras-ptbr-5.txt').trim().split(/\s+/);
 assert.ok(words.length>=8000);assert.ok(words.every(w=>/^[A-Z]{5}$/.test(w)));
 assert.equal(new Set(words).size,words.length,'Recife duplicate dictionary entry');
-const abyss=[...value('abismo.js','const BANK='),...value('abismo.js','BANK.push(...')];
+const abyss=[...value('src/scripts/games/abismo.js','const BANK='),...value('src/scripts/games/abismo.js','BANK.push(...')];
 assert.ok(abyss.length>=35);
 assert.equal(new Set(abyss.map(c=>c[0])).size,abyss.length,'Abismo duplicate target');
 assert.ok(abyss.every(c=>c.length>=10&&c.every(w=>/^[A-Z-]+$/.test(w))),'Abismo permits compounds such as GUARDA-CHUVA');
-assert.ok(read('abismo.js').includes('const clean=[...new Set(cluster)]'));
+assert.ok(read('src/scripts/games/abismo.js').includes('const clean=[...new Set(cluster)]'));
 const groups=JSON.parse(read('data/cardume-puzzles.json'));
 assert.ok(groups.length>=18);
 const signatures=new Set();
@@ -45,38 +45,38 @@ for(const [i,p] of groups.entries()){
  const signature=items.slice().sort().join('|');
  assert.ok(!signatures.has(signature),'Repeated Cardume board');signatures.add(signature);
 }
-const corrente=value('corrente.js','const WORDS=');
+const corrente=value('src/scripts/games/corrente.js','const WORDS=');
 assert.ok(corrente.length>=50);assert.equal(new Set(corrente).size,corrente.length);
 assert.ok(corrente.every(w=>/^[A-Z]{3,10}$/.test(w)));
-const concha=value('concha.js','const SEEDS=');
+const concha=value('src/scripts/games/concha.js','const SEEDS=');
 assert.ok(concha.length>=18);assert.equal(new Set(concha).size,concha.length);
 assert.ok(concha.every(w=>/^[A-Z]{7}$/.test(w)&&new Set(w).size===7));
-const trilha=value('trilha.js','const CHALLENGES=');
+const trilha=value('src/scripts/games/trilha.js','const CHALLENGES=');
 assert.ok(trilha.length>=24);
 assert.equal(new Set(trilha.map(c=>c[0])).size,trilha.length);
 assert.ok(trilha.every(([w,hint])=>/^[A-Z]{4,16}$/.test(w)&&hint.length>=12));
-const enigma=value('enigma.js','const PUZZLES=');
+const enigma=value('src/scripts/games/enigma.js','const PUZZLES=');
 assert.ok(enigma.length>=11);
 for(const [i,p] of enigma.entries()){
  assert.equal(p.length,6,'Enigma '+i+' must have six clues');
  assert.equal(new Set(p.map(x=>x[0])).size,6,'Enigma '+i+' duplicate word');
  assert.ok(p.every(([w,hint])=>/^[A-Z]{3,9}$/.test(w)&&hint.length>=9));
 }
-const marujo=value('marujo.js','const TOPICS=');
+const marujo=value('src/scripts/games/marujo.js','const TOPICS=');
 assert.ok(marujo.length>=10);assert.equal(new Set(marujo.map(t=>t[0])).size,marujo.length);
 for(const [name,list] of marujo){
  assert.equal(list.length,7,name+' words');
  assert.equal(new Set(list).size,7,name+' duplicates');
  assert.ok(list.every(w=>/^[A-Z]{3,10}$/.test(w)));
 }
-const forca=value('forca.js','const puzzles=');
+const forca=value('src/scripts/games/forca.js','const puzzles=');
 assert.ok(forca.length>=50);
 assert.equal(new Set(forca.map(p=>p[0])).size,forca.length);
 assert.ok(forca.every(([w,category])=>/^[A-Z]{3,15}$/.test(w)&&category.length>=3));
-const phrases=value('criptograma.js','const phrases=');
+const phrases=value('src/scripts/games/criptograma.js','const phrases=');
 assert.ok(phrases.length>=39);assert.equal(new Set(phrases).size,phrases.length);
 assert.ok(phrases.every(s=>/^[A-Z ]+$/.test(s)&&new Set(s.replace(/ /g,'')).size>=8));
-const duo=value('mares-duo.js','const puzzles=');
+const duo=value('src/scripts/games/mares-duo.js','const puzzles=');
 assert.equal(Object.keys(duo).sort().join('|'),'farol|perola');
 for(const [type,pool] of Object.entries(duo)){
  assert.ok(pool.length>=23,type+' bank expansion');
@@ -86,16 +86,16 @@ for(const [type,pool] of Object.entries(duo)){
  else assert.ok(pool.every(p=>clean(p.answer).split(/ +/).length>=3));
 }
 for(const game of ['abismo','cardume','corrente','concha','trilha','enigma','marujo','forca','criptograma']){
- assert.ok(read(game+'.js').includes('MareContent?.pick'),game+': no real selected-tier logic');
+ assert.ok(read('src/scripts/games/'+game+'.js').includes('MareContent?.pick'),game+': no real selected-tier logic');
 }
-assert.ok(read('mares-duo.js').includes('MareContent?.pick'));
+assert.ok(read('src/scripts/games/mares-duo.js').includes('MareContent?.pick'));
 for(const page of ['abismo','cardume','corrente','concha','trilha','enigma','marujo','forca','criptograma','perola','farol']){
  const html=read(page+'.html');
- assert.ok(html.indexOf('src="mare-content.js"')>=0,page+': missing picker');
- assert.ok(html.indexOf('src="mare-content.js"')<html.indexOf('src="'+(['perola','farol'].includes(page)?'mares-duo':page)+'.js"'),page+': wrong script order');
- assert.ok(html.includes('href="mare-content.css"'));
+ assert.ok(html.indexOf('src="src/scripts/shared/mare-content.js"')>=0,page+': missing picker');
+ assert.ok(html.indexOf('src="src/scripts/shared/mare-content.js"')<html.indexOf('src="src/scripts/games/'+(['perola','farol'].includes(page)?'mares-duo':page)+'.js"'),page+': wrong script order');
+ assert.ok(html.includes('href="src/styles/shared/mare-content.css"'));
 }
-const control=read('mare-content.js');new vm.Script(control);
+const control=read('src/scripts/shared/mare-content.js');new vm.Script(control);
 const store=new Map(),window={};
 const localStorage={getItem:k=>store.get(k)||null,setItem:(k,v)=>store.set(k,v),removeItem:k=>store.delete(k)};
 vm.runInNewContext(control,{window,localStorage,document:undefined});

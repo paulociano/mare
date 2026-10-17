@@ -1,13 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&display=swap');
 :root{color-scheme:dark;--ocean:#031724;--surface:#062638;--line:#32869c;--text:#edfcff;--muted:#bad3df;--cyan:#51dce7;--teal:#4fe7ce;--gold:#f3cf74}
 *{box-sizing:border-box}html{scroll-behavior:smooth}
-.mare-hub{font:15px 'DM Sans',sans-serif;background:#041926 url('assets/ocean-depth.svg') center/cover fixed;color:var(--text);margin:0;min-height:100vh}
+.mare-hub{font:15px 'DM Sans',sans-serif;background:#041926 url('../../../assets/ocean-depth.svg') center/cover fixed;color:var(--text);margin:0;min-height:100vh}
 .mare-hub:before{content:"";position:fixed;inset:0;z-index:-1;background:linear-gradient(90deg,#031624c4,#0322358c 50%,#031624b8)}
 .mare-hub a{text-decoration:none;color:inherit}.mar-top,.mar-container,.mar-footer{width:min(1400px,calc(100% - 40px));margin:auto}.mar-top{display:flex;align-items:center;justify-content:space-between;gap:18px;padding:19px 0;border-bottom:1px solid #83d4e43e}
 .mar-logo{font:500 35px 'Outfit',sans-serif;letter-spacing:9px;white-space:nowrap}.mar-logo small{display:block;letter-spacing:2px;font:600 10px 'DM Sans',sans-serif;color:#75dce1}
 .mar-top nav{display:flex;gap:24px;font-size:13px;color:#d2e8ef}.mar-top nav a:hover{color:#76f8e1}
 .mar-hero{padding:66px 12px 35px}.mar-eyebrow{font-size:11px;letter-spacing:2px;color:#73ecdf;font-weight:800}.mar-hero h1{font:800 clamp(38px,5vw,72px)/1.08 'Outfit',sans-serif;letter-spacing:-1.6px;margin:15px 0}.mar-hero h1 em{font-style:normal;color:#8ce9f0}.mar-hero p{color:#b9e0e7;font-size:clamp(16px,2vw,23px)}
-.mar-catalog{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}.mar-game{min-height:410px;position:relative;overflow:hidden;display:flex;flex-direction:column;justify-content:space-between;border:1px solid #49bbd5a6;background:linear-gradient(180deg,#031b2a23 0%,#03172299 40%,#031321fa 84%),url('assets/ocean-depth.svg') center/cover;border-radius:18px;padding:20px;box-shadow:0 15px 58px #00101c70;transition:transform .2s ease,border-color .2s ease}.mar-game:hover{transform:translateY(-4px);border-color:#7ff6e7}.mar-abyss{background-position:25% center}.mar-school{background-position:75% center}.mar-current{background-position:100% center}.mar-letters{background-position:12% center}
+.mar-catalog{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}.mar-game{min-height:410px;position:relative;overflow:hidden;display:flex;flex-direction:column;justify-content:space-between;border:1px solid #49bbd5a6;background:linear-gradient(180deg,#031b2a23 0%,#03172299 40%,#031321fa 84%),url('../../../assets/ocean-depth.svg') center/cover;border-radius:18px;padding:20px;box-shadow:0 15px 58px #00101c70;transition:transform .2s ease,border-color .2s ease}.mar-game:hover{transform:translateY(-4px);border-color:#7ff6e7}.mar-abyss{background-position:25% center}.mar-school{background-position:75% center}.mar-current{background-position:100% center}.mar-letters{background-position:12% center}
 .mar-tag{align-self:flex-start;border:1px solid #5bd6e3aa;background:#03283bd6;border-radius:999px;padding:8px 11px;font-size:11px;color:#dff9ff}.mar-game-info h2{font:800 32px 'Outfit';margin:0 0 10px}.mar-game-info p{line-height:1.6;color:#d5eaf0;font-size:13px;min-height:64px;margin:0 0 12px}.mar-game-info .mar-detail{color:#79dfe4;font-size:12px;min-height:32px}.mar-mode-links{display:flex;gap:4px;margin:8px 0 15px}.mar-mode-links a{flex:1;text-align:center;padding:8px 2px;border-radius:8px;background:#07364be8;border:1px solid #369ab1;font-size:10px}
 .mar-cta{display:flex;align-items:center;justify-content:space-between;gap:10px;background:linear-gradient(145deg,#0d7488,#073f59);border:1px solid #5cdeeb;border-radius:10px;padding:13px 14px;color:#f7ffff!important;font-weight:800;font-size:13px;box-shadow:inset 0 1px #e5ffff35}.mar-cta:hover{background:#147b91}.mar-cta span{font-size:20px}
 .mar-continue{margin:22px 0 36px;padding:24px;display:flex;align-items:center;justify-content:space-between;gap:22px;border-radius:18px;border:1px solid #4194a7;background:linear-gradient(100deg,#052536ee,#071e31f5);box-shadow:0 15px 55px #00101c70}.mar-continue h2{font:700 24px 'Outfit';margin:9px 0}.mar-continue p{color:#c2d8e2;margin:0}.mar-continue .mar-cta{min-width:180px;justify-content:center}.mar-about{padding:16px 0 45px;color:#b7d8df}.mar-about span{color:#7ee5e0;font-size:11px;letter-spacing:2px}.mar-footer{border-top:1px solid #5acfe144;padding:22px 0 35px;display:flex;justify-content:space-between;color:#9dc8d2;font-size:12px}
@@ -33,7 +33,7 @@
 
 
 /* MARÉ • Galeria de fundos exclusivos (imagem WebP + fallback vetorial) */
-:root{--mare-fundo-reserva:url('assets/ocean-depth.svg')}
+:root{--mare-fundo-reserva:url('../../../assets/ocean-depth.svg')}
 body.mare-hub,body.mare-recife,body.mare-abismo,body.mare-cardume,body.mare-corrente,body.mare-concha{
  background-color:#021523;
  background-repeat:no-repeat,no-repeat,no-repeat;
@@ -42,19 +42,19 @@ body.mare-hub,body.mare-recife,body.mare-abismo,body.mare-cardume,body.mare-corr
  background-attachment:fixed,fixed,fixed;
 }
 body.mare-hub,body.mare-recife{
- background-image:linear-gradient(90deg,#021521b0,#03162683 55%,#02152196),url('assets/backgrounds/recife.webp'),var(--mare-fundo-reserva)!important
+ background-image:linear-gradient(90deg,#021521b0,#03162683 55%,#02152196),url('../../../assets/backgrounds/recife.webp'),var(--mare-fundo-reserva)!important
 }
 body.mare-abismo{
- background-image:linear-gradient(90deg,#021421b7,#0415238c 55%,#02162398),url('assets/backgrounds/abismo.webp'),var(--mare-fundo-reserva)!important
+ background-image:linear-gradient(90deg,#021421b7,#0415238c 55%,#02162398),url('../../../assets/backgrounds/abismo.webp'),var(--mare-fundo-reserva)!important
 }
 body.mare-cardume{
- background-image:linear-gradient(90deg,#021421b0,#03172383 55%,#0216239e),url('assets/backgrounds/cardume.webp'),var(--mare-fundo-reserva)!important
+ background-image:linear-gradient(90deg,#021421b0,#03172383 55%,#0216239e),url('../../../assets/backgrounds/cardume.webp'),var(--mare-fundo-reserva)!important
 }
 body.mare-corrente{
- background-image:linear-gradient(90deg,#021421b8,#03172388 55%,#0216239e),url('assets/backgrounds/corrente.webp'),var(--mare-fundo-reserva)!important
+ background-image:linear-gradient(90deg,#021421b8,#03172388 55%,#0216239e),url('../../../assets/backgrounds/corrente.webp'),var(--mare-fundo-reserva)!important
 }
 body.mare-concha{
- background-image:linear-gradient(90deg,#021421b0,#03172383 55%,#0216239e),url('assets/backgrounds/concha.webp'),var(--mare-fundo-reserva)!important
+ background-image:linear-gradient(90deg,#021421b0,#03172383 55%,#0216239e),url('../../../assets/backgrounds/concha.webp'),var(--mare-fundo-reserva)!important
 }
 /* Fundo do Recife tem outras camadas visuais legadas: mantenha o jogo à frente da arte. */
 body.mare-recife:before,body.mare-recife:after{pointer-events:none}
@@ -68,11 +68,11 @@ body.mare-recife:before,body.mare-recife:after{pointer-events:none}
 /* Catálogo MARÉ: ambientações exclusivas por jogo, com arte SVG sempre disponível. */
 .mare-hub .mar-game{background-repeat:no-repeat;background-size:cover;background-position:center;isolation:isolate}
 .mare-hub .mar-game::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background:linear-gradient(180deg,#0017260d 5%,#01152168 36%,#01131deb 73%,#01131bf5 100%)}
-.mare-hub .mar-letters{background-image:linear-gradient(180deg,#041c2915,#02121c55),url('assets/backgrounds/recife.webp'),url('assets/backgrounds/recife.svg')}
-.mare-hub .mar-abyss{background-image:linear-gradient(180deg,#041c2915,#02121c55),url('assets/backgrounds/abismo.webp'),url('assets/backgrounds/abismo.svg')}
-.mare-hub .mar-school{background-image:linear-gradient(180deg,#041c2915,#02121c55),url('assets/backgrounds/cardume.webp'),url('assets/backgrounds/cardume.svg')}
-.mare-hub .mar-current{background-image:linear-gradient(180deg,#041c2915,#02121c55),url('assets/backgrounds/corrente.webp'),url('assets/backgrounds/corrente.svg')}
-.mare-hub .mar-shell{background-image:linear-gradient(180deg,#041c2915,#02121c55),url('assets/backgrounds/concha.webp'),url('assets/backgrounds/concha.svg')}
+.mare-hub .mar-letters{background-image:linear-gradient(180deg,#041c2915,#02121c55),url('../../../assets/backgrounds/recife.webp'),url('../../../assets/backgrounds/recife.svg')}
+.mare-hub .mar-abyss{background-image:linear-gradient(180deg,#041c2915,#02121c55),url('../../../assets/backgrounds/abismo.webp'),url('../../../assets/backgrounds/abismo.svg')}
+.mare-hub .mar-school{background-image:linear-gradient(180deg,#041c2915,#02121c55),url('../../../assets/backgrounds/cardume.webp'),url('../../../assets/backgrounds/cardume.svg')}
+.mare-hub .mar-current{background-image:linear-gradient(180deg,#041c2915,#02121c55),url('../../../assets/backgrounds/corrente.webp'),url('../../../assets/backgrounds/corrente.svg')}
+.mare-hub .mar-shell{background-image:linear-gradient(180deg,#041c2915,#02121c55),url('../../../assets/backgrounds/concha.webp'),url('../../../assets/backgrounds/concha.svg')}
 .mare-hub .mar-catalog{grid-template-columns:repeat(3,minmax(0,1fr))}
 .mare-hub .mar-game{min-height:390px;background-color:#05263a}
 .mare-hub .mar-game-info{position:relative;z-index:1}
@@ -80,11 +80,11 @@ body.mare-recife:before,body.mare-recife:after{pointer-events:none}
 @media(max-width:650px){.mare-hub .mar-catalog{grid-template-columns:minmax(0,1fr)}.mare-hub .mar-game{min-height:300px}}
 
 /* Trilha: novo cenário e card do catálogo */
-body.mare-trilha{background-image:linear-gradient(90deg,#021421c2,#03172383 55%,#021623a2),url('assets/backgrounds/trilha.svg'),url('assets/ocean-depth.svg')!important;background-position:center;background-size:cover}
-.mare-hub .mar-trail{background-image:linear-gradient(180deg,#041c2915,#02121c55),url('assets/backgrounds/trilha.svg')}
+body.mare-trilha{background-image:linear-gradient(90deg,#021421c2,#03172383 55%,#021623a2),url('../../../assets/backgrounds/trilha.svg'),url('../../../assets/ocean-depth.svg')!important;background-position:center;background-size:cover}
+.mare-hub .mar-trail{background-image:linear-gradient(180deg,#041c2915,#02121c55),url('../../../assets/backgrounds/trilha.svg')}
 
-body.mare-enigma{background-image:linear-gradient(90deg,#021421cf,#03172395),url('assets/backgrounds/enigma.svg'),url('assets/ocean-depth.svg')!important;background-position:center;background-size:cover}
-.mare-hub .mar-enigma{background-image:linear-gradient(180deg,#041c2915,#02121c55),url('assets/backgrounds/enigma.svg')}
+body.mare-enigma{background-image:linear-gradient(90deg,#021421cf,#03172395),url('../../../assets/backgrounds/enigma.svg'),url('../../../assets/ocean-depth.svg')!important;background-position:center;background-size:cover}
+.mare-hub .mar-enigma{background-image:linear-gradient(180deg,#041c2915,#02121c55),url('../../../assets/backgrounds/enigma.svg')}
 
-body.mare-marujo{background-image:linear-gradient(90deg,#021421cb,#03172390),url('assets/backgrounds/marujo.svg'),url('assets/ocean-depth.svg')!important;background-position:center;background-size:cover}
-.mare-hub .mar-marujo{background-image:linear-gradient(180deg,#041c2915,#02121c55),url('assets/backgrounds/marujo.svg')}
+body.mare-marujo{background-image:linear-gradient(90deg,#021421cb,#03172390),url('../../../assets/backgrounds/marujo.svg'),url('../../../assets/ocean-depth.svg')!important;background-position:center;background-size:cover}
+.mare-hub .mar-marujo{background-image:linear-gradient(180deg,#041c2915,#02121c55),url('../../../assets/backgrounds/marujo.svg')}

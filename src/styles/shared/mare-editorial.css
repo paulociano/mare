@@ -11,7 +11,7 @@ body.mare-hub::before{background:linear-gradient(180deg,#03101ad0,#061a2688 60%,
 .mare-hub .mar-top nav a:hover{color:#b1f6df}
 .mare-hub .mar-container{width:100%;max-width:none}
 .mare-hub .mar-hero{height:min(850px,100svh);min-height:650px;position:relative;isolation:isolate;display:flex;flex-direction:column;align-items:flex-start;justify-content:center;overflow:hidden;padding:140px max(6vw,calc((100vw - 1300px)/2)) 90px;background:#021624}
-.mare-hub .mar-hero-art{position:absolute;inset:0;z-index:-3;overflow:hidden;background:#05253a url('assets/backgrounds/recife.svg') center 48%/cover no-repeat}
+.mare-hub .mar-hero-art{position:absolute;inset:0;z-index:-3;overflow:hidden;background:#05253a url('../../../assets/backgrounds/recife.svg') center 48%/cover no-repeat}
 .mare-hub .mar-hero-video{width:100%;height:100%;object-fit:cover;opacity:.78;position:absolute;inset:0}
 .mare-hub .mar-water-motion{position:absolute;inset:-15%;background:radial-gradient(ellipse at 80% 20%,#35a2b64d,transparent 45%),linear-gradient(115deg,transparent 25%,#70bad119 35%,transparent 50%);animation:mar-water 17s ease-in-out infinite alternate;mix-blend-mode:screen}
 .mare-hub .mar-hero-shade{position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,#01101fe8 4%,#031b2ba0 44%,#01142130 87%),linear-gradient(0deg,#010b16f5,transparent 38%,#010d19a8)}

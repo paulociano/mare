@@ -33,7 +33,7 @@ Uma coleção de desafios em português para quem gosta de descobrir, conectar e
 
 ## Desenvolvimento
 
-Consulte [Arquitetura e convenções](docs/ARCHITECTURE.md) para conhecer a organização do código. Para verificar o repositório use `npm run check` (Node.js 20+).
+Consulte [Arquitetura e convenções](docs/ARCHITECTURE.md), [Design system](docs/DESIGN-SYSTEM.md) e [Pipeline de assets](docs/ASSET-PIPELINE.md). Os arquivos de autoria estão organizados em `src/scripts/{games,shared}` e `src/styles/{games,shared}`; o build gera um CSS consolidado por página e preserva a publicação offline. Execute `npm run check` (Node.js 20+) antes de abrir um PR.
 
 ## Marinheiro de primeira viagem?
 

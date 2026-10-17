@@ -1,9 +1,9 @@
 'use strict';
 const assert=require('node:assert/strict'),fs=require('node:fs'),vm=require('node:vm');
-const source=fs.readFileSync('mare-explorer.js','utf8');
+const source=fs.readFileSync('src/scripts/shared/mare-explorer.js','utf8');
 new vm.Script(source);
 const html=fs.readFileSync('index.html','utf8');
-assert.ok(html.includes('src="mare-explorer.js"')&&html.includes('href="mare-explorer.css"'));
+assert.ok(html.includes('src="src/scripts/shared/mare-explorer.js"')&&html.includes('href="src/styles/shared/mare-explorer.css"'));
 function element(tag){return {tag,children:[],attrs:{},style:{},className:'',textContent:'',classList:{add(){}},append(...items){this.children.push(...items)},setAttribute(k,v){this.attrs[k]=v},before(el){this.inserted=el}}}
 function run(keys,blocked=false){
  const catalog=element('section'),body=element('body');

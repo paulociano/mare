@@ -1,5 +1,5 @@
 /* Jogos Pérola e Farol. Compatível com a camada MARÉ existente. */
-body.mare-perola,body.mare-farol{background:linear-gradient(160deg,#061c2de8,#0b3947e6),url('assets/ocean-depth.svg') center/cover fixed!important;color:#edfdf8;font-family:'DM Sans',system-ui,sans-serif}
+body.mare-perola,body.mare-farol{background:linear-gradient(160deg,#061c2de8,#0b3947e6),url('../../../assets/ocean-depth.svg') center/cover fixed!important;color:#edfdf8;font-family:'DM Sans',system-ui,sans-serif}
 .depth-shell{width:min(960px,calc(100% - 32px));margin:0 auto;min-height:100vh}
 .depth-header{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:20px 0;border-bottom:1px solid #78d2c744}
 .depth-header a{color:#d5fff4;text-decoration:none}.depth-header img{max-width:190px;height:auto}

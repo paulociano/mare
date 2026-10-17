@@ -5,7 +5,7 @@ const vm=require('node:vm');
 const markup=fs.readFileSync('index.html','utf8');
 const entries=[...markup.matchAll(/<article class="mar-game ([^"]+)">/g)];
 assert.equal(entries.length,12,'O catálogo deve preservar os 12 jogos');
-assert.ok(markup.includes('mare-evolution.css')&&markup.includes('mare-evolution.js'),'Recursos de evolução vinculados');
+assert.ok(markup.includes('src/styles/shared/mare-evolution.css')&&markup.includes('src/scripts/shared/mare-evolution.js'),'Recursos de evolução vinculados');
 class Node {
  constructor(tag='div'){this.tagName=tag;this.children=[];this.handlers={};this.attrs={};this.dataset={};this.hidden=false;this.className='';this.textContent='';}
  append(...items){this.children.push(...items)}
@@ -30,7 +30,7 @@ const catalog=new Node('section');catalog.querySelectorAll=()=>cards;
 const header=new Node('div');
 const body=new Node('body');
 const doc={body,getElementById:id=>id==='jogos'?catalog:null,querySelector:sel=>sel==='.mar-section-head'?header:null,createElement:tag=>new Node(tag),createTextNode:value=>({textContent:value})};
-vm.runInNewContext(fs.readFileSync('mare-evolution.js','utf8'),{document:doc,localStorage:{'mare-last-played':'recife.html'}},{filename:'mare-evolution.js'});
+vm.runInNewContext(fs.readFileSync('src/scripts/shared/mare-evolution.js','utf8'),{document:doc,localStorage:{'mare-last-played':'recife.html'}},{filename:'src/scripts/shared/mare-evolution.js'});
 const toolbar=header.afterNode;
 assert.ok(toolbar,'Filtros inseridos');
 const controls=toolbar.children[1];
@@ -47,13 +47,13 @@ console.log('PASS: catálogo de 12 jogos, filtros, acessibilidade e fallback de 
 const manifest=require('../config/site-manifest.json');
 for(const page of manifest.pages){
  const source=fs.readFileSync(page+'.html','utf8');
- const stylesheet=page==='index'?'mare-evolution.css':'mare-play.css';
+ const stylesheet=page==='index'?'src/styles/shared/mare-evolution.css':'src/styles/shared/mare-play.css';
  assert.ok(source.includes('href="'+stylesheet+'"'),page+': camada visual correta não carregada');
  assert.equal(source.split('href="'+stylesheet+'"').length-1,1,page+': stylesheet duplicado');
- if(page!=='index')assert.ok(!source.includes('href="mare-evolution.css"'),page+': CSS do hub não deve entrar nos jogos');
+ if(page!=='index')assert.ok(!source.includes('href="src/styles/shared/mare-evolution.css"'),page+': CSS do hub não deve entrar nos jogos');
 }
-const evolutionCss=fs.readFileSync('mare-evolution.css','utf8');
-const playCss=fs.readFileSync('mare-play.css','utf8');
+const evolutionCss=fs.readFileSync('src/styles/shared/mare-evolution.css','utf8');
+const playCss=fs.readFileSync('src/styles/shared/mare-play.css','utf8');
 assert.ok(playCss.includes(':focus-visible')&&playCss.includes('prefers-reduced-motion:reduce'),'Foco e movimento reduzido no Play System');
 assert.ok(evolutionCss.includes('prefers-reduced-motion:reduce'),'Motion reduzido obrigatório');
 assert.ok(evolutionCss.includes(':focus-visible'),'Foco visível obrigatório');

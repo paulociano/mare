@@ -11,6 +11,9 @@ const root=path.resolve(__dirname,'..');
 const read=relative=>fs.readFileSync(path.join(root,relative),'utf8');
 const exists=relative=>fs.existsSync(path.join(root,relative));
 const games=manifest.pages.filter(name=>name!=='index');
+const rootSource=fs.readdirSync(root).filter(file=>/\.(?:css|js)$/.test(file));
+assert.deepEqual(rootSource,[], 'Estilos e scripts devem estar em src/, não na raiz');
+
 const unique=values=>new Set(values).size===values.length;
 assert.ok(unique(manifest.pages),'Páginas duplicadas no manifesto');
 assert.equal(games.length,12,'O catálogo deve conter exatamente doze jogos');
@@ -23,7 +26,12 @@ for(const page of manifest.pages){
  const html=read(filename);
  assert.ok(html.includes('lang="pt-BR"'),'Idioma ausente: '+filename);
  assert.ok(html.includes('<main'),'Elemento main ausente: '+filename);
- assert.ok(html.includes('mare-brand.css'),'Estilo da marca ausente: '+filename);
+ assert.ok(html.includes('src/styles/shared/mare-brand.css'),'Estilo da marca ausente: '+filename);
+ const localStyles=[...html.matchAll(/<link\b[^>]*rel=["']stylesheet["'][^>]*href=["']([^"']+\.css)(?:[?#][^"']*)?["']/g)].map(x=>x[1]);
+ for(const file of localStyles)assert.match(file,/^src\/styles\/(?:games|shared)\/[^/]+\.css$/,filename+': CSS fora de src: '+file);
+ const localScripts=[...html.matchAll(/<script\b[^>]*src=["']([^"']+\.js)["']/g)].map(x=>x[1]);
+ for(const file of localScripts)assert.match(file,/^src\/scripts\/(?:games|shared)\/[^/]+\.js$/,filename+': JS fora de src: '+file);
+
  assert.ok(html.includes('assets/brand/mare-favicon.svg'),'Favicon ausente: '+filename);
 }
 for(const file of manifest.requiredFiles)assert.ok(exists(file),'Arquivo obrigatório ausente: '+file);

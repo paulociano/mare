@@ -1,7 +1,8 @@
-# MARÉ Play Design System · Fase 2 (17/10/2026)
+# MARÉ: referência do design system (17/10/2026)
 
 ## Status e autoridade
-Este documento descreve o contrato implementado em `mare-play.css` para os **12 jogos**. `mare-studio.css` governa apenas a homepage; `mare-evolution.css` foi preservado no hub, sem ser carregado nas partidas. Os estilos específicos de cada jogo permanecem responsáveis pelas grades, tabuleiros, puzzles, posicionamento dos elementos especiais e estados particulares.
+Documento de referência de interface. Para a estrutura atual do código, consulte [ARCHITECTURE.md](ARCHITECTURE.md).
+Este documento descreve o contrato implementado em `src/styles/shared/mare-play.css` para os **12 jogos**. `src/styles/shared/mare-studio.css` governa apenas a homepage; `src/styles/shared/mare-evolution.css` foi preservado no hub, sem ser carregado nas partidas. Os estilos específicos de cada jogo permanecem responsáveis pelas grades, tabuleiros, puzzles, posicionamento dos elementos especiais e estados particulares.
 
 Fonte oficial: código do repositório `paulociano/mare` na branch deste PR. Auditoria baseada em inspeção estática do código; não foi possível capturar o site público por navegador conectado neste ambiente. Não declarar aprovação de acessibilidade, FPS ou responsividade visual sem executar browser real.
 
@@ -9,7 +10,7 @@ Fonte oficial: código do repositório `paulociano/mare` na branch deste PR. Aud
 Fundo abissal escuro, texto claro, painéis distintos sem blur, acento bioluminescente nas ações e destaque quente para foco. Marca sólida e navegação compacta; tabuleiro e controle principal recebem precedência visual sobre decoração. Sem Three.js nos 12 tabuleiros: o shader está restrito à homepage e não faz parte dos fluxos de partida.
 
 ## Tokens de uso
-O CSS `mare-play.css` é a fonte operacional para `--play-*`:
+O CSS `src/styles/shared/mare-play.css` é a fonte operacional para `--play-*`:
 - `--play-abyss` #06141f, fundo;
 - `--play-layer` #0d2632, superfície;
 - `--play-panel` #102d3b e `--play-panel-high` #153a48, elevação;
@@ -61,8 +62,8 @@ Os layouts de tabuleiros e seus scripts continuam sendo os que estavam no projet
 ## Checklist e status
 | Critério | Status | Evidência |
 |---|---|---|
-| Todos os 12 documentos carregam `mare-play.css` | PASS após integração/teste de fontes | `tests/play-system.cjs` |
-| Homepage mantém `mare-evolution.css` | PASS após integração/teste de fontes | `tests/evolution.cjs` |
+| Todos os 12 documentos carregam `src/styles/shared/mare-play.css` | PASS após integração/teste de fontes | `tests/play-system.cjs` |
+| Homepage mantém `src/styles/shared/mare-evolution.css` | PASS após integração/teste de fontes | `tests/evolution.cjs` |
 | Um H1 e link ao hub por jogo | PASS após integração/teste de fontes | `tests/play-system.cjs` |
 | Links, URLs e dados persistidos | Não modificados na camada de jogo; regressão pelo smoke | `npm run check` |
 | Layout pixel-perfect desktop/mobile e 200% zoom | UNKNOWN | Browser/screenshots necessários |
@@ -71,7 +72,7 @@ Os layouts de tabuleiros e seus scripts continuam sendo os que estavam no projet
 | LCP, INP, CLS de produção | UNKNOWN | Métricas reais necessárias |
 
 ## Rollback e dívida técnica
-O CSS compartilhado dos jogos está isolado em `mare-play.css`. Para reverter, trocar seu link por `mare-evolution.css` nas 12 páginas e restaurar a versão anterior dos arquivos de markup; não alterar localStorage. O legado `mare-system.css`, `mare-v2.css`, `mare-3.css` e folhas individuais permanece em operação. A remoção de regras legadas só deve ocorrer após baselines renderizados com todos os 12 tabuleiros e seus estados (default, em progresso, vitória, derrota e ajuda) para evitar apagar regras funcionais por engano.
+O CSS compartilhado dos jogos está isolado em `src/styles/shared/mare-play.css`. Para reverter, trocar seu link por `src/styles/shared/mare-evolution.css` nas 12 páginas e restaurar a versão anterior dos arquivos de markup; não alterar localStorage. O legado `mare-system.css`, `mare-v2.css`, `mare-3.css` e folhas individuais permanece em operação. A remoção de regras legadas só deve ocorrer após baselines renderizados com todos os 12 tabuleiros e seus estados (default, em progresso, vitória, derrota e ajuda) para evitar apagar regras funcionais por engano.
 
 ## Gate de release
 Não confundir `npm run check` verde com aprovação de UX. Merge para `main` só depois de testes CI; em seguida verificar workflow Pages e, quando houver acesso a browser remoto, fazer revisão cruzada de viewport/touch/keyboard e aplicar correções adicionais.

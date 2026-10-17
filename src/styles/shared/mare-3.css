@@ -302,29 +302,29 @@ body:is(.mare-hub,.mare-recife,.mare-abismo,.mare-cardume,.mare-corrente,.mare-c
  background-position:center center!important;
  background-attachment:fixed!important
 }
-body.mare-hub{background-image:linear-gradient(180deg,rgba(2,16,26,.63),rgba(2,17,27,.77) 54%,rgba(2,14,24,.89)),url("assets/backgrounds/recife.svg")!important}
-body.mare-recife{background-image:linear-gradient(180deg,rgba(2,16,26,.63),rgba(2,17,27,.77) 54%,rgba(2,14,24,.89)),url("assets/backgrounds/recife.svg")!important}
-body.mare-abismo{background-image:linear-gradient(180deg,rgba(2,16,26,.63),rgba(2,17,27,.77) 54%,rgba(2,14,24,.89)),url("assets/backgrounds/abismo.svg")!important}
-body.mare-cardume{background-image:linear-gradient(180deg,rgba(2,16,26,.63),rgba(2,17,27,.77) 54%,rgba(2,14,24,.89)),url("assets/backgrounds/cardume.svg")!important}
-body.mare-corrente{background-image:linear-gradient(180deg,rgba(2,16,26,.63),rgba(2,17,27,.77) 54%,rgba(2,14,24,.89)),url("assets/backgrounds/corrente.svg")!important}
-body.mare-concha{background-image:linear-gradient(180deg,rgba(2,16,26,.63),rgba(2,17,27,.77) 54%,rgba(2,14,24,.89)),url("assets/backgrounds/concha.svg")!important}
-body.mare-trilha{background-image:linear-gradient(180deg,rgba(2,16,26,.63),rgba(2,17,27,.77) 54%,rgba(2,14,24,.89)),url("assets/backgrounds/trilha.svg")!important}
-body.mare-enigma{background-image:linear-gradient(180deg,rgba(2,16,26,.63),rgba(2,17,27,.77) 54%,rgba(2,14,24,.89)),url("assets/backgrounds/enigma.svg")!important}
-body.mare-marujo{background-image:linear-gradient(180deg,rgba(2,16,26,.63),rgba(2,17,27,.77) 54%,rgba(2,14,24,.89)),url("assets/backgrounds/marujo.svg")!important}
+body.mare-hub{background-image:linear-gradient(180deg,rgba(2,16,26,.63),rgba(2,17,27,.77) 54%,rgba(2,14,24,.89)),url("../../../assets/backgrounds/recife.svg")!important}
+body.mare-recife{background-image:linear-gradient(180deg,rgba(2,16,26,.63),rgba(2,17,27,.77) 54%,rgba(2,14,24,.89)),url("../../../assets/backgrounds/recife.svg")!important}
+body.mare-abismo{background-image:linear-gradient(180deg,rgba(2,16,26,.63),rgba(2,17,27,.77) 54%,rgba(2,14,24,.89)),url("../../../assets/backgrounds/abismo.svg")!important}
+body.mare-cardume{background-image:linear-gradient(180deg,rgba(2,16,26,.63),rgba(2,17,27,.77) 54%,rgba(2,14,24,.89)),url("../../../assets/backgrounds/cardume.svg")!important}
+body.mare-corrente{background-image:linear-gradient(180deg,rgba(2,16,26,.63),rgba(2,17,27,.77) 54%,rgba(2,14,24,.89)),url("../../../assets/backgrounds/corrente.svg")!important}
+body.mare-concha{background-image:linear-gradient(180deg,rgba(2,16,26,.63),rgba(2,17,27,.77) 54%,rgba(2,14,24,.89)),url("../../../assets/backgrounds/concha.svg")!important}
+body.mare-trilha{background-image:linear-gradient(180deg,rgba(2,16,26,.63),rgba(2,17,27,.77) 54%,rgba(2,14,24,.89)),url("../../../assets/backgrounds/trilha.svg")!important}
+body.mare-enigma{background-image:linear-gradient(180deg,rgba(2,16,26,.63),rgba(2,17,27,.77) 54%,rgba(2,14,24,.89)),url("../../../assets/backgrounds/enigma.svg")!important}
+body.mare-marujo{background-image:linear-gradient(180deg,rgba(2,16,26,.63),rgba(2,17,27,.77) 54%,rgba(2,14,24,.89)),url("../../../assets/backgrounds/marujo.svg")!important}
 
 /* Restore native ocean artwork on the eight launcher cards without obscuring labels. */
 .mare-hub .mar-game{
  background-size:cover!important;background-position:center!important;background-repeat:no-repeat!important;
  border-color:rgba(184,231,224,.25)!important;
 }
-.mare-hub .mar-game.mar-letters{background-image:linear-gradient(180deg,rgba(2,18,28,.37),rgba(2,14,24,.6) 52%,rgba(2,12,22,.87)),url("assets/backgrounds/recife.svg")!important}
-.mare-hub .mar-game.mar-abyss{background-image:linear-gradient(180deg,rgba(2,18,28,.37),rgba(2,14,24,.6) 52%,rgba(2,12,22,.87)),url("assets/backgrounds/abismo.svg")!important}
-.mare-hub .mar-game.mar-school{background-image:linear-gradient(180deg,rgba(2,18,28,.37),rgba(2,14,24,.6) 52%,rgba(2,12,22,.87)),url("assets/backgrounds/cardume.svg")!important}
-.mare-hub .mar-game.mar-current{background-image:linear-gradient(180deg,rgba(2,18,28,.37),rgba(2,14,24,.6) 52%,rgba(2,12,22,.87)),url("assets/backgrounds/corrente.svg")!important}
-.mare-hub .mar-game.mar-shell{background-image:linear-gradient(180deg,rgba(2,18,28,.37),rgba(2,14,24,.6) 52%,rgba(2,12,22,.87)),url("assets/backgrounds/concha.svg")!important}
-.mare-hub .mar-game.mar-trail{background-image:linear-gradient(180deg,rgba(2,18,28,.37),rgba(2,14,24,.6) 52%,rgba(2,12,22,.87)),url("assets/backgrounds/trilha.svg")!important}
-.mare-hub .mar-game.mar-enigma{background-image:linear-gradient(180deg,rgba(2,18,28,.37),rgba(2,14,24,.6) 52%,rgba(2,12,22,.87)),url("assets/backgrounds/enigma.svg")!important}
-.mare-hub .mar-game.mar-marujo{background-image:linear-gradient(180deg,rgba(2,18,28,.37),rgba(2,14,24,.6) 52%,rgba(2,12,22,.87)),url("assets/backgrounds/marujo.svg")!important}
+.mare-hub .mar-game.mar-letters{background-image:linear-gradient(180deg,rgba(2,18,28,.37),rgba(2,14,24,.6) 52%,rgba(2,12,22,.87)),url("../../../assets/backgrounds/recife.svg")!important}
+.mare-hub .mar-game.mar-abyss{background-image:linear-gradient(180deg,rgba(2,18,28,.37),rgba(2,14,24,.6) 52%,rgba(2,12,22,.87)),url("../../../assets/backgrounds/abismo.svg")!important}
+.mare-hub .mar-game.mar-school{background-image:linear-gradient(180deg,rgba(2,18,28,.37),rgba(2,14,24,.6) 52%,rgba(2,12,22,.87)),url("../../../assets/backgrounds/cardume.svg")!important}
+.mare-hub .mar-game.mar-current{background-image:linear-gradient(180deg,rgba(2,18,28,.37),rgba(2,14,24,.6) 52%,rgba(2,12,22,.87)),url("../../../assets/backgrounds/corrente.svg")!important}
+.mare-hub .mar-game.mar-shell{background-image:linear-gradient(180deg,rgba(2,18,28,.37),rgba(2,14,24,.6) 52%,rgba(2,12,22,.87)),url("../../../assets/backgrounds/concha.svg")!important}
+.mare-hub .mar-game.mar-trail{background-image:linear-gradient(180deg,rgba(2,18,28,.37),rgba(2,14,24,.6) 52%,rgba(2,12,22,.87)),url("../../../assets/backgrounds/trilha.svg")!important}
+.mare-hub .mar-game.mar-enigma{background-image:linear-gradient(180deg,rgba(2,18,28,.37),rgba(2,14,24,.6) 52%,rgba(2,12,22,.87)),url("../../../assets/backgrounds/enigma.svg")!important}
+.mare-hub .mar-game.mar-marujo{background-image:linear-gradient(180deg,rgba(2,18,28,.37),rgba(2,14,24,.6) 52%,rgba(2,12,22,.87)),url("../../../assets/backgrounds/marujo.svg")!important}
 
 .mare-hub .mar-game-info,.mare-hub .mar-tag{position:relative;z-index:1}
 .mare-hub .mar-game-info h2,.mare-hub .mar-game-info p{text-shadow:0 1px 12px rgba(0,7,17,.56)}
@@ -349,5 +349,5 @@ body:is(.mare-recife,.mare-abismo,.mare-cardume,.mare-corrente,.mare-concha,.mar
 @media(max-width:450px){body:is(.mare-recife,.mare-abismo,.mare-cardume,.mare-corrente,.mare-concha,.mare-trilha,.mare-enigma,.mare-marujo) .mare-game-nav__grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
 
 /* Artes oficiais MARÉ: Náufrago e Sinais */
-.mare-hub .mar-game.mar-forca{background-image:linear-gradient(180deg,#02121c91,#02121cdd),url('assets/backgrounds/naufrago.svg')!important}
-.mare-hub .mar-game.mar-criptograma{background-image:linear-gradient(180deg,#02121c91,#02121cdd),url('assets/backgrounds/sinais.svg')!important}
+.mare-hub .mar-game.mar-forca{background-image:linear-gradient(180deg,#02121c91,#02121cdd),url('../../../assets/backgrounds/naufrago.svg')!important}
+.mare-hub .mar-game.mar-criptograma{background-image:linear-gradient(180deg,#02121c91,#02121cdd),url('../../../assets/backgrounds/sinais.svg')!important}

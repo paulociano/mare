@@ -15,29 +15,27 @@
     "farol"
   ],
   "requiredFiles": [
-    "hub.js",
-    "modos.js",
+    "src/scripts/shared/hub.js",
+    "src/scripts/games/modos.js",
     "palavras-ptbr-5.txt",
     "data/cardume-puzzles.json",
     "assets/ocean-depth.svg",
-    "mare-diagnostics.js",
-    "mare-diagnostics.css",
+    "src/scripts/shared/mare-diagnostics.js",
+    "src/styles/shared/mare-diagnostics.css",
     "app.webmanifest",
-    "mare-pwa.js",
-    "mare-pwa.css",
+    "src/scripts/shared/mare-pwa.js",
     "assets/brand/mare-app-192.png",
     "assets/brand/mare-app-512.png",
-    "mare-voyage.js",
-    "mare-voyage.css",
-    "mare-content.js",
-    "mare-content.css",
-    "mare-social.js",
-    "mare-social.css",
-    "mare-accessibility.js",
-    "mare-accessibility.css"
+    "src/scripts/shared/mare-voyage.js",
+    "src/scripts/shared/mare-content.js",
+    "src/scripts/shared/mare-social.js",
+    "src/scripts/shared/mare-accessibility.js"
   ],
   "optionalFiles": [
     "data/semantic-ranks.json"
   ],
-  "backgroundsDirectory": "assets/backgrounds"
+  "backgroundsDirectory": "assets/backgrounds",
+  "runtimeStyles": [
+    "src/styles/shared/mare-diagnostics.css"
+  ]
 }

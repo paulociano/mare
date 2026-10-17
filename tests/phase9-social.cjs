@@ -1,7 +1,7 @@
 'use strict';
 const assert=require('node:assert/strict'),fs=require('node:fs'),vm=require('node:vm');
 const read=p=>fs.readFileSync(p,'utf8');
-const social=read('mare-social.js');
+const social=read('src/scripts/shared/mare-social.js');
 new vm.Script(social);
 const registry=['recife','abismo','cardume','corrente','concha','trilha','enigma','marujo','forca','criptograma','perola','farol'];
 const day='2026-10-17',today=new Date('2026-10-17T18:00:00Z');
@@ -83,14 +83,14 @@ assert.ok(!/fetch\s*\(|sendBeacon|XMLHttpRequest|indexedDB|localStorage\.setItem
 assert.ok(!/innerHTML\s*=/.test(social),'Untrusted input must not be rendered as HTML');
 for(const page of ['index',...registry]){
  const html=read(page+'.html');
- assert.ok(html.includes('href="mare-social.css"'),page+' missing style');
- assert.ok(html.includes('src="mare-social.js"'),page+' missing script');
- assert.ok(html.indexOf('src="mare-progress.js"')<html.indexOf('src="mare-social.js"'),page+' wrong ledger order');
- if(page==='abismo')assert.ok(html.indexOf('src="mare-social.js"')<html.indexOf('src="abismo.js"'),'Abismo deep link init order');
+ assert.ok(html.includes('href="src/styles/shared/mare-social.css"'),page+' missing style');
+ assert.ok(html.includes('src="src/scripts/shared/mare-social.js"'),page+' missing script');
+ assert.ok(html.indexOf('src="src/scripts/shared/mare-progress.js"')<html.indexOf('src="src/scripts/shared/mare-social.js"'),page+' wrong ledger order');
+ if(page==='abismo')assert.ok(html.indexOf('src="src/scripts/shared/mare-social.js"')<html.indexOf('src="src/scripts/games/abismo.js"'),'Abismo deep link init order');
 }
 assert.ok(read('index.html').includes('href="#desafios-entre-amigos"'),'Social section navigation missing');
-assert.ok(read('abismo.js').includes('mare-semantico-challenge-'),'Abismo same-puzzle social state needs daily isolation');
-assert.ok(read('recife.js').includes("timeZone:'America/Sao_Paulo'"),'Recife must use shared challenge timezone');
-const css=read('mare-social.css');
+assert.ok(read('src/scripts/games/abismo.js').includes('mare-semantico-challenge-'),'Abismo same-puzzle social state needs daily isolation');
+assert.ok(read('src/scripts/games/recife.js').includes("timeZone:'America/Sao_Paulo'"),'Recife must use shared challenge timezone');
+const css=read('src/styles/shared/mare-social.css');
 assert.ok(css.includes('prefers-reduced-motion:reduce')&&css.includes(':focus-visible'));
 console.log('PASS Phase9: 12 game links, same-day contract, validation, honest comparisons, privacy, cards and 13-page integration');

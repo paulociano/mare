@@ -3,10 +3,10 @@
 const assert=require('node:assert/strict');
 const fs=require('node:fs');
 const vm=require('node:vm');
-const modes=fs.readFileSync('modos.js','utf8');
-const enigma=fs.readFileSync('enigma.js','utf8');
+const modes=fs.readFileSync('src/scripts/games/modos.js','utf8');
+const enigma=fs.readFileSync('src/scripts/games/enigma.js','utf8');
 const farol=fs.readFileSync('farol.html','utf8');
-const css=fs.readFileSync('mare-finesse.css','utf8');
+const css=fs.readFileSync('src/styles/shared/mare-finesse.css','utf8');
 const e2e=fs.readFileSync('scripts/check-phase4-e2e.py','utf8');
 const quality=fs.readFileSync('scripts/check-phase4-quality.py','utf8');
 new vm.Script(modes);
