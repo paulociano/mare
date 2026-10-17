@@ -6,13 +6,16 @@
   if(!host||typeof window.WebGL2RenderingContext==='undefined')return;
   const reduced=window.matchMedia('(prefers-reduced-motion: reduce)');
   const small=window.matchMedia('(max-width: 720px)');
-  if(reduced.matches||small.matches||navigator.connection?.saveData)return;
+  const motionOff=()=>reduced.matches||
+   document.documentElement.dataset.mareMotion==='reduce'||
+   document.documentElement.dataset.mareFocus==='on';
+  if(motionOff()||small.matches||navigator.connection?.saveData)return;
   let THREE;
   try{
     // Pinned ESM build. CDN failure leaves the CSS ocean artwork intact.
     THREE=await import('https://cdn.jsdelivr.net/npm/three@0.180.0/build/three.module.js');
   }catch{return;}
-  if(!host.isConnected||reduced.matches||small.matches)return;
+  if(!host.isConnected||motionOff()||small.matches)return;
   let renderer;
   try{renderer=new THREE.WebGLRenderer({alpha:true,antialias:false,powerPreference:'low-power'});}
   catch{return;}
@@ -93,7 +96,7 @@
     frame=requestAnimationFrame(draw);
   };
   const start=()=>{
-    if(disposed||frame||!visible||document.hidden||reduced.matches)return;
+    if(disposed||frame||!visible||document.hidden||motionOff())return;
     last=0;lastTime=0;frame=requestAnimationFrame(draw);
   };
   const stop=()=>{if(frame)cancelAnimationFrame(frame);frame=0;};
@@ -102,7 +105,7 @@
     targetX=Math.max(-.22,Math.min(.22,((event.clientX-rect.left)/Math.max(1,rect.width)-.5)*.35));
   };
   const onVisibility=()=>document.hidden?stop():start();
-  const onMotion=()=>reduced.matches?stop():start();
+  const onMotion=()=>motionOff()?stop():start();
   const intersection=typeof IntersectionObserver==='function'
     ?new IntersectionObserver(entries=>{visible=entries.some(entry=>entry.isIntersecting);visible?start():stop();},{threshold:0})
     :null;
@@ -111,6 +114,7 @@
   hero?.addEventListener('pointermove',onPointerMove,{passive:true});
   document.addEventListener('visibilitychange',onVisibility);
   reduced.addEventListener?.('change',onMotion);
+  window.addEventListener('mare:accessibility',onMotion);
   const dispose=()=>{
     if(disposed)return;
     disposed=true;stop();intersection?.disconnect();resizeObserver?.disconnect();
@@ -118,6 +122,7 @@
     window.removeEventListener('resize',resize);
     document.removeEventListener('visibilitychange',onVisibility);
     reduced.removeEventListener?.('change',onMotion);
+    window.removeEventListener('mare:accessibility',onMotion);
     geometry.dispose();material.dispose();renderer.dispose();renderer.domElement.remove();
   };
   renderer.domElement.addEventListener('webglcontextlost',event=>{
