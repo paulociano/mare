@@ -13,9 +13,9 @@ class Quiet(http.server.SimpleHTTPRequestHandler):
 
 def main():
     ART.mkdir(exist_ok=True)
-    http=http.server.ThreadingHTTPServer(('127.0.0.1',0),Quiet)
-    threading.Thread(target=http.serve_forever,daemon=True).start()
-    url=f'http://127.0.0.1:{http.server_port}/'
+    server=http.server.ThreadingHTTPServer(('127.0.0.1',0),Quiet)
+    threading.Thread(target=server.serve_forever,daemon=True).start()
+    url=f'http://127.0.0.1:{server.server_port}/'
     report={'invite':False,'peer':False,'game':False,'comparison':False,'abismo':False,
             'png':False,'privacy':False,'offline':False,'reflow':[],'axe':[],'findings':[]}
     try:
@@ -158,7 +158,7 @@ def main():
           try:page.screenshot(path=str(ART/'phase9-failure.png'),full_page=True)
           except Exception:pass
         finally:ctx.close();browser.close()
-    finally:http.shutdown();http.server_close()
+    finally:server.shutdown();server.server_close()
     (ART/'phase9-social.json').write_text(json.dumps(report,ensure_ascii=False,indent=2),encoding='utf8')
     print('Phase9: invite',report['invite'],'real win',report['game'],
           'compare',report['comparison'],'Abismo',report['abismo'],'PNG',report['png'],
