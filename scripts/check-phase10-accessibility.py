@@ -91,7 +91,8 @@ def main():
               return r.violations.filter(x=>['critical','serious'].includes(x.impact))
                .map(x=>({id:x.id,targets:x.nodes.map(n=>n.target).slice(0,6)}));
             }""")
-            assert not severe,(route,severe)
+            if severe:
+              data['blockers'].append(stage+': '+repr(severe))
             data['a11y'].append(route)
             data['pages'].append(route)
             if route=='trilha':
