@@ -92,7 +92,7 @@ assert.ok(read('src/scripts/games/mares-duo.js').includes('MareContent?.pick'));
 for(const page of ['abismo','cardume','corrente','concha','trilha','enigma','marujo','forca','criptograma','perola','farol']){
  const html=read(page+'.html');
  assert.ok(html.indexOf('src="src/scripts/shared/mare-content.js"')>=0,page+': missing picker');
- assert.ok(html.indexOf('src="src/scripts/shared/mare-content.js"')<html.indexOf('src="'+(['perola','farol'].includes(page)?'mares-duo':page)+'.js"'),page+': wrong script order');
+ assert.ok(html.indexOf('src="src/scripts/shared/mare-content.js"')<html.indexOf('src="src/scripts/games/'+(['perola','farol'].includes(page)?'mares-duo':page)+'.js"'),page+': wrong script order');
  assert.ok(html.includes('href="src/styles/shared/mare-content.css"'));
 }
 const control=read('src/scripts/shared/mare-content.js');new vm.Script(control);
