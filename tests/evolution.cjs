@@ -22,7 +22,7 @@ const cards=entries.map((match,i)=>{
  const heading=new Node('h2');heading.textContent='Jogo '+i;
  const action=new Node('a');action.setAttribute('href','game-'+i+'.html');
  const info=new Node('div');info.className='mar-game-info';info.children=[action];
- card.querySelector=selector=>selector==='h2'?heading:selector==='.mar-game-info'?info:null;
+ card.querySelector=selector=>selector==='h2'?heading:selector==='.mar-game-info'?info:selector==='.mar-cta'?action:null;
  info.querySelector=selector=>selector==='.mar-cta'?action:null;
  return card;
 });
