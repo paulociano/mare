@@ -58,7 +58,7 @@
  let tiles=[];
  function message(value){$('feedback').textContent=value}
  function start(){
-  const index=mode==='daily'?hash%bank.length:safeNumber()%bank.length;
+  const index=mode==='daily'?hash%bank.length:(window.MareContent?.pick(type,bank.map(p=>type==='perola'?normalize(p.answer).length:p.answer.trim().split(/\s+/).length),safeNumber())??safeNumber()%bank.length);
   round=index;tries=0;complete=false;selected=[];
   $('edition').textContent=mode==='daily'?'DESAFIO DIÁRIO '+day:'MODO LIVRE';
   $('hint').textContent=bank[round].hint;
