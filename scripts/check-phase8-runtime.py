@@ -31,6 +31,12 @@ def main():
             page.goto(base+game+'.html',wait_until='domcontentloaded')
             section=page.locator('.mare-content-control')
             section.wait_for()
+            # Async lexical/data banks must be ready before free-play actions.
+            if game=='cardume':page.locator('#grid .tile').first.wait_for(timeout=14000)
+            elif game=='concha':page.locator('#wheel button').first.wait_for(timeout=14000)
+            elif game=='marujo':page.locator('#board .marujo-cell').first.wait_for(timeout=14000)
+            elif game!='abismo':
+              page.wait_for_function("""() => !!document.getElementById('edition')?.textContent?.trim()""",timeout=14000)
             assert page.evaluate('!!window.MareContent'),game+': missing engine'
             assert page.locator('#mare-intensity option').count()==4
             assert page.locator('#mare-intensity').input_value()==''
