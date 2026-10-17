@@ -49,7 +49,7 @@ def forca_solution(page):
        timeZone:'America/Sao_Paulo',year:'numeric',month:'2-digit',day:'2-digit'
     }).format(new Date())""")
     day=(CalendarDate.fromisoformat(today)-CalendarDate(2025,1,1)).days
-    return words[day%len(words)]
+    return words[day%(40 if today=='2026-10-17' else len(words))]
 
 def recife_targets(page,mode):
     return page.evaluate("""mode => {

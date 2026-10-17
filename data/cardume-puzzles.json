@@ -454,5 +454,233 @@
         "VELEIRO"
       ]
     }
+  ],
+  [
+    {
+      "name": "Instrumentos de sopro",
+      "words": [
+        "OBOÉ",
+        "TROMPETE",
+        "CLARINETE",
+        "SAXOFONE"
+      ]
+    },
+    {
+      "name": "Rochas",
+      "words": [
+        "GRANITO",
+        "BASALTO",
+        "ARDÓSIA",
+        "MÁRMORE"
+      ]
+    },
+    {
+      "name": "Biomas brasileiros",
+      "words": [
+        "CERRADO",
+        "CAATINGA",
+        "PANTANAL",
+        "PAMPA"
+      ]
+    },
+    {
+      "name": "Elementos de construção",
+      "words": [
+        "TELHADO",
+        "PORTA",
+        "JANELA",
+        "PAREDE"
+      ]
+    }
+  ],
+  [
+    {
+      "name": "Estados brasileiros",
+      "words": [
+        "GOIÁS",
+        "BAHIA",
+        "CEARÁ",
+        "PARANÁ"
+      ]
+    },
+    {
+      "name": "Esportes de inverno",
+      "words": [
+        "ESQUI",
+        "CURLING",
+        "SNOWBOARD",
+        "PATINAÇÃO"
+      ]
+    },
+    {
+      "name": "Gêneros literários",
+      "words": [
+        "POEMA",
+        "CRÔNICA",
+        "CONTO",
+        "ROMANCE"
+      ]
+    },
+    {
+      "name": "Itens de praia",
+      "words": [
+        "TOALHA",
+        "CHAPÉU",
+        "CADEIRA",
+        "PROTETOR SOLAR"
+      ]
+    }
+  ],
+  [
+    {
+      "name": "Temperaturas",
+      "words": [
+        "FRIO",
+        "MORNO",
+        "QUENTE",
+        "GELADO"
+      ]
+    },
+    {
+      "name": "Aparelhos eletrônicos",
+      "words": [
+        "TABLET",
+        "CELULAR",
+        "RÁDIO",
+        "NOTEBOOK"
+      ]
+    },
+    {
+      "name": "Animais noturnos",
+      "words": [
+        "MORCEGO",
+        "CORUJA",
+        "GAMBÁ",
+        "MARIPOSA"
+      ]
+    },
+    {
+      "name": "Arte visual",
+      "words": [
+        "MOSAICO",
+        "ESCULTURA",
+        "DESENHO",
+        "GRAVURA"
+      ]
+    }
+  ],
+  [
+    {
+      "name": "Objetos de acampamento",
+      "words": [
+        "BARRACA",
+        "LANTERNA",
+        "CANTIL",
+        "COLCHONETE"
+      ]
+    },
+    {
+      "name": "Tipos de chuva",
+      "words": [
+        "GAROA",
+        "CHUVISCO",
+        "TEMPORAL",
+        "AGUACEIRO"
+      ]
+    },
+    {
+      "name": "Partes de flor",
+      "words": [
+        "PÉTALA",
+        "ESTAME",
+        "SÉPALA",
+        "PISTILO"
+      ]
+    },
+    {
+      "name": "Instrumentos de corda",
+      "words": [
+        "VIOLINO",
+        "VIOLÃO",
+        "HARPA",
+        "VIOLONCELO"
+      ]
+    }
+  ],
+  [
+    {
+      "name": "Ações no mar",
+      "words": [
+        "NAVEGAR",
+        "MERGULHAR",
+        "REMAR",
+        "PESCAR"
+      ]
+    },
+    {
+      "name": "Animais com casco",
+      "words": [
+        "TARTARUGA",
+        "JABUTI",
+        "CÁGADO",
+        "CARACOL"
+      ]
+    },
+    {
+      "name": "Material de desenho",
+      "words": [
+        "LÁPIS",
+        "CARVÃO",
+        "GIZ",
+        "CANETINHA"
+      ]
+    },
+    {
+      "name": "Tipos de árvore",
+      "words": [
+        "IPÊ",
+        "OITICICA",
+        "JACARANDÁ",
+        "MANGUEIRA"
+      ]
+    }
+  ],
+  [
+    {
+      "name": "Formas de transporte urbano",
+      "words": [
+        "BONDE",
+        "METRÔ",
+        "ÔNIBUS",
+        "BICICLETA"
+      ]
+    },
+    {
+      "name": "Elementos do céu",
+      "words": [
+        "NUVEM",
+        "ESTRELA",
+        "LUA",
+        "COMETA"
+      ]
+    },
+    {
+      "name": "Pontos cardeais",
+      "words": [
+        "NORTE",
+        "SUL",
+        "LESTE",
+        "OESTE"
+      ]
+    },
+    {
+      "name": "Ferramentas de jardinagem",
+      "words": [
+        "PÁ",
+        "ENXADA",
+        "ANCINHO",
+        "REGADOR"
+      ]
+    }
   ]
 ]
