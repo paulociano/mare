@@ -35,6 +35,7 @@ jobs:
           node tests/gameplay.cjs
           node tests/evolution.cjs
           node tests/play-system.cjs
+          node tests/phase4-contract.cjs
           node tests/finesse.cjs
       - name: Configurar Pages
         uses: actions/configure-pages@v5

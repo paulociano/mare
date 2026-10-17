@@ -5,6 +5,9 @@ let mode = new URLSearchParams(location.search).get('modo') || localStorage.getI
 if(!MODES[mode])mode='solo';
 let targets=[], oldStatusTimeout, modalOpener=null, activePane=0;
 const game=document.querySelector('.game'),boardEl=document.getElementById('board'),statusEl=document.getElementById('status');
+// O contêiner contém vários grids; não é ele próprio um grid (WCAG ARIA 1.2).
+boardEl.setAttribute('role','group');
+boardEl.setAttribute('aria-label','Tabuleiros das sondas');
 const panel=document.createElement('div');
 panel.className='mare-modes';
 panel.setAttribute('role','group');
@@ -102,7 +105,11 @@ type=function(ch){
   if(victory||state.guesses.length>=MODES[mode].tries){
    state.finished=true;stats.played++;
    if(victory){stats.wins++;stats.streak++;stats.best=Math.max(stats.best,stats.streak)}else stats.streak=0;
-   save();render();setTimeout(()=>showResult(victory),400);return;
+   save();
+   // Registro canônico: o controlador dos três modos substitui type() do Recife.
+   // Persistir antes de anunciar o resultado evita conquistas fantasmas.
+   window.MareProgress?.record('recife',victory?'win':'loss',key);
+   render();setTimeout(()=>showResult(victory),400);return;
   }
  }else if(/^[A-Z]$/.test(ch)&&state.current.length<5)state.current+=ch;
  save();render();
