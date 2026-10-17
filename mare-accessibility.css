@@ -1,0 +1,74 @@
+/* Phase 10: consistent accessible, low-distraction preference surface. */
+.mare-access{box-sizing:border-box;width:min(1080px,calc(100% - 24px));margin:28px auto 34px;
+ color:#eafaf6;font-family:system-ui,sans-serif;min-width:0}
+.mare-access *{box-sizing:border-box}
+.mare-access__details{border:1px solid #6b9e9f;border-radius:17px;
+ background:linear-gradient(125deg,#0b3241,#0b2638);overflow:hidden}
+.mare-access__summary{display:flex;align-items:center;gap:11px;
+ padding:16px 20px;min-height:54px;cursor:pointer;list-style:none;color:#edfbf6}
+.mare-access__summary::-webkit-details-marker{display:none}
+.mare-access__summary::after{content:"⌄";margin-left:auto;font-size:20px;color:#acf1db}
+.mare-access__details[open] .mare-access__summary::after{content:"⌃"}
+.mare-access__icon{display:grid;place-items:center;background:#174a50;color:#b4ffe4;
+ border:1px solid #71b8a7;border-radius:10px;height:35px;width:35px;flex:none}
+.mare-access__summary strong{font-size:14px;line-height:1.4}
+.mare-access__summary-caption{color:#b9d7d6;font-size:11px;line-height:1.4;margin-left:4px}
+.mare-access__content{padding:0 20px 20px;display:grid;gap:14px}
+.mare-access__content>p{font-size:13px;line-height:1.6;color:#d2e8e4;margin:0}
+.mare-access__form{display:grid;gap:15px}
+.mare-access__scale{border:1px solid #5b8a8c;border-radius:13px;
+ display:flex;flex-wrap:wrap;gap:10px;padding:13px 15px;margin:0;min-width:0}
+.mare-access__scale legend{font-weight:750;color:#eefcf8;font-size:13px;padding:0 6px}
+.mare-access__radio{display:inline-flex;align-items:center;gap:8px;padding:10px 12px;
+ border:1px solid #648f92;border-radius:10px;color:#fff;font-size:13px;cursor:pointer;min-height:44px}
+.mare-access input{accent-color:#a1f3d9;width:18px;height:18px;flex:none}
+.mare-access__toggles{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.mare-access__toggle{display:flex;align-items:flex-start;gap:10px;padding:13px;
+ border:1px solid #5b8a8c;border-radius:13px;cursor:pointer;min-width:0}
+.mare-access__toggle>span{display:grid;gap:5px;min-width:0}
+.mare-access__toggle strong{font-size:13px;line-height:1.4;color:#f2fff8}
+.mare-access__toggle small{font-size:11px;line-height:1.55;color:#c3dcdb}
+.mare-access__reset{display:inline-flex;align-items:center;justify-content:center;
+ border:1px solid #99e8d0;border-radius:11px;padding:10px 17px;min-height:44px;
+ background:#a9f2d8;color:#08343d;font:800 12px/1.4 system-ui,sans-serif;cursor:pointer;justify-self:start}
+.mare-access :is(summary,button,input):focus-visible{outline:3px solid #ffdf92!important;outline-offset:3px!important}
+.mare-access__status{font:600 12px/1.5 system-ui,sans-serif;color:#d8faef;margin:0}
+@media(max-width:720px){
+ .mare-access__toggles{grid-template-columns:1fr}
+ .mare-access__summary-caption{display:none}
+ .mare-access__summary,.mare-access__content{padding-left:14px;padding-right:14px}
+}
+@media(max-width:380px){
+ .mare-access__scale{display:grid;grid-template-columns:1fr}
+ .mare-access__radio{width:100%}
+}
+:root[data-mare-scale="large"]{font-size:112.5%!important}
+:root[data-mare-scale="extra"]{font-size:125%!important}
+:root[data-mare-scale="large"] :is(.mar-container,.mare-logbook,.mare-social,.mare-access,.mare-content-control) :is(p,label,small,button,summary,a),
+:root[data-mare-scale="large"] :is(.mar-app,.mare-recife) :is(.notice,.status,.mare-social p){font-size:1rem!important;line-height:1.55!important}
+:root[data-mare-scale="extra"] :is(.mar-container,.mare-logbook,.mare-social,.mare-access,.mare-content-control) :is(p,label,small,button,summary,a),
+:root[data-mare-scale="extra"] :is(.mar-app,.mare-recife) :is(.notice,.status,.mare-social p){font-size:1.125rem!important;line-height:1.55!important}
+:root[data-mare-contrast="high"] body{
+ background-color:#020c13!important;color:#fff!important;
+}
+:root[data-mare-contrast="high"] body :is(.mar-game,.mare-logbook,.mare-voyage__rhythm,.mare-voyage__spotlight,.mare-social,.mare-content-control,.mare-access__details,.game,.panel,.newgame-panel,.mar-continue){
+ background:#061925!important;border-color:#a3ede4!important;
+}
+:root[data-mare-contrast="high"] body :is(p,small,legend,label,h1,h2,h3,strong,.mare-explorer__eyebrow,.mare-voyage__eyebrow){
+ color:#fff!important;
+}
+:root[data-mare-contrast="high"] body :is(input,textarea,select){border-color:#b6f8e1!important}
+:root[data-mare-contrast="high"] body :is(button,a,input,select,textarea,summary):focus-visible{
+ outline:4px solid #ffdf91!important;outline-offset:3px!important;
+}
+:root[data-mare-focus="on"] body :is(.scene,.seaweed,.fish,[data-ocean-scene],.mare-studio-hero__seal,.mare-studio-hero__coordinates){
+ display:none!important;
+}
+:root[data-mare-focus="on"] body::before,
+:root[data-mare-focus="on"] body::after{display:none!important}
+:root[data-mare-motion="reduce"] body *,
+:root[data-mare-motion="reduce"] body *::before,
+:root[data-mare-motion="reduce"] body *::after{
+ animation:none!important;transition:none!important;scroll-behavior:auto!important;
+}
+@media(prefers-reduced-motion:reduce){.mare-access *{animation:none!important;transition:none!important}}
