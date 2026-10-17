@@ -3,7 +3,7 @@ const fs=require('node:fs'),vm=require('node:vm'),assert=require('node:assert/st
 const games=['recife','abismo','concha','trilha','enigma','marujo','criptograma','perola','farol'];
 for(const name of games){
  const html=fs.readFileSync(name+'.html','utf8');
- const script=['perola','farol'].includes(name)?'src/scripts/games/mares-duo.js':name+'.js';
+ const script=['perola','farol'].includes(name)?'src/scripts/games/mares-duo.js':'src/scripts/games/'+name+'.js';
  const a=html.indexOf('src="src/scripts/shared/mare-progress.js"'),b=html.indexOf('src="'+script+'"');
  assert.ok(a>=0&&b>a,name+': progress ledger must load first');
  const src=fs.readFileSync(script,'utf8');
