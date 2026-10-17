@@ -5,3 +5,13 @@ node_modules/
 .DS_Store
 Thumbs.db
 *.log
+
+# Artefatos de QA, caches de ferramentas e ambientes locais
+playwright-artifacts/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+.env
+.env.*
+!.env.example
