@@ -125,7 +125,10 @@ def main():
               waiting:!!(await navigator.serviceWorker.getRegistration()).waiting
             })""")
             assert before["waiting"] and before["old"],"Old version must survive until explicit upgrade"
-            page.get_by_role("button",name="Atualizar aplicativo").click()
+            # The application intentionally reloads on controllerchange.
+            # Synchronize on that navigation before touching the new JS context.
+            with page.expect_navigation(wait_until="domcontentloaded",timeout=25000):
+              page.get_by_role("button",name="Atualizar aplicativo").click()
             page.wait_for_function("""async expected=>{
               const list=await caches.keys();
               const registration=await navigator.serviceWorker.getRegistration();
