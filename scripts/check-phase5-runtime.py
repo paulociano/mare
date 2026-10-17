@@ -101,19 +101,20 @@ def keyboard_and_zoom(browser,root):
             })""")
             assert destination["target"],game+": main landmark missing"
             assert destination["hash"]=="#conteudo-principal",game+": skip link does not navigate"
-            # Browser CSS zoom is an executable reflow proxy, not true UI chrome zoom.
-            for scale in [2,4]:
-                page.evaluate("(scale)=>{document.documentElement.style.zoom=String(scale)}",scale)
+            # Responsive-width equivalent to 200% and 400% desktop zoom.
+            # CSS zoom on the root is misleading: media queries do not react
+            # as they do to actual browser Page Zoom. Keep this explicitly
+            # labeled a width proxy, never claim native zoom verification.
+            for scale,width in [(2,640),(4,320)]:
+                page.set_viewport_size({"width":width,"height":860})
                 metric=page.evaluate("""() => ({
                   sw:document.documentElement.scrollWidth,
-                  cw:document.documentElement.clientWidth,
-                  z:getComputedStyle(document.documentElement).zoom
+                  cw:document.documentElement.clientWidth
                 })""")
-                results.append({"page":game,"zoomProxy":scale,"scroll":metric["sw"],
-                                "client":metric["cw"],"computedZoom":metric["z"]})
+                results.append({"page":game,"zoomEquivalent":scale,"cssViewport":width,
+                                "scroll":metric["sw"],"client":metric["cw"]})
                 if metric["sw"]>metric["cw"]+3:
-                    blockers.append(game+f": CSS zoom {scale} produced horizontal scroll {metric}")
-            page.evaluate("document.documentElement.style.zoom='1'")
+                    blockers.append(game+f": reflow at {width}px, equivalent x{scale}, produced horizontal scroll {metric}")
         except Exception as e:
             blockers.append(game+": "+str(e))
         finally:page.close()
@@ -139,7 +140,7 @@ def main():
         server.shutdown();server.server_close()
     (OUT/"phase5-report.json").write_text(json.dumps(report,ensure_ascii=False,indent=2),encoding="utf8")
     for issue in report["blockers"]:print("BLOCK",issue,flush=True)
-    print("Phase 5: keyboard/zoom",len(report["keyboard"]),"of 26; opt-in",bool(report["diagnostics"]),
+    print("Phase 5: keyboard/reflow",len(report["keyboard"]),"of 26; opt-in",bool(report["diagnostics"]),
           "; blockers",len(report["blockers"]),flush=True)
     if report["blockers"]:raise SystemExit(1)
 
