@@ -46,7 +46,7 @@ def main():
           assert all(any("/"+g+".html" in x for x in state["cached"]) for g in GAMES)
           # Complete an actual free-mode Pérola game and preserve the canonical ledger.
           page.goto(url+"perola.html",wait_until="domcontentloaded")
-          page.get_by_role("button",name="Modo livre").click()
+          page.locator("#free").click()
           page.locator("#entry").fill("CORAL")
           page.locator("#submit").click()
           entry=page.evaluate("""() => window.MareProgress.read().filter(e=>e.game==='perola'&&e.outcome==='win')""")
