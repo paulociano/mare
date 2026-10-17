@@ -19,3 +19,13 @@ body.mare-hub .mare-explorer__mission{display:flex;align-items:center;justify-co
 body.mare-hub .mare-explorer__mission strong{color:#f1ca83;white-space:nowrap}
 body.mare-hub .mare-explorer__mission.is-complete{border-color:#83dec8;background:#164740}
 body.mare-hub .mare-explorer__mission.is-complete strong{color:#a7ffe0}
+
+/* Final navigation and share polish: responsive, keyboard-visible and low-motion. */
+body.mare-hub .mare-explorer__share{display:inline-flex;align-items:center;justify-content:center;min-height:44px;max-width:100%;padding:10px 16px;border:1px solid #9cf3d9;background:#49d6c4;color:#062d34;font:800 .86rem/1.25 system-ui,sans-serif;border-radius:12px;cursor:pointer;text-align:center}
+body.mare-hub .mare-explorer__share:hover{background:#a0f4df}
+body.mare-hub .mare-explorer__share:focus-visible{outline:3px solid #f1ca83;outline-offset:3px}
+body.mare-hub .mare-explorer__share-feedback{display:block;overflow-wrap:anywhere;font-size:.8rem;color:#d6f2ed}
+body.mare-hub .mare-explorer__mission{min-width:0;overflow-wrap:anywhere}
+body.mare-hub .mare-explorer__mission span{min-width:0}
+@media(max-width:600px){body.mare-hub .mare-explorer__share{width:100%}body.mare-hub .mare-explorer__mission{align-items:flex-start;flex-direction:column}}
+@media(prefers-reduced-motion:reduce){body.mare-hub .mare-explorer__share{animation:none;transition:none}}
