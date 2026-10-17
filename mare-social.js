@@ -216,6 +216,8 @@
   function refresh(){
    area.replaceChildren();notice.textContent='';
    const ticket=parse(location.hash);
+   if(location.hash.startsWith('#mare9=')&&!ticket)
+    notice.textContent='Este convite é inválido. Escolha um jogo e crie outro link.';
    const game=select.value;
    const date=day();
    badge.textContent='Edição do dia · '+date.split('-').reverse().join('/');
