@@ -87,6 +87,16 @@ def check():
                                 findings.append(f"{device} {page_name}: overflow horizontal {observed['scrollWidth']} > {observed['viewport']}")
                             if not observed["css"]:
                                 findings.append(f"{device} {page_name}: Play CSS não carregado")
+                            skip = page.locator(".mare-skip-link")
+                            before_focus = skip.evaluate("(el) => el.getBoundingClientRect().bottom")
+                            if before_focus > 0:
+                                findings.append(f"{device} {page_name}: skip link está visível sem foco")
+                            skip.focus()
+                            focused = skip.evaluate("(el) => ({active: document.activeElement === el, top: el.getBoundingClientRect().top})")
+                            if not focused["active"] or focused["top"] < 0:
+                                findings.append(f"{device} {page_name}: skip link não aparece quando recebe foco")
+                            skip.blur()
+
                             if errors:
                                 findings.append(f"{device} {page_name}: JS exception: {errors[:2]}")
                             page.screenshot(path=str(CAPTURES / f"{page_name}-{device}.png"), animations="disabled")
