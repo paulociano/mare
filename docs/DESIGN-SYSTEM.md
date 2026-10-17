@@ -1,5 +1,7 @@
 # MARÉ: referência do design system (17/10/2026)
 
+> **Identidade visual atual:** [Kanagawa Light](KANAGAWA-LIGHT.md), incluindo paleta clara, composição em gravura e aplicação nas 13 rotas. Os detalhes abaixo descrevem o sistema anterior que continua como camada de base para componentes de jogo.
+
 ## Status e autoridade
 Documento de referência de interface. Para a estrutura atual do código, consulte [ARCHITECTURE.md](ARCHITECTURE.md).
 Este documento descreve o contrato implementado em `src/styles/shared/mare-play.css` para os **12 jogos**. `src/styles/shared/mare-studio.css` governa apenas a homepage; `src/styles/shared/mare-evolution.css` foi preservado no hub, sem ser carregado nas partidas. Os estilos específicos de cada jogo permanecem responsáveis pelas grades, tabuleiros, puzzles, posicionamento dos elementos especiais e estados particulares.
