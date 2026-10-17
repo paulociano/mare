@@ -1,0 +1,15 @@
+
+/* Read-only explorer diary. No network, rankings or simulated victories. */
+body.mare-hub .mare-explorer{order:2;display:grid;grid-template-columns:minmax(190px,1fr) minmax(250px,1.5fr);gap:20px;align-items:center;padding:clamp(18px,2.5vw,28px);border:1px solid #66bcb27d;border-radius:22px;background:linear-gradient(120deg,#0c3444ef,#061e30ef);box-shadow:0 14px 32px #00121e5a}
+body.mare-hub .mare-explorer__intro{display:grid;gap:6px}
+body.mare-hub .mare-explorer__eyebrow{font-weight:800;letter-spacing:.12em;color:#9eeadd;font-size:.7rem}
+body.mare-hub .mare-explorer h2{font-size:clamp(1.2rem,2vw,1.6rem);line-height:1.15;margin:0;color:#f1f8f7}
+body.mare-hub .mare-explorer p{font-size:.86rem;line-height:1.55;color:#c5dcdf;margin:0;max-width:48ch}
+body.mare-hub .mare-explorer__meter{display:grid;gap:12px;min-width:0}
+body.mare-hub .mare-explorer__track{height:12px;background:#173e51;border:1px solid #5e8c98;border-radius:99px;overflow:hidden}
+body.mare-hub .mare-explorer__fill{display:block;height:100%;background:linear-gradient(90deg,#3eb8bd,#8ff3c7);border-radius:inherit;transition:width .3s ease}
+body.mare-hub .mare-explorer__badges{display:flex;flex-wrap:wrap;gap:7px}
+body.mare-hub .mare-explorer__badge{display:inline-flex;align-items:center;min-height:30px;padding:5px 9px;font-size:.72rem;font-weight:700;border:1px solid #44697a;border-radius:10px;color:#a7b8c2;background:#0b2638}
+body.mare-hub .mare-explorer__badge.is-earned{background:#164e4a;border-color:#71d8bd;color:#e8fff7}
+@media(max-width:760px){body.mare-hub .mare-explorer{grid-template-columns:1fr;gap:14px}}
+@media(prefers-reduced-motion:reduce){body.mare-hub .mare-explorer__fill{transition:none}}
