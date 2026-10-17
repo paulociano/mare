@@ -104,13 +104,11 @@ def main():
             })""")
             assert before["waiting"] and before["old"],"Old version must survive until explicit upgrade"
             page.get_by_role("button",name="Atualizar aplicativo").click()
-            page.wait_for_function("""async()=>!(await caches.keys()).some(k=>k.startsWith('mare-shell-')&&k!=='mare-shell-'+window.__newCache)""",
-              timeout=25000) if False else None
             page.wait_for_function("""async expected=>{
               const list=await caches.keys();
               const registration=await navigator.serviceWorker.getRegistration();
               return list.includes(expected)&&!registration.waiting&&list.filter(k=>k.startsWith('mare-shell-')).length===1;
-            }""","mare-shell-"+new_suffix,timeout=25000)
+            }""",arg="mare-shell-"+new_suffix,timeout=25000)
             assert page.evaluate("""()=>JSON.parse(localStorage.getItem('mare-verified-results-v1')||'[]').some(e=>e.game==='perola'&&e.outcome==='win')""")
             report["update"]={"waitedForConsent":True,"previousCacheRemoved":True,"ledgerKept":True}
           finally:
