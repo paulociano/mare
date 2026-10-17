@@ -1198,3 +1198,24 @@ body.mare-kanagawa > a.mare-skip-link:is(:focus,:focus-visible){
   background:#dcebef!important;
   border-color:#7ea8b9!important;
 }
+
+
+/* Details isolated by computed-style review: mission badges and Recife HUD. */
+:root:not([data-mare-contrast="high"]) body.mare-hub.mare-kanagawa
+ .mare-explorer__badge:not(.is-earned){
+  color:#173e5e!important;
+  background:#e2eef0!important;
+  border:1px solid #9bb7c4!important;
+  box-shadow:none!important;
+}
+:root:not([data-mare-contrast="high"]) body.mare-recife.mare-kanagawa
+ .topbar .round{
+  color:#173e5e!important;
+  background:#fffdf7!important;
+  border:1px solid #94b4c3!important;
+  box-shadow:none!important;
+}
+:root:not([data-mare-contrast="high"]) body.mare-recife.mare-kanagawa
+ .topbar .round:is(:hover,:focus-visible){
+  background:#dcebef!important;border-color:#497c98!important;
+}
