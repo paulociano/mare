@@ -578,6 +578,14 @@ body.mare-kanagawa.mare-marujo #words>span.found{
  color:#fff!important;
 }
 
+/* Populated Diary accessibility state: old mint caption on light paper. */
+body.mare-hub.mare-kanagawa .mar-eyebrow{
+ color:#173e5e!important;text-shadow:none!important;
+}
+:root[data-mare-contrast="high"] body.mare-hub.mare-kanagawa .mar-eyebrow{
+ color:#fff!important;
+}
+
 /* Specificity-safe accessibility overrides: dark mode must win over paper cards. */
 :root[data-mare-contrast="high"] body.mare-hub.mare-kanagawa .mar-catalog>article.mar-game{
  background:#061925!important;background-image:none!important;border-color:#b0ebdf!important;
