@@ -4,7 +4,7 @@
   "version": "1.0.0",
   "description": "MARÉ: doze jogos de palavras estáticos",
   "scripts": {
-    "test": "node tests/smoke.cjs && node tests/gameplay.cjs && node tests/evolution.cjs && node tests/explorer.cjs && node tests/progress.cjs && node tests/progress-wave2.cjs && node tests/progress-all12.cjs",
+    "test": "node tests/smoke.cjs && node tests/gameplay.cjs && node tests/evolution.cjs && node tests/explorer.cjs && node tests/progress.cjs && node tests/progress-wave2.cjs && node tests/progress-all12.cjs && node tests/xp.cjs",
     "build": "node scripts/build-site.cjs",
     "check": "node scripts/check-repository.cjs && node scripts/check-sources.cjs && npm test && npm run build && node scripts/check-build.cjs"
   },
