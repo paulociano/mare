@@ -77,7 +77,7 @@
  guide.append(guideText,guideToggle);
  let dismissed=false;try{dismissed=localStorage.getItem('mare-guide-dismissed-v1')==='1'}catch{}
  guide.hidden=dismissed;
- header.after(guide);
+ toolbar.append(guide);
  const guideOpen=document.createElement('button');guideOpen.type='button';guideOpen.className='mare-filter';
  guideOpen.textContent='Como começar';guideOpen.setAttribute('aria-controls','mare-quick-guide');
  guide.id='mare-quick-guide';
