@@ -1,0 +1,489 @@
+/*
+ * MARÉ / Kanagawa Light — visual layer, 2026.
+ * Source of truth for the light presentation. Loaded LAST in all 13 pages.
+ * This stylesheet deliberately changes surfaces, not game logic, geometry,
+ * persistent states, or the semantic structure of the 12 puzzles.
+ */
+:root {
+  color-scheme:light;
+  --kan-paper:#f8f3e8;
+  --kan-white:#fffdf7;
+  --kan-cream:#f2e9d9;
+  --kan-mist:#e8f1f1;
+  --kan-sky:#d9ebee;
+  --kan-blue:#315f87;
+  --kan-indigo:#174b6a;
+  --kan-deep:#173e5e;
+  --kan-ink:#173e5e;
+  --kan-secondary:#446578;
+  --kan-line:rgba(35,78,112,.23);
+  --kan-shadow:0 18px 42px rgba(35,69,92,.09);
+  --kan-focus:#ab6a17;
+  --kan-serif:Georgia,'Times New Roman',serif;
+  --kan-sans:'DM Sans',system-ui,-apple-system,BlinkMacSystemFont,sans-serif;
+  --text:var(--kan-ink);
+  --muted:var(--kan-secondary);
+  --surface:var(--kan-white);
+  --line:var(--kan-line);
+  --ocean:var(--kan-deep);
+  --cyan:var(--kan-indigo);
+  --teal:var(--kan-blue);
+  --gold:#a76c25;
+  --play-abyss:var(--kan-paper);
+  --play-layer:var(--kan-mist);
+  --play-panel:var(--kan-white);
+  --play-panel-high:var(--kan-sky);
+  --play-ink:var(--kan-ink);
+  --play-muted:var(--kan-secondary);
+  --play-mint:var(--kan-indigo);
+  --play-sand:var(--kan-focus);
+  --m3-bg:var(--kan-paper);
+  --m3-surface:var(--kan-white);
+  --m3-ink:var(--kan-ink);
+  --m3-muted:var(--kan-secondary);
+  --mare-evo-panel:var(--kan-white);
+  --mare-evo-border:var(--kan-line);
+  --mare-evo-focus:var(--kan-focus);
+  --mare-evo-shadow:var(--kan-shadow);
+  --finesse-surface:var(--kan-white);
+  --finesse-surface-2:var(--kan-mist);
+  --finesse-line:var(--kan-line);
+  --finesse-ink:var(--kan-ink);
+  --finesse-accent:var(--kan-indigo);
+  --finesse-warm:var(--kan-focus);
+}
+html{scrollbar-color:#9cbcca var(--kan-paper)}
+body.mare-kanagawa:is(.mare-hub,.mar-app,.mare-recife) {
+  color-scheme:light!important;
+  color:var(--kan-ink)!important;
+  background:var(--kan-paper)!important;
+  background-image:radial-gradient(ellipse 58% 38% at 90% 2%,#d9e9eb 0%,transparent 72%),
+    linear-gradient(180deg,#fcf8f0 0%,#f8f3e8 55%,#eef3f0 100%)!important;
+  font-family:var(--kan-sans);
+  min-height:100vh;
+}
+body.mare-kanagawa::before,body.mare-kanagawa::after{
+  animation:none!important;
+  background-image:none!important;
+  opacity:0!important;
+  pointer-events:none;
+}
+body.mare-kanagawa:is(.mar-app,.mare-recife) > :is(.scene,.seaweed,.fish){display:none!important}
+body.mare-kanagawa :is(h1,h2,h3,h4){color:var(--kan-ink);text-shadow:none}
+body.mare-kanagawa :is(p,small,legend,label){color:var(--kan-secondary)}
+body.mare-kanagawa :is(a,button,input,select,textarea,summary):focus-visible{
+  outline:3px solid var(--kan-focus)!important;
+  outline-offset:3px!important;
+}
+body.mare-kanagawa :is(button,input,select,textarea){font-family:var(--kan-sans);color-scheme:light}
+body.mare-kanagawa :is(a,button,[role="button"]){-webkit-tap-highlight-color:rgba(49,95,135,.12)}
+body.mare-kanagawa a.mare-skip-link{
+  color:var(--kan-white)!important;background:var(--kan-deep)!important;
+  border-color:var(--kan-focus)!important;
+}
+body.mare-kanagawa img[src="assets/brand/mare-logo-transparent.svg"]{
+  filter:brightness(0) saturate(100%) invert(20%) sepia(38%) saturate(998%) hue-rotate(164deg) brightness(92%) contrast(96%)!important;
+}
+body.mare-kanagawa :is(header,footer,.mar-top,.depth-header,.newgame-header,.topbar){
+  border-color:var(--kan-line)!important;
+}
+body.mare-kanagawa :is(.mare-game-nav,.mar-footer,.depth-footer,.newgame-footer){
+  color:var(--kan-secondary)!important;border-color:var(--kan-line)!important;
+}
+
+/* Home: an editorial gallery on Japanese rice-paper, not a dark gaming UI. */
+body.mare-hub.mare-studio.mare-kanagawa{
+  --studio-bg:var(--kan-paper);
+  --studio-surface:var(--kan-white);
+  --studio-edge:var(--kan-line);
+  --studio-mint:var(--kan-indigo);
+  --studio-text:var(--kan-ink);
+  --studio-muted:var(--kan-secondary);
+  --studio-sand:#a76c25;
+  background:var(--kan-paper)!important;
+  color:var(--kan-ink)!important;
+}
+body.mare-kanagawa .mar-top{
+  padding-block:18px!important;
+  background:rgba(255,253,247,.7)!important;
+  border-bottom:1px solid var(--kan-line)!important;
+}
+body.mare-kanagawa .mar-top nav a{
+  color:var(--kan-ink)!important;
+  font-weight:700;
+}
+body.mare-kanagawa .mar-top nav a:is(:hover,:focus-visible){color:#286c97!important}
+body.mare-kanagawa .mare-studio-hero{
+  background:linear-gradient(115deg,#fcf8ef 0%,#f8f3e8 45%,#dfecee 100%)!important;
+  border:1px solid rgba(40,82,112,.24)!important;
+  border-radius:5px 30px 5px 30px!important;
+  box-shadow:var(--kan-shadow)!important;
+  min-height:490px;
+  overflow:hidden;
+}
+body.mare-kanagawa .mare-studio-hero::before{
+  background:repeating-linear-gradient(0deg,rgba(40,70,90,.025) 0 1px,transparent 1px 5px)!important;
+  opacity:.65!important;
+}
+body.mare-kanagawa .mare-studio-hero__copy{
+  position:relative;z-index:2;
+  padding:clamp(32px,5vw,76px) 15px clamp(32px,5vw,76px) clamp(26px,5vw,72px);
+}
+body.mare-kanagawa .mare-studio-hero__eyebrow{
+  color:var(--kan-indigo)!important;font-weight:800;letter-spacing:.22em;
+}
+body.mare-kanagawa .mare-studio-hero h1{
+  color:var(--kan-ink)!important;
+  font-family:var(--kan-serif)!important;font-weight:600!important;
+  font-size:clamp(3.2rem,5.1vw,6.15rem)!important;
+  line-height:1.02;letter-spacing:-.047em!important;
+  max-width:10ch;
+}
+body.mare-kanagawa .mare-studio-hero h1 em{
+  font:italic 500 inherit;color:#285f80!important;
+  font-family:var(--kan-serif)!important;
+}
+body.mare-kanagawa .mare-studio-hero__copy>p{
+  color:#355973!important;font-size:clamp(1rem,1.35vw,1.22rem)!important;
+  line-height:1.7;max-width:38ch;
+}
+body.mare-kanagawa .mare-studio-hero__actions{gap:12px;flex-wrap:wrap}
+body.mare-kanagawa .mare-studio-hero__actions a{
+  display:inline-flex;align-items:center;justify-content:center;
+  min-height:48px;border:1px solid #315f87!important;
+  border-radius:4px!important;padding:12px 20px;
+  background:transparent!important;color:var(--kan-deep)!important;
+  font-weight:800;box-shadow:none!important;
+}
+body.mare-kanagawa .mare-studio-hero__actions a:first-child{
+  color:var(--kan-white)!important;background:var(--kan-indigo)!important;
+}
+body.mare-kanagawa .mare-studio-hero__actions a:is(:hover,:focus-visible){
+  background:#d8e9ee!important;color:var(--kan-deep)!important;
+}
+body.mare-kanagawa .mare-studio-hero__visual{
+  background:#e8efe9 url('../../../assets/backgrounds/kanagawa-wave.svg') center/cover no-repeat!important;
+  border-radius:0!important;
+  min-height:490px;
+  box-shadow:inset 1px 0 rgba(40,75,99,.12);
+}
+body.mare-kanagawa .mare-studio-hero__visual::before,
+body.mare-kanagawa .mare-studio-hero__visual::after{
+  content:none!important;
+}
+body.mare-kanagawa .mare-studio-hero__visual canvas{display:none!important}
+body.mare-kanagawa .mare-studio-hero__seal,
+body.mare-kanagawa .mare-studio-hero__coordinates{
+  color:var(--kan-deep)!important;background:rgba(250,248,240,.83)!important;
+  border:1px solid rgba(30,69,96,.28)!important;border-radius:3px!important;
+  box-shadow:none!important;
+}
+body.mare-kanagawa .mar-section-head{
+  padding:34px 0 20px!important;
+  border-color:var(--kan-line)!important;
+}
+body.mare-kanagawa .mar-section-head h2{
+  font-family:var(--kan-serif)!important;
+  font-size:clamp(2rem,3.2vw,3.15rem)!important;
+  color:var(--kan-ink)!important;letter-spacing:-.03em!important;
+}
+body.mare-kanagawa .mar-section-head p{color:var(--kan-secondary)!important}
+body.mare-kanagawa :is(.mare-discover,.mar-continue,.mare-recommendation,.mare-explorer,
+  .mare-logbook,.mare-social,.mare-content-control,.mare-voyage>section){
+  border-color:var(--kan-line)!important;
+}
+body.mare-kanagawa .mar-catalog{gap:17px!important}
+body.mare-hub.mare-kanagawa .mar-catalog>article.mar-game{
+  height:auto!important;min-height:385px!important;max-height:none!important;
+  padding:22px!important;
+  color:var(--kan-ink)!important;
+  background:linear-gradient(145deg,#fffdf7 0%,#f1f7f5 100%)!important;
+  border:1px solid rgba(37,78,109,.24)!important;
+  border-radius:5px 24px 5px 24px!important;
+  box-shadow:0 10px 28px rgba(30,66,89,.065)!important;
+  transition:transform .24s ease,box-shadow .24s ease,border-color .24s ease;
+}
+body.mare-hub.mare-kanagawa .mar-catalog>article.mar-game:nth-child(3n+2){
+  background:linear-gradient(143deg,#fcf9f0 0%,#eaf2f1 100%)!important;
+}
+body.mare-hub.mare-kanagawa .mar-catalog>article.mar-game::before,
+body.mare-hub.mare-kanagawa .mar-catalog>article.mar-game::after{
+  background:none!important;box-shadow:none!important;
+}
+body.mare-hub.mare-kanagawa .mar-catalog>article.mar-game[hidden]{display:none!important}
+body.mare-hub.mare-kanagawa .mar-catalog>article.mar-game:is(:hover,:focus-within){
+  border-color:#4f84a2!important;
+  box-shadow:0 18px 40px rgba(28,72,106,.13)!important;
+  transform:translateY(-3px);
+}
+body.mare-hub.mare-kanagawa .mar-catalog>article.mar-game>.mar-tag{
+  color:var(--kan-blue)!important;border-color:var(--kan-line)!important;
+  background:rgba(222,235,238,.75)!important;border-radius:3px!important;
+}
+body.mare-hub.mare-kanagawa .mar-catalog>article.mar-game>.mar-game-symbol{
+  filter:drop-shadow(0 4px 7px rgba(32,73,99,.10))!important;
+}
+body.mare-hub.mare-kanagawa .mar-catalog>article.mar-game>h2.recife-card-heading{
+  color:var(--kan-ink)!important;
+  font-family:var(--kan-serif)!important;
+  font-weight:700!important;letter-spacing:-.025em!important;
+  font-size:clamp(2rem,2.5vw,3rem)!important;
+  text-shadow:none!important;
+}
+body.mare-hub.mare-kanagawa .mar-catalog>article.mar-game .mar-game-info p{
+  color:var(--kan-secondary)!important;line-height:1.55;
+}
+body.mare-hub.mare-kanagawa .mar-catalog>article.mar-game .mar-cta{
+  min-height:48px;border:1px solid #3c6f8f!important;
+  border-radius:4px!important;color:var(--kan-deep)!important;
+  background:rgba(220,236,238,.6)!important;
+  font-weight:800;
+}
+body.mare-hub.mare-kanagawa .mar-catalog>article.mar-game .mar-cta:is(:hover,:focus-visible){
+  background:var(--kan-indigo)!important;color:var(--kan-white)!important;
+}
+body.mare-kanagawa .mare-filter{
+  color:var(--kan-deep)!important;background:var(--kan-white)!important;
+  border:1px solid var(--kan-line)!important;
+}
+body.mare-kanagawa .mare-filter[aria-pressed="true"]{
+  background:var(--kan-indigo)!important;color:var(--kan-white)!important;
+}
+body.mare-kanagawa :is(.mare-empty,.mar-footer){color:var(--kan-secondary)!important}
+
+/* Diary, voyages, preferences and sharing: quieter paper-surface utilities. */
+body.mare-kanagawa :is(.mare-logbook,.mare-voyage__rhythm,.mare-voyage__spotlight,
+ .mare-social,.mare-content-control,.mare-access__details,.mar-continue,
+ .mare-recommendation,.mare-discover){
+  color:var(--kan-ink)!important;
+  background:var(--kan-white)!important;
+  border:1px solid var(--kan-line)!important;
+  box-shadow:0 9px 25px rgba(26,66,91,.055)!important;
+}
+body.mare-kanagawa :is(.mare-logbook,.mare-voyage,.mare-social,.mare-access,.mare-content-control)
+ :is(h2,h3,h4,strong,summary,legend,label){
+  color:var(--kan-ink)!important;
+}
+body.mare-kanagawa :is(.mare-logbook,.mare-voyage,.mare-social,.mare-access,.mare-content-control)
+ :is(p,small,span:not(.mare-voyage__seal):not(.mare-voyage__day-mark)){
+  color:var(--kan-secondary);
+}
+body.mare-kanagawa :is(.mare-voyage__eyebrow,.mare-explorer__eyebrow,.mare-studio-hero__eyebrow){
+  color:var(--kan-indigo)!important;
+}
+body.mare-kanagawa :is(.mare-logbook__stat,.mare-logbook__destination,.mare-logbook__award,
+ .mare-voyage__history-item,.mare-voyage__streak-metrics>div,.mare-access__scale,.mare-access__toggle,
+ .mare-social__compare,.mare-social__select,.mare-social__peer,.mare-voyage__seal){
+  background:var(--kan-mist)!important;color:var(--kan-ink)!important;
+  border-color:var(--kan-line)!important;
+}
+body.mare-kanagawa :is(.mare-logbook__destination-info strong,.mare-logbook__stat-value,
+ .mare-logbook__award-description strong,.mare-voyage__streak-metrics strong,
+ .mare-voyage__seal span,.mare-social__verdict){color:var(--kan-deep)!important}
+body.mare-kanagawa :is(.mare-logbook__destination-info small,.mare-voyage__day small,
+ .mare-logbook__fleet-caption,.mare-social__status,.mare-access__summary-caption,
+ .mare-access__toggle small,.mare-access__content>p){color:var(--kan-secondary)!important}
+body.mare-kanagawa :is(.mare-social__badge,.mare-social__url,.mare-access__status,
+ .mare-voyage__history-item time){color:var(--kan-deep)!important}
+body.mare-kanagawa :is(.mare-explorer__share,.mare-social__button,.mare-social__play,
+ .mare-access__reset,.mare-voyage__play){
+  background:var(--kan-indigo)!important;color:var(--kan-white)!important;
+  border-color:var(--kan-indigo)!important;
+}
+body.mare-kanagawa :is(.mare-social__button,.mare-social__play,.mare-access__reset,
+ .mare-voyage__play,.mare-explorer__share):is(:hover,:focus-visible){
+  background:var(--kan-deep)!important;color:white!important;
+}
+body.mare-kanagawa :is(.mare-social__select option){background:#fffdf7!important;color:var(--kan-ink)!important}
+body.mare-kanagawa .mare-access__icon{
+  background:var(--kan-sky)!important;color:var(--kan-indigo)!important;border-color:var(--kan-line)!important;
+}
+body.mare-kanagawa .mare-access input{accent-color:var(--kan-indigo)}
+body.mare-kanagawa .mare-access__summary::after{color:var(--kan-indigo)!important}
+
+/* Interior: transform the shell, not the game's winning/selection logic. */
+body.mare-kanagawa:is(.mar-app,.mare-recife) {
+  --play-layer:var(--kan-mist);
+  --play-panel:var(--kan-white);
+  --play-panel-high:var(--kan-sky);
+  --play-ink:var(--kan-ink);
+  --play-muted:var(--kan-secondary);
+  --play-mint:var(--kan-indigo);
+  --play-sand:var(--kan-focus);
+}
+body.mare-kanagawa:is(.mar-app,.mare-recife)
+ :is(.shell,.wrap,.layout,.concha-shell,.trilha-shell,.enigma-shell,.marujo-shell,
+     .newgame-shell,.depth-shell,.app,.container){
+  color:var(--kan-ink);
+  position:relative;
+}
+body.mare-kanagawa:is(.mar-app,.mare-recife) :is(.topbar,.depth-header,.newgame-header,
+ .concha-header,.trilha-header,.enigma-header,.marujo-header){
+  background:rgba(255,253,247,.78)!important;
+  border-color:var(--kan-line)!important;color:var(--kan-ink)!important;
+}
+body.mare-kanagawa:is(.mar-app,.mare-recife) :is(header a,.return-link>a,.newgame-back,
+ .depth-header>a,.back){
+  color:var(--kan-deep)!important;
+}
+body.mare-kanagawa:is(.mar-app,.mare-recife) :is(.game,.panel,.newgame-panel,.depth-panel,
+ .concha-play,.concha-discover,.trilha-panel,.trilha-info,.trilha-mode,.enigma-card,.enigma-clues,
+ .enigma-stats,.marujo-panel,.marujo-card,.modal,.mare-game-nav){
+  background:var(--kan-white)!important;
+  background-image:none!important;
+  color:var(--kan-ink)!important;
+  border:1px solid var(--kan-line)!important;
+  box-shadow:var(--kan-shadow)!important;
+}
+body.mare-kanagawa:is(.mar-app,.mare-recife)
+ :is(.depth-intro,.newgame-intro,.concha-hero,.trilha-hero,.enigma-hero,.marujo-hero,
+     .hero,.intro,.heading,.return-link){
+  color:var(--kan-ink)!important;
+}
+body.mare-kanagawa:is(.mar-app,.mare-recife)
+ :is(.depth-title-lockup h1,.newgame-intro h1,.mare-game-symbol-lockup h1,
+ .hero h1,.intro h1,.heading h1,.recife-title-lockup){
+  font-family:var(--kan-serif)!important;
+  color:var(--kan-deep)!important;
+  text-shadow:none!important;
+  letter-spacing:-.045em!important;
+}
+body.mare-kanagawa:is(.mar-app,.mare-recife)
+ :is(.depth-eyebrow,.newgame-eyebrow,.overline,.eyebrow,.tiny,
+ .trilha-eyebrow,.enigma-eyebrow,.marujo-eyebrow,.mare-game-nav__title,
+ .nav-intro,.depth-hud,.newgame-hud){
+  color:var(--kan-blue)!important;
+}
+body.mare-kanagawa:is(.mar-app,.mare-recife)
+ :is(.notice,.status,.newgame-notice,.depth-status,.depth-clue,.depth-instructions,
+     .bottomnote,.mare-game-nav__name,.depth-panel label,.concha-stat){
+  color:var(--kan-secondary)!important;
+}
+body.mare-kanagawa:is(.mar-app,.mare-recife) :is(input,textarea,select):not([type="checkbox"]):not([type="radio"]){
+  background:#fffefb!important;color:var(--kan-ink)!important;
+  border:1px solid #7399b1!important;
+  box-shadow:inset 0 1px 3px rgba(30,70,96,.05)!important;
+}
+body.mare-kanagawa:is(.mar-app,.mare-recife) :is(input,textarea)::placeholder{color:#5a7180!important}
+body.mare-kanagawa:is(.mar-app,.mare-recife)
+ :is(.controls,.actions,.lower,.switch,.concha-tabs,.concha-controls,.trilha-actions,
+ .newgame-actions,.newgame-modes,.depth-buttons,.depth-modes,.enigma-modes,.marujo-modes)
+ > button:not(:disabled){
+  color:var(--kan-deep)!important;
+  background:var(--kan-mist)!important;
+  border:1px solid #7fa8bf!important;
+  box-shadow:none!important;
+}
+body.mare-kanagawa:is(.mar-app,.mare-recife)
+ :is(.controls,.actions,.lower,.switch,.concha-tabs,.concha-controls,.trilha-actions,
+ .newgame-actions,.newgame-modes,.depth-buttons,.depth-modes,.enigma-modes,.marujo-modes)
+ > button[aria-pressed="true"],
+body.mare-kanagawa:is(.mar-app,.mare-recife)
+ :is(.controls,.actions,.lower,.switch,.concha-tabs,.concha-controls,.trilha-actions,
+ .newgame-actions,.newgame-modes,.depth-buttons,.depth-modes,.enigma-modes,.marujo-modes)
+ > button.active{
+  color:var(--kan-white)!important;background:var(--kan-indigo)!important;
+}
+body.mare-kanagawa:is(.mar-app,.mare-recife)
+ :is(.mare-game-nav__link,.mare-game-nav__name){
+  background:transparent!important;color:var(--kan-deep)!important;
+  border-color:var(--kan-line)!important;
+}
+body.mare-kanagawa:is(.mar-app,.mare-recife) .mare-game-nav__link:is(:hover,:focus-visible){
+  background:var(--kan-mist)!important;
+}
+body.mare-kanagawa:is(.mar-app,.mare-recife) .mare-game-nav__link[aria-current="page"]{
+  background:#d8e9ee!important;color:var(--kan-deep)!important;
+  border-color:#739eb7!important;
+}
+/* Base cells only. Data states and solved outcomes retain their own selectors. */
+body.mare-kanagawa.mare-recife #board .tile:not(.correct):not(.present):not(.absent):not([data-state]),
+body.mare-kanagawa.mare-cardume #grid .tile:not([aria-pressed="true"]):not(.solved),
+body.mare-kanagawa.mare-trilha #grid button:not(.chosen):not([aria-pressed="true"]),
+body.mare-kanagawa.mare-enigma #board .enigma-cell:not(.selected):not(.active),
+body.mare-kanagawa.mare-marujo #board .marujo-cell:not(.selected):not(.found),
+body.mare-kanagawa.mare-criptograma #cipher .crypto-tile:not(.selected):not(.crypto-correct){
+  background:#eef4f2!important;
+  border-color:#8aaabc!important;color:var(--kan-ink)!important;
+}
+body.mare-kanagawa:is(.mar-app,.mare-recife) :is(.board,.grid,.keyboard,.depth-tiles,.depth-scramble){color:var(--kan-ink)}
+body.mare-kanagawa:is(.mar-app,.mare-recife) :is(.modalwrap,.overlay)::backdrop{background:rgba(21,49,74,.46)}
+body.mare-kanagawa:is(.mar-app,.mare-recife) :is(.mare-social,.mare-access__details){
+  background:var(--kan-white)!important;color:var(--kan-ink)!important;
+}
+/* Thin engraved-wave signature in unused space, not behind gameplay text. */
+body.mare-kanagawa:is(.mar-app,.mare-recife) :is(.depth-shell,.newgame-shell,.shell,.wrap){
+  background-image:linear-gradient(rgba(248,243,232,.93),rgba(248,243,232,.93)),
+    url('../../../assets/backgrounds/kanagawa-wave.svg');
+  background-repeat:no-repeat;background-position:right top;background-size:100% 100%,min(560px,80vw) auto;
+}
+body.mare-kanagawa .mare-finale{
+  background:var(--kan-white)!important;color:var(--kan-ink)!important;border-color:var(--kan-line)!important;
+}
+body.mare-kanagawa .mare-finale :is(h2,h3,strong){color:var(--kan-deep)!important}
+body.mare-kanagawa .mare-finale :is(p,.mare-finale__detail){color:var(--kan-secondary)!important}
+body.mare-kanagawa .mare-finale__actions a{
+  color:var(--kan-white)!important;background:var(--kan-indigo)!important;border-color:var(--kan-indigo)!important;
+}
+
+/* Functional preferences always win over aesthetic treatments. */
+:root[data-mare-focus="on"] body.mare-kanagawa .mare-studio-hero__visual{display:none!important}
+:root[data-mare-focus="on"] body.mare-kanagawa:is(.mar-app,.mare-recife) :is(.depth-shell,.newgame-shell,.shell,.wrap){
+  background-image:none!important;
+}
+:root[data-mare-contrast="high"] body.mare-kanagawa{
+  color-scheme:dark!important;background:#020c13!important;color:#fff!important;
+}
+:root[data-mare-contrast="high"] body.mare-kanagawa :is(.mare-studio-hero,.mar-top,.mar-game,
+ .mare-logbook,.mare-social,.mare-access__details,.mare-voyage>section,.mar-continue,
+ .game,.panel,.newgame-panel,.depth-panel,.trilha-panel,.concha-play,.enigma-card,
+ .marujo-panel,.mare-game-nav,.modal){
+  background:#061925!important;background-image:none!important;color:#fff!important;
+  border-color:#b0ebdf!important;
+}
+:root[data-mare-contrast="high"] body.mare-kanagawa :is(h1,h2,h3,h4,p,small,span,strong,label,legend,
+ .mare-studio-hero h1,.mare-studio-hero h1 em,.recife-title-lockup,.depth-title-lockup h1,
+ .mar-top nav a,.mare-game-nav__name,.mare-logbook__stat-value){
+  color:#fff!important;
+}
+:root[data-mare-contrast="high"] body.mare-kanagawa .mare-studio-hero__visual{display:none!important}
+:root[data-mare-contrast="high"] body.mare-kanagawa img[src="assets/brand/mare-logo-transparent.svg"]{filter:none!important}
+:root[data-mare-contrast="high"] body.mare-kanagawa :is(button,a,input,select,textarea,summary):focus-visible{
+  outline:4px solid #ffdf91!important;
+}
+@media(max-width:920px){
+ body.mare-kanagawa .mare-studio-hero{grid-template-columns:1fr 1fr}
+ body.mare-kanagawa .mare-studio-hero h1{font-size:clamp(2.9rem,5.9vw,5rem)!important}
+}
+@media(max-width:720px){
+ body.mare-kanagawa .mare-studio-hero{
+  display:flex!important;flex-direction:column!important;
+  border-radius:5px 19px 5px 19px!important;
+ }
+ body.mare-kanagawa .mare-studio-hero__copy{padding:32px 25px 16px!important}
+ body.mare-kanagawa .mare-studio-hero h1{max-width:13ch;font-size:clamp(2.65rem,9vw,4.25rem)!important}
+ body.mare-kanagawa .mare-studio-hero__visual{
+  position:relative!important;inset:auto!important;opacity:1!important;
+  width:100%;height:240px;min-height:240px!important;background-position:center 43%!important;
+ }
+ body.mare-kanagawa .mare-studio-hero__visual .mare-studio-hero__seal,
+ body.mare-kanagawa .mare-studio-hero__visual .mare-studio-hero__coordinates{display:none!important}
+ body.mare-hub.mare-kanagawa .mar-catalog>article.mar-game{min-height:345px!important}
+ body.mare-kanagawa .mar-top{background:transparent!important}
+}
+@media(max-width:420px){
+ body.mare-kanagawa .mare-studio-hero__visual{height:210px;min-height:210px!important}
+ body.mare-hub.mare-kanagawa .mar-catalog>article.mar-game{padding:19px!important;min-height:340px!important}
+ body.mare-kanagawa .mare-studio-hero__actions a{width:100%}
+}
+@media(prefers-reduced-motion:reduce){
+ body.mare-kanagawa *,body.mare-kanagawa *::before,body.mare-kanagawa *::after{
+  animation-duration:.01ms!important;transition-duration:.01ms!important;
+ }
+ body.mare-kanagawa .mar-catalog>article.mar-game:is(:hover,:focus-within){transform:none!important}
+}
+:root[data-mare-motion="reduce"] body.mare-kanagawa *,
+:root[data-mare-motion="reduce"] body.mare-kanagawa *::before,
+:root[data-mare-motion="reduce"] body.mare-kanagawa *::after{
+ animation:none!important;transition:none!important;transform:none!important;
+}
