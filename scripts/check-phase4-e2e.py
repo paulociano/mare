@@ -42,7 +42,7 @@ def outcome(page,game,value):
     return {"game":game,"outcome":value,"record":again[0]["id"],"status":"PASS"}
 
 def forca_solution(page):
-    source=(SITE/"forca.js").read_text(encoding="utf8").split("const puzzles=")[1].split("];",1)[0]
+    source=(SITE/"src/scripts/games/forca.js").read_text(encoding="utf8").split("const puzzles=")[1].split("];",1)[0]
     words=re.findall(r"\['([A-Z]+)','[^']+'\]",source)
     assert len(words)>=30,"Forca fixture source schema changed"
     today=page.evaluate("""() => new Intl.DateTimeFormat('en-CA',{

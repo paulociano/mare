@@ -75,7 +75,7 @@ def check():
                                 scrollWidth: document.documentElement.scrollWidth,
                                 viewport: window.innerWidth,
                                 display: getComputedStyle(document.querySelector('main')).display,
-                                css: (await Promise.all([...document.styleSheets].filter(s => s.href).map(async s => s.href.includes('mare-play.css') || (s.href.includes('/styles/mare-') && (await (await fetch(s.href)).text()).includes('/* Source: mare-play.css */'))))).some(Boolean)
+                                css: (await Promise.all([...document.styleSheets].filter(s => s.href).map(async s => s.href.includes('src/styles/shared/mare-play.css') || (s.href.includes('/styles/mare-') && (await (await fetch(s.href)).text()).includes('/* Source: src/styles/shared/mare-play.css */'))))).some(Boolean)
                             })""")
                             if observed["headings"] != 1:
                                 findings.append(f"{device} {page_name}: {observed['headings']} H1")

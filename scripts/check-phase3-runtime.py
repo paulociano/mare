@@ -96,7 +96,7 @@ def main():
                 const sheets=[...document.querySelectorAll('link[rel="stylesheet"]')];
                 return (await Promise.all(sheets.map(async el =>
                     el.href.endsWith('/mare-finesse.css') ||
-                    (el.href.includes('/styles/mare-') && (await (await fetch(el.href)).text()).includes('/* Source: mare-finesse.css */'))
+                    (el.href.includes('/styles/mare-') && (await (await fetch(el.href)).text()).includes('/* Source: src/styles/shared/mare-finesse.css */'))
                 ))).some(Boolean);
             }"""),game+": finesse CSS absent"
             assert page.locator(".mare-finale:visible").count()==0,game+": unearned result visible"
