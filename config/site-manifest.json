@@ -32,7 +32,9 @@
     "mare-content.js",
     "mare-content.css",
     "mare-social.js",
-    "mare-social.css"
+    "mare-social.css",
+    "mare-accessibility.js",
+    "mare-accessibility.css"
   ],
   "optionalFiles": [
     "data/semantic-ranks.json"
