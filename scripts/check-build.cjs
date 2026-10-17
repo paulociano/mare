@@ -38,6 +38,16 @@ for(const page of manifest.pages){
  }
 }
 for(const file of manifest.requiredFiles)assert.ok(exists(file),'Obrigatório ausente do pacote: '+file);
+const activeCss=new Set(manifest.runtimeStyles||[]);
+for(const file of activeCss)assert.ok(exists(file),'CSS dinâmico ausente: '+file);
+for(const file of manifest.pages){
+ const html=read(file+'.html');
+ const assets=[...html.matchAll(/<link\b[^>]*rel=["']stylesheet["'][^>]*href=["']([^"']+)["']/g)];
+ assert.equal(assets.length,1,'CSS não consolidado: '+file);
+}
+assert.ok(!exists('src/styles/shared/mare-3.css'),'CSS-fonte duplicado no pacote de publicação');
+assert.ok(!exists('src/styles/shared/mare-brand.css'),'CSS-fonte duplicado no pacote de publicação');
+
 assert.ok(exists('src/scripts/games/recife.js'),'Recife sem script no pacote final');
 for(const game of ['recife','abismo','cardume','corrente','concha','trilha','enigma','marujo']){
  assert.ok(exists('assets/backgrounds/'+game+'.svg'),'Arte ausente: '+game);

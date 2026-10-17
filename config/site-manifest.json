@@ -24,20 +24,18 @@
     "src/styles/shared/mare-diagnostics.css",
     "app.webmanifest",
     "src/scripts/shared/mare-pwa.js",
-    "src/styles/shared/mare-pwa.css",
     "assets/brand/mare-app-192.png",
     "assets/brand/mare-app-512.png",
     "src/scripts/shared/mare-voyage.js",
-    "src/styles/shared/mare-voyage.css",
     "src/scripts/shared/mare-content.js",
-    "src/styles/shared/mare-content.css",
     "src/scripts/shared/mare-social.js",
-    "src/styles/shared/mare-social.css",
-    "src/scripts/shared/mare-accessibility.js",
-    "src/styles/shared/mare-accessibility.css"
+    "src/scripts/shared/mare-accessibility.js"
   ],
   "optionalFiles": [
     "data/semantic-ranks.json"
   ],
-  "backgroundsDirectory": "assets/backgrounds"
+  "backgroundsDirectory": "assets/backgrounds",
+  "runtimeStyles": [
+    "src/styles/shared/mare-diagnostics.css"
+  ]
 }

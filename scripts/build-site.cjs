@@ -85,6 +85,15 @@ for(const page of pages){
  });
  fs.writeFileSync(path.join(out,filename),html);
 }
+// Do not duplicate the original CSS layers in the deployable offline package.
+// Only runtime-injected stylesheets must remain addressable by their original URL.
+const runtimeStyles=new Set(manifest.runtimeStyles||[]);
+for(const file of [...copied]){
+ if(!file.endsWith('.css')||file.startsWith('styles/')||runtimeStyles.has(file))continue;
+ fs.rmSync(path.join(out,file));
+ copied.delete(file);
+}
+for(const file of runtimeStyles)assert.ok(copied.has(file),'CSS dinâmico não publicado: '+file);
 console.log('CSS: '+bundles.size+' bundles para '+pages.length+' páginas');
 
 fs.writeFileSync(path.join(out,'.nojekyll'),'');
