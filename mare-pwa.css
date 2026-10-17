@@ -1,0 +1,11 @@
+/* MARÉ PWA status, opt-in install and update, responsive by construction. */
+.mare-pwa{display:flex;align-items:center;flex-wrap:wrap;gap:8px 12px;margin-top:18px;max-width:650px}
+.mare-pwa__status{display:inline-flex;align-items:center;gap:9px;font-size:12px;font-weight:650;line-height:1.45;color:#b6ded7}
+.mare-pwa__status::before{content:"";width:7px;height:7px;flex:none;border-radius:50%;background:#8ad9c0;box-shadow:0 0 0 3px #8ad9c021}
+.mare-pwa__action{min-height:44px;padding:10px 14px;border:1px solid #a0e7cd;border-radius:10px;color:#ecfff6;background:#12494d;font:750 12px/1.25 system-ui,sans-serif;cursor:pointer}
+.mare-pwa__action:is(:hover,:focus-visible){background:#236c69}
+.mare-pwa__action:focus-visible{outline:3px solid #f0d494;outline-offset:3px}
+.mare-pwa__action[hidden],.mare-pwa[hidden]{display:none!important}
+.mare-pwa--compact:not([hidden]){position:fixed;bottom:12px;right:12px;z-index:10005;max-width:min(355px,calc(100vw - 24px));padding:11px 14px;background:#092a37;border:1px solid #8dd7c7;border-radius:13px;box-shadow:0 12px 35px #001522bb}
+@media(max-width:520px){.mare-pwa{align-items:flex-start;flex-direction:column}.mare-pwa--compact{right:8px;bottom:8px}}
+@media(prefers-reduced-motion:reduce){.mare-pwa *{transition:none!important;animation:none!important}}

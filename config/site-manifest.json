@@ -21,7 +21,12 @@
     "data/cardume-puzzles.json",
     "assets/ocean-depth.svg",
     "mare-diagnostics.js",
-    "mare-diagnostics.css"
+    "mare-diagnostics.css",
+    "app.webmanifest",
+    "mare-pwa.js",
+    "mare-pwa.css",
+    "assets/brand/mare-app-192.png",
+    "assets/brand/mare-app-512.png"
   ],
   "optionalFiles": [
     "data/semantic-ranks.json"

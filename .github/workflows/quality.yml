@@ -19,14 +19,7 @@ jobs:
         run: |
           node scripts/check-repository.cjs
           node scripts/check-sources.cjs
-          node tests/smoke.cjs
-          node tests/gameplay.cjs
-          node tests/evolution.cjs
-          node tests/play-system.cjs
-          node tests/phase4-contract.cjs
-          node tests/phase5-contract.cjs
-          node tests/studio.cjs
-          node tests/finesse.cjs
+          npm test
       - name: Validar pacote publicado
         run: |
           node scripts/build-site.cjs
@@ -43,6 +36,7 @@ jobs:
           npm install --no-save --no-package-lock --no-audit --no-fund --ignore-scripts axe-core@4.10.3
           python scripts/check-phase4-quality.py
           python scripts/check-phase5-runtime.py
+          python scripts/check-phase6-pwa.py
       - name: Preservar screenshots e relatório de QA
         if: always()
         uses: actions/upload-artifact@v4
