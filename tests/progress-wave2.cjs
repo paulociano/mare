@@ -4,7 +4,7 @@ for(const game of ['cardume','corrente']){
  const html=fs.readFileSync(game+'.html','utf8');
  assert.ok(html.indexOf('src="src/scripts/shared/mare-progress.js"')>=0);
  assert.ok(html.indexOf('src="src/scripts/shared/mare-progress.js"')<html.indexOf('src="src/scripts/games/'+game+'.js"'));
- const js=fs.readFileSync(game+'.js','utf8');
+ const js=fs.readFileSync('src/scripts/games/'+game+'.js','utf8');
  new vm.Script(js);
  assert.ok(js.includes("MareProgress?.record('"+game+"'"),game+': missing explicit progress call');
 }
