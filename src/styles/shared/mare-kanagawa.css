@@ -514,6 +514,70 @@ body.mare-kanagawa:is(.mar-app,.mare-recife) button[type="submit"]:is(:hover,:fo
  background:#173e5e!important;color:#fffdf7!important;
 }
 
+/* Fine-grained WCAG fixes verified against browser-computed backgrounds. */
+body.mare-kanagawa #mare-quick-guide{
+ background:#fffdf7!important;color:#173e5e!important;border-color:var(--kan-line)!important;
+}
+body.mare-kanagawa #mare-quick-guide :is(p,span,strong){
+ color:#173e5e!important;
+}
+body.mare-kanagawa .mare-recommendation__title,
+body.mare-kanagawa .mare-discover-title>span{
+ color:#173e5e!important;
+}
+body.mare-kanagawa .mare-social__choice,
+body.mare-kanagawa .mare-social__peer{
+ background:#e8f1f1!important;border-color:var(--kan-line)!important;color:#173e5e!important;
+}
+body.mare-kanagawa .mare-social__choice>label,
+body.mare-kanagawa .mare-social__choice .mare-social__badge{
+ color:#173e5e!important;
+}
+body.mare-kanagawa .mare-social__url,
+body.mare-kanagawa .mare-social__select{
+ background:#fffdf7!important;color:#173e5e!important;
+ border-color:#7296a8!important;
+}
+body.mare-kanagawa:is(.mar-app,.mare-recife) .empty{
+ background:#e8f1f1!important;color:#173e5e!important;
+ border-color:var(--kan-line)!important;
+}
+body.mare-kanagawa.mare-recife .mare-legend>span,
+body.mare-kanagawa.mare-recife .mare-progress{
+ color:#173e5e!important;text-shadow:none!important;
+}
+body.mare-kanagawa.mare-trilha #formed{
+ color:#173e5e!important;text-shadow:none!important;
+}
+body.mare-kanagawa.mare-trilha #daily[aria-pressed="true"],
+body.mare-kanagawa.mare-trilha #daily.active{
+ background:#174b6a!important;color:#fffdf7!important;
+}
+body.mare-kanagawa.mare-enigma .enigma-current{
+ background:#e8f1f1!important;border:1px solid var(--kan-line)!important;
+}
+body.mare-kanagawa.mare-enigma .enigma-current :is(#direction,#currentclue){
+ color:#173e5e!important;text-shadow:none!important;
+}
+body.mare-kanagawa.mare-marujo #words>span{
+ background:#e8f1f1!important;color:#173e5e!important;
+ border-color:#8baabc!important;
+}
+body.mare-kanagawa.mare-marujo #words>span.found{
+ background:#d3eadc!important;border-color:#4e8873!important;color:#173e5e!important;
+}
+:root[data-mare-contrast="high"] body.mare-kanagawa
+ :is(#mare-quick-guide,.mare-social__choice,.mare-social__peer,
+ .mare-social__url,.mare-social__select,.empty,.enigma-current,.marujo-words>span){
+ background:#061925!important;border-color:#b0ebdf!important;color:#fff!important;
+}
+:root[data-mare-contrast="high"] body.mare-kanagawa
+ :is(#mare-quick-guide p,.mare-social__choice>label,.mare-social__badge,
+ .mare-recommendation__title,.mare-discover-title>span,.enigma-current #direction,
+ .enigma-current #currentclue,#formed,#words>span){
+ color:#fff!important;
+}
+
 /* Specificity-safe accessibility overrides: dark mode must win over paper cards. */
 :root[data-mare-contrast="high"] body.mare-hub.mare-kanagawa .mar-catalog>article.mar-game{
  background:#061925!important;background-image:none!important;border-color:#b0ebdf!important;
