@@ -54,7 +54,7 @@ for(const page of pages){
   const imports=[],chunks=[];
   for(const file of styles){
    let css=fs.readFileSync(path.join(root,file),'utf8');
-   css=css.replace(/@import\s+(?:url\([^;]+\)|["'][^"']+["'])\s*;/g,rule=>{
+   css=css.replace(/@import\\s+url\\(\\s*([\"'])(.*?)\\1\\s*\\)\\s*;/g,rule=>{
     if(!imports.includes(rule))imports.push(rule);
     return '';
    });
@@ -63,7 +63,8 @@ for(const page of pages){
    css=css.replace(/url\(\s*(["']?)([^)"']+)\1\s*\)/g,(whole,quote,url)=>{
     const value=url.trim();
     if(/^(?:data:|https?:|\/|#)/i.test(value))return whole;
-    return 'url('+quote+'../'+value+quote+')';
+    const rebased=path.posix.relative('styles',path.posix.normalize(path.posix.join(path.posix.dirname(file),value)));
+    return 'url('+quote+rebased+quote+')';
    });
    chunks.push('/* Source: '+file+' */\n'+css);
   }
