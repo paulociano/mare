@@ -19,15 +19,7 @@ jobs:
         run: |
           node scripts/check-repository.cjs
           node scripts/check-sources.cjs
-          node tests/smoke.cjs
-          node tests/gameplay.cjs
-          node tests/evolution.cjs
-          node tests/play-system.cjs
-          node tests/phase4-contract.cjs
-          node tests/phase5-contract.cjs
-          node tests/phase6-contract.cjs
-          node tests/studio.cjs
-          node tests/finesse.cjs
+          npm test
       - name: Validar pacote publicado
         run: |
           node scripts/build-site.cjs

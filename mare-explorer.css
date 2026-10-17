@@ -168,6 +168,10 @@ body.mare-hub .mare-explorer__share-feedback{color:#d9f2e8;font-size:12px;overfl
  body.mare-hub .mare-logbook__destinations{grid-template-columns:repeat(2,minmax(0,1fr))}
  body.mare-hub .mare-explorer__meter{min-height:unset}
 }
+/* Share action stays thumb-friendly on compact portrait and landscape phones. */
+@media(max-width:600px){
+ body.mare-hub .mare-logbook__actions .mare-explorer__share{width:100%}
+}
 @media(max-width:450px){
  body.mare-hub .mare-logbook{padding:16px;border-radius:18px}
  body.mare-hub .mare-logbook__stats{gap:7px}
