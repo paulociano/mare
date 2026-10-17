@@ -55,6 +55,20 @@
   }
   intro.append(list);
  }
+ const missions=typeof window!=='undefined'?window.MareProgress?.missions?.():null;
+ if(missions){
+  const missionHeading=document.createElement('strong');missionHeading.className='mare-explorer__eyebrow';missionHeading.textContent='MISSÕES ATIVAS';
+  intro.append(missionHeading);
+  const missionList=document.createElement('div');missionList.className='mare-explorer__missions';
+  for(const mission of missions){
+   const item=document.createElement('div');item.className='mare-explorer__mission';
+   const label=document.createElement('span');label.textContent=mission.name+' · '+mission.detail;
+   const count=document.createElement('strong');count.textContent=mission.value+' / '+mission.target;
+   if(mission.value>=mission.target)item.classList.add('is-complete');
+   item.append(label,count);missionList.append(item);
+  }
+  intro.append(missionList);
+ }
  const meter=document.createElement('div');meter.className='mare-explorer__meter';
  const line=document.createElement('div');line.className='mare-explorer__track';line.setAttribute('role','progressbar');
  line.setAttribute('aria-label','Jogos com registros de exploração');
