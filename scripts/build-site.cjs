@@ -58,6 +58,13 @@ for(const page of pages){
     if(!imports.includes(rule))imports.push(rule);
     return '';
    });
+   // Bundles live in styles/ while sources live at the repository root.
+   // Rebase relative asset URLs without touching data, remote or fragment URLs.
+   css=css.replace(/url\(\s*(["']?)([^)"']+)\1\s*\)/g,(whole,quote,url)=>{
+    const value=url.trim();
+    if(/^(?:data:|https?:|\/|#)/i.test(value))return whole;
+    return 'url('+quote+'../'+value+quote+')';
+   });
    chunks.push('/* Source: '+file+' */\n'+css);
   }
   const combined=imports.join('\n')+'\n'+chunks.join('\n');
