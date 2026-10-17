@@ -68,6 +68,7 @@ def solve(page,game,recife_mode="solo"):
     if game=="recife":
         if recife_mode!="solo":
             page.locator('.mare-modes [data-m="'+recife_mode+'"]').click()
+            assert page.locator("#board").evaluate("(el)=>document.activeElement===el"),"Mode switch must focus game board"
         targets=recife_targets(page,recife_mode)
         for answer in targets:
             page.keyboard.type(answer,delay=9)

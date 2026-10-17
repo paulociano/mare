@@ -56,3 +56,5 @@ Rollback: reverter o PR ou retirar `mare-diagnostics.js` das 13 páginas e as en
 - **Recife:** o tratador global de Enter/Backspace interceptava Enter em links e botões, bloqueando o skip link. Agora preserva a ativação nativa em controles interativos, sem afetar a entrada de letras com foco no corpo do jogo.
 - **Abismo e Corrente:** o foco automático inicial no campo de palpite desviava o primeiro Tab da navegação de salto. Agora o foco automático acontece apenas após ações explícitas do usuário, como reiniciar a expedição; não na carga inicial.
 - **Teste de zoom:** o experimento de aplicar CSS `zoom:4` no elemento raiz não modelava o zoom real do navegador porque media queries permaneciam em largura desktop. Substituído por reflow nos CSS viewports equivalentes de 640/320px, preservando a classificação de zoom nativo como PENDENTE.
+
+- **Recife: troca de modo e Enter:** ao escolher Dueto/Quarteto o foco deve ir para o grupo de tabuleiros, para que o Enter seguinte envie a tentativa ao jogo em vez de ativar novamente o botão de modo. Corrigido em `modos.js`, com asserção E2E no navegador.

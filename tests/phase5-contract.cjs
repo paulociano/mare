@@ -21,6 +21,7 @@ const abismoJs=fs.readFileSync('abismo.js','utf8');
 const correnteJs=fs.readFileSync('corrente.js','utf8');
 assert.ok(recifeJs.includes("c==='ENTER'||c==='BACKSPACE'"),'Recife must handle native Enter/Backspace selectively');
 assert.ok(recifeJs.includes("e.target?.closest?.('a,button,[role="),'Recife must preserve native link/button activation');
+assert.ok(fs.readFileSync('modos.js','utf8').includes('boardEl.focus({preventScroll:true})'),'Mode switch must give keyboard focus to the playing board');
 assert.ok(abismoJs.includes('function newRound(n,focusInput=false)'), 'Abismo must preserve first Tab skip link');
 assert.ok(correnteJs.includes('function start(newMode,newIndex,focusInput=false)'), 'Corrente must preserve first Tab skip link');
 
