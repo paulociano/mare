@@ -24,6 +24,7 @@ jobs:
           node tests/evolution.cjs
           node tests/play-system.cjs
           node tests/phase4-contract.cjs
+          node tests/phase5-contract.cjs
           node tests/studio.cjs
           node tests/finesse.cjs
       - name: Validar pacote publicado
