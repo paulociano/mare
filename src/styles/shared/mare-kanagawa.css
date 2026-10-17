@@ -737,3 +737,22 @@ body.mare-kanagawa > a.mare-skip-link:is(:focus,:focus-visible){
  > button[aria-pressed="true"]{
  background:#174b6a!important;color:#fff!important;
 }
+
+/* Last two high-contrast game surfaces: the Concha discovery pane and
+ * Enigma stats had light paper behind accessible white labels. */
+:root[data-mare-contrast="high"] body.mare-kanagawa.mare-concha
+ :is(.concha-discover,.concha-stat,#results){
+ background:#061925!important;background-image:none!important;
+ border-color:#b0ebdf!important;
+}
+:root[data-mare-contrast="high"] body.mare-kanagawa.mare-concha
+ :is(.concha-stat>span,#found,#results>p){
+ color:#fff!important;text-shadow:none!important;
+}
+:root[data-mare-contrast="high"] body.mare-kanagawa.mare-enigma .enigma-stats{
+ background:#061925!important;background-image:none!important;
+ border-color:#b0ebdf!important;
+}
+:root[data-mare-contrast="high"] body.mare-kanagawa.mare-enigma .enigma-stats :is(p,span,strong,#progress){
+ color:#fff!important;text-shadow:none!important;
+}
