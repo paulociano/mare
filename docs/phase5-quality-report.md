@@ -14,7 +14,7 @@ Sair de auditorias laboratoriais pontuais para um modo de diagnóstico **acionad
 - `Salvar amostra local` é uma segunda escolha explícita; armazena até 120 medições com somente jogo/página, dia ISO e até cinco números. `Exportar JSON` usa Blob/download local; `Limpar amostras` apaga somente a chave `mare-local-vitals-v1`.
 - p75 mostrado **somente por página e por métrica com pelo menos 20 amostras locais**. É uma distribuição da amostra de quem operou o diagnóstico; **não** corresponde aos Core Web Vitals p75 de usuários reais do site.
 - Links internos preservam `diagnostico=1` na navegação quando o painel está ativo. Sair do modo removendo a query ou usando `Fechar diagnóstico`.
-- `scripts/check-phase5-runtime.py` adiciona foco via Tab/Enter e reflow com CSS zoom 2x/4x em Chromium, e simula a interface do painel com um módulo Web Vitals de teste interceptado. Esse stub prova integração de UI e privacidade, não prova exatidão do algoritmo oficial de INP.
+- `scripts/check-phase5-runtime.py` adiciona foco via Tab/Enter e reflow em larguras de viewport 640px/320px equivalentes ao espaço CSS de zoom 200%/400% em Chromium, e simula a interface do painel com um módulo Web Vitals de teste interceptado. Esse stub prova integração de UI e privacidade, não prova exatidão do algoritmo oficial de INP.
 
 ## Limites e política de dados
 
@@ -40,7 +40,7 @@ Não marcar esses itens como feitos a partir de Chromium emulado, imagens ou nú
 ## Testes/gates
 
 - `tests/phase5-contract.cjs`: 13 arquivos, nenhum carregamento por padrão, privacidade estática, dados mínimos e integração ao build.
-- `scripts/check-phase5-runtime.py`: uma execução de navegador para a interface de diagnósticos, navegação de teclado em 13 páginas e 26 experiências de reflow por CSS zoom simulado.
+- `scripts/check-phase5-runtime.py`: uma execução de navegador para a interface de diagnósticos, navegação de teclado em 13 páginas e 26 experiências de reflow por viewport de largura equivalente.
 - `scripts/check-phase4-e2e.py`: 19 percursos completos, com vitórias/derrotas realmente gravadas por ações UI.
 - `scripts/check-phase4-quality.py`: 26 varreduras axe WCAG e 26 reflows de largura equivalente, toque emulado e LCP/CLS laboratoriais.
 - Evidências: artefato `mare-play-chromium-qa` associado ao GitHub Actions do PR da fase.
@@ -50,3 +50,9 @@ Não marcar esses itens como feitos a partir de Chromium emulado, imagens ou nú
 Respeitar Core Web Vitals: LCP bom até 2,5 s; INP bom até 200 ms; CLS bom até 0,1. Diagnósticos não devem criar rede, UI, localStorage ou observers na experiência padrão. Não exigir p75 real na CI onde não há amostras de produção.
 
 Rollback: reverter o PR ou retirar `mare-diagnostics.js` das 13 páginas e as entradas no manifest. O painel pode ser removido sem migrar nem apagar o histórico `MareProgress`: ele usa chave isolada `mare-local-vitals-v1`.
+
+## Correções descobertas pelo gate de teclado (F5)
+
+- **Recife:** o tratador global de Enter/Backspace interceptava Enter em links e botões, bloqueando o skip link. Agora preserva a ativação nativa em controles interativos, sem afetar a entrada de letras com foco no corpo do jogo.
+- **Abismo e Corrente:** o foco automático inicial no campo de palpite desviava o primeiro Tab da navegação de salto. Agora o foco automático acontece apenas após ações explícitas do usuário, como reiniciar a expedição; não na carga inicial.
+- **Teste de zoom:** o experimento de aplicar CSS `zoom:4` no elemento raiz não modelava o zoom real do navegador porque media queries permaneciam em largura desktop. Substituído por reflow nos CSS viewports equivalentes de 640/320px, preservando a classificação de zoom nativo como PENDENTE.

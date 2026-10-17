@@ -16,6 +16,13 @@ assert.ok(js.includes('clear.addEventListener'),'Missing clear');
 assert.ok(!/\b(?:navigator\.sendBeacon|XMLHttpRequest|fetch\s*\()\b/.test(js),'No telemetry endpoints');
 assert.ok(css.includes(':focus-visible'),'Diagnostics require keyboard focus');
 assert.ok(css.includes('prefers-reduced-motion'),'Reduce animations');
+const recifeJs=fs.readFileSync('recife.js','utf8');
+const abismoJs=fs.readFileSync('abismo.js','utf8');
+const correnteJs=fs.readFileSync('corrente.js','utf8');
+assert.ok(recifeJs.includes("e.target?.closest?.('a,button"),'Recife must not steal Enter from native links');
+assert.ok(abismoJs.includes('function newRound(n,focusInput=false)'), 'Abismo must preserve first Tab skip link');
+assert.ok(correnteJs.includes('function start(newMode,newIndex,focusInput=false)'), 'Corrente must preserve first Tab skip link');
+
 for(const page of manifest.pages){
  const html=fs.readFileSync(page+'.html','utf8');
  assert.equal(html.split('src="mare-diagnostics.js"').length-1,1,page+': script opt-in missing/duplicated');
