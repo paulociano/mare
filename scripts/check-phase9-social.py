@@ -109,9 +109,9 @@ def main():
           report['comparison']=True
           stage='invalid and expired'
           friend.goto(url+'index.html#mare9=1.cardume.2026-02-30.w',wait_until='domcontentloaded')
-          assert 'inválido' in friend.locator('.mare-social__status').inner_text()
+          friend.wait_for_function("""()=>document.querySelector('.mare-social__status')?.textContent.includes('inválido')""")
           friend.goto(url+'index.html#mare9=1.cardume.2020-10-17.w',wait_until='domcontentloaded')
-          assert 'expirado' in friend.locator('.mare-social__compare').first.inner_text()
+          friend.wait_for_function("""()=>document.querySelector('.mare-social__compare')?.textContent.includes('expirado')""")
           assert friend.evaluate("window.MareProgress.read().length")==1
           report['peer']=True
           stage='Abismo stable puzzle across devices'
