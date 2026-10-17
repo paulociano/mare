@@ -56,7 +56,7 @@
   apply.addEventListener('click',()=>{
    try{if(select.value)localStorage.setItem(KEY,select.value);else localStorage.removeItem(KEY)}
    catch{status.textContent='Preferência não pôde ser salva neste navegador.';return}
-   const target=document.getElementById('free')||document.getElementById('next');
+   const target=document.getElementById('free')||document.getElementById('new')||document.getElementById('next');
    if(target&&!target.disabled){
     target.click();
     status.textContent='Intensidade '+(labels[select.value]||'original')+' aplicada a uma expedição livre.';
