@@ -762,3 +762,306 @@ body.mare-kanagawa > a.mare-skip-link:is(:focus,:focus-visible){
  .concha-listhead > b{
  color:#fff!important;text-shadow:none!important;
 }
+
+
+/* ================================================================
+   KANAGAWA LIGHT / CONSISTENCY PASS
+   Measured in Chromium across all 13 routes (desktop 1440 / mobile 390).
+   Limit these material overrides to the standard light theme: accessibility
+   high contrast has its own protected styling below in the cascade.
+   ================================================================ */
+:root:not([data-mare-contrast="high"]) body.mare-kanagawa {
+  --kan-control:#e8f1f1;
+  --kan-control-hover:#d9ebee;
+  --kan-control-line:#88aabd;
+  --kan-wash:#eff5f3;
+  --kan-outline:#789caf;
+}
+
+/* Home: remove surviving deep-sea panels, neon backgrounds and dark cards. */
+:root:not([data-mare-contrast="high"]) body.mare-hub.mare-kanagawa.mare-studio
+ .mar-catalog > article.mar-game:first-child {
+  background:linear-gradient(147deg,#fffdf7 0%,#e8f1f1 85%)!important;
+  background-image:linear-gradient(147deg,#fffdf7 0%,#e8f1f1 85%)!important;
+  border-color:#9bbcc9!important;
+  box-shadow:0 12px 34px rgba(28,72,106,.08)!important;
+}
+:root:not([data-mare-contrast="high"]) body.mare-hub.mare-kanagawa
+ :is(.mare-logbook__panel,.mare-voyage__activity,.mare-explorer__meter,
+     .mare-explorer__mission,.mare-logbook__collection,.mare-explorer__missions,
+     .mare-logbook__collection summary,.mare-logbook__empty,
+     .mare-explorer__track,.mare-voyage__history,
+     .mare-voyage__day-mark,.mare-voyage__streak,
+     .mare-logbook__mission-track,.mare-guide){
+  color:var(--kan-ink)!important;
+  background:var(--kan-wash)!important;
+  background-image:none!important;
+  border-color:var(--kan-line)!important;
+  box-shadow:none!important;
+}
+:root:not([data-mare-contrast="high"]) body.mare-hub.mare-kanagawa
+ :is(.mare-logbook__panel,.mare-voyage__activity,.mare-explorer__meter,
+ .mare-explorer__missions,.mare-guide,.mare-logbook__collection){
+  background:var(--kan-white)!important;
+  box-shadow:0 9px 28px rgba(22,63,91,.06)!important;
+}
+:root:not([data-mare-contrast="high"]) body.mare-hub.mare-kanagawa
+ :is(.mare-explorer__mission.is-complete,.mare-logbook__award.is-earned,
+ .mare-explorer__badge.is-earned,.mare-voyage__day.is-done .mare-voyage__day-mark){
+  background:#d8eee4!important;
+  color:#173e5e!important;
+  border-color:#7fac9a!important;
+}
+:root:not([data-mare-contrast="high"]) body.mare-hub.mare-kanagawa
+ :is(.mare-logbook__empty,.mare-logbook__collection summary,
+ .mare-explorer__mission,.mare-explorer__mission p,.mare-explorer__mission span,
+ .mare-logbook__panel p,.mare-logbook__panel small,.mare-voyage__activity p,
+ .mare-voyage__activity small,.mare-voyage__day-mark,
+ .mare-explorer__badge,.mare-logbook__award,.mare-logbook__award small,
+ .mare-guide strong,.mare-card-meta,.mare-card-meta span){
+  color:var(--kan-ink)!important;
+  text-shadow:none!important;
+}
+:root:not([data-mare-contrast="high"]) body.mare-hub.mare-kanagawa
+ :is(.mare-recommendation__link,.mar-continue .mar-cta,
+ .mare-explorer__share,.mare-logbook__collection summary){
+  border-radius:5px!important;
+}
+:root:not([data-mare-contrast="high"]) body.mare-hub.mare-kanagawa
+ :is(.mar-continue,.mare-guide,.mare-empty,.mare-recommendation,
+ .mare-logbook__empty){
+  border-color:var(--kan-line)!important;
+}
+:root:not([data-mare-contrast="high"]) body.mare-hub.mare-kanagawa
+ .mar-mode-links a {
+  color:var(--kan-deep)!important;
+  background:#e8f1f1!important;
+  border:1px solid #9bbcc9!important;
+  border-radius:4px!important;
+}
+:root:not([data-mare-contrast="high"]) body.mare-hub.mare-kanagawa
+ .mar-mode-links a:is(:hover,:focus-visible){
+  background:#d3e8ee!important;
+  border-color:#4e829f!important;
+}
+:root:not([data-mare-contrast="high"]) body.mare-hub.mare-kanagawa
+ .mare-social__canvas{
+  background:#f8f3e8!important;
+  border:1px solid #9ab6c1!important;
+  box-shadow:0 12px 25px rgba(25,58,83,.09)!important;
+}
+:root:not([data-mare-contrast="high"]) body.mare-hub.mare-kanagawa
+ :is(.mare-social__badge,.mare-social__status,.mare-social__intro,
+ .mare-social__verdict,.mare-social__eyebrow,.mare-social__choice label){
+  color:var(--kan-ink)!important;
+}
+:root:not([data-mare-contrast="high"]) body.mare-hub.mare-kanagawa
+ .mare-social__button:not(:first-of-type){
+  background:#e8f1f1!important;
+  color:var(--kan-deep)!important;
+  border-color:#7299ad!important;
+}
+:root:not([data-mare-contrast="high"]) body.mare-hub.mare-kanagawa
+ .mare-social__button:not(:first-of-type):is(:hover,:focus-visible){
+  background:#d3e8ee!important;
+}
+
+/* Shared in-game header controls: no dark translucent chips on light paper. */
+:root:not([data-mare-contrast="high"]) body.mare-kanagawa:is(.mar-app,.mare-recife)
+ :is(header a[href="./"]:not(:has(img)),.return-link>a,.back,.newgame-back,
+ .depth-header>a:not(:has(img))){
+  color:var(--kan-deep)!important;
+  background:#fffdf7!important;
+  background-image:none!important;
+  border:1px solid #9ab8c7!important;
+  box-shadow:none!important;
+  text-shadow:none!important;
+}
+:root:not([data-mare-contrast="high"]) body.mare-kanagawa:is(.mar-app,.mare-recife)
+ :is(header a[href="./"]:not(:has(img)),.return-link>a,.back,.newgame-back,
+ .depth-header>a:not(:has(img))):is(:hover,:focus-visible){
+  color:var(--kan-deep)!important;
+  background:#deedf0!important;
+  border-color:#4a7e99!important;
+}
+:root:not([data-mare-contrast="high"]) body.mare-kanagawa:is(.mar-app,.mare-recife)
+ :is(.progress,.depth,.meta,.gameheading,.heading,
+ .mare-progress,.mare-pane-head,.concha-top,.concha-stat,
+ .depth-hud,.newgame-hud,.statusline,.trilha-meta,.enigma-meta,.marujo-meta){
+  border-color:var(--kan-line)!important;
+  color:var(--kan-secondary)!important;
+}
+/* Paper-key controls. Primary, active, win/loss, found and marked cells
+   are excluded: the meaning of puzzle states must remain perceptible. */
+:root:not([data-mare-contrast="high"]) body.mare-kanagawa:is(.mar-app,.mare-recife)
+ :is(.mare-modes button,.mare-sonda-picker button,
+ .controls>button,.actions>button,.trilha-actions>button,
+ .trilha-info button,.trilha-mode button,.enigma-actions button,
+ .enigma-clues button,.marujo-actions button,.marujo-modes button,
+ .concha-controls button,.concha-tabs button,.newgame-shell button,
+ .depth-shell button,.switch button)
+ :not(.primary):not(.main-action):not(.chosen):not(.current)
+ :not(.completed):not(.active):not([aria-pressed="true"])
+ :not([type="submit"]):not(:disabled){
+  color:var(--kan-deep)!important;
+  background:var(--kan-control)!important;
+  background-image:none!important;
+  border:1px solid var(--kan-control-line)!important;
+  box-shadow:none!important;
+  text-shadow:none!important;
+}
+:root:not([data-mare-contrast="high"]) body.mare-kanagawa:is(.mar-app,.mare-recife)
+ :is(.mare-modes button,.mare-sonda-picker button,.controls>button,
+ .actions>button,.trilha-actions>button,.trilha-info button,
+ .trilha-mode button,.enigma-actions button,.enigma-clues button,
+ .marujo-actions button,.concha-controls button,.concha-tabs button,
+ .newgame-shell button,.depth-shell button,.switch button)
+ :not(.primary):not(.main-action):not(.chosen):not(.current)
+ :not(.completed):not(.active):not([aria-pressed="true"])
+ :not([type="submit"]):not(:disabled):is(:hover,:focus-visible){
+  background:var(--kan-control-hover)!important;
+  border-color:#497f9e!important;
+}
+
+/* Recife: cards, focus panel, keyboard and unplayed tiles. */
+:root:not([data-mare-contrast="high"]) body.mare-recife.mare-kanagawa
+ :is(.mare-pane,.mare-pane.focused,.mare-pane-head,
+ .leftPanel,.panel-art,.panel-sonar,.ocean-tag,.explore-points>div){
+  background:var(--kan-white)!important;background-image:none!important;
+  border-color:var(--kan-line)!important;color:var(--kan-ink)!important;
+  box-shadow:none!important;
+}
+:root:not([data-mare-contrast="high"]) body.mare-recife.mare-kanagawa
+ .mare-pane.focused:not(.solved){
+  background:#eaf3f3!important;
+  outline:2px solid #7ba5b9;
+  outline-offset:2px;
+}
+:root:not([data-mare-contrast="high"]) body.mare-recife.mare-kanagawa
+ :is(.mare-modes button:not(.active):not([aria-pressed="true"]),
+ .mare-sonda-picker button:not(.chosen),
+ .key:not(.correct):not(.present):not(.absent)){
+  color:var(--kan-deep)!important;
+  background:linear-gradient(160deg,#f9fbf8,#dfecef)!important;
+  border:1px solid #91b2c4!important;
+  box-shadow:none!important;
+}
+:root:not([data-mare-contrast="high"]) body.mare-recife.mare-kanagawa
+ :is(.mare-row .tile,.game .tile):not(.correct):not(.present):not(.absent){
+  color:var(--kan-ink)!important;
+  background:#f9fbfa!important;
+  border-color:#94b1bf!important;
+  box-shadow:none!important;
+}
+:root:not([data-mare-contrast="high"]) body.mare-recife.mare-kanagawa
+ .mare-modes button:not(.active):not([aria-pressed="true"]) small{
+  color:#446578!important;
+}
+:root:not([data-mare-contrast="high"]) body.mare-recife.mare-kanagawa
+ :is(.leftPanel p,.leftPanel small,.leftPanel .rule,.gameheading p,.bottomnote){
+  color:var(--kan-secondary)!important;
+}
+
+/* Concha's wheel and discovery items, preserving the central-letter cue. */
+:root:not([data-mare-contrast="high"]) body.mare-concha.mare-kanagawa
+ .concha-letter:not(.center):not([aria-pressed="true"]){
+  color:var(--kan-ink)!important;
+  background:linear-gradient(145deg,#fffdf7,#dcecef)!important;
+  border:1px solid #749bb2!important;
+  box-shadow:none!important;
+}
+:root:not([data-mare-contrast="high"]) body.mare-concha.mare-kanagawa
+ .concha-letter.center{
+  color:#fffdf7!important;
+  background:#315f87!important;
+  border:2px solid #153e5f!important;
+  box-shadow:0 3px 8px rgba(31,77,109,.15)!important;
+}
+:root:not([data-mare-contrast="high"]) body.mare-concha.mare-kanagawa
+ .concha-results span:not(.pangram){
+  background:#e8f1f1!important;
+  border-color:#97b8c4!important;
+  color:var(--kan-ink)!important;
+}
+:root:not([data-mare-contrast="high"]) body.mare-concha.mare-kanagawa
+ .concha-results span.pangram{
+  background:#f1e1b9!important;
+  color:#61410f!important;
+  border-color:#b99759!important;
+}
+
+/* Enigma: full puzzle is now a paper grid, not an abyssal slab. */
+:root:not([data-mare-contrast="high"]) body.mare-enigma.mare-kanagawa
+ .enigma-board{
+  background:#b7cfdb!important;
+  border:5px solid #9bb5c2!important;
+  box-shadow:inset 0 1px 6px rgba(28,69,92,.11)!important;
+}
+:root:not([data-mare-contrast="high"]) body.mare-enigma.mare-kanagawa
+ .enigma-cell:not(.blank):not(.active):not(.selected):not(.completed){
+  background:#fffdf7!important;
+  border-color:#9dbccc!important;
+  color:#173e5e!important;
+}
+:root:not([data-mare-contrast="high"]) body.mare-enigma.mare-kanagawa
+ .enigma-cell.blank{
+  background:#547e99!important;
+  border-color:#547e99!important;
+  color:transparent!important;
+}
+:root:not([data-mare-contrast="high"]) body.mare-enigma.mare-kanagawa
+ .enigma-cell.active{
+  background:#d7e9ed!important;
+  color:#173e5e!important;
+  border-color:#366c91!important;
+}
+:root:not([data-mare-contrast="high"]) body.mare-enigma.mare-kanagawa
+ .enigma-cell.selected{
+  background:#315f87!important;
+  border-color:#174b6a!important;
+  color:#fffdf7!important;
+}
+:root:not([data-mare-contrast="high"]) body.mare-enigma.mare-kanagawa
+ .enigma-cell small{
+  color:inherit!important;
+}
+
+/* Farol/Pérola: game-piece buttons and manuscript-like choice area. */
+:root:not([data-mare-contrast="high"]) body.mare-farol.mare-kanagawa
+ .depth-tile:not(.chosen):not(.selected):not([aria-pressed="true"]){
+  background:#e8f1f1!important;
+  border:1px solid #87aabd!important;
+  color:#173e5e!important;
+}
+:root:not([data-mare-contrast="high"]) body.mare-kanagawa:is(.mare-perola,.mare-farol)
+ :is(.depth-scramble,.depth-picked,.depth-chosen){
+  background:#eef5f1!important;
+  border-color:var(--kan-line)!important;
+  color:var(--kan-ink)!important;
+}
+
+/* New games: tactile typewriter keys, not neon buttons. */
+:root:not([data-mare-contrast="high"]) body.mare-forca.mare-kanagawa
+ .forca-keyboard button:not(.correct):not(.wrong):not(:disabled){
+  background:#e6eff0!important;color:#173e5e!important;
+  border-color:#92b2c1!important;box-shadow:none!important;
+}
+:root:not([data-mare-contrast="high"]) body.mare-criptograma.mare-kanagawa
+ .crypto-tile:not(.selected):not(.crypto-correct){
+  background:#edf4f1!important;border-color:#8fb0be!important;
+  color:#173e5e!important;
+}
+
+/* Shared small-print and ancillary content in paper mode. */
+:root:not([data-mare-contrast="high"]) body.mare-kanagawa:is(.mar-app,.mare-recife)
+ :is(.legend,.legend span,.depth-instructions,.newgame-hint,.newgame-notice,
+ .concha-note,.trilha-clue p,.marujo-card p,.enigma-clues p,.game .empty){
+  color:var(--kan-secondary)!important;
+}
+@media(hover:hover) and (prefers-reduced-motion:no-preference){
+  :root:not([data-mare-contrast="high"]) body.mare-kanagawa
+  :is(.mar-mode-links a,.concha-letter,.depth-tile):is(:hover,:focus-visible){
+    transform:translateY(-1px);
+    transition:transform .18s ease,background-color .18s ease;
+  }
+}
