@@ -10,5 +10,18 @@
   try{localStorage.setItem(KEY,JSON.stringify(items.slice(-MAX)))}catch{return false}
   return true;
  }
- window.MareProgress=Object.freeze({record,read});
+
+ function stats(){
+  const rounds=read(),wins=rounds.filter(e=>e.outcome==='win'),games=new Set(wins.map(e=>e.game));
+  const xp=rounds.reduce((sum,e)=>sum+(e.outcome==='win'?100:20),0);
+  const level=Math.floor(xp/500)+1;
+  const earned=[
+   {id:'first-win',name:'Primeira vitória',earned:wins.length>=1},
+   {id:'five-wins',name:'Cinco conquistas',earned:wins.length>=5},
+   {id:'three-games',name:'Três mares',earned:games.size>=3},
+   {id:'all-games',name:'Mestre dos doze mares',earned:games.size===12}
+  ];
+  return {rounds:rounds.length,wins:wins.length,uniqueWins:games.size,xp,level,nextLevelXp:level*500,earned};
+ }
+ window.MareProgress=Object.freeze({record,read,stats});
 })();

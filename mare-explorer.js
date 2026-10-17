@@ -39,6 +39,22 @@
   intro.append(results);
  }
 
+ const profile=typeof window!=='undefined'?window.MareProgress?.stats?.():null;
+ if(profile){
+  const profileText=document.createElement('p');profileText.className='mare-explorer__results';
+  profileText.textContent='Nível '+profile.level+' · '+profile.xp+' XP · '+profile.wins+' vitórias verificadas em '+profile.uniqueWins+' jogos.';
+  intro.append(profileText);
+  const achievementHeading=document.createElement('strong');achievementHeading.className='mare-explorer__eyebrow';achievementHeading.textContent='CONQUISTAS POR RESULTADOS';
+  intro.append(achievementHeading);
+  const list=document.createElement('div');list.className='mare-explorer__badges';
+  for(const item of profile.earned){
+   const badge=document.createElement('span');badge.className='mare-explorer__badge';
+   if(item.earned)badge.classList.add('is-earned');
+   badge.textContent=item.name;badge.setAttribute('aria-label',item.name+(item.earned?', conquistada':', ainda não conquistada'));
+   list.append(badge);
+  }
+  intro.append(list);
+ }
  const meter=document.createElement('div');meter.className='mare-explorer__meter';
  const line=document.createElement('div');line.className='mare-explorer__track';line.setAttribute('role','progressbar');
  line.setAttribute('aria-label','Jogos com registros de exploração');
