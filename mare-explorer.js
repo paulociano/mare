@@ -29,7 +29,7 @@
  intro.append(eyebrow,heading,summary);
  // Verified results are a separate count: only games that explicitly emit outcomes.
  const outcomes=typeof window!=='undefined'?window.MareProgress?.read?.()||[]:[];
- const recordedGames=[['forca','Náufrago'],['cardume','Cardume'],['corrente','Corrente']];
+ const recordedGames=[['recife','Recife'],['abismo','Abismo'],['cardume','Cardume'],['corrente','Corrente'],['concha','Concha'],['trilha','Trilha'],['enigma','Enigma'],['marujo','Marujo'],['forca','Náufrago'],['criptograma','Sinais'],['perola','Pérola'],['farol','Farol']];
  for(const [game,name] of recordedGames){
   const entries=outcomes.filter(item=>item.game===game);
   if(!entries.length)continue;
