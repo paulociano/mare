@@ -31,4 +31,12 @@ for(const game of ['recife','abismo','cardume','corrente','concha','trilha','eni
 }
 for(const scene of ['naufrago','sinais'])assert.ok(exists('assets/backgrounds/'+scene+'.svg'),'Arte ausente: '+scene);
 assert.ok(!exists('AUDITORIA.md'),'Relatório obsoleto não deve ser publicado');
+assert.ok(exists('sw.js'),'Service worker versionado não foi publicado');
+const worker=read('sw.js');
+for(const page of manifest.pages)assert.ok(worker.includes(page+'.html'),'Jogo fora do cache: '+page);
+assert.ok(worker.includes("mare-shell-"),'Cache sem versão determinística');
+const app=JSON.parse(read('app.webmanifest'));
+assert.equal(app.start_url,'./');assert.equal(app.scope,'./');assert.equal(app.display,'standalone');
+for(const icon of app.icons){if(!icon.src.endsWith('.svg'))assert.ok(exists(icon.src),'Ícone instalável ausente: '+icon.src)}
+
 console.log('PASS: artefato Pages completo, links internos e assets essenciais');
