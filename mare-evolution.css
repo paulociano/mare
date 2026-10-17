@@ -40,52 +40,6 @@ body.mare-hub[data-depth=deep] .mar-section-head h1{text-shadow:0 0 30px #64e3d8
 @media(max-width:650px){body.mare-hub .mar-game:hover{transform:none}body.mare-hub .mar-game .mare-card-meta{margin-top:8px}}
 @media(prefers-reduced-motion:reduce){body.mare-hub .mar-game,body.mare-hub .mar-game *,body.mare-hub .mare-filter{animation:none!important;transition:none!important;transform:none!important}}
 
-/* Shared game surfaces: preserve layouts, control geometry and game-specific colors. */
-:root{
- --mare-evo-panel:rgba(7,38,55,.88);
- --mare-evo-border:rgba(109,197,204,.34);
- --mare-evo-focus:#f1ca83;
- --mare-evo-radius:20px;
- --mare-evo-shadow:0 20px 54px rgba(0,12,25,.36);
-}
-body:is(.mar-app,.mare-recife){color-scheme:dark}
-body:is(.mar-app,.mare-recife) :is(button,a,input,[role="button"]):focus-visible{
- outline:3px solid var(--mare-evo-focus)!important;
- outline-offset:3px!important;
-}
-body:is(.mar-app,.mare-recife) :is(button,a,input){
- -webkit-tap-highlight-color:rgba(83,220,203,.16);
-}
-body:is(.mar-app,.mare-recife) :is(button,[role="button"]):not(:disabled){
- transition:transform .2s var(--mare-evo-ease),border-color .2s ease,box-shadow .2s ease,background-color .2s ease;
-}
-@media(hover:hover) and (pointer:fine){
- body:is(.mar-app,.mare-recife) :is(button,[role="button"]):not(:disabled):hover{transform:translateY(-2px)}
- body:is(.mar-app,.mare-recife) :is(button,[role="button"]):not(:disabled):active{transform:translateY(0) scale(.98)}
-}
-body:is(.mar-app,.mare-recife) :is(.newgame-panel,.game,.panel){
- box-shadow:var(--mare-evo-shadow);
-}
-body.mar-app :is(.mare-game-symbol-lockup img,.newgame-intro img){
- filter:drop-shadow(0 10px 20px rgba(0,14,24,.3));
-}
-body:is(.mar-app,.mare-recife) :is(.mare-game-nav__link,.newgame-back,.back){
- transition:color .2s ease,background-color .2s ease,border-color .2s ease;
-}
-body:is(.mar-app,.mare-recife) :is(.mare-game-nav__link,.newgame-back,.back):focus-visible{
- border-radius:8px;
-}
-body:is(.mar-app,.mare-recife) :is(.notice,.status,[role="status"],[aria-live="polite"]){
- overflow-wrap:anywhere;
-}
-@media(max-width:420px){
- body:is(.mar-app,.mare-recife) :is(.newgame-panel,.panel,.game){max-width:100%;min-width:0}
- body:is(.mar-app,.mare-recife) :is(button,input){max-width:100%}
-}
-@media(prefers-reduced-motion:reduce){
- body:is(.mar-app,.mare-recife) :is(button,a,input,[role="button"]){transition:none!important;animation:none!important;transform:none!important}
-}
-
 /* UX game-first: keep meaningful controls visible without changing gameplay structure. */
 body.mar-app :is(.heading,.hero,.newgame-intro){margin-bottom:clamp(10px,1.8vw,20px)}
 body.mar-app :is(.heading,.hero,.newgame-intro) p{max-width:64ch;line-height:1.5}

@@ -165,7 +165,7 @@ assert.ok(recifeCard.includes('<h2 class="recife-card-heading">Recife</h2>'),'T�
 assert.equal(recifeCard.split('<h2').length-1,1,'Título duplicado no card');
 assert.ok(!home.includes('assets/brand/recife.svg'),'SVG antigo ainda referenciado na home');
 assert.ok(!html.includes('assets/brand/recife.svg'),'SVG antigo ainda referenciado no Recife');
-assert.ok(html.includes('<h2 class="recife-title-lockup">Recife</h2>'),'Título da página Recife ausente');
+assert.ok(html.includes('<h1 class="recife-title-lockup">Recife</h1>'),'Título semântico da página Recife ausente');
 const catalogCards=home.split('<article class="mar-game ').slice(1).map(x=>x.split('</article>')[0]);
 assert.equal(catalogCards.length,12,'Catálogo precisa ter doze cards');
 for(const [i,markup] of catalogCards.entries()){

@@ -12,7 +12,7 @@ class Node {
  after(node){this.afterNode=node}
  insertBefore(node,ref){this.children.splice(Math.max(0,this.children.indexOf(ref)),0,node)}
  setAttribute(name,value){this.attrs[name]=value}
- getAttribute(name){return this.attrs[name]}
+ getAttribute(name){return this.attrs[name]??(name==='href'?this.href:undefined)}
  addEventListener(name,fn){this.handlers[name]=fn}
  click(){this.handlers.click?.()}
 }
@@ -22,7 +22,7 @@ const cards=entries.map((match,i)=>{
  const heading=new Node('h2');heading.textContent='Jogo '+i;
  const action=new Node('a');action.setAttribute('href','game-'+i+'.html');
  const info=new Node('div');info.className='mar-game-info';info.children=[action];
- card.querySelector=selector=>selector==='h2'?heading:selector==='.mar-game-info'?info:null;
+ card.querySelector=selector=>selector==='h2'?heading:selector==='.mar-game-info'?info:selector==='.mar-cta'?action:null;
  info.querySelector=selector=>selector==='.mar-cta'?action:null;
  return card;
 });
@@ -47,10 +47,14 @@ console.log('PASS: catálogo de 12 jogos, filtros, acessibilidade e fallback de 
 const manifest=require('../config/site-manifest.json');
 for(const page of manifest.pages){
  const source=fs.readFileSync(page+'.html','utf8');
- assert.ok(source.includes('href="mare-evolution.css"'),page+': camada oceânica não carregada');
- assert.equal((source.match(/href="mare-evolution.css"/g)||[]).length,1,page+': stylesheet duplicado');
+ const stylesheet=page==='index'?'mare-evolution.css':'mare-play.css';
+ assert.ok(source.includes('href="'+stylesheet+'"'),page+': camada visual correta não carregada');
+ assert.equal(source.split('href="'+stylesheet+'"').length-1,1,page+': stylesheet duplicado');
+ if(page!=='index')assert.ok(!source.includes('href="mare-evolution.css"'),page+': CSS do hub não deve entrar nos jogos');
 }
 const evolutionCss=fs.readFileSync('mare-evolution.css','utf8');
+const playCss=fs.readFileSync('mare-play.css','utf8');
+assert.ok(playCss.includes(':focus-visible')&&playCss.includes('prefers-reduced-motion:reduce'),'Foco e movimento reduzido no Play System');
 assert.ok(evolutionCss.includes('prefers-reduced-motion:reduce'),'Motion reduzido obrigatório');
 assert.ok(evolutionCss.includes(':focus-visible'),'Foco visível obrigatório');
 console.log('PASS: camada compartilhada nos 13 documentos, foco e movimento reduzido');

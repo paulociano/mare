@@ -33,6 +33,8 @@ jobs:
           node scripts/check-sources.cjs
           node tests/smoke.cjs
           node tests/gameplay.cjs
+          node tests/evolution.cjs
+          node tests/play-system.cjs
       - name: Configurar Pages
         uses: actions/configure-pages@v5
       - name: Preparar e validar os arquivos publicados
