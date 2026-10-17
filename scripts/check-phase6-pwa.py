@@ -93,7 +93,11 @@ def main():
             path.write_text(original.replace(marker.group(1),new_suffix,1),encoding="utf8")
             page.evaluate("""async()=>{const r=await navigator.serviceWorker.getRegistration();await r.update()}""")
             page.wait_for_function("""async()=>!!(await navigator.serviceWorker.getRegistration())?.waiting""",timeout=25000)
-            assert page.get_by_role("button",name="Atualizar aplicativo").is_visible()
+            # The registration waiting state and application UI update across
+            # independent browser tasks. Wait for the visible consequence, not
+            # a same-tick DOM snapshot that can misreport a correct update.
+            page.evaluate("window.dispatchEvent(new Event('focus'))")
+            page.get_by_role("button",name="Atualizar aplicativo").wait_for(state="visible",timeout=10000)
             before=page.evaluate("""async()=>({
               old: (await caches.keys()).some(k=>k.startsWith('mare-shell-')&&!k.endsWith('abcdef0123456789ab')&&!k.endsWith('abcdef0123456789ac')),
               waiting:!!(await navigator.serviceWorker.getRegistration()).waiting
