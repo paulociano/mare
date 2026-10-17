@@ -1,0 +1,17 @@
+'use strict';
+const assert=require('node:assert/strict'),vm=require('node:vm'),fs=require('node:fs');
+const src=fs.readFileSync('mare-progress.js','utf8');new vm.Script(src);
+const store=new Map();
+const storage={getItem:k=>store.get(k)||null,setItem:(k,v)=>store.set(k,v)};
+const window={};
+vm.runInNewContext(src,{window,localStorage:storage,Date,JSON,Set});
+const api=window.MareProgress;
+assert.equal(api.record('forca','win','daily:2026-10-17'),true);
+assert.equal(api.record('forca','win','daily:2026-10-17'),false,'No duplicate outcomes');
+assert.equal(api.record('forca','loss','free:1'),true);
+assert.equal(api.record('forca','victory','free:2'),false,'Only explicit win/loss allowed');
+assert.equal(api.read().length,2);
+assert.equal(api.read().filter(e=>e.outcome==='win').length,1);
+const h=fs.readFileSync('forca.html','utf8');assert.ok(h.indexOf('mare-progress.js')<h.indexOf('forca.js'));
+const hub=fs.readFileSync('index.html','utf8');assert.ok(hub.indexOf('mare-progress.js')<hub.indexOf('mare-explorer.js'));
+console.log('PASS: explicit outcome persistence, deduplication and script load order');
