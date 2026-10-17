@@ -34,10 +34,10 @@ vm.runInNewContext(fs.readFileSync('mare-evolution.js','utf8'),{document:doc,loc
 const toolbar=header.afterNode;
 assert.ok(toolbar,'Filtros inseridos');
 const controls=toolbar.children[1];
-assert.equal(controls.children.length,5,'Cinco opções de filtro');
+assert.equal(controls.children.length,6,'Cinco filtros e um botão de ajuda');
 const active=()=>cards.filter(c=>!c.hidden).length;
 const expected=[12,6,2,3,1];
-controls.children.forEach((button,i)=>{button.click();assert.equal(active(),expected[i],'Contagem errada no filtro '+i);assert.equal(button.getAttribute('aria-pressed'),'true')});
+controls.children.slice(0,5).forEach((button,i)=>{button.click();assert.equal(active(),expected[i],'Contagem errada no filtro '+i);assert.equal(button.getAttribute('aria-pressed'),'true')});
 controls.children[0].click();
 assert.ok(cards.every(card=>card.children.length===0||!card.hidden));
 assert.ok(cards.every(card=>card.querySelector('.mar-game-info').children.length===2),'Metadados presentes em cada card');
@@ -58,3 +58,7 @@ console.log('PASS: camada compartilhada nos 13 documentos, foco e movimento redu
 assert.ok(toolbar.afterNode?.className==='mare-recommendation','Sugestão acessível deve aparecer no hub');
 assert.equal(toolbar.afterNode.children[1].getAttribute('href'),'game-0.html','Recomendação abre um jogo existente');
 console.log('PASS: recomendação sem dependência de cadastro ou rede');
+
+assert.ok(toolbar.children.some(item=>item.className==='mare-guide'),'Guia inicial renderizado');
+assert.ok(evolutionCss.includes('prefers-contrast:more'),'Modo de alto contraste coberto');
+console.log('PASS: onboarding e acessibilidade visual');
