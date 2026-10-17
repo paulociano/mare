@@ -102,9 +102,9 @@
   if(!value){message('Escolha ou digite uma resposta primeiro.');return}
   tries++;
   if(value===normalize(bank[round].answer)){
-   complete=true;message('Você acertou! Resposta: '+bank[round].answer+'.');
+   complete=true;if(typeof window!=='undefined')window.MareProgress?.record(type,'win',mode+':'+(mode==='daily'?day:safeNumber()));message('Você acertou! Resposta: '+bank[round].answer+'.');
   }else if(tries>=3){
-   complete=true;message('Fim da rodada. Resposta: '+bank[round].answer+'.');
+   complete=true;if(typeof window!=='undefined')window.MareProgress?.record(type,'loss',mode+':'+(mode==='daily'?day:safeNumber()));message('Fim da rodada. Resposta: '+bank[round].answer+'.');
   }else message('Ainda não. '+(3-tries)+' tentativa(s) restante(s).');
   if(complete){$('submit').disabled=true;$('entry').disabled=true;if(mode==='free'){$('next').hidden=false;$('next').focus()}}
   render();
