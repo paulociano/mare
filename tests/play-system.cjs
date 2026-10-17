@@ -17,6 +17,8 @@ for(const page of manifest.pages.filter(p=>p!=='index')){
  assert.ok(src.includes('id="conteudo-principal"'),page+': área principal ausente');
  assert.ok(src.includes('class="mare-skip-link"'),page+': skip-link ausente');
  assert.ok(src.includes('class="mare-game-nav"'),page+': navegação entre jogos ausente');
+ assert.equal((src.match(/class="mare-game-nav__name"/g)||[]).length,12,page+': navegação deve incluir todos os doze jogos');
+ for(const link of ['perola.html','farol.html'])assert.ok(src.includes('href="'+link+'"'),page+': destino omitido da navegação '+link);
  assert.ok(src.includes('aria-current="page"'),page+': jogo atual sem marcação');
 }
 const recife=fs.readFileSync('recife.html','utf8');
