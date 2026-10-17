@@ -1,39 +1,42 @@
-# Organização e publicação de assets
+# Pipeline de assets e unificação de CSS
 
 ## Princípios
 
-- **HTML de origem:** as 13 páginas ficam na raiz para manter URLs públicas existentes.
-- **CSS de origem:** camadas específicas por jogo e camadas compartilhadas permanecem separadas enquanto os testes e contratos dependerem delas.
-- **CSS publicado:** `scripts/build-site.cjs` lê os `<link rel="stylesheet">` na ordem do HTML, consolida por sequência de camadas, extrai os `@import` para o início, corrige caminhos relativos e produz `_site/styles/mare-<hash>.css`.
-- **JavaScript:** mantido em arquivos especializados. Concatená-los sem auditar escopo, ordem de execução e contratos poderia introduzir regressões.
-- **Dados e imagens:** preservados pelos manifests, referências reais e checagem de artefato.
-- **Histórico:** versões anteriores e decisões antigas pertencem ao Git, não a cópias soltas na raiz. A exclusão do arquivo atual não apaga commits anteriores.
-- **Offline:** CSS gerado entra no precache do service worker, cujo hash deriva do conteúdo. Nenhuma alteração automática de versão ou migração destrutiva do armazenamento local.
+- **Fontes:** `src/scripts/games`, `src/scripts/shared`, `src/styles/games` e `src/styles/shared`.
+- **HTML:** 13 documentos na raiz para preservar rotas de usuários e links existentes.
+- **CSS de autoria:** módulos CSS pequenos por responsabilidade, mantidos separados para revisão e testes.
+- **CSS de produção:** um único stylesheet com hash de conteúdo por página, gerado em `_site/styles/mare-<hash>.css`. Sequências iguais de estilos produzem o mesmo bundle. A ordem declarada nos HTMLs permanece.
+- **CSS-fonte não é republicado:** o build descarta folhas originais após gerar os bundles. A única exceção é `src/styles/shared/mare-diagnostics.css`, carregado dinamicamente.
+- **JavaScript:** preserva o carregamento e os escopos explícitos dos arquivos por página, sem concatenação insegura de scripts com `defer` ou estados globais.
+- **Cache:** o manifest da PWA usa hash dos arquivos gerados; não altera saves ou forçadamente recarrega partidas.
+- **Dados, imagens e dicionários:** conservados conforme o manifesto e as referências dos jogos.
 
 ## Estrutura
 
 ```text
-.github/workflows/   CI, publicação e manutenção
-assets/              marca, ilustrações e cenários
-config/              catálogo e arquivos necessários para publicação
-data/                bancos de palavras e enigmas
-docs/                arquitetura, auditorias e histórico editorial
-scripts/             build, validação e geração de dados
-tests/               testes de integração e contratos
-styles/              gerado dentro de _site/ (não versionado)
-*.html               rotas públicas mantidas na raiz
-*.css                fontes por contexto; consolidado apenas no build
-*.js                 módulos e jogos com ordem explícita
+src/
+  scripts/
+    games/        # 12 jogos e modos
+    shared/       # módulos transversais
+  styles/
+    games/        # CSS específico de tabuleiros e jogos
+    shared/       # identidade, camadas e componentes
+_site/            # gerado, não versionado
+  styles/mare-<hash>.css
 ```
 
-## Verificação
+## Reescrita de URLs
 
-```sh
+Quando os CSS-fontes estão em `src/styles/shared`, um asset referenciado como `../../../assets/brand/...` é normalizado pelo bundler para `../assets/brand/...` dentro de `_site/styles`. Imports remotos de fontes são preservados no topo do CSS final. Não criar caminhos absolutos específicos de domínio, para manter o GitHub Pages funcional em subdiretórios.
+
+## Quality gates
+
+```bash
 npm run check
 ```
 
-O comando valida a estrutura, sintaxe, testes, build, referências locais e que cada página publicada usa **um** CSS com fingerprint. A auditoria de comportamento visual, offline e acessibilidade ocorre no workflow de qualidade com Chromium e Playwright.
+Além do CI com Chromium, o `check-build.cjs` valida presença do bundle, camadas centrais, URLs internas, imagens CSS e service worker. O `check-sources.cjs` rejeita folhas órfãs, incluindo a exceção de CSS carregado dinamicamente. O CI deve proteger o inventário completo de 13 páginas/12 jogos e a política de atualização do cache offline.
 
-## Pendências técnicas
+## Política de versionamento
 
-Uma eventual reorganização física de JS/CSS de origem depende de atualizar testes, caminhos relativos, registros de cache e referências em documentação em um único incremento verificável. Não eliminar `mare-v2.css`, `mare-3.css` ou camadas de fase por rótulo: versões no nome não provam obsolescência. Para removê-las, medir regras efetivamente utilizadas e equivalência visual, inclusive mobile, teclado, preferências de acessibilidade e offline.
+Git é a fonte de versões de código; não manter cópias `v2`, `v3` de páginas ou relatórios por precaução. Se um arquivo nomeado `mare-v2` ainda estiver referenciado, ele é uma camada ativa, não um backup. Remover apenas com cobertura de referência e regressão visual, nunca por nomenclatura.
