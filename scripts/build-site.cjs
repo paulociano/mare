@@ -41,6 +41,9 @@ const digest=crypto.createHash('sha256');
 for(const file of precache){
  digest.update(file+'\0');digest.update(fs.readFileSync(path.join(out,file)));digest.update('\0');
 }
+// Full offline shell budget; refuse unbounded precache growth.
+const offlineBytes=precache.reduce((sum,file)=>sum+fs.statSync(path.join(out,file)).size,0);
+assert.ok(offlineBytes<=12*1024*1024,'Pacote offline excede 12 MiB: '+offlineBytes);
 const version=digest.digest('hex').slice(0,18);
 const worker=[
  "'use strict';",
