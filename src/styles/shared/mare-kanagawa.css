@@ -1219,3 +1219,24 @@ body.mare-kanagawa > a.mare-skip-link:is(:focus,:focus-visible){
  .topbar .round:is(:hover,:focus-visible){
   background:#dcebef!important;border-color:#497c98!important;
 }
+
+
+/* Secondary commands should read as quiet tools, not as a row of primary
+   navy CTAs. Disabled buttons keep their disabled state/opacity. */
+:root:not([data-mare-contrast="high"]) body.mare-kanagawa:is(.mar-app,.mare-recife)
+ :is(button#clear,button#hint,button#share,button#undo,
+ button#free,button#reset,button#reveal,button#previous,
+ button#toggle,button#next,button#verify):not(.active):not([aria-pressed="true"]):not(:disabled){
+  color:#173e5e!important;
+  background:#e8f1f1!important;
+  background-image:none!important;
+  border:1px solid #91b0bf!important;
+  text-shadow:none!important;
+  box-shadow:none!important;
+}
+:root:not([data-mare-contrast="high"]) body.mare-kanagawa:is(.mar-app,.mare-recife)
+ :is(button#clear,button#hint,button#share,button#undo,
+ button#free,button#reset,button#reveal,button#previous,
+ button#toggle,button#next,button#verify):not(.active):not([aria-pressed="true"]):not(:disabled):is(:hover,:focus-visible){
+  background:#d7e9ed!important;border-color:#497d9c!important;
+}
