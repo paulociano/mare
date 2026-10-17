@@ -1,9 +1,10 @@
 # Arquitetura e organização do MARÉ
 
 ## Princípio
-O site é estático, servido pelo GitHub Pages, sem roteador ou framework. **As onze páginas HTML permanecem na raiz** para preservar URLs públicas e caminhos relativos. Não mover arquivos CSS/JS de jogos sem atualizar referências e testes na mesma alteração.
+O site é estático, servido pelo GitHub Pages, sem roteador ou framework. **As 13 páginas HTML permanecem na raiz** para preservar URLs públicas e caminhos relativos. Não mover arquivos CSS/JS de jogos sem atualizar referências e testes na mesma alteração.
 
 ## Pastas
+- `_site/styles/`: bundles CSS gerados por página, não versionados; preservam a ordem da cascata e usam hash de conteúdo. Consulte [pipeline de assets](ASSET-PIPELINE.md).
 - `assets/brand/`: logotipos e favicon do MARÉ.
 - `assets/backgrounds/`: ilustrações SVG/WebP dos jogos.
 - `config/site-manifest.json`: fonte única da lista de páginas e arquivos obrigatórios para build.
@@ -20,7 +21,8 @@ O site é estático, servido pelo GitHub Pages, sem roteador ou framework. **As 
 4. Escapar conteúdo dinâmico e preferir `textContent` em vez de HTML gerado por string.
 5. Manter acessibilidade (teclado, foco, estados ARIA) e movimento reduzido.
 6. Alterar a camada de estilos compartilhada com cuidado: as folhas legadas permanecem até migração incremental e testes visuais.
-7. Não versionar artefatos gerados (`_site/`), dependências locais ou logs.
+7. Consolidar CSS na saída de publicação, mantendo as camadas-fonte separadas enquanto houver dependências e testes; alterar camadas requer regressão de navegador.
+8. Não versionar artefatos gerados (`_site/`), dependências locais ou logs.
 
 ## Comandos
 Requer Node.js 20+; não exige `npm install`.
@@ -31,7 +33,7 @@ Requer Node.js 20+; não exige `npm install`.
 
 ## Gates de mudança
 - Checagem estrutural e sintaxe antes de aprovar PR.
-- Build completo, preservando os dez links e cenários.
+- Build completo, preservando as 13 rotas e os cenários.
 - Para alterações de interface ou partidas, confirmar em navegador os estados relevantes.
 - Antes de declarar deploy concluído, verificar o resultado real do GitHub Actions/Pages.
 
@@ -56,8 +58,8 @@ Estas são **pendências**, não falhas reproduzidas nesta atualização. Git ma
 
 ## Gates adicionais de código-fonte
 
-`scripts/check-sources.cjs` confere os onze documentos públicos e valida, sem dependências externas, sintaxe dos scripts `.js`, estilos referenciados sem duplicações, ordem da camada `mare-brand.css`, caminhos locais de imagens e estilos, e os cenários finais de Náufrago/Sinais. Ele roda no PR, no deploy e no comando `npm run check`.
+`scripts/check-sources.cjs` confere os 13 documentos públicos e valida, sem dependências externas, sintaxe dos scripts `.js`, estilos referenciados sem duplicações, ordem da camada `mare-brand.css`, caminhos locais de imagens e estilos, e os cenários finais de Náufrago/Sinais. Ele roda no PR, no deploy e no comando `npm run check`.
 
 As três folhas históricas `mare-system.css`, `mare-v2.css` e `mare-3.css` ainda são carregadas em cascata. Não movê-las nem eliminar seletores potencialmente usados sem baseline visual e inspeção de cada jogo. Próximo critério de conclusão: testes em navegador de layouts responsivos, tabuleiros e persistência, mais confirmação do workflow Pages. A checagem estática acrescentada é preventiva, não comprova equivalência visual.
 
-O pacote final também é verificado por `scripts/check-build.cjs`, executado depois de `scripts/build-site.cjs`: confere as onze páginas, navegação HTML e assets essenciais dentro de `_site/`. Isso evita o falso positivo em que fontes estão presentes no repositório, mas não são incluídas na publicação.
+O pacote final também é verificado por `scripts/check-build.cjs`, executado depois de `scripts/build-site.cjs`: confere as 13 páginas, navegação HTML e assets essenciais dentro de `_site/`. Isso evita o falso positivo em que fontes estão presentes no repositório, mas não são incluídas na publicação.
