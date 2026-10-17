@@ -140,7 +140,7 @@ body.mare-kanagawa .mare-studio-hero h1{
   max-width:10ch;
 }
 body.mare-kanagawa .mare-studio-hero h1 em{
-  font:italic 500 inherit;color:#285f80!important;
+  font-style:italic!important;font-weight:500!important;color:#285f80!important;
   font-family:var(--kan-serif)!important;
 }
 body.mare-kanagawa .mare-studio-hero__copy>p{
@@ -451,6 +451,27 @@ body.mare-kanagawa .mare-finale__actions a{
 :root[data-mare-contrast="high"] body.mare-kanagawa :is(button,a,input,select,textarea,summary):focus-visible{
   outline:4px solid #ffdf91!important;
 }
+/* Specificity-safe accessibility overrides: dark mode must win over paper cards. */
+:root[data-mare-contrast="high"] body.mare-hub.mare-kanagawa .mar-catalog>article.mar-game{
+ background:#061925!important;background-image:none!important;border-color:#b0ebdf!important;
+ color:#fff!important;
+}
+:root[data-mare-contrast="high"] body.mare-hub.mare-kanagawa .mar-catalog>article.mar-game
+ :is(.mar-tag,.recife-card-heading,.mar-game-info p){color:#fff!important}
+:root[data-mare-contrast="high"] body.mare-kanagawa
+ :is(.mare-logbook__stat,.mare-logbook__destination,.mare-logbook__award,
+ .mare-voyage__history-item,.mare-voyage__streak-metrics>div,.mare-access__scale,
+ .mare-access__toggle,.mare-social__compare,.mare-social__select,.mare-social__peer,.mare-voyage__seal){
+ background:#061925!important;border-color:#b0ebdf!important;color:#fff!important;
+}
+:root[data-mare-contrast="high"] body.mare-kanagawa
+ :is(.mare-logbook__destination-info strong,.mare-logbook__stat-value,.mare-logbook__award-description strong,
+ .mare-voyage__streak-metrics strong,.mare-voyage__seal span,.mare-social__verdict,
+ .mare-logbook__destination-info small,.mare-social__status,.mare-access__summary-caption,
+ .mare-access__toggle small,.mare-access__content>p){color:#fff!important}
+:root[data-mare-contrast="high"] body.mare-kanagawa:is(.mar-app,.mare-recife)
+ :is(.depth-shell,.newgame-shell,.shell,.wrap){background-image:none!important}
+
 @media(max-width:920px){
  body.mare-kanagawa .mare-studio-hero{grid-template-columns:1fr 1fr}
  body.mare-kanagawa .mare-studio-hero h1{font-size:clamp(2.9rem,5.9vw,5rem)!important}
