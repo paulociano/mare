@@ -1,31 +1,183 @@
-
-/* Read-only explorer diary. No network, rankings or simulated victories. */
-body.mare-hub .mare-explorer{order:2;display:grid;grid-template-columns:minmax(190px,1fr) minmax(250px,1.5fr);gap:20px;align-items:center;padding:clamp(18px,2.5vw,28px);border:1px solid #66bcb27d;border-radius:22px;background:linear-gradient(120deg,#0c3444ef,#061e30ef);box-shadow:0 14px 32px #00121e5a}
-body.mare-hub .mare-explorer__intro{display:grid;gap:6px}
-body.mare-hub .mare-explorer__eyebrow{font-weight:800;letter-spacing:.12em;color:#9eeadd;font-size:.7rem}
-body.mare-hub .mare-explorer h2{font-size:clamp(1.2rem,2vw,1.6rem);line-height:1.15;margin:0;color:#f1f8f7}
-body.mare-hub .mare-explorer p{font-size:.86rem;line-height:1.55;color:#c5dcdf;margin:0;max-width:48ch}
-body.mare-hub .mare-explorer__meter{display:grid;gap:12px;min-width:0}
-body.mare-hub .mare-explorer__track{height:12px;background:#173e51;border:1px solid #5e8c98;border-radius:99px;overflow:hidden}
-body.mare-hub .mare-explorer__fill{display:block;height:100%;background:linear-gradient(90deg,#3eb8bd,#8ff3c7);border-radius:inherit;transition:width .3s ease}
+/* MARÉ / Diário de Bordo 2.0
+   Editorial navigation, verified progress, local-first stats.
+   No external assets, frameworks or motion dependencies. */
+body.mare-hub .mare-logbook{
+ --log-mint:#9cf2d5;--log-muted:#b5d3d8;--log-border:rgba(157,224,216,.27);
+ position:relative;order:2;display:grid;
+ grid-template-columns:minmax(0,1.48fr) minmax(290px,.9fr);
+ gap:20px;padding:clamp(20px,3.5vw,38px);
+ margin:22px 0 35px;overflow:hidden;border-radius:26px;
+ border:1px solid var(--log-border);
+ background:radial-gradient(ellipse at 97% 7%,rgba(26,150,146,.17),transparent 36%),
+   linear-gradient(135deg,#0c3543,#071f2d 60%,#071a2b);
+ box-shadow:inset 0 1px rgba(255,255,255,.07),0 22px 65px rgba(0,5,17,.26);
+ color:#edf9f5;
+}
+body.mare-hub .mare-logbook::before{
+ content:"";position:absolute;inset:0;pointer-events:none;opacity:.12;
+ background:repeating-linear-gradient(90deg,transparent 0 89px,#83c8c2 90px),
+  repeating-linear-gradient(0deg,transparent 0 89px,#83c8c2 90px);
+ mask-image:linear-gradient(90deg,transparent 12%,#000);
+}
+body.mare-hub .mare-logbook > *{position:relative;min-width:0}
+body.mare-hub .mare-explorer__intro{display:flex;flex-direction:column;align-items:stretch;gap:10px}
+body.mare-hub .mare-explorer__eyebrow{font:800 10px/1.45 system-ui,sans-serif;letter-spacing:.17em;color:#9fe9d7;text-transform:uppercase}
+body.mare-hub .mare-logbook h2{
+ font:750 clamp(27px,3vw,43px)/1.09 Outfit,system-ui,sans-serif;
+ letter-spacing:-.035em;color:#f1fcf9;margin:0;
+}
+body.mare-hub .mare-logbook h3{
+ font:750 clamp(19px,2vw,23px)/1.2 Outfit,system-ui,sans-serif;
+ letter-spacing:-.025em;color:#e8fdf7;margin:5px 0 15px;
+}
+body.mare-hub .mare-logbook p{margin:0;color:var(--log-muted);line-height:1.55;font-size:13px}
+body.mare-hub .mare-logbook__lead{max-width:58ch}
+body.mare-hub .mare-logbook__stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:9px;margin:14px 0 5px}
+body.mare-hub .mare-logbook__stat{
+ min-width:0;padding:16px 13px 13px;background:rgba(3,22,33,.65);
+ border:1px solid rgba(133,200,195,.23);border-radius:15px;
+ display:flex;flex-direction:column;align-items:flex-start;gap:4px;
+}
+body.mare-hub .mare-logbook__stat-value{
+ font:800 clamp(25px,2.55vw,35px)/1 Outfit,system-ui,sans-serif;
+ color:#f2faf6;letter-spacing:-.035em;font-variant-numeric:tabular-nums;
+}
+body.mare-hub .mare-logbook__stat:first-child .mare-logbook__stat-value{color:#9cf2d5}
+body.mare-hub .mare-logbook__stat-label{color:#e2f4f0;font-size:12px;font-weight:750}
+body.mare-hub .mare-logbook__stat-detail{color:#a2c4c9;font-size:10px;line-height:1.3}
+body.mare-hub .mare-logbook__level{margin-top:auto;padding-top:13px}
+body.mare-hub .mare-logbook__level-head{
+ display:flex;justify-content:space-between;gap:10px;margin-bottom:10px;
+ color:#e6faf3;font:700 12px/1.4 system-ui,sans-serif;
+}
+body.mare-hub .mare-logbook__level-head span{color:#bcdbd7;font-variant-numeric:tabular-nums}
+body.mare-hub .mare-explorer__track{height:11px;overflow:hidden;border-radius:99px;border:1px solid #5b929a;background:#153543}
+body.mare-hub .mare-explorer__fill{
+ display:block;height:100%;border-radius:inherit;
+ background:linear-gradient(90deg,#40b2c0,#8cf4cb);
+ transition:width .3s ease;
+}
+body.mare-hub .mare-explorer__meter{
+ padding:24px 21px;display:flex;flex-direction:column;gap:15px;
+ border:1px solid rgba(135,210,198,.24);border-radius:20px;
+ background:linear-gradient(140deg,rgba(13,74,79,.72),rgba(5,36,51,.77));
+ min-height:100%;
+}
+body.mare-hub .mare-logbook__section-head{display:flex;flex-direction:column;gap:6px;order:-1}
+body.mare-hub .mare-logbook__section-head strong{
+ color:#f4fff9;font:700 21px/1.2 Outfit,system-ui,sans-serif;
+}
 body.mare-hub .mare-explorer__badges{display:flex;flex-wrap:wrap;gap:7px}
-body.mare-hub .mare-explorer__badge{display:inline-flex;align-items:center;min-height:30px;padding:5px 9px;font-size:.72rem;font-weight:700;border:1px solid #44697a;border-radius:10px;color:#a7b8c2;background:#0b2638}
-body.mare-hub .mare-explorer__badge.is-earned{background:#164e4a;border-color:#71d8bd;color:#e8fff7}
-@media(max-width:760px){body.mare-hub .mare-explorer{grid-template-columns:1fr;gap:14px}}
-@media(prefers-reduced-motion:reduce){body.mare-hub .mare-explorer__fill{transition:none}}
-
-body.mare-hub .mare-explorer__missions{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(220px,100%),1fr));gap:8px;margin-top:6px}
-body.mare-hub .mare-explorer__mission{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:10px 12px;border:1px solid #608a9b;border-radius:12px;color:#dcebed;background:#0b2e3d;font-size:.8rem}
-body.mare-hub .mare-explorer__mission strong{color:#f1ca83;white-space:nowrap}
-body.mare-hub .mare-explorer__mission.is-complete{border-color:#83dec8;background:#164740}
-body.mare-hub .mare-explorer__mission.is-complete strong{color:#a7ffe0}
-
-/* Final navigation and share polish: responsive, keyboard-visible and low-motion. */
-body.mare-hub .mare-explorer__share{display:inline-flex;align-items:center;justify-content:center;min-height:44px;max-width:100%;padding:10px 16px;border:1px solid #9cf3d9;background:#49d6c4;color:#062d34;font:800 .86rem/1.25 system-ui,sans-serif;border-radius:12px;cursor:pointer;text-align:center}
-body.mare-hub .mare-explorer__share:hover{background:#a0f4df}
-body.mare-hub .mare-explorer__share:focus-visible{outline:3px solid #f1ca83;outline-offset:3px}
-body.mare-hub .mare-explorer__share-feedback{display:block;overflow-wrap:anywhere;font-size:.8rem;color:#d6f2ed}
-body.mare-hub .mare-explorer__mission{min-width:0;overflow-wrap:anywhere}
-body.mare-hub .mare-explorer__mission span{min-width:0}
-@media(max-width:600px){body.mare-hub .mare-explorer__share{width:100%}body.mare-hub .mare-explorer__mission{align-items:flex-start;flex-direction:column}}
-@media(prefers-reduced-motion:reduce){body.mare-hub .mare-explorer__share{animation:none;transition:none}}
+body.mare-hub .mare-explorer__badge{
+ display:inline-flex;align-items:center;min-height:33px;
+ padding:7px 10px;font-size:11px;font-weight:750;border-radius:10px;
+ border:1px solid #5d7f8b;background:#143241;color:#b7cad0;
+}
+body.mare-hub .mare-explorer__badge.is-earned{background:#155144;border-color:#6ed7bb;color:#e5fff4}
+body.mare-hub .mare-logbook__disclaimer{margin-top:auto!important;font-size:11px!important;color:#b5d0d3!important}
+body.mare-hub .mare-logbook__empty{
+ font-size:12px!important;color:#d8e9e4!important;padding:12px 14px;
+ border-left:3px solid #8be0ca;background:rgba(29,106,102,.16);
+}
+body.mare-hub .mare-logbook__body{
+ grid-column:1/-1;display:grid;grid-template-columns:1fr 1fr;gap:16px;
+}
+body.mare-hub .mare-logbook__panel{
+ background:rgba(4,26,39,.56);border:1px solid rgba(143,205,199,.22);
+ border-radius:18px;padding:clamp(16px,2.3vw,24px);min-width:0;
+}
+body.mare-hub .mare-logbook__awards{
+ display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;
+}
+body.mare-hub .mare-logbook__award{
+ display:flex;align-items:center;gap:9px;min-width:0;
+ background:#0c2c3a;border:1px solid #456576;
+ color:#aebec6;border-radius:11px;min-height:54px;
+ padding:10px 12px;font-size:12px;font-weight:750;
+}
+body.mare-hub .mare-logbook__award.is-earned{background:#134a44;border-color:#75d2b8;color:#e3fff2}
+body.mare-hub .mare-logbook__award-symbol{
+ display:grid;place-items:center;flex:none;font-size:20px;color:#93d0c6;
+}
+body.mare-hub .mare-logbook__award.is-earned .mare-logbook__award-symbol{color:#f1c983}
+body.mare-hub .mare-explorer__missions{display:grid;gap:9px}
+body.mare-hub .mare-explorer__mission{
+ display:grid;grid-template-columns:minmax(0,1fr) auto;gap:7px 10px;
+ padding:11px 13px;border:1px solid #537484;border-radius:11px;background:#0a2d3d;
+}
+body.mare-hub .mare-explorer__mission.is-complete{border-color:#77cbb8;background:#144740}
+body.mare-hub .mare-logbook__mission-name{display:flex;flex-direction:column;min-width:0;gap:3px}
+body.mare-hub .mare-logbook__mission-name strong{color:#f1f8f4;font-size:12px}
+body.mare-hub .mare-logbook__mission-name span{font-size:11px;color:#accbd0;line-height:1.4}
+body.mare-hub .mare-logbook__mission-count{font-size:12px;color:#f3d190;font-variant-numeric:tabular-nums;white-space:nowrap}
+body.mare-hub .mare-logbook__mission-track{
+ grid-column:1/-1;height:5px;overflow:hidden;border-radius:99px;background:#255362;
+}
+body.mare-hub .mare-logbook__mission-track span{
+ display:block;height:100%;background:#83e4c8;border-radius:inherit;
+}
+body.mare-hub .mare-logbook__fleet{grid-column:1/-1;min-width:0}
+body.mare-hub .mare-logbook__fleet-head{
+ display:flex;justify-content:space-between;align-items:end;gap:10px;margin-bottom:12px;
+}
+body.mare-hub .mare-logbook__fleet-head h3{margin-bottom:0}
+body.mare-hub .mare-logbook__fleet-caption{color:#bad5d3;font-size:11px;max-width:180px;text-align:right}
+body.mare-hub .mare-logbook__destinations{
+ display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:9px;
+}
+body.mare-hub .mare-logbook__destination{
+ display:flex;align-items:center;min-width:0;gap:11px;
+ padding:13px 11px;text-decoration:none;
+ background:#0a2838;border:1px solid #426878;border-radius:13px;
+ color:#e7f9f5;transition:background .18s ease,border-color .18s ease,transform .18s ease;
+}
+body.mare-hub .mare-logbook__destination:is(:hover,:focus-visible){
+ background:#124550;border-color:#9cf2d5;transform:translateY(-2px);
+}
+body.mare-hub .mare-logbook__destination:focus-visible{outline:3px solid #f2d08c;outline-offset:2px}
+body.mare-hub .mare-logbook__destination.has-win{border-color:#5cafa2}
+body.mare-hub .mare-logbook__destination-icon{
+ color:#9ac0c2;font-size:22px;line-height:1;flex:none;
+}
+body.mare-hub .mare-logbook__destination.has-win .mare-logbook__destination-icon{color:#9ef0d5}
+body.mare-hub .mare-logbook__destination-info{
+ min-width:0;display:flex;flex-direction:column;gap:3px;
+}
+body.mare-hub .mare-logbook__destination-info strong{font-size:12px;color:#f2fff8}
+body.mare-hub .mare-logbook__destination-info small{font-size:10px;color:#a9cbd0;line-height:1.3}
+body.mare-hub .mare-logbook__destination-arrow{font-size:15px;color:#d0eee4;margin-left:auto}
+body.mare-hub .mare-logbook__actions{
+ grid-column:1/-1;display:flex;align-items:center;flex-wrap:wrap;gap:12px;
+ padding-top:17px;border-top:1px solid var(--log-border);
+}
+body.mare-hub .mare-explorer__share{
+ min-height:44px;padding:11px 18px;border:1px solid #c5ffeb;
+ border-radius:11px;background:#91efd6;color:#092d35;
+ font:800 12px/1.2 system-ui,sans-serif;cursor:pointer;
+}
+body.mare-hub .mare-explorer__share:is(:hover,:focus-visible){background:#c4fff0}
+body.mare-hub .mare-explorer__share:focus-visible{outline:3px solid #f2d08c;outline-offset:3px}
+body.mare-hub .mare-explorer__share-feedback{color:#d9f2e8;font-size:12px;overflow-wrap:anywhere}
+@media(max-width:1060px){
+ body.mare-hub .mare-logbook__stats{grid-template-columns:repeat(2,minmax(0,1fr))}
+ body.mare-hub .mare-logbook__destinations{grid-template-columns:repeat(3,minmax(0,1fr))}
+}
+@media(max-width:760px){
+ body.mare-hub .mare-logbook{grid-template-columns:1fr;gap:16px}
+ body.mare-hub .mare-logbook__body{grid-template-columns:1fr}
+ body.mare-hub .mare-logbook__destinations{grid-template-columns:repeat(2,minmax(0,1fr))}
+ body.mare-hub .mare-explorer__meter{min-height:unset}
+}
+@media(max-width:450px){
+ body.mare-hub .mare-logbook{padding:16px;border-radius:18px}
+ body.mare-hub .mare-logbook__stats{gap:7px}
+ body.mare-hub .mare-logbook__stat{padding:12px 10px}
+ body.mare-hub .mare-logbook__stat-detail{font-size:9px}
+ body.mare-hub .mare-logbook__awards{grid-template-columns:1fr}
+ body.mare-hub .mare-logbook__destination{padding:12px 9px;gap:7px}
+ body.mare-hub .mare-logbook__destination-arrow{display:none}
+}
+@media(prefers-reduced-motion:reduce){
+ body.mare-hub .mare-logbook .mare-explorer__fill,
+ body.mare-hub .mare-logbook .mare-logbook__destination{transition:none!important;transform:none!important}
+}
