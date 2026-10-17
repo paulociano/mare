@@ -1,0 +1,419 @@
+/* Shared game surfaces: preserve layouts, control geometry and game-specific colors. */
+:root{
+ --mare-evo-panel:rgba(7,38,55,.88);
+ --mare-evo-border:rgba(109,197,204,.34);
+ --mare-evo-focus:#f1ca83;
+ --mare-evo-radius:20px;
+ --mare-evo-shadow:0 20px 54px rgba(0,12,25,.36);
+}
+body:is(.mar-app,.mare-recife){color-scheme:dark}
+body:is(.mar-app,.mare-recife) :is(button,a,input,[role="button"]):focus-visible{
+ outline:3px solid var(--mare-evo-focus)!important;
+ outline-offset:3px!important;
+}
+body:is(.mar-app,.mare-recife) :is(button,a,input){
+ -webkit-tap-highlight-color:rgba(83,220,203,.16);
+}
+body:is(.mar-app,.mare-recife) :is(button,[role="button"]):not(:disabled){
+ transition:transform .2s var(--mare-evo-ease),border-color .2s ease,box-shadow .2s ease,background-color .2s ease;
+}
+@media(hover:hover) and (pointer:fine){
+ body:is(.mar-app,.mare-recife) :is(button,[role="button"]):not(:disabled):hover{transform:translateY(-2px)}
+ body:is(.mar-app,.mare-recife) :is(button,[role="button"]):not(:disabled):active{transform:translateY(0) scale(.98)}
+}
+body:is(.mar-app,.mare-recife) :is(.newgame-panel,.game,.panel){
+ box-shadow:var(--mare-evo-shadow);
+}
+body.mar-app :is(.mare-game-symbol-lockup img,.newgame-intro img){
+ filter:drop-shadow(0 10px 20px rgba(0,14,24,.3));
+}
+body:is(.mar-app,.mare-recife) :is(.mare-game-nav__link,.newgame-back,.back){
+ transition:color .2s ease,background-color .2s ease,border-color .2s ease;
+}
+body:is(.mar-app,.mare-recife) :is(.mare-game-nav__link,.newgame-back,.back):focus-visible{
+ border-radius:8px;
+}
+body:is(.mar-app,.mare-recife) :is(.notice,.status,[role="status"],[aria-live="polite"]){
+ overflow-wrap:anywhere;
+}
+@media(max-width:420px){
+ body:is(.mar-app,.mare-recife) :is(.newgame-panel,.panel,.game){max-width:100%;min-width:0}
+ body:is(.mar-app,.mare-recife) :is(button,input){max-width:100%}
+}
+@media(prefers-reduced-motion:reduce){
+ body:is(.mar-app,.mare-recife) :is(button,a,input,[role="button"]){transition:none!important;animation:none!important;transform:none!important}
+}
+
+
+/* MARÉ Play System · Phase 2
+   Shared UI contracts for all twelve games. Loaded instead of hub-only
+   mare-evolution.css; preserve every game mechanics stylesheet and URL.
+   Source of truth for shared game buttons, inputs, panels, headers and focus.
+*/
+:root{
+  --play-abyss:#06141f;
+  --play-layer:#0d2632;
+  --play-panel:#102d3b;
+  --play-panel-high:#153a48;
+  --play-ink:#f1f8f5;
+  --play-muted:#bed5d7;
+  --play-mint:#a1f3d9;
+  --play-sand:#e9c88b;
+  --play-stroke:rgba(142,217,210,.31);
+  --play-ease:cubic-bezier(.22,1,.36,1);
+  --play-radius:20px;
+}
+body:is(.mar-app,.mare-recife){
+  color-scheme:dark;
+  min-width:0;
+  color:var(--play-ink);
+  background-color:var(--play-abyss)!important;
+  background-image:radial-gradient(ellipse 75% 45% at 80% -12%,rgba(35,121,135,.22),transparent 75%),linear-gradient(180deg,#0a2532 0%,#06141f 75%)!important;
+  background-attachment:scroll!important;
+  font-family:'DM Sans',system-ui,sans-serif;
+}
+body:is(.mar-app,.mare-recife)::before,
+body:is(.mar-app,.mare-recife)::after{
+  content:none!important;
+  animation:none!important;
+}
+body:is(.mar-app,.mare-recife) :is(button,a,input,textarea,[role="button"]):focus-visible{
+  outline:3px solid var(--play-sand)!important;
+  outline-offset:3px!important;
+}
+body:is(.mar-app,.mare-recife) :is(button,a,input){
+  -webkit-tap-highlight-color:rgba(161,243,217,.17);
+}
+body:is(.mar-app,.mare-recife) :is(button,[role="button"]):not(:disabled){
+  touch-action:manipulation;
+  transition:background-color .18s ease,color .18s ease,border-color .18s ease,box-shadow .24s ease,transform .24s var(--play-ease);
+}
+body:is(.mar-app,.mare-recife) button:disabled{
+  cursor:not-allowed!important;
+  opacity:.5;
+}
+body:is(.mar-app,.mare-recife) :is(.notice,.status,.newgame-notice,.depth-status,[role="status"],[aria-live="polite"]){
+  overflow-wrap:anywhere;
+}
+body:is(.mar-app,.mare-recife) :is(.notice,.status,.newgame-notice,.depth-status):not(:empty){
+  line-height:1.5;
+}
+body:is(.mar-app,.mare-recife) [hidden]{display:none!important;}
+/* Calm consistent branding, while preserving the various shell containers. */
+body.mar-app header:not(.mare-game-nav),
+body.mare-recife .topbar{
+  position:relative;
+  z-index:2;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:clamp(10px,2.4vw,24px);
+  padding-block:15px!important;
+  min-height:72px;
+  border-bottom:1px solid var(--play-stroke);
+  background:transparent;
+  box-shadow:none;
+}
+body.mare-recife .topbar{height:auto!important;min-height:72px}
+body.mar-app header a[href="./"],
+body.mare-recife .return-link > a{
+  text-decoration:none;
+}
+body.mar-app header a[href="./"]:not(:has(img)),
+body.mare-recife .return-link > a{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-height:42px;
+  padding:9px 12px;
+  border-radius:999px;
+  border:1px solid var(--play-stroke);
+  color:#cfe9e4!important;
+  background:rgba(7,40,52,.5);
+  font-size:clamp(.74rem,1.5vw,.88rem)!important;
+  font-weight:700;
+  white-space:nowrap;
+}
+body.mar-app header a[href="./"]:not(:has(img)):hover,
+body.mare-recife .return-link > a:hover{
+  border-color:var(--play-mint);
+  color:var(--play-mint)!important;
+}
+body.mar-app header img,
+body.mare-recife .topbar img{
+  max-width:100%;
+  object-fit:contain;
+}
+body.mare-recife .return-link{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:16px;
+  padding-block:14px 8px;
+}
+body.mare-recife .return-link .mare-game-symbol-lockup{
+  display:flex;
+  flex-direction:row;
+  gap:9px;
+  min-width:0;
+}
+body.mare-recife .recife-title-lockup{
+  text-shadow:none!important;
+  color:var(--play-mint);
+  font:700 clamp(1.3rem,3vw,1.9rem)/1.1 'Outfit',system-ui,sans-serif;
+  margin:0;
+}
+body.mar-app :is(.mare-game-symbol-lockup,.depth-title-lockup){
+  display:flex;
+  align-items:center;
+  gap:clamp(11px,2vw,18px);
+  flex-wrap:nowrap;
+  min-width:0;
+}
+body.mar-app :is(.mare-game-symbol-lockup,.depth-title-lockup) img{
+  display:block;
+  width:clamp(54px,6vw,72px);
+  height:clamp(54px,6vw,72px);
+  flex-shrink:0;
+  filter:drop-shadow(0 9px 20px rgba(0,15,25,.28));
+}
+body.mar-app :is(.mare-game-symbol-lockup,.depth-title-lockup) h1{
+  min-width:0;
+  margin:0!important;
+  color:#eafff5!important;
+  text-shadow:none!important;
+  font:700 clamp(2.45rem,5vw,4.1rem)/1.02 'Outfit',system-ui,sans-serif!important;
+  letter-spacing:-.062em!important;
+  overflow-wrap:anywhere;
+}
+body.mar-app :is(.wrap,.layout,.concha-shell,.trilha-shell,.enigma-shell,.marujo-shell,.newgame-shell,.depth-shell){
+  max-width:1100px;
+}
+body.mar-app :is(.wrap,.layout,.concha-shell,.trilha-shell,.enigma-shell,.marujo-shell,.newgame-shell,.depth-shell),
+body.mare-recife .shell{
+  min-width:0;
+}
+/* Editorial identification, compact so the board remains the focal point. */
+body.mar-app :is(.hero,.intro,.heading,.concha-hero,.trilha-hero,.enigma-hero,.marujo-hero,.newgame-intro,.depth-intro){
+  border-bottom-color:rgba(142,217,210,.18);
+}
+body.mar-app :is(.concha-hero,.trilha-hero,.enigma-hero,.marujo-hero,.depth-intro){
+  padding-block:clamp(16px,2.5vw,28px) clamp(13px,2vw,22px)!important;
+}
+body.mar-app :is(.hero,.intro,.heading,.concha-hero,.trilha-hero,.enigma-hero,.marujo-hero,.newgame-intro,.depth-intro) > p,
+body.mar-app :is(.hero,.intro,.heading,.concha-hero,.trilha-hero,.enigma-hero,.marujo-hero,.newgame-intro,.depth-intro) > div > p{
+  max-width:64ch;
+  color:var(--play-muted);
+  line-height:1.55;
+  font-size:clamp(.86rem,1.25vw,1rem);
+}
+body.mar-app :is(.eyebrow,.overline,.newgame-eyebrow,.depth-eyebrow,.tiny),
+body.mar-app :is(.trilha-hero,.enigma-hero,.marujo-hero) > span:first-child{
+  color:var(--play-mint);
+  font-weight:800;
+  text-transform:uppercase;
+  letter-spacing:.13em;
+}
+/* Shared panel material. No extra blur layers or animated backgrounds. */
+body.mar-app :is(.panel,.game,.concha-play,.concha-discover,.trilha-panel,.trilha-info,.trilha-mode,.enigma-card,.enigma-clues,.enigma-stats,.marujo-panel,.marujo-card,.newgame-panel,.depth-panel),
+body.mare-recife .game{
+  min-width:0;
+  max-width:100%;
+  border-radius:var(--play-radius)!important;
+  border:1px solid var(--play-stroke)!important;
+  background:linear-gradient(155deg,rgba(17,48,62,.97),rgba(8,31,43,.98))!important;
+  box-shadow:0 18px 56px rgba(0,10,23,.22),inset 0 1px rgba(244,255,251,.035)!important;
+  scroll-margin-top:14px;
+}
+body.mar-app :is(.concha-play,.concha-discover,.trilha-panel,.enigma-card,.marujo-panel,.newgame-panel,.depth-panel){
+  padding:clamp(16px,2.8vw,30px)!important;
+}
+body.mar-app :is(.panel,.game){padding:clamp(16px,2.8vw,28px)!important}
+body.mar-app :is(.trilha-info,.trilha-mode,.enigma-clues,.enigma-stats,.marujo-card){padding:clamp(14px,2.3vw,24px)!important}
+body.mar-app :is(.newgame-hud,.depth-hud,.statusline,.trilha-meta,.enigma-meta,.marujo-meta,.progress,.meta,.concha-top){
+  font-variant-numeric:tabular-nums;
+  color:#c5dedc;
+}
+/* Explicit selectors for action controls: never restyle puzzle tiles or keyboard keys. */
+body.mar-app :is(.controls,.actions,.lower,.switch,.concha-tabs,.concha-controls,.trilha-actions,.trilha-mode,.enigma-actions,.enigma-modes,.marujo-actions,.marujo-modes,.newgame-actions,.newgame-modes,.depth-buttons,.depth-modes) > button,
+body.mar-app :is(.panel,.game,.depth-panel,.newgame-panel) form button[type="submit"]{
+  min-height:44px;
+  padding:10px 15px;
+  border:1px solid rgba(139,208,202,.45);
+  border-radius:12px;
+  background:#123c4a;
+  color:#e9f9f4;
+  font:700 clamp(.79rem,1.25vw,.9rem)/1.25 'DM Sans',system-ui,sans-serif;
+  text-wrap:balance;
+}
+body.mar-app :is(.controls,.actions,.lower,.switch,.concha-tabs,.concha-controls,.trilha-actions,.trilha-mode,.enigma-actions,.enigma-modes,.marujo-actions,.marujo-modes,.newgame-actions,.newgame-modes,.depth-buttons,.depth-modes) > button:not(:disabled):hover,
+body.mar-app form button[type="submit"]:not(:disabled):hover{
+  background:#215665;
+  border-color:var(--play-mint);
+  color:#f4fff8;
+}
+body.mar-app :is(.switch,.concha-tabs,.trilha-mode,.enigma-modes,.marujo-modes,.newgame-modes,.depth-modes) button[aria-pressed="true"],
+body.mar-app :is(.switch,.concha-tabs,.trilha-mode,.enigma-modes,.marujo-modes,.newgame-modes,.depth-modes) button.active{
+  color:#063238!important;
+  background:var(--play-mint)!important;
+  border-color:var(--play-mint)!important;
+}
+body.mar-app :is(.actions,.concha-controls,.trilha-actions,.newgame-actions,.depth-buttons) > :is(.primary,.main-action,#check,#submit),
+body.mar-app form button[type="submit"]{
+  color:#062e34!important;
+  background:var(--play-mint)!important;
+  border-color:var(--play-mint)!important;
+  font-weight:800!important;
+}
+body.mar-app :is(.actions,.concha-controls,.trilha-actions,.newgame-actions,.depth-buttons) > :is(.primary,.main-action,#check,#submit):not(:disabled):hover,
+body.mar-app form button[type="submit"]:not(:disabled):hover{
+  background:#cbffeb!important;
+}
+body.mar-app input:not([type="hidden"]):not([type="checkbox"]):not([type="radio"]){
+  min-height:46px;
+  border:1px solid rgba(150,222,212,.56)!important;
+  border-radius:12px;
+  background:#061f2c!important;
+  color:var(--play-ink)!important;
+  caret-color:var(--play-mint);
+  font-size:16px;
+}
+body.mar-app input::placeholder{color:#9bbec1;opacity:1}
+body.mar-app :is(label,.concha-stat,.depth-hud,.newgame-hud){
+  color:#c6e3de;
+}
+body.mar-app :is(.entry,.crypto-entry,.depth-entry,.concha-controls,.newgame-actions,.depth-buttons,.trilha-actions,.enigma-actions,.marujo-actions){
+  min-width:0;
+}
+/* Critical gameplay: legible 16-card grouping at 320px. */
+body.mare-cardume #grid.grid{
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:clamp(4px,1.1vw,9px);
+}
+body.mare-cardume #grid .tile{
+  min-width:0;
+  min-height:clamp(65px,7.2vw,81px)!important;
+  padding:8px 4px;
+  font-size:clamp(12px,1.15vw,15px)!important;
+  line-height:1.18;
+  font-weight:800;
+  overflow-wrap:anywhere;
+  word-break:normal;
+  hyphens:auto;
+  border:1px solid #628e9c;
+  border-radius:10px;
+  background:#153f4e;
+  color:#f0fcfb;
+}
+body.mare-cardume #grid .tile[aria-pressed="true"]{
+  background:var(--play-mint)!important;
+  color:#07323a!important;
+  border-color:#ecfff8!important;
+  box-shadow:inset 0 0 0 2px #e1fff1;
+}
+body.mare-cardume #grid .tile:focus-visible{
+  outline:3px solid var(--play-sand)!important;
+  outline-offset:1px!important;
+}
+/* Visible states remain encoded both by color and borders/position. */
+body.mare-trilha .trilha-grid button.chosen{
+  border-color:#ddfff3!important;
+  box-shadow:inset 0 0 0 2px #d2fff0!important;
+}
+body.mare-enigma .enigma-cell.selected{
+  border-color:#e6fff7!important;
+  box-shadow:inset 0 0 0 2px #073640!important;
+}
+body.mare-marujo .marujo-cell:is(.selected,.found){
+  outline:1px solid #ddfff1;
+  outline-offset:-2px;
+}
+body.mar-app :is(.depth-status,.newgame-notice,.notice),
+body.mare-recife .status{
+  color:#c7f4e7;
+  line-height:1.5;
+}
+/* Twelve-game voyage navigation in the lower priority region. */
+body.mar-app .mare-game-nav,
+body.mare-recife .mare-game-nav{padding-block:22px}
+body.mar-app .mare-game-nav__link,
+body.mare-recife .mare-game-nav__link{
+  min-height:57px;
+  background:rgba(13,45,58,.75);
+  border:1px solid var(--play-stroke);
+  border-radius:12px;
+  text-decoration:none;
+}
+body.mar-app .mare-game-nav__link:is(:hover,:focus-visible),
+body.mare-recife .mare-game-nav__link:is(:hover,:focus-visible){
+  border-color:var(--play-mint);
+  background:#174655;
+}
+body.mar-app .mare-game-nav__link[aria-current="page"],
+body.mare-recife .mare-game-nav__link[aria-current="page"]{
+  border-color:var(--play-mint);
+  background:#19534f;
+  color:#fff;
+}
+body.mar-app dialog,
+body.mare-recife .overlay{
+  color:var(--play-ink);
+  border:1px solid var(--play-stroke);
+  border-radius:20px;
+  box-shadow:0 24px 70px rgba(0,9,19,.62);
+}
+body.mar-app dialog::backdrop{
+  background:rgba(2,13,21,.78);
+  backdrop-filter:blur(4px);
+}
+/* Compact initial viewport, but don't hide help, scores or essential controls. */
+@media(max-width:760px){
+  body.mar-app header:not(.mare-game-nav){min-height:64px;gap:10px;padding-block:11px!important}
+  body.mar-app :is(.concha-hero,.trilha-hero,.enigma-hero,.marujo-hero,.depth-intro){padding-block:15px 13px!important}
+  body.mar-app :is(.mare-game-symbol-lockup,.depth-title-lockup) h1{font-size:clamp(2rem,7vw,3.15rem)!important}
+  body.mar-app :is(.mare-game-symbol-lockup,.depth-title-lockup) img{width:56px;height:56px}
+  body.mar-app :is(.panel,.game,.concha-play,.concha-discover,.trilha-panel,.trilha-info,.trilha-mode,.enigma-card,.enigma-clues,.enigma-stats,.marujo-panel,.marujo-card,.newgame-panel,.depth-panel){
+    border-radius:16px!important;
+    padding:clamp(12px,2.6vw,19px)!important;
+  }
+  body.mar-app :is(.trilha-actions,.newgame-actions,.depth-buttons,.marujo-actions,.enigma-actions){
+    gap:8px;
+  }
+}
+@media(max-width:420px){
+  body.mar-app header a[href="./"]:not(:has(img)){padding:8px 10px;white-space:normal;text-align:center}
+  body.mar-app :is(.mare-game-symbol-lockup,.depth-title-lockup) img{width:48px;height:48px}
+  body.mare-cardume #grid .tile{font-size:12px!important;padding:6px 2px;min-height:70px!important}
+  body.mar-app :is(.entry,.actions,.lower,.concha-controls,.newgame-actions,.depth-buttons,.trilha-actions,.enigma-actions,.marujo-actions){
+    max-width:100%;
+  }
+  body.mare-recife .topbar{padding-block:10px!important;min-height:64px}
+  body.mare-recife .return-link{gap:8px}
+  body.mare-recife .return-link .mare-game-symbol-lockup img{max-width:48px}
+}
+@media(hover:hover) and (pointer:fine){
+  body:is(.mar-app,.mare-recife) :is(.actions,.lower,.switch,.concha-controls,.trilha-actions,.enigma-actions,.marujo-actions,.newgame-actions,.depth-buttons) > button:not(:disabled):hover{
+    transform:translateY(-2px);
+  }
+}
+@media(prefers-reduced-motion:reduce){
+  body:is(.mar-app,.mare-recife) :is(button,a,input,[role="button"],.tile,.letter){
+    animation:none!important;
+    transition:none!important;
+    transform:none!important;
+  }
+  body:is(.mar-app,.mare-recife){scroll-behavior:auto}
+}
+@media(prefers-contrast:more){
+  body:is(.mar-app,.mare-recife) :is(.panel,.game,.newgame-panel,.depth-panel,.concha-play,.trilha-panel,.enigma-card,.marujo-panel){
+    border-color:#ddfff6!important;
+  }
+  body:is(.mar-app,.mare-recife) :is(button,a,input):focus-visible{
+    outline-color:#ffe5aa!important;
+    outline-width:4px!important;
+  }
+  body.mar-app :is(.newgame-hud,.depth-hud,.statusline,.trilha-meta,.enigma-meta,.marujo-meta,.progress,.meta){
+    color:#fff;
+  }
+}
