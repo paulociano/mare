@@ -64,4 +64,24 @@
   const open=document.createElement('a');open.className='mare-recommendation__link';open.href=suggestedLink.getAttribute('href');open.textContent='Jogar '+suggestedName+' ↗';
   summary.append(label,hint);recommendation.append(summary,open);toolbar.after(recommendation);
  }
+ // First-visit guidance is unobtrusive and can be reopened through the toolbar.
+ const guide=document.createElement('section');guide.className='mare-guide';
+ guide.setAttribute('aria-label','Orientação para começar');
+ const guideText=document.createElement('div');
+ const guideTitle=document.createElement('strong');guideTitle.textContent='Primeira vez por aqui?';
+ const guideDescription=document.createElement('p');
+ guideDescription.textContent='Escolha um jogo, descubra as regras no botão Como jogar e acompanhe seu progresso. Você pode voltar ao convés sempre que quiser.';
+ guideText.append(guideTitle,guideDescription);
+ const guideToggle=document.createElement('button');guideToggle.type='button';guideToggle.className='mare-guide-toggle';guideToggle.textContent='Entendi';
+ guideToggle.addEventListener('click',()=>{guide.hidden=true;try{localStorage.setItem('mare-guide-dismissed-v1','1')}catch{}});
+ guide.append(guideText,guideToggle);
+ let dismissed=false;try{dismissed=localStorage.getItem('mare-guide-dismissed-v1')==='1'}catch{}
+ guide.hidden=dismissed;
+ header.after(guide);
+ const guideOpen=document.createElement('button');guideOpen.type='button';guideOpen.className='mare-filter';
+ guideOpen.textContent='Como começar';guideOpen.setAttribute('aria-controls','mare-quick-guide');
+ guide.id='mare-quick-guide';
+ guideOpen.addEventListener('click',()=>{guide.hidden=false;guideToggle.focus()});
+ controls.append(guideOpen);
+
 })();
