@@ -44,7 +44,7 @@
   return value<=limits[0]?'Bom':value<=limits[1]?'Melhorar':'Ruim';
  };
  const link=document.createElement('link');
- link.rel='stylesheet';link.href='mare-diagnostics.css';document.head.append(link);
+ link.rel='stylesheet';link.href='src/styles/shared/mare-diagnostics.css';document.head.append(link);
  // Keep the tool active while moving between the hub and individual games.
  document.querySelectorAll('a[href]').forEach(a=>{
   const raw=a.getAttribute('href');

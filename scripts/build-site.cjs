@@ -54,7 +54,7 @@ for(const page of pages){
   const imports=[],chunks=[];
   for(const file of styles){
    let css=fs.readFileSync(path.join(root,file),'utf8');
-   css=css.replace(/@import\\s+url\\(\\s*([\"'])(.*?)\\1\\s*\\)\\s*;/g,rule=>{
+   css=css.replace(/@import\s+url\(\s*(["'])(.*?)\1\s*\)\s*;/g,rule=>{
     if(!imports.includes(rule))imports.push(rule);
     return '';
    });
