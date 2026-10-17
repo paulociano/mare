@@ -69,6 +69,21 @@
   }
   intro.append(missionList);
  }
+ // Share only aggregate game statistics, never storage IDs or raw history.
+ if(profile){
+  const share=document.createElement('button');share.type='button';share.className='mare-explorer__share';
+  share.textContent='Compartilhar meu progresso';
+  const feedback=document.createElement('span');feedback.className='mare-explorer__share-feedback';feedback.setAttribute('role','status');
+  share.addEventListener('click',async()=>{
+   const message='MARÉ · Diário de bordo\nNível '+profile.level+' · '+profile.xp+' XP\n'+profile.wins+' vitórias em '+profile.uniqueWins+' jogos.\nJogue também: https://paulociano.github.io/mare/';
+   try{
+    if(navigator.share){await navigator.share({title:'Meu progresso no MARÉ',text:message});feedback.textContent='Compartilhamento iniciado.'}
+    else if(navigator.clipboard?.writeText){await navigator.clipboard.writeText(message);feedback.textContent='Resumo copiado!'}
+    else{feedback.textContent=message}
+   }catch(error){if(error?.name!=='AbortError')feedback.textContent='Não foi possível compartilhar. Tente novamente.'}
+  });
+  intro.append(share,feedback);
+ }
  const meter=document.createElement('div');meter.className='mare-explorer__meter';
  const line=document.createElement('div');line.className='mare-explorer__track';line.setAttribute('role','progressbar');
  line.setAttribute('aria-label','Jogos com registros de exploração');

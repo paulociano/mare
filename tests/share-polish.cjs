@@ -1,0 +1,12 @@
+'use strict';
+const assert=require('node:assert/strict'),fs=require('node:fs'),vm=require('node:vm');
+const js=fs.readFileSync('mare-explorer.js','utf8'),css=fs.readFileSync('mare-explorer.css','utf8');
+new vm.Script(js);
+assert.ok(js.includes('navigator.share'),'Native sharing missing');
+assert.ok(js.includes('navigator.clipboard?.writeText'),'Clipboard fallback missing');
+assert.ok(js.includes("role','status"),'Accessible share feedback missing');
+assert.ok(!js.includes('JSON.stringify(outcomes)'),'Raw history must never be shared');
+assert.ok(css.includes('prefers-reduced-motion:reduce'));
+assert.ok(css.includes('mare-explorer__share:focus-visible'));
+assert.ok(css.includes('max-width:600px'));
+console.log('PASS: share privacy, progressive fallback and mobile accessibility');
