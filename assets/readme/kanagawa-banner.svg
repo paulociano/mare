@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title description" viewBox="0 0 1200 410" width="1200" height="410">
+<title id="title">MARÉ, jogos de palavras em português</title>
+<desc id="description">Identidade Kanagawa Light, com fundo de papel marfim e onda original em azul-prussiano, inspirada nas gravuras japonesas do mar.</desc>
+<defs>
+<linearGradient id="paper" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#fffdf7"/><stop offset=".7" stop-color="#f5f0e4"/><stop offset="1" stop-color="#e4eff0"/></linearGradient>
+<linearGradient id="wave" x1="0" y1=".3" x2=".7" y2="1"><stop stop-color="#377ba3"/><stop offset=".55" stop-color="#255d83"/><stop offset="1" stop-color="#163d5e"/></linearGradient>
+<pattern id="papergrain" width="29" height="29" patternUnits="userSpaceOnUse"><circle cx="6" cy="9" r=".65" fill="#64858f" opacity=".17"/><circle cx="22" cy="19" r=".6" fill="#b49970" opacity=".19"/></pattern>
+<clipPath id="clip"><rect width="1200" height="410" rx="20"/></clipPath>
+</defs>
+<g clip-path="url(#clip)">
+<rect width="1200" height="410" fill="url(#paper)"/>
+<rect width="1200" height="410" fill="url(#papergrain)"/>
+<circle cx="985" cy="85" r="83" fill="#c9b48e" opacity=".40"/>
+<circle cx="985" cy="85" r="106" fill="none" stroke="#bea880" stroke-width="1.5" opacity=".36"/>
+<path d="M470 320C603 252 714 275 847 302s230 2 362-28V415H470Z" fill="#afced3"/>
+<path d="M475 335C590 273 693 319 786 284c108-41 174-49 264-8 62 28 106 27 155 13v126H475Z" fill="#679db7"/>
+<path d="M530 402c81-106 122-206 217-261 105-62 234-35 308 38 17 17 34 44 44 74-55-26-90-15-114 19-31-33-74-22-95 10-29-18-67-6-79 32-16 50-7 85 18 100Z" fill="url(#wave)" stroke="#173e5e" stroke-width="8" stroke-linejoin="round"/>
+<path d="M554 407c67-111 118-212 211-260 81-41 192-19 263 39" fill="none" stroke="#a4cfda" stroke-width="8" opacity=".72"/>
+<path d="M602 413c78-129 135-212 215-247 76-33 147-5 188 32M663 416c72-106 121-166 185-205" fill="none" stroke="#dfedf0" stroke-width="3" opacity=".75"/>
+<path d="M746 143c101-58 208-20 274 34 40 33 68 77 76 113-25-25-47-37-69-34 15 16 21 34 17 50-24-24-51-37-79-34 8 23 2 44-7 56-25-22-43-30-66-30-21 0-40 11-52 28-11-30-30-48-60-50-22-1-42 8-57 20-14-43 1-81 24-105 21-23 50-33 76-33-31-20-55-21-77-15Z" fill="#f9f7ed" stroke="#275775" stroke-width="6" stroke-linejoin="round"/>
+<path d="M803 162c81-10 142 25 191 65M840 187c61 4 97 27 124 53" fill="none" stroke="#83b2c4" stroke-width="3"/>
+<path d="M969 109l13-33 13 38M1084 151l30-19-14 38M1102 242l31-10-16 28" fill="none" stroke="#f9f7ed" stroke-width="11" stroke-linecap="round"/>
+<path d="M430 381c160-79 263-62 375-31 100 28 238 32 397-27M407 398c162-61 271-41 389-11 131 33 257 23 406-14" fill="none" stroke="#d9edef" stroke-width="5" opacity=".75"/>
+<path d="M0 379H1200" stroke="#9cb6bf" stroke-width="1.5"/>
+<rect x="64" y="56" width="59" height="58" rx="4" fill="#174b6a"/>
+<path d="M80 97V72l14 17 13-17v25" fill="none" stroke="#fffdf7" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="145" y="95" font-family="system-ui, sans-serif" font-size="23" font-weight="750" fill="#174b6a" letter-spacing="5">ATELIÊ DO OCEANO</text>
+<text x="64" y="217" font-family="Georgia,serif" font-weight="700" font-size="113" letter-spacing="-6" fill="#173e5e">MARÉ</text>
+<text x="67" y="266" font-family="system-ui, sans-serif" font-weight="550" font-size="27" fill="#365f77">12 jogos de palavras. Um mar de descobertas.</text>
+<path d="M65 304H407" stroke="#9bb7bf" stroke-width="2"/>
+<text x="67" y="345" font-family="system-ui, sans-serif" font-weight="700" font-size="17" letter-spacing="2.2" fill="#315f87">KANAGAWA LIGHT  /  FEITO PARA EXPLORAR</text>
+</g>
+</svg>
