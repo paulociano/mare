@@ -28,7 +28,9 @@
     "assets/brand/mare-app-192.png",
     "assets/brand/mare-app-512.png",
     "mare-voyage.js",
-    "mare-voyage.css"
+    "mare-voyage.css",
+    "mare-content.js",
+    "mare-content.css"
   ],
   "optionalFiles": [
     "data/semantic-ranks.json"
