@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Phase 6: real browser offline PWA lifecycle and verified diary smoke tests."""
 from __future__ import annotations
-import http.server,json,re,threading,time,traceback
+import http.server,json,re,runpy,threading,time,traceback
 from pathlib import Path
 from playwright.sync_api import sync_playwright
 ROOT=Path(__file__).resolve().parents[1]
@@ -18,7 +18,7 @@ def main():
     ART.mkdir(exist_ok=True)
     server=http.server.ThreadingHTTPServer(("127.0.0.1",0),Quiet)
     threading.Thread(target=server.serve_forever,daemon=True).start()
-    report={"scope":None,"precache":0,"pages":[],"ledger":None,"update":None,"findings":[]}
+    report={"scope":None,"precache":0,"pages":[],"offlineActions":[],"ledger":None,"update":None,"findings":[]}
     try:
       with sync_playwright() as p:
         browser=p.chromium.launch(headless=True,args=["--disable-dev-shm-usage"])
@@ -78,6 +78,15 @@ def main():
           assert diary.locator(".mare-logbook__stat-value").first.inner_text()=="1","Dashboard verified win count incorrect"
           assert diary.locator(".mare-explorer__missions").count()==1,"Mission panel missing"
           page.screenshot(path=str(ART/"phase6-diary-mobile.png"),full_page=True)
+          stage="offline gameplay"
+          # Reuse the Phase 3 real-action oracles with the browser disconnected,
+          # proving that the cached game scripts/data drive user interactions.
+          run_action=runpy.run_path(str(ROOT/"scripts/check-phase3-runtime.py"))["run_action"]
+          for game in GAMES[1:]:
+            page.goto(url+game+".html",wait_until="domcontentloaded",timeout=20000)
+            run_action(page,game)
+            report["offlineActions"].append(game)
+          page.goto(url+"index.html",wait_until="domcontentloaded")
           stage="update flow"
           print("Phase6 offline diary:",page.locator("#diario-de-bordo").inner_text()[:450].replace("\n"," "),flush=True)
           # Update cycle: new worker must remain waiting until the user clicks
@@ -122,7 +131,7 @@ def main():
     finally:server.shutdown();server.server_close()
     (ART/"phase6-pwa.json").write_text(json.dumps(report,ensure_ascii=False,indent=2),encoding="utf8")
     print("Phase6 PWA:",len(report["pages"]),"/13 offline pages, cache",report["precache"],
-          "update",bool(report["update"]),"blockers",len(report["findings"]),flush=True)
+          "offline actions",len(report["offlineActions"]),"/12 update",bool(report["update"]),"blockers",len(report["findings"]),flush=True)
     for finding in report["findings"]:print("BLOCK",finding,flush=True)
     if report["findings"]:raise SystemExit(1)
 if __name__=="__main__":main()
