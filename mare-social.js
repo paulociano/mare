@@ -260,7 +260,9 @@
   const filename=location.pathname.split('/').pop()||'index.html';
   const entry=GAMES.find(x=>x[2]===filename);if(!entry)return;
   const [game,name]=entry;
-  const main=document.querySelector('main')||document.body;
+  // This belongs outside gameplay layout containers. In Recife the main
+  // element is a flex row; inserting the social card there would shrink the
+  // keyboard below WCAG touch-target dimensions.
   const section=el('section','mare-social mare-social--game');
   section.setAttribute('aria-label','Desafio entre amigos');
   section.append(el('span','mare-social__eyebrow','DESAFIO ENTRE AMIGOS'));
@@ -270,8 +272,7 @@
   const actions=el('div','mare-social__actions');
   const back=el('a','mare-social__play','Ver comparação no convés ↗');
   section.append(title,hint,actions,back,status);
-  const footer=main.querySelector('footer');
-  if(footer)footer.before(section);else main.append(section);
+  document.body.append(section);
   function refresh(){
    const ticket=parse(location.hash),valid=gameChallenge(game);
    actions.replaceChildren();
