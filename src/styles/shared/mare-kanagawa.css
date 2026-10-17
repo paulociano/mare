@@ -1059,3 +1059,120 @@ body.mare-kanagawa > a.mare-skip-link:is(:focus,:focus-visible){
     transition:transform .18s ease,background-color .18s ease;
   }
 }
+
+
+/* Individual unplayed game pieces share a light paper base.
+   Only neutral/unselected states are recolored. */
+:root:not([data-mare-contrast="high"]) body.mare-cardume.mare-kanagawa
+ .tile:not(.solved):not([aria-pressed="true"]){
+  background:#eff6f4!important;background-image:none!important;
+  border:1px solid #9cbbc9!important;color:#173e5e!important;
+  box-shadow:none!important;
+}
+:root:not([data-mare-contrast="high"]) body.mare-cardume.mare-kanagawa
+ .tile[aria-pressed="true"]{
+  background:#315f87!important;background-image:none!important;
+  color:#fffdf7!important;border-color:#174b6a!important;
+  box-shadow:inset 0 0 0 2px #a8ced9!important;
+}
+:root:not([data-mare-contrast="high"]) body.mare-abismo.mare-kanagawa
+ :is(.item,.guesses .item,.listtitle,.guess){
+  background:#eff5f2!important;background-image:none!important;
+  color:#173e5e!important;border-color:#99b7c3!important;
+  box-shadow:none!important;
+}
+:root:not([data-mare-contrast="high"]) body.mare-abismo.mare-kanagawa
+ :is(.item small,.item .rank,.listtitle span,.guesshead){
+  color:#315f87!important;
+}
+:root:not([data-mare-contrast="high"]) body.mare-corrente.mare-kanagawa
+ :is(.guess,.guesshead){
+  background:#eff5f2!important;
+  color:#173e5e!important;border-color:#9cbbc9!important;
+  box-shadow:none!important;
+}
+:root:not([data-mare-contrast="high"]) body.mare-corrente.mare-kanagawa
+ .letter:not(.found):not(.linked):not(.solved){
+  background:#e8f1f1!important;color:#173e5e!important;
+  border-color:#92b4c3!important;
+}
+:root:not([data-mare-contrast="high"]) body.mare-corrente.mare-kanagawa
+ :is(.guesshead,.depth,.depth span,.meta){
+  color:#446578!important;
+}
+:root:not([data-mare-contrast="high"]) body.mare-trilha.mare-kanagawa
+ .trilha-grid button:not(.chosen):not([aria-pressed="true"]){
+  background:#fffdf7!important;color:#173e5e!important;
+  border-color:#90b1c0!important;box-shadow:none!important;
+}
+:root:not([data-mare-contrast="high"]) body.mare-trilha.mare-kanagawa
+ .trilha-grid button.available:not(.chosen){
+  background:#e8f2f1!important;
+  border-color:#497d9e!important;
+}
+:root:not([data-mare-contrast="high"]) body.mare-trilha.mare-kanagawa
+ .trilha-grid button.chosen{
+  background:#315f87!important;color:#fffdf7!important;
+  border-color:#173e5e!important;box-shadow:0 0 0 2px #b1d3d9!important;
+}
+:root:not([data-mare-contrast="high"]) body.mare-marujo.mare-kanagawa
+ .marujo-cell:not(.selected):not(.found){
+  background:#fffdf7!important;color:#173e5e!important;
+  border:1px solid #96b6c7!important;
+  box-shadow:none!important;
+}
+:root:not([data-mare-contrast="high"]) body.mare-marujo.mare-kanagawa
+ .marujo-cell.selected{
+  background:#315f87!important;color:#fffdf7!important;
+  border-color:#173e5e!important;
+}
+:root:not([data-mare-contrast="high"]) body.mare-marujo.mare-kanagawa
+ .marujo-cell.found{
+  background:#2f7b66!important;color:#fffdf7!important;
+  border-color:#205a4f!important;
+}
+:root:not([data-mare-contrast="high"]) body.mare-marujo.mare-kanagawa
+ :is(.marujo-words span:not(.found),.marujo-selection){
+  background:#edf5f2!important;color:#173e5e!important;
+  border-color:#9cb9c5!important;
+}
+:root:not([data-mare-contrast="high"]) body.mare-marujo.mare-kanagawa
+ .marujo-words span.found{
+  background:#d8eee4!important;color:#275b4d!important;
+  border-color:#76a990!important;
+}
+:root:not([data-mare-contrast="high"]) body.mare-forca.mare-kanagawa
+ .forca-slot:not(.correct):not(.absent){
+  background:#eef4f1!important;color:#173e5e!important;
+  border-color:#9bb7c1!important;
+}
+:root:not([data-mare-contrast="high"]) body.mare-kanagawa:is(.mare-perola,.mare-farol)
+ .depth-instructions{
+  background:#eff6f4!important;color:#173e5e!important;
+  border:1px solid #a4bdc4!important;
+}
+:root:not([data-mare-contrast="high"]) body.mare-kanagawa:is(.mare-perola,.mare-farol)
+ .depth-scramble{
+  background:transparent!important;color:#315f87!important;
+  text-shadow:none!important;
+}
+:root:not([data-mare-contrast="high"]) body.mare-kanagawa:is(.mare-perola,.mare-farol)
+ .depth-picked{
+  background:#d8ebea!important;color:#173e5e!important;
+  border:1px solid #709bae!important;
+}
+:root:not([data-mare-contrast="high"]) body.mare-kanagawa:is(.mare-forca,.mare-criptograma)
+ :is(.newgame-shell dialog,dialog){
+  background:#fffdf7!important;color:#173e5e!important;
+  border:1px solid #97b7c5!important;
+  box-shadow:0 18px 50px rgba(25,67,95,.18)!important;
+}
+:root:not([data-mare-contrast="high"]) body.mare-kanagawa:is(.mare-forca,.mare-criptograma)
+ dialog :is(h2,h3,p,strong){
+  color:#173e5e!important;
+}
+:root:not([data-mare-contrast="high"]) body.mare-kanagawa:is(.mare-forca,.mare-criptograma)
+ dialog button{
+  background:#174b6a!important;color:#fffdf7!important;
+  border-color:#174b6a!important;
+}
