@@ -112,20 +112,51 @@
   canvas.width=1200;canvas.height=675;
   const c=canvas.getContext('2d');
   if(!c)return null;
+  // Share cards use the same Kanagawa paper-and-ink language as the app.
   const gradient=c.createLinearGradient(0,0,1200,675);
-  gradient.addColorStop(0,'#061b2b');gradient.addColorStop(1,'#145b60');
+  gradient.addColorStop(0,'#fffdf7');gradient.addColorStop(1,'#e2edf0');
   c.fillStyle=gradient;c.fillRect(0,0,1200,675);
-  c.strokeStyle='rgba(167,245,220,.15)';c.lineWidth=1;
-  for(let x=0;x<1200;x+=80){c.beginPath();c.moveTo(x,0);c.lineTo(x,675);c.stroke()}
-  for(let y=0;y<675;y+=80){c.beginPath();c.moveTo(0,y);c.lineTo(1200,y);c.stroke()}
-  c.beginPath();c.arc(1060,110,185,0,Math.PI*2);c.fillStyle='rgba(133,235,202,.085)';c.fill();
-  c.fillStyle='#a1f3d9';c.font='800 32px system-ui,sans-serif';c.fillText('M A R É   /   DESAFIOS',80,94);
-  c.fillStyle='#ecfbf5';c.font='800 76px system-ui,sans-serif';c.fillText(nameOf(game),80,220);
-  c.font='650 32px system-ui,sans-serif';c.fillText('EXPEDIÇÃO DO DIA · '+date.split('-').reverse().join('/'),80,298);
-  c.fillStyle='#a1f3d9';c.font='800 54px system-ui,sans-serif';c.fillText(outcomeName(outcome),80,410);
-  c.font='500 26px system-ui,sans-serif';c.fillText('Um desafio de palavras para compartilhar.',80,490);
-  c.fillStyle='#d6ebe6';c.font='600 24px system-ui,sans-serif';c.fillText('paulociano.github.io/mare/',80,599);
-  c.fillStyle='#f0cc89';c.font='600 18px system-ui,sans-serif';c.fillText('Resultado local · Sem ranking público',80,631);
+  c.strokeStyle='rgba(41,88,117,.075)';c.lineWidth=1;
+  for(let y=20;y<675;y+=13){
+    c.beginPath();c.moveTo(0,y);c.lineTo(1200,y);c.stroke();
+  }
+  // Muted rising-sun disk and hand-drawn oceanic wave. Decoration stays
+  // on the right side so game title and outcome remain text-selectable in DOM.
+  c.beginPath();c.arc(1050,138,102,0,Math.PI*2);
+  c.fillStyle='rgba(191,157,97,.22)';c.fill();
+  c.beginPath();c.moveTo(660,675);
+  c.bezierCurveTo(750,580,798,380,940,370);
+  c.bezierCurveTo(1042,363,1122,450,1167,515);
+  c.bezierCurveTo(1104,483,1049,483,1014,529);
+  c.bezierCurveTo(1075,551,1142,548,1200,512);
+  c.lineTo(1200,675);c.closePath();
+  c.fillStyle='#315f87';c.fill();
+  c.strokeStyle='#173e5e';c.lineWidth=7;c.stroke();
+  for(let i=0;i<6;i++){
+    c.beginPath();c.moveTo(722+i*14,657);
+    c.bezierCurveTo(805+i*11,524,847+i*10,413,972+i*10,433);
+    c.strokeStyle=i%2?'#bfdde2':'#88b9c9';c.lineWidth=3;c.stroke();
+  }
+  c.strokeStyle='#fffdf7';c.lineWidth=13;c.lineCap='round';
+  c.beginPath();c.moveTo(929,378);
+  c.bezierCurveTo(1037,348,1124,405,1150,483);c.stroke();
+  c.beginPath();c.moveTo(1030,428);c.lineTo(1050,391);c.moveTo(1083,449);c.lineTo(1111,413);c.stroke();
+  c.beginPath();c.moveTo(0,655);c.lineTo(1200,655);
+  c.strokeStyle='#b0cbd2';c.lineWidth=2;c.stroke();
+  c.fillStyle='#315f87';c.font='800 28px system-ui,sans-serif';
+  c.fillText('M A R É   /   DESAFIOS',80,94);
+  c.fillStyle='#173e5e';c.font='800 74px Georgia,serif';
+  c.fillText(nameOf(game),80,220);
+  c.font='650 26px system-ui,sans-serif';
+  c.fillText('EXPEDIÇÃO DO DIA · '+date.split('-').reverse().join('/'),80,298);
+  c.fillStyle='#315f87';c.font='800 48px Georgia,serif';
+  c.fillText(outcomeName(outcome),80,407);
+  c.fillStyle='#446578';c.font='500 25px system-ui,sans-serif';
+  c.fillText('Um desafio de palavras para compartilhar.',80,488);
+  c.fillStyle='#173e5e';c.font='700 23px system-ui,sans-serif';
+  c.fillText('paulociano.github.io/mare/',80,598);
+  c.fillStyle='#886020';c.font='600 17px system-ui,sans-serif';
+  c.fillText('Resultado local · Sem ranking público',80,634);
   return canvas;
  }
  function png(canvas){

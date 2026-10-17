@@ -53,3 +53,29 @@ Os pares principais de texto/fundo têm razão de contraste calculada de pelo me
 ## Rollback
 
 Desfazer a introdução do último \`<link>\` Kanagawa e da classe \`mare-kanagawa\` nas 13 páginas restaura a camada anterior sem mudar dados dos usuários. \`assets/backgrounds/kanagawa-wave.svg\` pode ser removido depois de retirar suas referências. Não usar reset do \`localStorage\`.
+
+
+## Revisão de consistência visual (17/10/2026)
+
+A auditoria após o primeiro lançamento encontrou elementos com fundos e gradientes remanescentes do tema noturno. A correção foi feita por **componente** no final de \`mare-kanagawa.css\`, protegida por \`:root:not([data-mare-contrast="high"])\` para não interferir nas preferências de acessibilidade.
+
+| Superfície | Direção refinada |
+|---|---|
+| Primeiro cartão do catálogo | Papel claro e azul-acizentado em vez de degradê noturno |
+| Diário, missões e jornadas | Cartões papel, badges e metas em azul discreto e verde de conclusão |
+| Recife | Painéis focados, teclado, modalidades e blocos de progresso claros |
+| Concha | Letras neutras claras, letra central índigo, descobertas em cartões suaves |
+| Enigma | Grade papel com bloqueios azulados e seleção índigo |
+| Cardume, Corrente, Abismo | Peças neutras, tentativas e listas em superfícies claras |
+| Trilha, Marujo | Grades e células neutras claras, feedback de seleção preservado |
+| Forca, Criptograma, Pérola, Farol | Teclas, blocos de código e instruções com contraste adequado |
+| Social | PNG compartilhável redesenhado em marfim/índigo com ondas vetoriais no canvas |
+
+O inventário está em \`scripts/audit-kanagawa-surfaces.py\`, executado no CI para **26 combinações de rota e viewport**. O script impede a reintrodução de painéis escuros de área elevada no tema claro e salva capturas mobile/desktop para revisão. Botões de ação primária, células ativas ou feedbacks específicos podem usar cores mais profundas intencionalmente.
+
+### Contratos de preservação
+
+- Não substituir cores de vitória, derrota e progresso por uma única cor.
+- Não alterar armazenamento dos jogos, navegação ou rotas estáticas.
+- Alto contraste continua sendo uma preferência **autônoma** e tem prioridade sobre o tema claro.
+- Testes automatizados por rota, fluxo offline e acessibilidade complementam, mas não substituem a avaliação estética humana.
