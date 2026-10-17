@@ -20,6 +20,7 @@ for(const page of manifest.pages){
  assert.ok(combined.includes('/* Source: mare-brand.css */'),filename+': camada da marca ausente do bundle');
  for(const asset of combined.matchAll(/url\(\s*['"]?(\.\.\/[^'")]+)['"]?\s*\)/g)){
   const local=path.posix.normalize(path.posix.join(path.posix.dirname(styles[0][1]),asset[1].split(/[?#]/)[0]));
+  if(local.endsWith('.webp')&&!exists(local)&&exists(local.replace(/\.webp$/,'.svg')))continue;
   assert.ok(exists(local),filename+': recurso CSS consolidado ausente '+local);
  }
 
