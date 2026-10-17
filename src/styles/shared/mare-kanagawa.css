@@ -1176,3 +1176,25 @@ body.mare-kanagawa > a.mare-skip-link:is(:focus,:focus-visible){
   background:#174b6a!important;color:#fffdf7!important;
   border-color:#174b6a!important;
 }
+
+
+/* Export preview and in-game social cards use the same engraved paper. */
+:root:not([data-mare-contrast="high"]) body.mare-kanagawa
+ .mare-social__canvas{
+  background:#fffdf7!important;
+  border:1px solid #9ab6c1!important;
+  border-radius:5px!important;
+  box-shadow:0 12px 26px rgba(25,58,83,.08)!important;
+}
+/* Idle action affordances and navigation labels stay readable as ink. */
+:root:not([data-mare-contrast="high"]) body.mare-kanagawa
+ :is(.mare-game-nav__link,.mare-game-nav__name,.mare-social__intro,
+ .mare-social__choice label,.mare-logbook__panel strong,
+ .mare-voyage__activity strong){
+  color:var(--kan-ink)!important;
+}
+:root:not([data-mare-contrast="high"]) body.mare-kanagawa
+ .mare-game-nav__link.is-active{
+  background:#dcebef!important;
+  border-color:#7ea8b9!important;
+}
