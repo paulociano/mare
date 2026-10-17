@@ -12,7 +12,7 @@ class Node {
  after(node){this.afterNode=node}
  insertBefore(node,ref){this.children.splice(Math.max(0,this.children.indexOf(ref)),0,node)}
  setAttribute(name,value){this.attrs[name]=value}
- getAttribute(name){return this.attrs[name]}
+ getAttribute(name){return this.attrs[name]??(name==='href'?this.href:undefined)}
  addEventListener(name,fn){this.handlers[name]=fn}
  click(){this.handlers.click?.()}
 }
