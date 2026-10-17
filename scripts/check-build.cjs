@@ -15,6 +15,14 @@ for(const page of manifest.pages){
  const styles=[...html.matchAll(/<link\b[^>]*rel=["']stylesheet["'][^>]*href=["']([^"']+)["']/g)];
  assert.equal(styles.length,1,filename+': publicação deve carregar somente um CSS consolidado');
  assert.match(styles[0][1],/^styles\/mare-[a-f0-9]{12}\.css$/,filename+': CSS sem fingerprint');
+ const combined=read(styles[0][1]);
+ assert.ok(combined.includes('/* Source: mare-3.css */'),filename+': camada base de componentes ausente do bundle');
+ assert.ok(combined.includes('/* Source: mare-brand.css */'),filename+': camada da marca ausente do bundle');
+ for(const asset of combined.matchAll(/url\(\s*['"]?(\.\.\/[^'")]+)['"]?\s*\)/g)){
+  const local=path.posix.normalize(path.posix.join(path.posix.dirname(styles[0][1]),asset[1].split(/[?#]/)[0]));
+  assert.ok(exists(local),filename+': recurso CSS consolidado ausente '+local);
+ }
+
 
  for(const match of html.matchAll(/<(?:script|link|img)\b[^>]*?(?:src|href)=["']([^"']+)["']/g)){
   const ref=match[1];
