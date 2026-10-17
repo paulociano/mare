@@ -15,6 +15,24 @@ function select(i){if(won)return;if(path.at(-1)===i){path.pop()}else if(!path.in
 function start(kind,num){mode=kind;index=num%CHALLENGES.length;[answer]=CHALLENGES[index];const turn=hash(kind+'|'+num)%4,solution=basePath.slice(0,answer.length).map(cell=>rotate(cell,turn));board=Array(16).fill('');solution.forEach((cell,i)=>board[cell]=answer[i]);const filler='AEIORSMTCNUP';board=board.map((x,i)=>x||filler[hash(kind+'-'+num+'-'+i)%filler.length]);path=[];attempts=0;won=false;hinted=false;started=Date.now();finishedSeconds=0;try{const old=JSON.parse(localStorage.getItem(storageKey())||'{}');attempts=Number.isInteger(old.attempts)?Math.max(0,old.attempts):0;won=!!old.won;hinted=!!old.hinted;started=Number.isFinite(old.started)?old.started:Date.now();finishedSeconds=Number.isFinite(old.finishedSeconds)?old.finishedSeconds:0}catch{}$('edition').textContent=kind==='daily'?'DESAFIO DIÁRIO':'EXPEDIÇÃO LIVRE #'+(num+1);$('clue').textContent=CHALLENGES[index][1];$('daily').setAttribute('aria-pressed',String(kind==='daily'));$('free').setAttribute('aria-pressed',String(kind==='free'));$('notice').textContent=won?'Expedição concluída!':'Encontre o caminho a partir da pista.';render()}
 function check(){if(won||!path.length)return;attempts++;const guess=word();if(guess===answer){won=true;finishedSeconds=Math.floor((Date.now()-started)/1000);$('notice').textContent='Palavra descoberta! '+answer+' em '+attempts+' tentativa(s).'}else{$('notice').textContent='Ainda não é a palavra da pista. Tente outra rota.';path=[]}save();if(won&&typeof window!=='undefined')window.MareProgress?.record('trilha','win',storageKey());render()}
 function time(){const sec=won?finishedSeconds:Math.max(0,Math.floor((Date.now()-started)/1000));$('clock').textContent=String(Math.floor(sec/60)).padStart(2,'0')+':'+String(sec%60).padStart(2,'0')}
+// Keyboard navigation uses real buttons; Enter/Space keep selecting the
+// currently focused tile through the existing click handler.
+$('grid').setAttribute('aria-label','Grade de letras. Use as setas para navegar; Enter ou Espaço para escolher.');
+$('grid').addEventListener('keydown',event=>{
+ const tile=event.target.closest?.('button');
+ if(!tile||!['ArrowUp','ArrowDown','ArrowLeft','ArrowRight','Home','End'].includes(event.key))return;
+ const id=Array.from($('grid').children).indexOf(tile);
+ if(id<0)return;
+ const row=Math.floor(id/4),col=id%4;
+ let next=id;
+ if(event.key==='ArrowUp')next=Math.max(0,row-1)*4+col;
+ if(event.key==='ArrowDown')next=Math.min(3,row+1)*4+col;
+ if(event.key==='ArrowLeft')next=row*4+Math.max(0,col-1);
+ if(event.key==='ArrowRight')next=row*4+Math.min(3,col+1);
+ if(event.key==='Home')next=row*4;
+ if(event.key==='End')next=row*4+3;
+ event.preventDefault();focusTile(next);
+});
 $('check').onclick=check;$('undo').onclick=()=>{path.pop();render()};$('clear').onclick=()=>{path=[];render()};$('daily').onclick=()=>start('daily',hash(date())%(date()==='2026-10-17'?16:CHALLENGES.length));$('free').onclick=()=>{const n=(Number(localStorage.getItem('mare-trilha-next')||'-1')+1)%CHALLENGES.length;localStorage.setItem('mare-trilha-next',String(n));start('free',globalThis.MareContent?.pick('trilha',CHALLENGES.map(c=>c[0].length),n)??n)};$('hint').onclick=()=>{hinted=true;save();$('notice').textContent='Primeira letra da resposta: '+answer[0]+'.'};
 $('share').onclick=async()=>{const txt='MARÉ · TRILHA '+(mode==='daily'?date():index+1)+'\nResolvido em '+$('clock').textContent+' e '+attempts+' tentativas.';try{await navigator.clipboard.writeText(txt);$('notice').textContent='Resultado copiado!'}catch{$('notice').textContent=txt}};
 document.addEventListener('keydown',e=>{if(!(e.target instanceof HTMLElement)||!e.target.closest('#grid')||e.ctrlKey||e.altKey||e.metaKey)return;if(e.key==='Backspace'){e.preventDefault();$('undo').click()}});
