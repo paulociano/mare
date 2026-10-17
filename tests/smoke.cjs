@@ -104,7 +104,7 @@ const seaDesign = fs.readFileSync('src/styles/shared/mare-3.css', 'utf8');
 for (const name of ['recife','abismo','cardume','corrente','concha','trilha','enigma','marujo']) {
   const asset = 'assets/backgrounds/' + name + '.svg';
   assert.ok(fs.existsSync(asset), 'Arte ausente: ' + asset);
-  assert.ok(seaDesign.includes('url("'+asset+'")'), 'Arte não usada no tema: '+asset);
+  assert.ok(seaDesign.includes('url("../../../'+asset+'")'), 'Arte não usada no tema: '+asset);
 }
 const newGames=['forca','criptograma'];
 for (const game of newGames){
