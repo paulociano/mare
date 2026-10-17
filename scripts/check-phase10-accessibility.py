@@ -89,9 +89,17 @@ def main():
                type:'tag',values:['wcag2a','wcag2aa','wcag21a','wcag21aa','wcag22aa']
               }});
               return r.violations.filter(x=>['critical','serious'].includes(x.impact))
-               .map(x=>({id:x.id,targets:x.nodes.map(n=>n.target).slice(0,6)}));
+               .map(x=>({id:x.id,targets:x.nodes.map(n=>n.target).slice(0,6),
+                computed:x.nodes.slice(0,6).map(n=>{
+                  const el=document.querySelector(n.target[0]);
+                  const st=el?getComputedStyle(el):null;
+                  const pa=el?.parentElement?getComputedStyle(el.parentElement):null;
+                  return {target:n.target,fg:st?.color,bg:st?.backgroundColor,parentBg:pa?.backgroundColor,
+                          opacity:st?.opacity,contrast:n.any?.[0]?.data};
+                })}));
             }""")
-            assert not severe,(route,severe)
+            if severe:
+              data['blockers'].append(stage+': '+repr(severe))
             data['a11y'].append(route)
             data['pages'].append(route)
             if route=='trilha':

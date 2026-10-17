@@ -41,7 +41,12 @@ def scan(page,axe_file):
       });
       return {violations:r.violations.map(v=>({
         id:v.id,impact:v.impact,help:v.help,helpUrl:v.helpUrl,
-        nodes:v.nodes.slice(0,8).map(n=>({target:n.target,summary:n.failureSummary}))
+        nodes:v.nodes.slice(0,8).map(n=>{
+          const el=document.querySelector(n.target[0]);const style=el?getComputedStyle(el):null;
+          const parent=el?.parentElement?getComputedStyle(el.parentElement):null;
+          return {target:n.target,summary:n.failureSummary,
+                  computed:style?{color:style.color,bg:style.backgroundColor,opacity:style.opacity,parentBg:parent?.backgroundColor}:null};
+        })
       })),incomplete:r.incomplete.map(v=>v.id),passes:r.passes.length};
     }""")
 
@@ -134,6 +139,12 @@ def main():
             "limitations":"No manual screen-reader or actual 200% browser zoom; Core Web Vitals reported as single-run lab diagnostics, no INP field/p75."}
     (ART/"phase4-quality.json").write_text(json.dumps(report,indent=2,ensure_ascii=False),encoding="utf8")
     for item in blocking:print("BLOCK",item,flush=True)
+    if blocking:
+      for row in rows:
+        for violation in row.get("axe",{}).get("violations",[]):
+          if violation.get("impact") in ("critical","serious"):
+            print("DETAIL",row["device"]+"/"+row["page"],violation["id"],
+                  [(n["target"],n.get("computed")) for n in violation["nodes"][:8]],flush=True)
     print(f"Phase4 quality: {len(rows)}/26 scans, {len(summary)}/26 reflow checks, "
           f"{len(violations)} scans with WCAG findings, {len(blocking)} blockers",flush=True)
     print("Lab samples (ms, CLS):",[(x["page"],x["performanceLab"]["lcp"],
