@@ -60,3 +60,7 @@ Sem cadastro para começar. É só escolher o rumo.
 ---
 
 <sub>MARÉ é um projeto independente de jogos de palavras em português. O modo Recife utiliza vocabulário derivado de [pythonprobr/palavras](https://github.com/pythonprobr/palavras), com dados provenientes de um corretor ortográfico distribuído sob licença [MPL-2.0](https://www.mozilla.org/en-US/MPL/2.0/).</sub>
+
+## Identidade Kanagawa Light
+
+A interface utiliza papel marfim, índigo/azul da Prússia e uma gravura vetorial original inspirada na composição de *A Onda de Kanagawa*. O visual claro é aplicado à homepage e aos 12 jogos, com modos de foco, alto contraste e movimento reduzido preservados. Consulte [Kanagawa Light](docs/KANAGAWA-LIGHT.md) para tokens, componentes, contratos e rollback.
