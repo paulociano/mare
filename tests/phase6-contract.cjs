@@ -20,7 +20,7 @@ assert.ok(build.includes('await cache.addAll'), 'Offline cache must be transacti
 assert.ok(build.includes('event.data.type===')&&build.includes('SKIP_WAITING'), 'Update must be gated by a user action');
 assert.ok(build.includes("await self.clients.claim()"), 'Activated worker must control existing tabs');
 assert.ok(build.includes("req.method!=='GET'"), 'Do not intercept write requests');
-assert.ok(build.includes("url.origin"), 'Intercept same-origin only');
+assert.ok(build.includes("new URL(req.url).origin!==self.location.origin"), 'Intercept same-origin only');
 assert.ok(!/serviceWorker\.register\(\s*['"]https?:/.test(sw),'Service worker scope cannot leave the site');
 assert.ok(sw.includes('requestedReload')&&sw.includes("waiting.postMessage({type:'SKIP_WAITING'})"),'An in-progress round must not auto-update');
 assert.ok(sw.includes('beforeinstallprompt'),'Optional native install button required');
