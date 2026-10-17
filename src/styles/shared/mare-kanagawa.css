@@ -498,7 +498,7 @@ body.mare-kanagawa :is(.mare-discover-title>span,.mare-progress,.mare-progress>s
 }
 body.mare-kanagawa:is(.mar-app,.mare-recife)
  :is(#best,#level,#clock,#direction,#edition,#attempts,#remaining,
- .trilha-result>span,.marujo-selection>span,.concha-listhead>b){
+ .trilha-result>span,.marujo-selection>span){
  color:#173e5e!important;text-shadow:none!important;
 }
 body.mare-kanagawa:is(.mar-app,.mare-recife)
