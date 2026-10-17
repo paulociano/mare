@@ -29,11 +29,13 @@
  intro.append(eyebrow,heading,summary);
  // Verified results are a separate count: only games that explicitly emit outcomes.
  const outcomes=typeof window!=='undefined'?window.MareProgress?.read?.()||[]:[];
- const naufrago=outcomes.filter(item=>item.game==='forca');
- if(naufrago.length){
+ const recordedGames=[['forca','Náufrago'],['cardume','Cardume'],['corrente','Corrente']];
+ for(const [game,name] of recordedGames){
+  const entries=outcomes.filter(item=>item.game===game);
+  if(!entries.length)continue;
   const results=document.createElement('p');results.className='mare-explorer__results';
-  const won=naufrago.filter(item=>item.outcome==='win').length;
-  results.textContent='Náufrago · '+naufrago.length+' partidas concluídas ('+won+' vitórias) registradas neste navegador.';
+  const won=entries.filter(item=>item.outcome==='win').length;
+  results.textContent=name+' · '+entries.length+' partidas concluídas ('+won+' vitórias) registradas neste navegador.';
   intro.append(results);
  }
 
