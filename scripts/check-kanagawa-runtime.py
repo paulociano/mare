@@ -81,7 +81,7 @@ def run():
                 }""")
                 assert accessible["bg"]=="rgb(6, 25, 37)",route+": high-contrast card did not become dark"
                 assert accessible["text"]=="rgb(255, 255, 255)",route+": high-contrast text unreadable"
-                assert accessible["hidden"],route+": Focus mode did not remove decorative artwork
+                assert accessible["hidden"],route+": Focus mode did not remove decorative artwork"
               verified.append({"route":route,"device":device,"bg":result["background"],"color":result["color"]})
             except Exception as exc:
               errors.append(f"{device} {route}: {exc}")
