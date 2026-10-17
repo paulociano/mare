@@ -14,7 +14,6 @@
   ['perola','Pérola','perola.html'],['farol','Farol','farol.html']
  ]);
  const allowed=new Map(GAMES.map(row=>[row[0],row]));
- const alphabet='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_';
  function day(now=new Date()){
   const parts=new Intl.DateTimeFormat('en-CA',{timeZone:'America/Sao_Paulo',
    year:'numeric',month:'2-digit',day:'2-digit'}).formatToParts(now);
@@ -161,7 +160,22 @@
    if(file){download(file,'mare-'+game+'-'+date+'.png');status.textContent='Cartão PNG gerado neste navegador.'}
    else status.textContent='O navegador não conseguiu gerar a imagem. Use o convite em texto.';
   });
-  area.append(link,copyButton,resultBtn,cardBtn);
+  const imageShare=makeButton('Compartilhar cartão',async()=>{
+   const image=await png(paintCard(game,date,result));
+   if(!image){status.textContent='Imagem indisponível neste navegador.';return}
+   const file=new File([image],'mare-'+game+'-'+date+'.png',{type:'image/png'});
+   const text='MARÉ · '+nameOf(game)+' · '+date+'\n'+outcomeName(result)+'\n'+(result?share:invite);
+   try{
+    if(!navigator.canShare?.({files:[file]})||!navigator.share){
+     download(image,file.name);
+     status.textContent='Cartão salvo. Compartilhe a imagem pelo aplicativo de sua escolha.';
+     return;
+    }
+    await navigator.share({title:'Cartão MARÉ',text,url:result?share:invite,files:[file]});
+    status.textContent='Cartão enviado ao compartilhamento do dispositivo.';
+   }catch(error){if(error?.name!=='AbortError')status.textContent='Compartilhamento cancelado ou indisponível.'}
+  });
+  area.append(link,copyButton,resultBtn,cardBtn,imageShare);
  }
  function sectionHeading(section,kicker,title,description){
   section.append(el('span','mare-social__eyebrow',kicker),el('h2','',title),el('p','',description));
@@ -182,7 +196,9 @@
   const badge=el('p','mare-social__badge');
   const area=el('div','mare-social__actions');
   const notice=el('p','mare-social__status');notice.setAttribute('role','status');
-  left.append(label,badge,area,notice);
+  const cardPreview=el('div','mare-social__preview');
+  cardPreview.setAttribute('aria-label','Prévia do cartão visual MARÉ');
+  left.append(label,badge,area,cardPreview,notice);
   const right=el('div','mare-social__peer');
   const headline=el('h3','','Comparação entre amigos');
   const detail=el('p','','Resultados recebidos por link são declarações de quem compartilhou. O MARÉ não autentica partidas de outras pessoas.');
@@ -220,6 +236,14 @@
    const validTicket=ticket&&ticket.game===game&&current(ticket);
    play.href=url(game,date,validTicket?ticket.claim:'p',allowed.get(game)[2]);
    activityActions(game,date,validTicket?ticket.claim:'p',notice,area);
+   const card=paintCard(game,date,localOutcome(game,date));
+   cardPreview.replaceChildren();
+   if(card){
+    card.className='mare-social__canvas';
+    card.setAttribute('role','img');
+    card.setAttribute('aria-label','Cartão MARÉ '+nameOf(game)+' '+date+', '+outcomeName(localOutcome(game,date)));
+    cardPreview.append(card);
+   }
   }
   select.addEventListener('change',refresh);
   window.addEventListener('hashchange',()=>{
