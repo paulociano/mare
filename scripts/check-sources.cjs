@@ -61,4 +61,13 @@ for(const [className,asset] of [['mar-forca','naufrago.svg'],['mar-criptograma',
  assert.equal(artwork.split(marker).length-1,1,'Cenário duplicado: '+className);
  assert.ok(artwork.split(marker)[1].split('}')[0].includes('assets/backgrounds/'+asset),'Cenário errado: '+className);
 }
+
+/* Guard against new abandoned CSS layers. Dynamic stylesheets count as
+ * references when their path is mentioned by runtime JavaScript. */
+const topLevelCss=fs.readdirSync(root).filter(file=>file.endsWith('.css'));
+const javascript=[...jsFiles].map(file=>read(file)).join('\n');
+for(const file of topLevelCss){
+ assert.ok(cssFiles.has(file)||javascript.includes(file),
+  'Folha CSS sem consumidor: '+file);
+}
 console.log('PASS: '+pages.length+' páginas, '+jsFiles.size+' scripts e '+cssFiles.size+' estilos validados');
