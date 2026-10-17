@@ -37,7 +37,7 @@ def main():
           state=page.evaluate("""async()=>({
             scope:(await navigator.serviceWorker.getRegistration()).scope,
             names:await caches.keys(),
-            cached:(await caches.open((await caches.keys()).find(k=>k.startsWith('mare-shell-')))).keys().then(x=>x.map(r=>r.url))
+            cached:(await (await caches.open((await caches.keys()).find(k=>k.startsWith('mare-shell-')))).keys()).map(r=>r.url)
           })""")
           report["scope"]=state["scope"]
           report["precache"]=len(state["cached"])
