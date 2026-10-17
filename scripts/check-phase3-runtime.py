@@ -92,7 +92,13 @@ def main():
             response=page.goto(f"http://127.0.0.1:{server.server_port}/{game}.html",wait_until="domcontentloaded",timeout=20000)
             assert response and response.ok,game+": route unavailable"
             page.locator("main").wait_for()
-            assert page.locator('link[href="mare-finesse.css"]').count()==1,game+": finesse CSS absent"
+            assert page.evaluate("""async () => {
+                const sheets=[...document.querySelectorAll('link[rel="stylesheet"]')];
+                return (await Promise.all(sheets.map(async el =>
+                    el.href.endsWith('/mare-finesse.css') ||
+                    (el.href.includes('/styles/mare-') && (await (await fetch(el.href)).text()).includes('/* Source: mare-finesse.css */'))
+                ))).some(Boolean);
+            }"""),game+": finesse CSS absent"
             assert page.locator(".mare-finale:visible").count()==0,game+": unearned result visible"
             run_action(page,game)
             # One actual user action; then trigger a synthetic isolated ledger event
