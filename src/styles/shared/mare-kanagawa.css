@@ -643,3 +643,20 @@ body.mare-hub.mare-kanagawa .mar-eyebrow{
 :root[data-mare-motion="reduce"] body.mare-kanagawa *::after{
  animation:none!important;transition:none!important;transform:none!important;
 }
+
+/* Keyboard skip link is always visible while focused, including motion-reduced users. */
+body.mare-kanagawa > a.mare-skip-link{
+ position:fixed!important;top:12px!important;left:12px!important;
+ z-index:99999!important;transform:translateY(-160%)!important;
+}
+body.mare-kanagawa > a.mare-skip-link:is(:focus,:focus-visible){
+ top:12px!important;left:12px!important;
+ transform:translateY(0)!important;clip-path:none!important;
+ opacity:1!important;visibility:visible!important;
+}
+:root[data-mare-motion="reduce"] body.mare-kanagawa > a.mare-skip-link:not(:focus):not(:focus-visible){
+ transform:translateY(-160%)!important;
+}
+:root[data-mare-motion="reduce"] body.mare-kanagawa > a.mare-skip-link:is(:focus,:focus-visible){
+ transform:translateY(0)!important;
+}
