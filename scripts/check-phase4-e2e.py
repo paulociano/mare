@@ -12,6 +12,7 @@ import json
 import re
 import threading
 import time
+from datetime import date as CalendarDate
 from pathlib import Path
 from playwright.sync_api import sync_playwright
 
@@ -40,12 +41,38 @@ def outcome(page,game,value):
     assert len(again)==1 and again[0]["outcome"]==value,game+": result lost after reload"
     return {"game":game,"outcome":value,"record":again[0]["id"],"status":"PASS"}
 
-def solve(page,game):
+def forca_solution(page):
+    source=(SITE/"forca.js").read_text(encoding="utf8").split("const puzzles=")[1].split("];",1)[0]
+    words=re.findall(r"\\['([A-Z]+)','[^']+'\\]",source)
+    assert len(words)>=30,"Forca fixture source schema changed"
+    today=page.evaluate("""() => new Intl.DateTimeFormat('en-CA',{
+       timeZone:'America/Sao_Paulo',year:'numeric',month:'2-digit',day:'2-digit'
+    }).format(new Date())""")
+    day=(CalendarDate.fromisoformat(today)-CalendarDate(2025,1,1)).days
+    return words[day%len(words)]
+
+def recife_targets(page,mode):
+    return page.evaluate("""mode => {
+      const idx=((day%WORDS.length)+WORDS.length)%WORDS.length;
+      const seed=mode==='solo'?0:mode==='duo'?7:17;
+      const count=mode==='solo'?1:mode==='duo'?2:4;
+      const used=new Set(),out=[];
+      for(let i=0;out.length<count && i<WORDS.length;i++){
+       const candidate=WORDS[(idx+seed+i*11)%WORDS.length];
+       if(!used.has(candidate)){used.add(candidate);out.push(candidate)}
+      }
+      return out;
+    }""",mode)
+
+def solve(page,game,recife_mode="solo"):
     if game=="recife":
-        answer=page.evaluate("answer")
-        page.keyboard.type(answer,delay=12)
-        page.keyboard.press("Enter")
-        assert page.locator("#board .tile.correct").count()==5
+        if recife_mode!="solo":
+            page.locator('.mare-modes [data-m="'+recife_mode+'"]').click()
+        targets=recife_targets(page,recife_mode)
+        for answer in targets:
+            page.keyboard.type(answer,delay=9)
+            page.keyboard.press("Enter")
+        assert page.locator(".mare-pane.solved").count()==len(targets)
     elif game=="abismo":
         word=page.evaluate("BANK[round][0]")
         page.locator("#guess").fill(word)
@@ -102,20 +129,18 @@ def solve(page,game):
             page.locator(f'#board [data-id="{last}"]').click()
         assert "Todas as palavras encontradas" in page.locator("#notice").inner_text()
     elif game=="forca":
-        word=page.evaluate("answer()[0]")
+        word=forca_solution(page)
         for letter in dict.fromkeys(word):
             page.get_by_role("button",name="Tentar letra "+letter).click()
         assert "Você venceu" in page.locator("#notice").inner_text()
     elif game=="criptograma":
-        puzzle=page.evaluate("""() => ({
-          phrase:phrases[index],mapping:Object.assign({},code)
-        })""")
-        for letter in dict.fromkeys(re.sub("[^A-Z]","",puzzle["phrase"])):
-            number=puzzle["mapping"][letter]
-            page.locator("#cipher .crypto-tile").filter(
-                has=page.locator(".crypto-number",has_text=re.compile("^"+str(number)+"$"))
-            ).first.click()
-            page.locator("#guess").fill(letter)
+        # Exercita as dicas reais, sem inspecionar closures nem alterar estado.
+        for _ in range(27):
+            progress=page.locator("#progress").inner_text()
+            values=re.findall(r"\\d+",progress)
+            if len(values)>=2 and values[0]==values[1]:break
+            page.locator("#hint").click()
+        else:raise AssertionError("Hint flow did not reveal the entire cipher")
         page.locator("#check").click()
         assert "Código resolvido" in page.locator("#notice").inner_text()
     elif game=="perola":
@@ -132,8 +157,16 @@ def solve(page,game):
     else:raise AssertionError(game+" is unhandled")
 
 def lose(page,game):
-    if game=="forca":
-        word=page.evaluate("answer()[0]")
+    if game=="recife":
+        target=recife_targets(page,"solo")[0]
+        candidates=page.evaluate("""t=>WORDS.filter(w=>w!==t&&DICTIONARY.has(w)).slice(0,6)""",target)
+        assert len(candidates)==6
+        for word in candidates:
+            page.keyboard.type(word,delay=4)
+            page.keyboard.press("Enter")
+        assert "palavras eram" in page.locator("#status").inner_text().lower()
+    elif game=="forca":
+        word=forca_solution(page)
         wrong=[ch for ch in "ZXQJVKBYWPDMHFSRLTUCGAOINE" if ch not in word][:6]
         assert len(wrong)==6
         for ch in wrong:page.get_by_role("button",name="Tentar letra "+ch).click()
@@ -169,7 +202,9 @@ def main():
     try:
       with sync_playwright() as pw:
         browser=pw.chromium.launch(headless=True,args=["--disable-dev-shm-usage"])
-        for game,expected in [(g,"win") for g in GAMES]+[(g,"loss") for g in LOSSES]:
+        scenarios=[(g,"win","solo") for g in GAMES]+[(g,"loss","solo") for g in LOSSES]
+        scenarios += [("recife","win","duo"),("recife","win","quartet"),("recife","loss","solo")]
+        for game,expected,recife_mode in scenarios:
           ctx=browser.new_context(viewport={"width":390,"height":844},
                                   reduced_motion="reduce",locale="pt-BR")
           ctx.set_default_timeout(9000)
@@ -180,11 +215,12 @@ def main():
             url=f"http://127.0.0.1:{srv.server_port}/{game}.html"
             response=page.goto(url,wait_until="domcontentloaded",timeout=20000)
             assert response and response.ok
-            if expected=="win":solve(page,game)
+            if expected=="win":solve(page,game,recife_mode)
             else:lose(page,game)
             entry=outcome(page,game,expected)
             assert not js_errors,game+": runtime JS "+repr(js_errors[:3])
             entry["seconds"]=round(time.monotonic()-start,2)
+            if game=="recife":entry["mode"]=recife_mode
             results.append(entry)
             print("PASS",game,expected,flush=True)
           except Exception as exc:
@@ -197,7 +233,7 @@ def main():
         browser.close()
     finally:
       srv.shutdown();srv.server_close()
-    report={"target":len(GAMES)+len(LOSSES),"passed":len(results)-len(errors),
+    report={"target":len(GAMES)+len(LOSSES)+3,"passed":len(results)-len(errors),
             "seconds":round(time.monotonic()-start,2),"results":results,"failures":errors,
             "method":"Input events through Chromium UI; model data read-only to derive answers; persisted outcomes observed before and after reload."}
     (OUT/"phase4-e2e.json").write_text(json.dumps(report,indent=2,ensure_ascii=False),encoding="utf8")
