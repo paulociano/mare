@@ -75,3 +75,16 @@
  animation:none!important;transition:none!important;scroll-behavior:auto!important;
 }
 @media(prefers-reduced-motion:reduce){.mare-access *{animation:none!important;transition:none!important}}
+
+/* Intrinsic wrapping prevents 125% text from widening the Concha
+   difficulty field: label + native select cannot share one narrow line. */
+@media(max-width:600px){
+ :root[data-mare-scale="large"] .mare-content-control label,
+ :root[data-mare-scale="extra"] .mare-content-control label{
+  display:flex;flex-wrap:wrap;align-items:stretch;min-width:0;
+ }
+ :root[data-mare-scale="large"] .mare-content-control select,
+ :root[data-mare-scale="extra"] .mare-content-control select{
+  width:100%;max-width:100%;min-width:0;
+ }
+}
