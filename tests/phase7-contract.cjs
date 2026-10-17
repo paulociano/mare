@@ -1,10 +1,10 @@
 'use strict';
 const assert=require('node:assert/strict'),fs=require('node:fs'),vm=require('node:vm');
-const source=fs.readFileSync('mare-progress.js','utf8');
-const ui=fs.readFileSync('mare-voyage.js','utf8');
-const diary=fs.readFileSync('mare-explorer.js','utf8');
+const source=fs.readFileSync('src/scripts/shared/mare-progress.js','utf8');
+const ui=fs.readFileSync('src/scripts/shared/mare-voyage.js','utf8');
+const diary=fs.readFileSync('src/scripts/shared/mare-explorer.js','utf8');
 const html=fs.readFileSync('index.html','utf8');
-const css=fs.readFileSync('mare-voyage.css','utf8');
+const css=fs.readFileSync('src/styles/shared/mare-voyage.css','utf8');
 new vm.Script(source);new vm.Script(ui);new vm.Script(diary);
 const map=new Map(),window={};
 const storage={getItem:k=>map.get(k)||null,setItem:(k,v)=>map.set(k,v)};
@@ -74,9 +74,9 @@ assert.equal(api.dailyChallenge(t18).completed,false,'Future timestamp must neve
 assert.equal(api.streak(t18).daysActive,0);
 assert.equal(api.achievements(t18).find(x=>x.id==='first-win').earned,false,
  'Future-dated forged ledger items must not award achievements');
-assert.equal(html.indexOf('src="mare-progress.js"')<html.indexOf('src="mare-explorer.js"'),true);
-assert.ok(html.indexOf('src="mare-explorer.js"')<html.indexOf('src="mare-voyage.js"'));
-assert.ok(html.includes('href="mare-voyage.css"'));
+assert.equal(html.indexOf('src="src/scripts/shared/mare-progress.js"')<html.indexOf('src="src/scripts/shared/mare-explorer.js"'),true);
+assert.ok(html.indexOf('src="src/scripts/shared/mare-explorer.js"')<html.indexOf('src="src/scripts/shared/mare-voyage.js"'));
+assert.ok(html.includes('href="src/styles/shared/mare-voyage.css"'));
 assert.ok(!/localStorage\.setItem/.test(ui),'New voyage UI is read-only');
 assert.ok(ui.includes('api.dailyChallenge()')&&ui.includes('api.streak()')&&ui.includes('api.recent('));
 assert.ok(css.includes('prefers-reduced-motion:reduce')&&css.includes(':focus-visible'));

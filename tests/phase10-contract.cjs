@@ -2,8 +2,8 @@
 /* Phase 10 contract: persistent presentation preferences never mutate saves. */
 const assert=require('node:assert/strict'),fs=require('node:fs'),vm=require('node:vm');
 const read=path=>fs.readFileSync(path,'utf8');
-const source=read('mare-accessibility.js'),style=read('mare-accessibility.css');
-new vm.Script(source);new vm.Script(read('mare-ocean.js'));new vm.Script(read('trilha.js'));
+const source=read('src/scripts/shared/mare-accessibility.js'),style=read('src/styles/shared/mare-accessibility.css');
+new vm.Script(source);new vm.Script(read('src/scripts/shared/mare-ocean.js'));new vm.Script(read('src/scripts/games/trilha.js'));
 const storage=new Map(),window={dispatchEvent(){}};
 const root={dataset:{}};
 const document={documentElement:root,readyState:'loading',addEventListener(){}};
@@ -42,14 +42,14 @@ assert.ok(style.includes('[data-mare-scale="large"]')&&style.includes('[data-mar
 assert.ok(style.includes('[data-mare-contrast="high"]')&&style.includes('[data-mare-focus="on"]'));
 assert.ok(style.includes('[data-mare-motion="reduce"]'));
 assert.ok(style.includes('prefers-reduced-motion:reduce')&&style.includes(':focus-visible'));
-assert.ok(read('mare-ocean.js').includes("window.addEventListener('mare:accessibility',onMotion)"));
-assert.ok(read('mare-ocean.js').includes("document.documentElement.dataset.mareMotion==='reduce'"));
-assert.ok(read('trilha.js').includes("'ArrowUp','ArrowDown','ArrowLeft','ArrowRight','Home','End'"));
+assert.ok(read('src/scripts/shared/mare-ocean.js').includes("window.addEventListener('mare:accessibility',onMotion)"));
+assert.ok(read('src/scripts/shared/mare-ocean.js').includes("document.documentElement.dataset.mareMotion==='reduce'"));
+assert.ok(read('src/scripts/games/trilha.js').includes("'ArrowUp','ArrowDown','ArrowLeft','ArrowRight','Home','End'"));
 for(const page of ['index','recife','abismo','cardume','corrente','concha','trilha','enigma','marujo','forca','criptograma','perola','farol']){
  const html=read(page+'.html');
- assert.ok(html.includes('href="mare-accessibility.css"'),page+' missing style');
- assert.ok(html.includes('src="mare-accessibility.js"'),page+' missing script');
- assert.ok(html.indexOf('src="mare-accessibility.js"')<html.indexOf('src="mare-ocean.js"')||page!=='index','Ocean animation should see saved preferences');
+ assert.ok(html.includes('href="src/styles/shared/mare-accessibility.css"'),page+' missing style');
+ assert.ok(html.includes('src="src/scripts/shared/mare-accessibility.js"'),page+' missing script');
+ assert.ok(html.indexOf('src="src/scripts/shared/mare-accessibility.js"')<html.indexOf('src="src/scripts/shared/mare-ocean.js"')||page!=='index','Ocean animation should see saved preferences');
 }
 assert.ok(read('index.html').includes('href="#ajustes-de-leitura"'),'Preferences discoverability missing');
 console.log('PASS Phase10: 13 routes, safe persisted accessibility preferences, contrast/scale/reduced-motion, Ocean control and Trilha keyboard');

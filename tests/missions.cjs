@@ -1,6 +1,6 @@
 'use strict';
 const assert=require('node:assert/strict'),vm=require('node:vm'),fs=require('node:fs');
-const code=fs.readFileSync('mare-progress.js','utf8'),store=new Map(),win={};
+const code=fs.readFileSync('src/scripts/shared/mare-progress.js','utf8'),store=new Map(),win={};
 const storage={getItem:k=>store.get(k)||null,setItem:(k,v)=>store.set(k,v)};
 vm.runInNewContext(code,{window:win,localStorage:storage,Date,Intl,Set,Math,JSON});
 const m=win.MareProgress;
@@ -14,5 +14,5 @@ x=m.missions(sunday);assert.equal(x[0].value,1);assert.equal(x[1].value,1);asser
 assert.equal(m.record('forca','win','sun1'),false);
 const monday=m.missions(new Date('2026-10-19T12:00:00Z'));
 assert.equal(monday[0].value,0);assert.equal(monday[2].value,0);
-assert.ok(fs.readFileSync('mare-explorer.js','utf8').includes('MareProgress?.missions?.()'));
+assert.ok(fs.readFileSync('src/scripts/shared/mare-explorer.js','utf8').includes('MareProgress?.missions?.()'));
 console.log('PASS: daily/weekly rollover, deduplication and visible mission state');

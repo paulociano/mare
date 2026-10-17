@@ -4,22 +4,22 @@ const fs=require('node:fs');
 const vm=require('node:vm');
 const manifest=require('../config/site-manifest.json');
 const games=manifest.pages.filter(p=>p!=='index');
-const progress=fs.readFileSync('mare-progress.js','utf8');
-const finale=fs.readFileSync('mare-finale.js','utf8');
-const finesse=fs.readFileSync('mare-finesse.js','utf8');
-const style=fs.readFileSync('mare-finesse.css','utf8');
-for(const [file,source] of [['mare-progress.js',progress],['mare-finale.js',finale],['mare-finesse.js',finesse]]){
+const progress=fs.readFileSync('src/scripts/shared/mare-progress.js','utf8');
+const finale=fs.readFileSync('src/scripts/shared/mare-finale.js','utf8');
+const finesse=fs.readFileSync('src/scripts/shared/mare-finesse.js','utf8');
+const style=fs.readFileSync('src/styles/shared/mare-finesse.css','utf8');
+for(const [file,source] of [['src/scripts/shared/mare-progress.js',progress],['src/scripts/shared/mare-finale.js',finale],['src/scripts/shared/mare-finesse.js',finesse]]){
  new vm.Script(source,{filename:file});
 }
 for(const name of games){
  const page=fs.readFileSync(name+'.html','utf8');
- for(const asset of ['mare-finesse.css','mare-finesse.js']){
+ for(const asset of ['src/styles/shared/mare-finesse.css','src/scripts/shared/mare-finesse.js']){
   assert.equal(page.split(asset).length-1,1,name+': missing/duplicate '+asset);
  }
- assert.ok(page.indexOf('src="mare-progress.js"')<page.indexOf('src="mare-finale.js"'),name+': progress loaded too late');
- assert.ok(page.indexOf('src="mare-finale.js"')<page.indexOf('src="mare-finesse.js"'),name+': finale loaded too late');
+ assert.ok(page.indexOf('src="src/scripts/shared/mare-progress.js"')<page.indexOf('src="src/scripts/shared/mare-finale.js"'),name+': progress loaded too late');
+ assert.ok(page.indexOf('src="src/scripts/shared/mare-finale.js"')<page.indexOf('src="src/scripts/shared/mare-finesse.js"'),name+': finale loaded too late');
 }
-assert.ok(!fs.readFileSync('index.html','utf8').includes('mare-finesse.css'),'Homepage must not pay for game polish');
+assert.ok(!fs.readFileSync('index.html','utf8').includes('src/styles/shared/mare-finesse.css'),'Homepage must not pay for game polish');
 for(const name of games){
  const marker=name==='recife'? 'body.mare-recife' : 'body.mare-'+name;
  assert.ok(style.includes(marker),name+': missing individual board treatment');
@@ -51,8 +51,8 @@ const localStorage={
  setItem:(key,value)=>storage.set(key,value)
 };
 const context={window,document,CustomEvent,localStorage,JSON,Set,Date,Intl,Number,Math,Array,Object};
-vm.runInNewContext(progress,context,{filename:'mare-progress.js'});
-vm.runInNewContext(finale,context,{filename:'mare-finale.js'});
+vm.runInNewContext(progress,context,{filename:'src/scripts/shared/mare-progress.js'});
+vm.runInNewContext(finale,context,{filename:'src/scripts/shared/mare-finale.js'});
 const api=window.MareProgress;
 assert.equal(api.record('recife','win','test-round-1'),true);
 assert.equal(emitted.length,1,'A real persisted result must emit exactly one event');
