@@ -43,7 +43,7 @@ def outcome(page,game,value):
 
 def forca_solution(page):
     source=(SITE/"forca.js").read_text(encoding="utf8").split("const puzzles=")[1].split("];",1)[0]
-    words=re.findall(r"\\['([A-Z]+)','[^']+'\\]",source)
+    words=re.findall(r"\['([A-Z]+)','[^']+'\]",source)
     assert len(words)>=30,"Forca fixture source schema changed"
     today=page.evaluate("""() => new Intl.DateTimeFormat('en-CA',{
        timeZone:'America/Sao_Paulo',year:'numeric',month:'2-digit',day:'2-digit'
@@ -137,7 +137,7 @@ def solve(page,game,recife_mode="solo"):
         # Exercita as dicas reais, sem inspecionar closures nem alterar estado.
         for _ in range(27):
             progress=page.locator("#progress").inner_text()
-            values=re.findall(r"\\d+",progress)
+            values=re.findall(r"\d+",progress)
             if len(values)>=2 and values[0]==values[1]:break
             page.locator("#hint").click()
         else:raise AssertionError("Hint flow did not reveal the entire cipher")
