@@ -1,0 +1,24 @@
+/* Real free-game difficulty preferences; no change to daily gameplay. */
+.mare-content-control{
+ display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;
+ min-width:0;width:100%;margin:14px 0;padding:13px 16px;
+ border:1px solid rgba(144,213,202,.4);border-radius:14px;
+ background:linear-gradient(108deg,rgba(5,43,58,.96),rgba(11,62,67,.89));
+ color:#eafbf5;
+}
+.mare-content-control strong{font:800 10px/1.6 system-ui,sans-serif;letter-spacing:.11em;color:#9ff1d6}
+.mare-content-control p{font:450 12px/1.5 system-ui,sans-serif;color:#d2eae6;margin:4px 0 0;max-width:55ch}
+.mare-content-control__actions{display:flex;flex-wrap:wrap;align-items:center;gap:9px;max-width:100%}
+.mare-content-control label{display:flex;align-items:center;gap:8px;font:700 12px/1.3 system-ui,sans-serif}
+.mare-content-control select,.mare-content-control button{
+ min-height:44px;border:1px solid #97d7c5;border-radius:10px;
+ font:700 12px/1.3 system-ui,sans-serif;padding:9px 13px;
+}
+.mare-content-control select{color:#f5fff8;background:#113a48}
+.mare-content-control option{color:#fff;background:#123f4d}
+.mare-content-control button{color:#062f33;background:#a5eed5;cursor:pointer}
+.mare-content-control button:is(:hover,:focus-visible){background:#d6ffee}
+.mare-content-control :is(select,button):focus-visible{outline:3px solid #f4d68c;outline-offset:3px}
+.mare-content-control__status{font:600 11px/1.45 system-ui,sans-serif;color:#ddf7ee;max-width:25ch}
+@media(max-width:600px){.mare-content-control,.mare-content-control__actions{flex-direction:column;align-items:stretch}.mare-content-control label{justify-content:space-between}}
+@media(prefers-reduced-motion:reduce){.mare-content-control *{transition:none!important;animation:none!important}}
