@@ -29,6 +29,7 @@ jobs:
           python -m pip install --quiet playwright==1.56.0
           python -m playwright install --with-deps chromium
           python scripts/check-kanagawa-runtime.py
+          python scripts/audit-kanagawa-surfaces.py
           python scripts/check-play-runtime.py
           python scripts/check-phase4-e2e.py
           python scripts/check-phase3-runtime.py
