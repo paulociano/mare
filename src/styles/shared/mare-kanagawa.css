@@ -681,3 +681,17 @@ body.mare-kanagawa > a.mare-skip-link:is(:focus,:focus-visible){
  #mare-quick-guide,.mare-logbook,.mare-voyage__spotlight,.mare-voyage__rhythm){
  background:#061925!important;border-color:#b0ebdf!important;
 }
+
+/* Diagnostic footer and global navigation stay readable in contrast mode,
+ * including the extra-large accessible typography preset. */
+:root[data-mare-contrast="high"] body.mare-kanagawa
+ :is(footer,.mar-footer,.depth-footer,.newgame-footer,.mare-game-nav__title,
+ .mare-game-nav__name,.return-link,.back,.mare-studio-hero__eyebrow){
+ color:#fff!important;
+}
+:root[data-mare-contrast="high"] body.mare-kanagawa
+ :is(footer,.mar-footer,.depth-footer,.newgame-footer) a,
+:root[data-mare-contrast="high"] body.mare-hub.mare-kanagawa .mar-footer a[href="?diagnostico=1"]{
+ color:#fff!important;
+ text-decoration:underline;text-underline-offset:3px;
+}
