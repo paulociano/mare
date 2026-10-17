@@ -68,6 +68,20 @@ def run():
                 assert result["heroArt"],"Home's Great Wave engraving was not loaded"
                 assert result["cards"]==12,"Game catalog changed unexpectedly"
                 page.screenshot(path=str(OUT/f"kanagawa-home-{device}.png"),full_page=True,animations="disabled")
+                accessible=page.evaluate("""() => {
+                  document.documentElement.dataset.mareContrast='high';
+                  const card=document.querySelector('.mar-catalog article.mar-game');
+                  const bg=getComputedStyle(card).backgroundColor;
+                  const text=getComputedStyle(card.querySelector('h2')).color;
+                  document.documentElement.dataset.mareContrast='normal';
+                  document.documentElement.dataset.mareFocus='on';
+                  const hidden=getComputedStyle(document.querySelector('.mare-studio-hero__visual')).display==='none';
+                  document.documentElement.dataset.mareFocus='off';
+                  return {bg,text,hidden};
+                }""")
+                assert accessible["bg"]=="rgb(6, 25, 37)",route+": high-contrast card did not become dark"
+                assert accessible["text"]=="rgb(255, 255, 255)",route+": high-contrast text unreadable"
+                assert accessible["hidden"],route+": Focus mode did not remove decorative artwork
               verified.append({"route":route,"device":device,"bg":result["background"],"color":result["color"]})
             except Exception as exc:
               errors.append(f"{device} {route}: {exc}")
