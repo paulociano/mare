@@ -51,7 +51,9 @@
   }catch{show('Instalação não disponível neste navegador.')}
  });
  const offerUpdate=worker=>{
-  if(!worker||!navigator.serviceWorker.controller)return;
+  // The installed event may fire just before registration.waiting is populated.
+  // The currently controlled client guarantees this new installed worker must wait.
+  if(!worker||worker.state!=='installed'||!navigator.serviceWorker.controller)return;
   update.hidden=false;
   show('Nova versão pronta · atualize quando terminar a rodada.');
  };
@@ -70,7 +72,7 @@
    const worker=reg.installing;
    if(!worker)return;
    worker.addEventListener('statechange',()=>{
-    if(worker.state==='installed'&&reg.waiting)offerUpdate(reg.waiting);
+    if(worker.state==='installed')offerUpdate(worker);
    });
   });
   return navigator.serviceWorker.ready;
