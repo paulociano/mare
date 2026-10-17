@@ -7,7 +7,7 @@ function value(path,marker){
  const src=read(path),pos=src.indexOf(marker);
  assert.ok(pos>=0,path+': missing '+marker);
  let start=pos+marker.length;while(/\s/.test(src[start]))start++;
- const opening={'[':']','{':'}},stack=[];assert.ok(opening[src[start]]);
+ const opening=Object.fromEntries([['[',']'],['{','}']]),stack=[];assert.ok(opening[src[start]]);
  let quote='',escaped=false,end=-1;
  for(let i=start;i<src.length;i++){
   const c=src[i];
