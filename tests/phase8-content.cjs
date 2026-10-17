@@ -86,7 +86,7 @@ for(const [type,pool] of Object.entries(duo)){
  else assert.ok(pool.every(p=>clean(p.answer).split(/ +/).length>=3));
 }
 for(const game of ['abismo','cardume','corrente','concha','trilha','enigma','marujo','forca','criptograma']){
- assert.ok(read(game+'.js').includes('MareContent?.pick'),game+': no real selected-tier logic');
+ assert.ok(read('src/scripts/games/'+game+'.js').includes('MareContent?.pick'),game+': no real selected-tier logic');
 }
 assert.ok(read('src/scripts/games/mares-duo.js').includes('MareContent?.pick'));
 for(const page of ['abismo','cardume','corrente','concha','trilha','enigma','marujo','forca','criptograma','perola','farol']){
