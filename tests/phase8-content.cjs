@@ -28,7 +28,7 @@ assert.equal(new Set(words).size,words.length,'Recife duplicate dictionary entry
 const abyss=[...value('abismo.js','const BANK='),...value('abismo.js','BANK.push(...')];
 assert.ok(abyss.length>=35);
 assert.equal(new Set(abyss.map(c=>c[0])).size,abyss.length,'Abismo duplicate target');
-assert.ok(abyss.every(c=>c.length>=10&&c.every(w=>/^[A-Z]+$/.test(w))));
+assert.ok(abyss.every(c=>c.length>=10&&c.every(w=>/^[A-Z-]+$/.test(w))),'Abismo permits compounds such as GUARDA-CHUVA');
 assert.ok(read('abismo.js').includes('const clean=[...new Set(cluster)]'));
 const groups=JSON.parse(read('data/cardume-puzzles.json'));
 assert.ok(groups.length>=18);
