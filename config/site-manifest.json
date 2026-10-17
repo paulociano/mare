@@ -30,7 +30,9 @@
     "mare-voyage.js",
     "mare-voyage.css",
     "mare-content.js",
-    "mare-content.css"
+    "mare-content.css",
+    "mare-social.js",
+    "mare-social.css"
   ],
   "optionalFiles": [
     "data/semantic-ranks.json"

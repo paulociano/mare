@@ -7,7 +7,11 @@ const norm=s=>s.normalize('NFD').replace(/[\u0300-\u036f]/g,'').trim().toUpperCa
 // Remove repeated associates without changing target words or cluster ordering.
 for(const cluster of BANK){const clean=[...new Set(cluster)];cluster.splice(0,cluster.length,...clean)}
 let round=0,entries=[],finished=false, semanticRanks=null;
-function storageKey(){return 'mare-semantico-'+round}
+function storageKey(){
+ const invite=globalThis.MareSocial?.gameChallenge('abismo');
+ return invite&&round===globalThis.MareSocial.abismoIndex(invite.day,BANK.length)
+   ?'mare-semantico-challenge-'+invite.day:'mare-semantico-'+round
+}
 function restore(){try{const x=JSON.parse(localStorage.getItem(storageKey())||'{}');entries=Array.isArray(x.entries)?x.entries.filter(e=>e&&typeof e.word==='string'&&Number.isInteger(e.rank)).slice(0,300):[];finished=!!x.finished}catch{entries=[];finished=false}}
 function persist(){localStorage.setItem(storageKey(),JSON.stringify({entries,finished}))}
 function hash(w){let h=2166136261;for(const c of w){h=Math.imul(h^c.charCodeAt(0),16777619)}return h>>>0}
@@ -43,7 +47,8 @@ $('guessform').addEventListener('submit',e=>{e.preventDefault();if(finished)retu
 $('next').onclick=()=>{localStorage.setItem('mare-semantico-round',String(globalThis.MareContent?.pick('abismo',BANK.map(c=>c[0].length),round+1)??(round+1)%BANK.length));newRound(globalThis.MareContent?.pick('abismo',BANK.map(c=>c[0].length),round+1)??round+1,true)};
 $('hint').onclick=()=>{if(finished)return;const list=BANK[round%BANK.length];const suggestion=list.slice(1).find(w=>!entries.some(e=>e.word===w));if(suggestion){$('message').textContent='Dica: tente a palavra "'+suggestion.toLocaleLowerCase('pt-BR')+'".'}else $('message').textContent='Todas as dicas foram exploradas.'};
 const dialog=$('instructions');$('help').onclick=()=>dialog.showModal();$('close').onclick=()=>dialog.close();$('gotit').onclick=()=>dialog.close();
-round=Number(localStorage.getItem('mare-semantico-round')||'0');if(!Number.isInteger(round)||round<0)round=0;newRound(round);
+round=Number(localStorage.getItem('mare-semantico-round')||'0');if(!Number.isInteger(round)||round<0)round=0;const invited=globalThis.MareSocial?.gameChallenge('abismo');
+newRound(invited?globalThis.MareSocial.abismoIndex(invited.day,BANK.length):round);
 
 // Load reproducibly precomputed word embeddings ranking where available.
 fetch('data/semantic-ranks.json',{cache:'force-cache'}).then(r=>{if(!r.ok)throw new Error('semantic dataset missing');return r.json()}).then(data=>{
