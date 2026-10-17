@@ -8,6 +8,7 @@ const game=document.querySelector('.game'),boardEl=document.getElementById('boar
 // O contêiner contém vários grids; não é ele próprio um grid (WCAG ARIA 1.2).
 boardEl.setAttribute('role','group');
 boardEl.setAttribute('aria-label','Tabuleiros das sondas');
+boardEl.setAttribute('tabindex','-1');
 const panel=document.createElement('div');
 panel.className='mare-modes';
 panel.setAttribute('role','group');
@@ -135,6 +136,6 @@ closeModal=function(){originalCloseModal();document.body.classList.remove('modal
 document.getElementById('close').onclick=()=>closeModal();
 overlay.addEventListener('click',e=>{if(e.target===overlay&&modalOpener){document.body.classList.remove('modal-active');modalOpener?.focus();modalOpener=null}});
 overlay.addEventListener('keydown',e=>{if(e.key!=='Tab')return;const items=[...overlay.querySelectorAll('button:not([disabled]),input:not([disabled]),a[href]')].filter(el=>el.getClientRects().length);if(!items.length)return;const first=items[0],last=items[items.length-1];if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus()}else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus()}});
-panel.addEventListener('click',e=>{const button=e.target.closest('button[data-m]');if(!button||button.dataset.m===mode)return;setMode(button.dataset.m);history.replaceState(null,'',location.pathname+'?modo='+mode)});
+panel.addEventListener('click',e=>{const button=e.target.closest('button[data-m]');if(!button||button.dataset.m===mode)return;setMode(button.dataset.m);boardEl.focus({preventScroll:true});history.replaceState(null,'',location.pathname+'?modo='+mode)});
 setMode(mode);
 })();

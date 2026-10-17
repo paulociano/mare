@@ -19,7 +19,9 @@
     "modos.js",
     "palavras-ptbr-5.txt",
     "data/cardume-puzzles.json",
-    "assets/ocean-depth.svg"
+    "assets/ocean-depth.svg",
+    "mare-diagnostics.js",
+    "mare-diagnostics.css"
   ],
   "optionalFiles": [
     "data/semantic-ranks.json"
