@@ -103,11 +103,21 @@
   if(item.earned)badge.classList.add('is-earned');
   const mark=make('span','mare-logbook__award-symbol',item.earned?'✦':'◇');
   mark.setAttribute('aria-hidden','true');
-  badge.append(mark,make('span','',item.name));
+  const description=make('span','mare-logbook__award-description');
+  description.append(make('strong','',item.name));
+  if(item.detail)description.append(make('small','',item.detail));
+  if(item.earnedAt)description.append(make('small','mare-logbook__award-date','Conquistada em '+item.earnedAt.split('-').reverse().join('/')));
+  else if(Number.isFinite(item.progress)&&item.target)
+   description.append(make('small','mare-logbook__award-date',item.progress+' / '+item.target));
+  badge.append(mark,description);
   badge.setAttribute('aria-label',item.name+(item.earned?', conquistada':', ainda não conquistada'));
   awardGrid.append(badge);
  }
- achievements.append(awardGrid);
+ const earnedCount=(profile?.earned||[]).filter(item=>item.earned).length;
+ const collection=make('details','mare-logbook__collection');
+ const toggle=make('summary','','Ver conquistas · '+earnedCount+' de '+(profile?.earned?.length||4)+' desbloqueadas');
+ collection.append(toggle,awardGrid);
+ achievements.append(collection);
 
  const missionsPanel=make('section','mare-logbook__panel');
  missionsPanel.setAttribute('aria-label','Missões diárias e semanais');
