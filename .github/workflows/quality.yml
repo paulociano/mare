@@ -40,6 +40,7 @@ jobs:
           python scripts/check-phase7-runtime.py
           python scripts/check-phase8-runtime.py
           python scripts/check-phase9-social.py
+          python scripts/check-phase10-accessibility.py
       - name: Preservar screenshots e relatório de QA
         if: always()
         uses: actions/upload-artifact@v4
