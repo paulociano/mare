@@ -12,6 +12,10 @@ for(const page of manifest.pages){
  const filename=page+'.html';
  assert.ok(exists(filename),'Página ausente do pacote: '+filename);
  const html=read(filename);
+ const styles=[...html.matchAll(/<link\b[^>]*rel=["']stylesheet["'][^>]*href=["']([^"']+)["']/g)];
+ assert.equal(styles.length,1,filename+': publicação deve carregar somente um CSS consolidado');
+ assert.match(styles[0][1],/^styles\/mare-[a-f0-9]{12}\.css$/,filename+': CSS sem fingerprint');
+
  for(const match of html.matchAll(/<(?:script|link|img)\b[^>]*?(?:src|href)=["']([^"']+)["']/g)){
   const ref=match[1];
   if(/^(?:https?:|#|data:|mailto:)/.test(ref))continue;
