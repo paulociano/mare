@@ -3,7 +3,7 @@
    One Three.js scene, one ShaderMaterial, no textures, no gameplay dependencies. */
 (async()=>{
   const host=document.querySelector('[data-ocean-scene]');
-  if(!host||typeof window.WebGL2RenderingContext==='undefined')return;
+  if(!host||document.body.classList.contains('mare-kanagawa')||typeof window.WebGL2RenderingContext==='undefined')return;
   const reduced=window.matchMedia('(prefers-reduced-motion: reduce)');
   const small=window.matchMedia('(max-width: 720px)');
   const motionOff=()=>reduced.matches||
