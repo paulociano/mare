@@ -1,6 +1,6 @@
 'use strict';
 const assert=require('node:assert/strict'),fs=require('node:fs'),vm=require('node:vm');
-const js=fs.readFileSync('mare-explorer.js','utf8'),css=fs.readFileSync('mare-explorer.css','utf8');
+const js=fs.readFileSync('src/scripts/shared/mare-explorer.js','utf8'),css=fs.readFileSync('src/styles/shared/mare-explorer.css','utf8');
 new vm.Script(js);
 assert.ok(js.includes('navigator.share'),'Native sharing missing');
 assert.ok(js.includes('navigator.clipboard?.writeText'),'Clipboard fallback missing');

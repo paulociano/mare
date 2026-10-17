@@ -23,7 +23,7 @@ for(const page of manifest.pages){
  const html=read(filename);
  assert.ok(html.includes('lang="pt-BR"'),'Idioma ausente: '+filename);
  assert.ok(html.includes('<main'),'Elemento main ausente: '+filename);
- assert.ok(html.includes('mare-brand.css'),'Estilo da marca ausente: '+filename);
+ assert.ok(html.includes('src/styles/shared/mare-brand.css'),'Estilo da marca ausente: '+filename);
  assert.ok(html.includes('assets/brand/mare-favicon.svg'),'Favicon ausente: '+filename);
 }
 for(const file of manifest.requiredFiles)assert.ok(exists(file),'Arquivo obrigatório ausente: '+file);

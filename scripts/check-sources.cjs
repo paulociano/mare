@@ -30,9 +30,9 @@ for(const page of pages){
  const styles=[...html.matchAll(/<link\b[^>]*?rel=["']stylesheet["'][^>]*?href=["']([^"']+)["']/g)].map(m=>m[1].split(/[?#]/)[0]);
  assert.ok(styles.length>0,page+': nenhum stylesheet');
  assert.equal(styles.length,new Set(styles).size,page+': CSS carregado mais de uma vez');
- assert.ok(styles.includes('mare-3.css'),page+': camada de componentes ausente');
- assert.ok(styles.includes('mare-brand.css'),page+': camada de marca ausente');
- assert.ok(styles.indexOf('mare-brand.css')>styles.indexOf('mare-3.css'),page+': marca deve carregar depois da camada de componentes');
+ assert.ok(styles.includes('src/styles/shared/mare-3.css'),page+': camada de componentes ausente');
+ assert.ok(styles.includes('src/styles/shared/mare-brand.css'),page+': camada de marca ausente');
+ assert.ok(styles.indexOf('src/styles/shared/mare-brand.css')>styles.indexOf('src/styles/shared/mare-3.css'),page+': marca deve carregar depois da camada de componentes');
  for(const css of styles){assert.ok(exists(css),page+': CSS ausente '+css);cssFiles.add(css)}
  for(const match of html.matchAll(/<(?:script|img)\b[^>]*?src=["']([^"']+)["']/g)){
   const url=match[1].split(/[?#]/)[0];
@@ -55,7 +55,7 @@ for(const file of cssFiles){
   assert.ok(!relative.startsWith('../')&&exists(relative),file+': recurso CSS ausente '+relative);
  }
 }
-const artwork=read('mare-3.css');
+const artwork=read('src/styles/shared/mare-3.css');
 for(const [className,asset] of [['mar-forca','naufrago.svg'],['mar-criptograma','sinais.svg']]){
  const marker='.mare-hub .mar-game.'+className+'{background-image:';
  assert.equal(artwork.split(marker).length-1,1,'Cenário duplicado: '+className);
@@ -64,7 +64,8 @@ for(const [className,asset] of [['mar-forca','naufrago.svg'],['mar-criptograma',
 
 /* Guard against new abandoned CSS layers. Dynamic stylesheets count as
  * references when their path is mentioned by runtime JavaScript. */
-const topLevelCss=fs.readdirSync(root).filter(file=>file.endsWith('.css'));
+function collectCss(dir){return fs.readdirSync(path.join(root,dir),{withFileTypes:true}).flatMap(entry=>{const file=path.posix.join(dir,entry.name);return entry.isDirectory()?collectCss(file):entry.isFile()&&file.endsWith('.css')?[file]:[];});}
+const topLevelCss=collectCss('src/styles');
 const javascript=[...jsFiles].map(file=>read(file)).join('\n');
 for(const file of topLevelCss){
  assert.ok(cssFiles.has(file)||javascript.includes(file),

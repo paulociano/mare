@@ -16,8 +16,8 @@ for(const page of manifest.pages){
  assert.equal(styles.length,1,filename+': publicação deve carregar somente um CSS consolidado');
  assert.match(styles[0][1],/^styles\/mare-[a-f0-9]{12}\.css$/,filename+': CSS sem fingerprint');
  const combined=read(styles[0][1]);
- assert.ok(combined.includes('/* Source: mare-3.css */'),filename+': camada base de componentes ausente do bundle');
- assert.ok(combined.includes('/* Source: mare-brand.css */'),filename+': camada da marca ausente do bundle');
+ assert.ok(combined.includes('/* Source: src/styles/shared/mare-3.css */'),filename+': camada base de componentes ausente do bundle');
+ assert.ok(combined.includes('/* Source: src/styles/shared/mare-brand.css */'),filename+': camada da marca ausente do bundle');
  for(const asset of combined.matchAll(/url\(\s*['"]?(\.\.\/[^'")]+)['"]?\s*\)/g)){
   const local=path.posix.normalize(path.posix.join(path.posix.dirname(styles[0][1]),asset[1].split(/[?#]/)[0]));
   if(local.endsWith('.webp')&&!exists(local)&&exists(local.replace(/\.webp$/,'.svg')))continue;
@@ -38,7 +38,7 @@ for(const page of manifest.pages){
  }
 }
 for(const file of manifest.requiredFiles)assert.ok(exists(file),'Obrigatório ausente do pacote: '+file);
-assert.ok(exists('recife.js'),'Recife sem script no pacote final');
+assert.ok(exists('src/scripts/games/recife.js'),'Recife sem script no pacote final');
 for(const game of ['recife','abismo','cardume','corrente','concha','trilha','enigma','marujo']){
  assert.ok(exists('assets/backgrounds/'+game+'.svg'),'Arte ausente: '+game);
 }

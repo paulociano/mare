@@ -1,6 +1,6 @@
 'use strict';
 const assert=require('node:assert/strict'),fs=require('node:fs'),vm=require('node:vm');
-const source=fs.readFileSync('mare-progress.js','utf8');
+const source=fs.readFileSync('src/scripts/shared/mare-progress.js','utf8');
 const store=new Map(),window={};
 const localStorage={getItem:k=>store.get(k)||null,setItem:(k,v)=>store.set(k,v)};
 vm.runInNewContext(source,{window,localStorage,Date,JSON,Set,Math});
@@ -15,5 +15,5 @@ for(let i=0;i<4;i++)assert.equal(record('forca','win','free-'+i),true);
 assert.equal(stats().xp,520);assert.equal(stats().level,2);
 assert.ok(stats().earned.find(x=>x.id==='five-wins').earned);
 assert.ok(!stats().earned.find(x=>x.id==='three-games').earned);
-assert.ok(fs.readFileSync('mare-explorer.js','utf8').includes('MareProgress?.stats?.()'));
+assert.ok(fs.readFileSync('src/scripts/shared/mare-explorer.js','utf8').includes('MareProgress?.stats?.()'));
 console.log('PASS: verified XP, levels, badges and duplicate protection');
