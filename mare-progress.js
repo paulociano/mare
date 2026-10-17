@@ -8,6 +8,10 @@
   const items=read();if(items.some(e=>e.id===game+':'+id))return false;
   items.push({id:game+':'+id,game,outcome,at:new Date().toISOString()});
   try{localStorage.setItem(KEY,JSON.stringify(items.slice(-MAX)))}catch{return false}
+  // Dispatch only after confirmed persistence. Never expose raw history/IDs in UI.
+  try{if(typeof window.dispatchEvent==='function'&&typeof CustomEvent==='function'){
+    window.dispatchEvent(new CustomEvent('mare:round-finished',{detail:{game,outcome}}));
+  }}catch{/* A presentation listener must never interrupt the game. */}
   return true;
  }
 
