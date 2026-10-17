@@ -42,9 +42,9 @@ const bundles=new Map();
 for(const page of pages){
  const filename=page+'.html';
  let html=fs.readFileSync(path.join(out,filename),'utf8');
- const links=[...html.matchAll(/<link\b[^>]*rel=["']stylesheet["'][^>]*href=["']([^"']+\.css)["'][^>]*>/gi)];
+ const links=[...html.matchAll(/<link\b[^>]*rel=["']stylesheet["'][^>]*href=["']([^"']+\.css(?:[?#][^"']*)?)["'][^>]*>/gi)];
  if(links.length===0)continue;
- const styles=links.map(match=>match[1]);
+ const styles=links.map(match=>match[1].split(/[?#]/)[0]);
  if(styles.some(file=>file.startsWith('/')||file.includes('..')||!copied.has(file))){
   throw new Error(page+': stylesheet fora do inventário');
  }
@@ -77,7 +77,7 @@ for(const page of pages){
  }
  // Replace only stylesheet links, keeping other link elements unchanged.
  let first=true;
- html=html.replace(/<link\b[^>]*rel=["']stylesheet["'][^>]*href=["'][^"']+\.css["'][^>]*>/gi,()=>{
+ html=html.replace(/<link\b[^>]*rel=["']stylesheet["'][^>]*href=["'][^"']+\.css(?:[?#][^"']*)?["'][^>]*>/gi,()=>{
   if(!first)return '';
   first=false;
   return '<link rel="stylesheet" href="'+bundle+'">';
