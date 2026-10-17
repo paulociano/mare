@@ -77,10 +77,17 @@
   });
   return navigator.serviceWorker.ready;
  }).then(()=>{
+  const checkWaiting=()=>{
+   if(registration?.waiting)offerUpdate(registration.waiting);
+  };
+  checkWaiting();
   if(update.hidden)show(navigator.onLine?'MARÉ preparado para jogar offline.':'Sem conexão · jogos salvos disponíveis.');
-  // Updates are checked on navigation as well as when this tab regains focus.
-  // Do not create a timer, polling or any background telemetry.
-  window.addEventListener('pageshow',()=>registration?.update().catch(()=>{}));
+  // Foreground checks close the gap if a worker became waiting before
+  // registration listeners settled. Never reload or skipWaiting automatically.
+  const refresh=()=>registration?.update().then(checkWaiting).catch(()=>checkWaiting());
+  window.addEventListener('pageshow',refresh);
+  window.addEventListener('focus',refresh);
+  document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible')refresh()});
  }).catch(()=>{
   show('Modo offline indisponível. Os jogos online continuam funcionando.');
  });
