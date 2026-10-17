@@ -61,6 +61,7 @@ body:is(.mar-app,.mare-recife) :is(.notice,.status,[role="status"],[aria-live="p
   --play-sand:#e9c88b;
   --play-stroke:rgba(142,217,210,.31);
   --play-ease:cubic-bezier(.22,1,.36,1);
+  --mare-evo-ease:cubic-bezier(.22,1,.36,1);
   --play-radius:20px;
 }
 body:is(.mar-app,.mare-recife){
