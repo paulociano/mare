@@ -489,6 +489,31 @@ body.mare-kanagawa:is(.mar-app,.mare-recife)
  opacity:.65!important;cursor:not-allowed;
 }
 
+/* Contrast-safe field labels, metadata and primary form actions. */
+body.mare-kanagawa :is(.mare-discover-title>span,.mare-progress,.mare-progress>span,
+ .concha-top,.concha-listhead,.concha-listhead>b,.concha-progress-label,.concha-progress-label>b,
+ .empty,.trilha-result,.trilha-result>span,.marujo-selection,.marujo-selection>span,
+ .trilha-meta,.marujo-meta,.enigma-meta){
+ color:#173e5e!important;text-shadow:none!important;
+}
+body.mare-kanagawa:is(.mar-app,.mare-recife)
+ :is(#best,#level,#clock,#direction,#edition,#attempts,#remaining,
+ .trilha-result>span,.marujo-selection>span,.concha-listhead>b){
+ color:#173e5e!important;text-shadow:none!important;
+}
+body.mare-kanagawa:is(.mar-app,.mare-recife)
+ :is(.trilha-result,.marujo-selection,.enigma-meta,.trilha-meta,.marujo-meta,
+ .statusline,.concha-top,.concha-listhead,.concha-progress-label){
+ background:transparent!important;
+}
+body.mare-kanagawa:is(.mar-app,.mare-recife) button[type="submit"]:not(:disabled){
+ background:#174b6a!important;color:#fffdf7!important;
+ border:1px solid #174b6a!important;text-shadow:none!important;
+}
+body.mare-kanagawa:is(.mar-app,.mare-recife) button[type="submit"]:is(:hover,:focus-visible){
+ background:#173e5e!important;color:#fffdf7!important;
+}
+
 /* Specificity-safe accessibility overrides: dark mode must win over paper cards. */
 :root[data-mare-contrast="high"] body.mare-hub.mare-kanagawa .mar-catalog>article.mar-game{
  background:#061925!important;background-image:none!important;border-color:#b0ebdf!important;
