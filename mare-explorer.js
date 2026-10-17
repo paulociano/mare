@@ -27,6 +27,16 @@
  const summary=document.createElement('p');
  summary.textContent=available?active.length+' de 12 jogos com registros neste navegador. Isso não indica vitórias.':'Seu navegador não permite ler o progresso local. Todos os jogos continuam disponíveis.';
  intro.append(eyebrow,heading,summary);
+ // Verified results are a separate count: only games that explicitly emit outcomes.
+ const outcomes=typeof window!=='undefined'?window.MareProgress?.read?.()||[]:[];
+ const naufrago=outcomes.filter(item=>item.game==='forca');
+ if(naufrago.length){
+  const results=document.createElement('p');results.className='mare-explorer__results';
+  const won=naufrago.filter(item=>item.outcome==='win').length;
+  results.textContent='Náufrago · '+naufrago.length+' partidas concluídas ('+won+' vitórias) registradas neste navegador.';
+  intro.append(results);
+ }
+
  const meter=document.createElement('div');meter.className='mare-explorer__meter';
  const line=document.createElement('div');line.className='mare-explorer__track';line.setAttribute('role','progressbar');
  line.setAttribute('aria-label','Jogos com registros de exploração');
