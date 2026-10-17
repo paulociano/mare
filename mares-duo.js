@@ -19,7 +19,7 @@
    {answer:'TIMÃO',hint:'Roda ou mecanismo usado para dirigir uma embarcação'},
    {answer:'GAIVOTA',hint:'Ave costeira de voo ágil'},
    {answer:'LITORAL',hint:'Região próxima ao mar'},
-   {answer:'MARÉS',hint:'Movimentos periódicos de subida e descida do nível do mar'}
+   {answer:'MARÉS',hint:'Movimentos periódicos de subida e descida do nível do mar'},{answer:'MANGUE',hint:'Vegetação típica de áreas costeiras alagadas'},{answer:'BRISA',hint:'Vento leve que refresca a praia'},{answer:'PESCADOR',hint:'Pessoa que captura peixes'},{answer:'CANOA',hint:'Pequena embarcação movida a remo'},{answer:'MARINHA',hint:'Força naval de um país'},{answer:'TIMONEIRO',hint:'Pessoa que conduz o leme de uma embarcação'},{answer:'ESTUÁRIO',hint:'Lugar onde um rio encontra o mar'},{answer:'ENSEADA',hint:'Pequena baía que abriga embarcações'}
   ],
   farol:[
    {answer:'NAVEGAR É PRECISO',hint:'Expressão célebre sobre seguir viagem'},
@@ -36,7 +36,7 @@
    {answer:'QUEM PROCURA ACHA',hint:'Ditado sobre investigação e persistência'},
    {answer:'UMA ANDORINHA SÓ NÃO FAZ VERÃO',hint:'Ditado sobre ações individuais'},
    {answer:'O SEGURO MORREU DE VELHO',hint:'Ditado sobre a importância da cautela'},
-   {answer:'NEM TUDO QUE RELUZ É OURO',hint:'Aviso sobre aparências'}
+   {answer:'NEM TUDO QUE RELUZ É OURO',hint:'Aviso sobre aparências'},{answer:'ÁGUA PASSADA NÃO MOVE MOINHO',hint:'Provérbio sobre deixar o passado para trás'},{answer:'MAIS VALE UM PÁSSARO NA MÃO',hint:'Início de um ditado sobre escolhas seguras'},{answer:'A ESPERANÇA É A ÚLTIMA QUE MORRE',hint:'Expressão sobre perseverança'},{answer:'QUEM SEMEIA VENTOS COLHE TEMPESTADES',hint:'Ditado sobre consequências'},{answer:'O HÁBITO FAZ O MONGE',hint:'Expressão sobre a importância da aparência'},{answer:'O MUNDO DÁ VOLTAS',hint:'Expressão sobre mudanças inesperadas'},{answer:'NÃO DEIXE PARA AMANHÃ',hint:'Início de um conselho contra adiar tarefas'},{answer:'É MELHOR PREVENIR DO QUE REMEDIAR',hint:'Ditado sobre precaução'}
   ]
  };
  if(!puzzles[type])return;
@@ -58,7 +58,7 @@
  let tiles=[];
  function message(value){$('feedback').textContent=value}
  function start(){
-  const index=mode==='daily'?hash%bank.length:(window.MareContent?.pick(type,bank.map(p=>type==='perola'?normalize(p.answer).length:p.answer.trim().split(/\s+/).length),safeNumber())??safeNumber()%bank.length);
+  const index=mode==='daily'?hash%(day==='2026-10-17'?(type==='perola'?17:15):bank.length):(window.MareContent?.pick(type,bank.map(p=>type==='perola'?normalize(p.answer).length:p.answer.trim().split(/\s+/).length),safeNumber())??safeNumber()%bank.length);
   round=index;tries=0;complete=false;selected=[];
   $('edition').textContent=mode==='daily'?'DESAFIO DIÁRIO '+day:'MODO LIVRE';
   $('hint').textContent=bank[round].hint;
