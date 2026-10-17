@@ -246,6 +246,8 @@ body.mare-hub.mare-studio .mar-catalog > article.mar-game{
   box-shadow:inset 0 1px rgba(255,255,255,.045),0 15px 40px rgba(0,8,17,.18)!important;
   transition:transform .28s cubic-bezier(.22,1,.36,1),border-color .28s,box-shadow .28s!important;
 }
+/* [hidden] must defeat the layout's display:flex!important so category filters work. */
+body.mare-hub.mare-studio .mar-catalog > article.mar-game[hidden]{display:none!important}
 body.mare-hub.mare-studio .mar-catalog > article.mar-game:first-child{
   background:radial-gradient(circle at 83% 30%,rgba(65,213,184,.28),transparent 51%),linear-gradient(140deg,#164c51,#0a2e3b 66%,#09212c)!important;
   border-color:rgba(135,238,210,.45)!important;
