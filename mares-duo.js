@@ -36,7 +36,7 @@
    {answer:'QUEM PROCURA ACHA',hint:'Ditado sobre investigação e persistência'},
    {answer:'UMA ANDORINHA SÓ NÃO FAZ VERÃO',hint:'Ditado sobre ações individuais'},
    {answer:'O SEGURO MORREU DE VELHO',hint:'Ditado sobre a importância da cautela'},
-   {answer:'NEM TUDO QUE RELUZ É OURO',hint:'Aviso sobre aparências'},{answer:'ÁGUA PASSADA NÃO MOVE MOINHO',hint:'Provérbio sobre deixar o passado para trás'},{answer:'MAIS VALE UM PÁSSARO NA MÃO',hint:'Início de um ditado sobre escolhas seguras'},{answer:'A ESPERANÇA É A ÚLTIMA QUE MORRE',hint:'Expressão sobre perseverança'},{answer:'QUEM SEMEIA VENTOS COLHE TEMPESTADES',hint:'Ditado sobre consequências'},{answer:'O HÁBITO FAZ O MONGE',hint:'Expressão sobre a importância da aparência'},{answer:'O MUNDO DÁ VOLTAS',hint:'Expressão sobre mudanças inesperadas'},{answer:'NÃO DEIXE PARA AMANHÃ',hint:'Início de um conselho contra adiar tarefas'},{answer:'É MELHOR PREVENIR DO QUE REMEDIAR',hint:'Ditado sobre precaução'}
+   {answer:'NEM TUDO QUE RELUZ É OURO',hint:'Aviso sobre aparências'},{answer:'ÁGUA PASSADA NÃO MOVE MOINHO',hint:'Provérbio sobre deixar o passado para trás'},{answer:'MAIS VALE UM PÁSSARO NA MÃO',hint:'Início de um ditado sobre escolhas seguras'},{answer:'A ESPERANÇA É A ÚLTIMA QUE MORRE',hint:'Expressão sobre perseverança'},{answer:'QUEM SEMEIA VENTOS COLHE TEMPESTADES',hint:'Ditado sobre consequências'},{answer:'O HÁBITO NÃO FAZ O MONGE',hint:'Ditado sobre a diferença entre aparência e caráter'},{answer:'O MUNDO DÁ VOLTAS',hint:'Expressão sobre mudanças inesperadas'},{answer:'NÃO DEIXE PARA AMANHÃ',hint:'Início de um conselho contra adiar tarefas'},{answer:'É MELHOR PREVENIR DO QUE REMEDIAR',hint:'Ditado sobre precaução'}
   ]
  };
  if(!puzzles[type])return;
