@@ -5,6 +5,9 @@ let mode = new URLSearchParams(location.search).get('modo') || localStorage.getI
 if(!MODES[mode])mode='solo';
 let targets=[], oldStatusTimeout, modalOpener=null, activePane=0;
 const game=document.querySelector('.game'),boardEl=document.getElementById('board'),statusEl=document.getElementById('status');
+// O contêiner contém vários grids; não é ele próprio um grid (WCAG ARIA 1.2).
+boardEl.setAttribute('role','group');
+boardEl.setAttribute('aria-label','Tabuleiros das sondas');
 const panel=document.createElement('div');
 panel.className='mare-modes';
 panel.setAttribute('role','group');
