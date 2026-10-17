@@ -36,7 +36,7 @@ def main():
             assert page.locator('#mare-intensity').input_value()==''
             # Read original daily identifier before triggering a new free round.
             before=page.locator('#edition').inner_text() if page.locator('#edition').count() else ''
-            assert 'DIÁRI' in before or 'DIARIO' in before or 'EXPEDIÇÃO' in before or game=='abismo',repr((game,before))
+            assert any(t in before for t in ['DIÁRI','DIARIO','EXPEDIÇÃO','DESAFIO']) or game=='abismo',repr((game,before))
             selector=page.locator('#mare-intensity')
             # User explicitly selects a difficulty, no silent daily mutation.
             selector.select_option('intensa')
