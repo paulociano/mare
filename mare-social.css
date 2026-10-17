@@ -75,3 +75,16 @@
  .mare-social__url{min-width:0}
 }
 @media(prefers-reduced-motion:reduce){.mare-social *, .mare-social{transition:none!important;animation:none!important}}
+
+/* Prevent legacy link/button tokens from lowering contrast or tap size. */
+body.mare-hub a.mare-social__play,
+body.mar-app a.mare-social__play,
+body.mare-recife a.mare-social__play{
+ color:#082e36!important;background:#a9f2d8!important;border-color:#a9f2d8!important;
+}
+body.mare-hub a.mare-social__play:is(:hover,:focus-visible),
+body.mar-app a.mare-social__play:is(:hover,:focus-visible),
+body.mare-recife a.mare-social__play:is(:hover,:focus-visible){
+ color:#063037!important;background:#d5fff0!important;
+}
+body.mare-recife .mare-modes button{min-height:44px;min-width:44px}
