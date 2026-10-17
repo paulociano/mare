@@ -110,7 +110,7 @@ const newGames=['forca','criptograma'];
 for (const game of newGames){
   const page=fs.readFileSync(game+'.html','utf8');
   new vm.Script(fs.readFileSync('src/scripts/games/'+game+'.js','utf8'));
-  assert.ok(page.includes('src="'+game+'.js"'));
+  assert.ok(page.includes('src="src/scripts/games/'+game+'.js"'));
   assert.ok(page.includes('src/styles/shared/mare-newgames.css'));
   assert.ok(page.includes('aria-current="page"'));
   assert.ok(home.includes('href="'+game+'.html"'));
