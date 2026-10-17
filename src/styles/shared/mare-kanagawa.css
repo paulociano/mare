@@ -451,6 +451,44 @@ body.mare-kanagawa .mare-finale__actions a{
 :root[data-mare-contrast="high"] body.mare-kanagawa :is(button,a,input,select,textarea,summary):focus-visible{
   outline:4px solid #ffdf91!important;
 }
+/* Contrast repair for legacy text tokens originally designed for dark backgrounds. */
+body.mare-hub.mare-kanagawa :is(.mare-discover-title>strong,.mare-discover-title strong,
+ .mare-discover p,.mar-continue p,.mare-recommendation p){
+ color:var(--kan-deep)!important;
+}
+body.mare-kanagawa:is(.mar-app,.mare-recife)
+ :is(.gameheading>p,.depth-intro>p,.newgame-intro>p,
+ .trilha-result>span,.marujo-selection>span,
+ #edition,#direction,.statusline,.statusline>span,
+ .depth-hud>span,.newgame-hud>span,
+ label[for="guess"],label[for="word"],label[for="entry"],
+ .hint,.hint-text,.instructions,.help-text,.caption,.legend){
+ color:var(--kan-deep)!important;
+ text-shadow:none!important;
+}
+body.mare-kanagawa:is(.mar-app,.mare-recife)
+ :is(.panel,.game,.newgame-panel,.depth-panel,.concha-play,.trilha-panel,
+ .enigma-card,.marujo-panel,.marujo-card,.depth-intro,.newgame-intro)
+ :is(p,label,small,legend):not(.mare-social__status){
+ color:var(--kan-secondary)!important;
+}
+body.mare-kanagawa:is(.mar-app,.mare-recife)
+ :is(button#check,button#submit,button#go,button#send,
+ .main-action,.primary,.btn-primary,.depth-buttons>#submit,
+ .newgame-actions>#submit,.controls>[type="submit"],.actions>[type="submit"]){
+ color:#fffdf7!important;
+ background:#174b6a!important;
+ border:1px solid #174b6a!important;
+ text-shadow:none!important;
+}
+body.mare-kanagawa:is(.mar-app,.mare-recife)
+ :is(button#check,button#submit,button#go,button#send,.main-action,.primary,.btn-primary)
+ :is(span,strong){color:#fffdf7!important}
+body.mare-kanagawa:is(.mar-app,.mare-recife)
+ :is(button#check,button#submit,button#go,button#send,.main-action,.primary,.btn-primary):disabled{
+ opacity:.65!important;cursor:not-allowed;
+}
+
 /* Specificity-safe accessibility overrides: dark mode must win over paper cards. */
 :root[data-mare-contrast="high"] body.mare-hub.mare-kanagawa .mar-catalog>article.mar-game{
  background:#061925!important;background-image:none!important;border-color:#b0ebdf!important;
