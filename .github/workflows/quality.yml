@@ -20,6 +20,7 @@ jobs:
           node scripts/check-sources.cjs
           node tests/smoke.cjs
           node tests/gameplay.cjs
+          node tests/studio.cjs
       - name: Validar pacote publicado
         run: |
           node scripts/build-site.cjs
