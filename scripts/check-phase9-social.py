@@ -151,7 +151,11 @@ def main():
           page.wait_for_function("async()=>!!(await navigator.serviceWorker.ready).active",timeout=25000)
           page.wait_for_function("()=>!!navigator.serviceWorker.controller",timeout=25000)
           ctx.set_offline(True)
-          response=page.goto(url+'index.html#mare9=1.cardume.'+day+'.p',wait_until='domcontentloaded',timeout=22000)
+          # index.html is already open. Navigating to the same document
+          # with a new fragment returns None, not an HTTP response. Reload
+          # explicitly so this test verifies a real SW-served offline request.
+          page.goto(url+'index.html#mare9=1.cardume.'+day+'.p',wait_until='domcontentloaded',timeout=22000)
+          response=page.reload(wait_until='domcontentloaded',timeout=22000)
           assert response and response.status==200
           assert page.locator('.mare-social__canvas').count()==1
           assert page.locator('#mare-social-game').input_value()=='cardume'
