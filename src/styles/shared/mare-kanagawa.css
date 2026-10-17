@@ -899,10 +899,7 @@ body.mare-kanagawa > a.mare-skip-link:is(:focus,:focus-visible){
  .trilha-info button,.trilha-mode button,.enigma-actions button,
  .enigma-clues button,.marujo-actions button,.marujo-modes button,
  .concha-controls button,.concha-tabs button,.newgame-shell button,
- .depth-shell button,.switch button)
- :not(.primary):not(.main-action):not(.chosen):not(.current)
- :not(.completed):not(.active):not([aria-pressed="true"])
- :not([type="submit"]):not(:disabled){
+ .depth-shell button,.switch button):not(.primary):not(.main-action):not(.chosen):not(.current):not(.completed):not(.active):not([aria-pressed="true"]):not([type="submit"]):not(:disabled){
   color:var(--kan-deep)!important;
   background:var(--kan-control)!important;
   background-image:none!important;
@@ -915,10 +912,7 @@ body.mare-kanagawa > a.mare-skip-link:is(:focus,:focus-visible){
  .actions>button,.trilha-actions>button,.trilha-info button,
  .trilha-mode button,.enigma-actions button,.enigma-clues button,
  .marujo-actions button,.concha-controls button,.concha-tabs button,
- .newgame-shell button,.depth-shell button,.switch button)
- :not(.primary):not(.main-action):not(.chosen):not(.current)
- :not(.completed):not(.active):not([aria-pressed="true"])
- :not([type="submit"]):not(:disabled):is(:hover,:focus-visible){
+ .newgame-shell button,.depth-shell button,.switch button):not(.primary):not(.main-action):not(.chosen):not(.current):not(.completed):not(.active):not([aria-pressed="true"]):not([type="submit"]):not(:disabled):is(:hover,:focus-visible){
   background:var(--kan-control-hover)!important;
   border-color:#497f9e!important;
 }
