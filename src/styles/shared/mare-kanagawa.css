@@ -695,3 +695,45 @@ body.mare-kanagawa > a.mare-skip-link:is(:focus,:focus-visible){
  color:#fff!important;
  text-decoration:underline;text-underline-offset:3px;
 }
+
+/* High-contrast invariant for ALL twelve games. Accessible ink, metadata,
+ * and navigation must not inherit the light palette while canvas is dark.
+ * Puzzle states and controls remain semantically distinct. */
+:root[data-mare-contrast="high"] body.mare-kanagawa:is(.mar-app,.mare-recife)
+ :is(h1,h2,h3,h4,label,legend,.tiny,.eyebrow,.overline,
+ .mare-progress,.bottomnote,.gameheading>p,.depth-intro>p,.newgame-intro>p,
+ .trilha-result>span,.marujo-selection>span,.trilha-info>p,.trilha-info>h2,
+ .concha-stat>span,.concha-listhead,.concha-progress-label,
+ .depth-hud>span,.newgame-hud>span,.statusline>span,
+ #edition,#clock,#level,#best,#tries,#found,#remaining,#results>p,
+ #status,#progress,#scramble,#currentclue,#direction,
+ .mare-game-nav__title,.mare-game-nav__name,
+ .return-link>a,.topbar a,.newgame-back,.depth-header>a,.back){
+ color:#fff!important;text-shadow:none!important;
+}
+:root[data-mare-contrast="high"] body.mare-kanagawa:is(.mar-app,.mare-recife)
+ :is(.mare-game-nav__link,.mare-game-nav__link[aria-current="page"],
+ .trilha-info,.trilha-mode,.enigma-card,.enigma-current,.enigma-clues,
+ .marujo-card,.marujo-panel,.depth-intro,.newgame-intro){
+ background:#061925!important;background-image:none!important;border-color:#b0ebdf!important;
+}
+:root[data-mare-contrast="high"] body.mare-kanagawa:is(.mar-app,.mare-recife)
+ :is(.mare-game-nav__link,.mare-game-nav__link[aria-current="page"]) :is(span,strong){
+ color:#fff!important;
+}
+:root[data-mare-contrast="high"] body.mare-kanagawa:is(.mar-app,.mare-recife)
+ :is(.game,.panel,.newgame-panel,.depth-panel,.concha-play,
+ .trilha-panel,.enigma-card,.marujo-card)
+ :is(p,small,legend,label):not(.tile):not(.key){
+ color:#fff!important;
+}
+:root[data-mare-contrast="high"] body.mare-kanagawa:is(.mar-app,.mare-recife)
+ :is(.depth-modes,.newgame-modes,.concha-tabs,.trilha-mode,.enigma-modes,.marujo-modes)
+ > button:not(:disabled){
+ background:#061925!important;border-color:#b0ebdf!important;color:#fff!important;
+}
+:root[data-mare-contrast="high"] body.mare-kanagawa:is(.mar-app,.mare-recife)
+ :is(.depth-modes,.newgame-modes,.concha-tabs,.trilha-mode,.enigma-modes,.marujo-modes)
+ > button[aria-pressed="true"]{
+ background:#174b6a!important;color:#fff!important;
+}
