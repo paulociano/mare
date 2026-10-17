@@ -59,7 +59,7 @@ def main():
           context=browser.new_context(viewport={"width":width,"height":820},device_scale_factor=1,
                                       is_mobile=has_touch,has_touch=has_touch,
                                       reduced_motion="reduce",locale="pt-BR")
-          context.add_init_script(BOOTSTRAP)
+          context.add_init_script('('+BOOTSTRAP+')()')
           for name in PAGES:
             page=context.new_page()
             page.set_default_timeout(12000)
@@ -74,7 +74,7 @@ def main():
               page.wait_for_timeout(300)
               axe=scan(page,AXE)
               perf=page.evaluate("""() => ({
-                lcp:Math.round(window.__mareLab?.lcp||0),
+                lcp:window.__mareLab?.lcp?Math.round(window.__mareLab.lcp):null,
                 cls:Math.round((window.__mareLab?.cls||0)*1000)/1000,
                 dcl:Math.round(performance.getEntriesByType('navigation')[0]?.domContentLoadedEventEnd||0),
                 transfer:performance.getEntriesByType('resource').reduce((sum,r)=>sum+(r.transferSize||0),0)
