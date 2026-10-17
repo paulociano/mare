@@ -86,6 +86,10 @@ def main():
           assert len(entries)==1 and entries[0]['outcome']=='win'
           assert friend.evaluate("(d)=>window.MareSocial.localOutcome('cardume',d)",day)=='w'
           assert 'Vitória' in friend.locator('.mare-social__game-hint').inner_text()
+          # The existing final-result surface deliberately appears on top of
+          # gameplay. Dismiss it through the real accessible Close control
+          # before navigating to the social comparison section.
+          friend.get_by_role('button',name='Fechar resumo da rodada').click()
           friend.get_by_role('link',name='Ver comparação no convés').click()
           friend.wait_for_url('**/index.html#mare9=*')
           assert 'Vitória' in friend.locator('.mare-social__compare').nth(1).inner_text()
