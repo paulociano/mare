@@ -102,3 +102,13 @@ body.mare-hub .mare-recommendation__copy{font-size:.84rem;color:#c6e3e5;margin-t
 body.mare-hub .mare-recommendation__link{display:inline-flex;justify-content:center;align-items:center;min-height:44px;padding:10px 18px;flex-shrink:0;text-align:center;text-decoration:none;border-radius:12px;background:var(--mare-evo-aqua);color:#042b31;font-weight:800}
 body.mare-hub .mare-recommendation__link:is(:hover,:focus-visible){background:#a2f7df;color:#042b31}
 @media(max-width:600px){body.mare-hub .mare-recommendation{flex-direction:column;align-items:stretch}body.mare-hub .mare-recommendation__link{width:100%}body.mar-app :is(.heading,.hero,.newgame-intro){margin-bottom:10px}}
+
+/* First-run help and accessibility-aware presentation */
+body.mare-hub .mare-guide{flex-basis:100%;display:flex;align-items:center;justify-content:space-between;gap:18px;padding:16px 20px;background:#134657;border:1px solid #7cdccc7d;border-radius:16px}
+body.mare-hub .mare-guide[hidden]{display:none!important}
+body.mare-hub .mare-guide strong{font-size:1rem;color:#f1f8f7}
+body.mare-hub .mare-guide p{font-size:.875rem;color:#e0edef;line-height:1.5;margin:4px 0 0}
+body.mare-hub .mare-guide-toggle{flex:none;min-height:44px;border:1px solid #b4efe2;border-radius:10px;padding:9px 17px;background:#53dccb;color:#06313a;font-weight:800;cursor:pointer}
+body.mare-hub .mare-guide-toggle:focus-visible{outline:3px solid #f1ca83;outline-offset:3px}
+@media(max-width:600px){body.mare-hub .mare-guide{flex-direction:column;align-items:stretch}body.mare-hub .mare-guide-toggle{width:100%}}
+@media(prefers-contrast:more){body.mare-hub .mare-guide,body.mare-hub .mar-game,body.mar-app :is(.game,.panel,.newgame-panel){border-color:#c7fcef!important}body.mare-hub .mare-filter{border-color:#dcffff;color:#fff}body.mare-hub .mare-card-meta{color:#fff!important}}
