@@ -42,7 +42,12 @@
             .from('.mare-studio-hero__visual', { scale: .95, autoAlpha: 0, duration: 1.2, ease: 'power2.out' }, '-=1.05');
         } else {
           const intro = document.querySelector('.topbar, .mar-top');
-          if (intro) gsap.from(intro, { y: -12, autoAlpha: 0, duration: .7, ease: 'power2.out', clearProps: 'all' });
+          const title = document.querySelector('.gameheading h1, .recife-title-lockup, .hero h1, .heading h1, main h1');
+          const nav = document.querySelectorAll('.mare-game-nav__link');
+          const tl = gsap.timeline({ defaults: { ease: 'power2.out' } });
+          if (intro) tl.from(intro, { y: -12, autoAlpha: 0, duration: .6, clearProps: 'all' });
+          if (title) tl.from(title, { y: 18, autoAlpha: 0, duration: .65, clearProps: 'all' }, '-=.35');
+          if (nav.length) tl.from(nav, { y: 9, autoAlpha: 0, duration: .35, stagger: .025, clearProps: 'all' }, '-=.25');
         }
 
         if (cards.length) {
