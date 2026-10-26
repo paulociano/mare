@@ -20,7 +20,8 @@
 
   const init = async () => {
     try {
-      if (!window.gsap) await attach('https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js');
+      // Self-hosted copy: identical online/offline and precached by the service worker.
+      if (!window.gsap) await attach(new URL('assets/vendor/gsap-3.15.0.min.js', document.baseURI).href);
     } catch { return; }
     if (!allowed() || !window.gsap) return;
     const gsap = window.gsap;
