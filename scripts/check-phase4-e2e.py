@@ -175,8 +175,11 @@ def lose(page,game):
     elif game=="cardume":
         page.locator("#grid .tile").first.wait_for(timeout=16000)
         groups=page.evaluate("puzzles[puzzleIndex].map(g=>g.words)")
-        wrong=[g[0] for g in groups]
-        for _ in range(4):
+        # Four DISTINCT wrong sets: a repeated identical guess is no longer
+        # penalised, and a wrong selection now stays selected for adjustment.
+        for k in range(4):
+            wrong=[groups[g][(k+g)%4] for g in range(4)]
+            if page.locator("#grid .tile[aria-pressed=true]").count():page.locator("#clear").click()
             for word in wrong:page.locator("#grid .tile").get_by_text(word,exact=True).click()
             page.locator("#submit").click()
         assert "Fim da expedição" in page.locator("#notice").inner_text()

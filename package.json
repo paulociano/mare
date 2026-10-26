@@ -4,7 +4,7 @@
   "version": "1.0.0",
   "description": "MARÉ: doze jogos de palavras estáticos",
   "scripts": {
-    "test": "node tests/smoke.cjs && node tests/gameplay.cjs && node tests/evolution.cjs && node tests/explorer.cjs && node tests/progress.cjs && node tests/progress-wave2.cjs && node tests/progress-all12.cjs && node tests/xp.cjs && node tests/missions.cjs && node tests/share-polish.cjs && node tests/studio.cjs && node tests/play-system.cjs && node tests/finesse.cjs && node tests/phase4-contract.cjs && node tests/phase5-contract.cjs && node tests/phase6-contract.cjs && node tests/phase7-contract.cjs && node tests/phase8-content.cjs && node tests/phase9-social.cjs && node tests/phase10-contract.cjs && node tests/kanagawa.cjs",
+    "test": "node tests/smoke.cjs && node tests/gameplay.cjs && node tests/evolution.cjs && node tests/explorer.cjs && node tests/progress.cjs && node tests/progress-wave2.cjs && node tests/progress-all12.cjs && node tests/xp.cjs && node tests/missions.cjs && node tests/share-polish.cjs && node tests/studio.cjs && node tests/play-system.cjs && node tests/finesse.cjs && node tests/phase4-contract.cjs && node tests/phase5-contract.cjs && node tests/phase6-contract.cjs && node tests/phase7-contract.cjs && node tests/phase8-content.cjs && node tests/phase9-social.cjs && node tests/phase10-contract.cjs && node tests/kanagawa.cjs && node tests/audit-2026.cjs",
     "build": "node scripts/build-site.cjs",
     "check": "node scripts/check-repository.cjs && node scripts/check-sources.cjs && npm test && npm run build && node scripts/check-build.cjs"
   },

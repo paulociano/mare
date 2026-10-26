@@ -4,6 +4,12 @@
  * This stylesheet deliberately changes surfaces, not game logic, geometry,
  * persistent states, or the semantic structure of the 12 puzzles.
  */
+/* Self-hosted variable fonts (SIL OFL 1.1, see assets/fonts/OFL-*.txt).
+   Same files online and offline: no third-party request, no FOUT drift. */
+@font-face{font-family:'DM Sans';font-style:normal;font-display:swap;font-weight:100 1000;src:url('../../../assets/fonts/dm-sans-latin-ext-wght-normal.woff2') format('woff2-variations'),url('../../../assets/fonts/dm-sans-latin-ext-wght-normal.woff2') format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:'DM Sans';font-style:normal;font-display:swap;font-weight:100 1000;src:url('../../../assets/fonts/dm-sans-latin-wght-normal.woff2') format('woff2-variations'),url('../../../assets/fonts/dm-sans-latin-wght-normal.woff2') format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:'Outfit';font-style:normal;font-display:swap;font-weight:100 900;src:url('../../../assets/fonts/outfit-latin-ext-wght-normal.woff2') format('woff2-variations'),url('../../../assets/fonts/outfit-latin-ext-wght-normal.woff2') format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:'Outfit';font-style:normal;font-display:swap;font-weight:100 900;src:url('../../../assets/fonts/outfit-latin-wght-normal.woff2') format('woff2-variations'),url('../../../assets/fonts/outfit-latin-wght-normal.woff2') format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
 :root {
   color-scheme:light;
   --kan-paper:#f8f3e8;
@@ -1240,3 +1246,335 @@ body.mare-kanagawa > a.mare-skip-link:is(:focus,:focus-visible){
  button#toggle,button#next,button#verify):not(.active):not([aria-pressed="true"]):not(:disabled):is(:hover,:focus-visible){
   background:#d7e9ed!important;border-color:#497d9c!important;
 }
+
+
+/* ==========================================================================
+   Auditoria 2026-10 · correções de interface, consistência e motion.
+   Kept at the very end of the last stylesheet so it settles the cascade
+   without touching game logic. Every color rule is scoped away from the
+   high-contrast preference; every animation is cancelled by the existing
+   reduced-motion rules above (system setting and in-app preference).
+   ========================================================================== */
+:root{
+  --mare-ease-out:cubic-bezier(.22,1,.36,1);
+  --mare-ease-in-out:cubic-bezier(.65,0,.35,1);
+  --mare-ease-spring:cubic-bezier(.34,1.5,.64,1);
+  --mare-t-fast:120ms;
+  --mare-t-base:200ms;
+  --mare-t-slow:340ms;
+  --mare-col:880px;
+}
+body.mare-recife{--mare-col:808px}
+body:is(.mare-abismo,.mare-cardume,.mare-corrente){--mare-col:920px}
+body:is(.mare-concha,.mare-trilha,.mare-enigma,.mare-marujo){--mare-col:1066px}
+body:is(.mare-perola,.mare-farol){--mare-col:960px}
+body:is(.mare-forca,.mare-criptograma){--mare-col:1040px}
+
+/* --- Fixes ---------------------------------------------------------------- */
+
+/* The hidden skip link leaked its shadow into the top-left corner. */
+body.mare-kanagawa > a.mare-skip-link:not(:focus):not(:focus-visible){
+  box-shadow:none!important;opacity:0!important;pointer-events:none;
+}
+
+/* Hub: four catalog titles kept a legacy near-white ink from the dark theme
+   and were invisible on paper cards (Cardume, Corrente, Náufrago, Sinais). */
+:root:not([data-mare-contrast="high"]) body.mare-hub.mare-kanagawa
+ .mar-catalog>article.mar-game>h2.recife-card-heading{
+  color:var(--kan-deep)!important;-webkit-text-fill-color:currentColor!important;text-shadow:none!important;
+}
+/* One title voice for all twelve cards (four still used the old sans). */
+:root:not(.mare-no-match) body.mare-hub.mare-kanagawa .mar-catalog>article.mar-game>h2.recife-card-heading{
+  font-family:var(--kan-serif)!important;font-weight:700!important;
+  font-size:clamp(1.9rem,1.35rem + 1.1vw,2.25rem)!important;letter-spacing:-.025em!important;line-height:1.05!important;
+}
+:root:not([data-mare-contrast="high"]) body.mare-hub.mare-kanagawa
+ .mar-catalog>article.mar-game :is(.mar-game-info>p,.mare-card-meta){
+  color:var(--kan-secondary)!important;text-shadow:none!important;
+}
+/* Offline status was mint-on-cream (≈1.4:1). */
+:root:not([data-mare-contrast="high"]) body.mare-hub.mare-kanagawa .mare-pwa__status{color:var(--kan-secondary)!important}
+:root:not([data-mare-contrast="high"]) body.mare-hub.mare-kanagawa .mare-pwa__status::before{background:#2f8a73!important;box-shadow:0 0 0 3px rgba(47,138,115,.16)!important}
+
+/* Abismo: the dark legacy sea sat behind dark Kanagawa ink, so the title,
+   eyebrow and intro were unreadable. The page now shares the paper backdrop. */
+:root:not([data-mare-contrast="high"]) body.mare-abismo.mare-kanagawa .ocean{
+  background:none!important;
+}
+
+/* Recife: active mode caption was dark-on-dark. */
+:root:not([data-mare-contrast="high"]) body.mare-kanagawa .mare-modes button:is(.active,[aria-pressed="true"]) small{
+  color:rgba(255,253,247,.86)!important;
+}
+/* Recife: the progress rail now reflects real progress instead of a fixed
+   three-colour decoration (it looked a third complete at 0 guesses). */
+body.mare-kanagawa.mare-recife .mare-progress::after{
+  background:
+    linear-gradient(90deg,#2f8a73 0 calc(var(--mare-solved,0)*100%),transparent 0) top/100% 100% no-repeat,
+    linear-gradient(90deg,#7fa8bf 0 calc(var(--mare-used,0)*100%),#dce8ea 0)!important;
+  box-shadow:none!important;height:6px!important;
+  transition:background-size var(--mare-t-slow) var(--mare-ease-out);
+}
+/* Recife keys: icon on phones, word on wider screens; never clipped. */
+body.mare-recife .key .key-icon{display:none;font-size:1.25em;line-height:1}
+body.mare-recife .key .key-text{font-size:.78em;letter-spacing:.04em;text-transform:uppercase}
+@media(max-width:520px){
+  body.mare-recife .key .key-icon{display:inline}
+  body.mare-recife .key .key-text{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+}
+
+/* Results card sits under game dialogs instead of stacking on top of them. */
+body.mare-kanagawa .mare-finale{z-index:9!important}
+
+/* Wave engraving: the opaque cream veil painted a hard-edged paper rectangle
+   behind each game column (visible seam against the page sky on desktop).
+   The engraving is now a soft, faded ornament with no box of its own. */
+body.mare-kanagawa:is(.mar-app,.mare-recife) :is(.depth-shell,.newgame-shell,.shell,.wrap){
+  background-image:none!important;isolation:isolate;
+}
+body.mare-kanagawa:is(.mar-app,.mare-recife) :is(.depth-shell,.newgame-shell,.shell,.wrap)::before{
+  content:"";position:absolute;z-index:-1;top:0;right:0;
+  width:min(560px,80vw);aspect-ratio:1.35;pointer-events:none;
+  background:url('../../../assets/backgrounds/kanagawa-wave.svg') no-repeat right top/contain;
+  opacity:.09;
+  /* The engraving carries its own paper rectangle: a radial vignette
+     dissolves every edge so no box outline survives. */
+  -webkit-mask-image:radial-gradient(ellipse 62% 58% at 62% 42%,#000 30%,transparent 78%);
+          mask-image:radial-gradient(ellipse 62% 58% at 62% 42%,#000 30%,transparent 78%);
+}
+:root:is([data-mare-focus="on"],[data-mare-contrast="high"]) body.mare-kanagawa
+ :is(.depth-shell,.newgame-shell,.shell,.wrap)::before{display:none}
+
+/* Shared blocks under each game share the game's column width. */
+@media(min-width:700px){
+  body.mare-kanagawa:is(.mar-app,.mare-recife) > :is(.mare-social,.mare-access){
+    width:min(calc(100% - 48px),var(--mare-col))!important;max-width:none!important;
+    margin-left:auto!important;margin-right:auto!important;box-sizing:border-box;
+  }
+}
+
+/* Unavailable actions read as unavailable — not as a filled grey primary. */
+:root:not([data-mare-contrast="high"]) body.mare-kanagawa:is(.mar-app,.mare-recife)
+ button:disabled:not(:is(.forca-keyboard,.keyboard,#grid,#board,.trilha-grid,#cipher,#wheel,.concha-wheel,.mare-modes) button){
+  background:transparent!important;background-image:none!important;
+  color:#5d7888!important;border:1px dashed #a3bccb!important;
+  box-shadow:none!important;opacity:1!important;cursor:not-allowed;
+}
+
+/* Hub navigation on phones: one calm scrollable row, no 3-line wrapping. */
+@media(max-width:620px){
+  body.mare-hub.mare-kanagawa .mar-top{flex-wrap:wrap!important;row-gap:6px!important}
+  body.mare-hub.mare-kanagawa .mar-top nav{
+    order:3;flex:1 0 100%;display:flex!important;gap:4px!important;
+    overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch;
+    margin:0 -4px;padding:2px 4px 4px;
+  }
+  body.mare-hub.mare-kanagawa .mar-top nav::-webkit-scrollbar{display:none}
+  body.mare-hub.mare-kanagawa .mar-top nav a{
+    white-space:nowrap;flex:none;padding:10px 12px!important;min-height:44px;
+    display:inline-flex!important;align-items:center;border-radius:999px;
+  }
+  body.mare-hub.mare-kanagawa .mar-top nav a:first-child{padding-left:4px!important}
+}
+
+/* Sinais: words never split across lines; numbers readable on paper. */
+.crypto-word{display:inline-flex;flex-wrap:nowrap;gap:inherit;column-gap:3px}
+:root:not([data-mare-contrast="high"]) body.mare-kanagawa .crypto-tile .crypto-number{color:#4d6b7d!important;font-weight:700}
+
+/* Curadoria (free-play intensity): compact disclosure below the board. */
+body.mare-kanagawa .mare-content-control{
+  display:block!important;box-sizing:border-box;width:auto;margin:18px 0!important;padding:0!important;
+  background:var(--kan-white)!important;color:var(--kan-ink)!important;
+  border:1px solid var(--kan-line)!important;border-radius:16px!important;box-shadow:none!important;
+}
+body.mare-kanagawa:is(.mar-app,.mare-recife) > .mare-content-region{width:min(calc(100% - 28px),var(--mare-col));margin:0 auto}
+body.mare-kanagawa .mare-content-control__summary{
+  display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;
+  min-height:52px;padding:12px 18px;cursor:pointer;list-style:none;border-radius:15px;
+  transition:background-color var(--mare-t-base) var(--mare-ease-out);
+}
+body.mare-kanagawa .mare-content-control__summary::-webkit-details-marker{display:none}
+body.mare-kanagawa .mare-content-control__summary:hover{background:var(--kan-mist)}
+body.mare-kanagawa .mare-content-control__summary strong{
+  color:var(--kan-blue)!important;font:800 11px/1.4 var(--kan-sans)!important;letter-spacing:.14em;text-transform:uppercase;
+}
+body.mare-kanagawa .mare-content-control__current{
+  display:inline-flex;align-items:center;gap:10px;color:var(--kan-secondary);font:600 13px/1.3 var(--kan-sans);
+}
+body.mare-kanagawa .mare-content-control__current::after{
+  content:"";width:8px;height:8px;border-right:2px solid currentColor;border-bottom:2px solid currentColor;
+  transform:translateY(-2px) rotate(45deg);transition:transform var(--mare-t-base) var(--mare-ease-out);
+}
+body.mare-kanagawa .mare-content-control[open] .mare-content-control__current::after{transform:translateY(2px) rotate(-135deg)}
+body.mare-kanagawa .mare-content-control__body{
+  display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px 20px;
+  padding:4px 18px 16px;border-top:1px solid var(--kan-line);padding-top:14px;
+}
+body.mare-kanagawa .mare-content-control__body p{margin:0!important;max-width:52ch;color:var(--kan-secondary)!important;font:500 13px/1.55 var(--kan-sans)!important}
+body.mare-kanagawa .mare-content-control label{color:var(--kan-ink)!important;font:700 13px/1.3 var(--kan-sans)!important}
+body.mare-kanagawa .mare-content-control__actions > button{
+  background:var(--kan-indigo)!important;color:var(--kan-white)!important;border:1px solid var(--kan-indigo)!important;
+}
+body.mare-kanagawa .mare-content-control__actions > button:is(:hover,:focus-visible){background:var(--kan-deep)!important;color:var(--kan-white)!important}
+body.mare-kanagawa .mare-content-control__status{color:var(--kan-secondary)!important;max-width:32ch}
+@media(prefers-reduced-motion:no-preference){
+  body.mare-kanagawa .mare-content-control[open] .mare-content-control__body{animation:mare-unfold var(--mare-t-slow) var(--mare-ease-out)}
+}
+:root[data-mare-contrast="high"] body.mare-kanagawa .mare-content-control{background:#061925!important;border-color:#b0ebdf!important}
+:root[data-mare-contrast="high"] body.mare-kanagawa .mare-content-control :is(strong,span,p,label){color:#fff!important}
+
+/* Recife on phones: board AND keyboard fit one screen (390×844 and up). */
+@media(max-width:650px){
+  body.mare-kanagawa.mare-recife .topbar{height:58px!important}
+  body.mare-kanagawa.mare-recife .return-link{
+    display:flex!important;align-items:center;justify-content:space-between;gap:10px;
+    margin:10px 4px 8px!important;padding:0!important;min-height:0!important;
+  }
+  body.mare-kanagawa.mare-recife .return-link>a{padding:8px 12px!important;min-height:40px;font-size:13px!important}
+  body.mare-kanagawa.mare-recife .return-link .mare-game-symbol-lockup{gap:8px!important;margin:0!important}
+  body.mare-kanagawa.mare-recife .return-link .mare-game-symbol-lockup img{width:34px!important;height:34px!important}
+  body.mare-kanagawa.mare-recife .recife-title-lockup{font-size:24px!important;margin:0!important}
+  body.mare-kanagawa.mare-recife .game{padding-top:12px!important}
+  body.mare-kanagawa.mare-recife .mare-modes{margin-bottom:8px!important}
+  body.mare-kanagawa.mare-recife .mare-modes button{min-height:44px!important;padding:6px 4px!important}
+  body.mare-kanagawa.mare-recife .gameheading{margin-bottom:6px!important}
+  body.mare-kanagawa.mare-recife .gameheading>p{display:none!important}
+  body.mare-kanagawa.mare-recife .gameheading h2{font-size:19px!important;margin:2px 0!important}
+  body.mare-kanagawa.mare-recife .mare-legend{margin:6px 0 8px!important}
+  body.mare-kanagawa.mare-recife .game[data-mode=solo] .mare-boards{
+    width:min(100%,calc((100svh - 528px) * .86),330px)!important;min-width:236px;
+  }
+  body.mare-kanagawa.mare-recife .status{min-height:20px!important;margin:6px 0!important}
+  body.mare-kanagawa.mare-recife .keyboard{margin-top:6px!important}
+  body.mare-kanagawa.mare-recife .key{height:48px!important}
+  body.mare-kanagawa.mare-recife .bottomnote{display:none!important}
+}
+
+/* Náufrago: the wreck illustration no longer pushes the keyboard off-screen. */
+@media(max-width:650px){
+  body.mare-kanagawa.mare-forca .forca-illustration{max-height:150px!important;height:auto!important}
+}
+
+/* Landmark wrappers added around game titles must not change layout. */
+body.mare-kanagawa .return-link[role="region"]{outline:none}
+
+/* --- Motion --------------------------------------------------------------- */
+
+@keyframes mare-pop{0%{transform:scale(.84)}55%{transform:scale(1.08)}100%{transform:scale(1)}}
+@keyframes mare-flip{0%{transform:perspective(380px) rotateX(0)}50%{transform:perspective(380px) rotateX(-90deg)}100%{transform:perspective(380px) rotateX(0)}}
+@keyframes mare-rise{0%{transform:translateY(0)}35%{transform:translateY(-16px)}62%{transform:translateY(3px)}82%{transform:translateY(-3px)}100%{transform:translateY(0)}}
+@keyframes mare-shake{0%,100%{transform:translateX(0)}15%{transform:translateX(-7px)}30%{transform:translateX(6px)}45%{transform:translateX(-5px)}60%{transform:translateX(4px)}75%{transform:translateX(-2px)}}
+@keyframes mare-settle{0%{transform:scale(.9)}60%{transform:scale(1.05)}100%{transform:scale(1)}}
+@keyframes mare-surface{from{opacity:0;transform:translateY(12px) scale(.98)}to{opacity:1;transform:none}}
+@keyframes mare-unfold{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:none}}
+@keyframes mare-fade{from{opacity:0}to{opacity:1}}
+@keyframes mare-dialog-in{from{opacity:0;transform:translateY(14px) scale(.97)}to{opacity:1;transform:none}}
+@keyframes mare-glint{0%{box-shadow:0 0 0 0 rgba(47,138,115,.45)}100%{box-shadow:0 0 0 10px rgba(47,138,115,0)}}
+
+@media(prefers-reduced-motion:no-preference){
+  /* Tactile feedback on every pressable control. */
+  body.mare-kanagawa :is(button,.mar-cta,.mare-game-nav__link,.mare-studio-hero__actions a,.back,.return-link>a){
+    transition:
+      background-color var(--mare-t-base) var(--mare-ease-out),
+      border-color var(--mare-t-base) var(--mare-ease-out),
+      color var(--mare-t-base) var(--mare-ease-out),
+      box-shadow var(--mare-t-base) var(--mare-ease-out),
+      transform var(--mare-t-fast) var(--mare-ease-out);
+  }
+  body.mare-kanagawa :is(button,.mar-cta,.mare-game-nav__link,.mare-studio-hero__actions a):not(:disabled):active{
+    transform:scale(.965);transition-duration:60ms;
+  }
+  @media(hover:hover){
+    body.mare-kanagawa .mare-game-nav__link:hover{transform:translateY(-2px)}
+    body.mare-hub.mare-kanagawa .mar-catalog>article.mar-game{
+      transition:box-shadow var(--mare-t-slow) var(--mare-ease-out),border-color var(--mare-t-slow) var(--mare-ease-out),transform var(--mare-t-slow) var(--mare-ease-out);
+    }
+    body.mare-hub.mare-kanagawa .mar-catalog>article.mar-game:hover{
+      transform:translateY(-4px);box-shadow:0 22px 46px rgba(35,69,92,.14)!important;
+    }
+    body.mare-hub.mare-kanagawa .mar-catalog>article.mar-game .mar-game-symbol{transition:transform .6s var(--mare-ease-out)}
+    body.mare-hub.mare-kanagawa .mar-catalog>article.mar-game:hover .mar-game-symbol{transform:translateY(-3px) rotate(-4deg)}
+  }
+
+  /* Recife: type → pop, submit → flip in sequence, invalid → shake,
+     win → the solved row rises like a wave crest. */
+  body.mare-recife .tile.is-popping{animation:mare-pop 150ms var(--mare-ease-out)}
+  body.mare-recife .tile.is-revealing{
+    animation:mare-flip 360ms var(--mare-ease-in-out) calc(var(--i,0) * 110ms) both;
+    backface-visibility:hidden;
+  }
+  body.mare-recife .mare-row.is-invalid{animation:mare-shake 420ms var(--mare-ease-out)}
+  body.mare-recife .mare-row.is-winning .tile.is-revealing{
+    animation:
+      mare-flip 360ms var(--mare-ease-in-out) calc(var(--i,0) * 110ms) both,
+      mare-rise 560ms var(--mare-ease-out) calc(860ms + var(--i,0) * 85ms);
+  }
+  body.mare-recife .key.is-settling{animation:mare-settle 260ms var(--mare-ease-spring)}
+  body.mare-recife .mare-progress::after{transition:background 400ms var(--mare-ease-out)}
+
+  /* Cardume: wrong set shakes in place; a found school surfaces. */
+  body.mare-cardume #grid .tile.is-wrong{animation:mare-shake 420ms var(--mare-ease-out)}
+  body.mare-cardume #grid .tile[aria-pressed="true"]{transform:translateY(-2px)}
+  body.mare-cardume #solved .solution.is-new{animation:mare-surface 460ms var(--mare-ease-out) both}
+
+  /* Marujo: live trace while dragging, found word glints letter by letter. */
+  body.mare-marujo #board .marujo-cell.is-found-now{animation:mare-settle 320ms var(--mare-ease-spring) calc(var(--i,0) * 45ms) both}
+
+  /* Dialogs and the results card arrive instead of blinking in. */
+  body.mare-kanagawa dialog[open]{animation:mare-dialog-in 280ms var(--mare-ease-out)}
+  body.mare-kanagawa dialog[open]::backdrop{animation:mare-fade 240ms ease-out}
+  body.mare-kanagawa .modalwrap.open{animation:mare-fade 200ms ease-out}
+  body.mare-kanagawa .modalwrap.open .modal{animation:mare-dialog-in 300ms var(--mare-ease-out)}
+  body.mare-kanagawa .mare-finale:not([hidden]){animation:mare-dialog-in 380ms var(--mare-ease-out)!important}
+  body.mare-kanagawa .mare-finale.mare-finale-win .mare-finale__symbol{animation:mare-glint 1.4s ease-out 2}
+
+  /* Selected/active tiles across puzzles ease between states. */
+  body.mare-kanagawa :is(.trilha-grid button,.marujo-cell,.crypto-tile,.enigma-cell,.concha-wheel button,.forca-keyboard button,.key){
+    transition:background-color 180ms var(--mare-ease-out),border-color 180ms var(--mare-ease-out),color 180ms var(--mare-ease-out),transform 120ms var(--mare-ease-out),box-shadow 180ms var(--mare-ease-out);
+  }
+}
+/* Trace is a state, not decoration: also shown with reduced motion. */
+:root:not([data-mare-contrast="high"]) body.mare-marujo #board .marujo-cell.is-tracing{
+  background:#d4e6ee!important;border-color:var(--kan-blue)!important;color:var(--kan-deep)!important;
+  box-shadow:inset 0 0 0 2px rgba(49,95,135,.35)!important;
+}
+body.mare-marujo #board{touch-action:none}
+
+/* Recife solo: one board needs no "SONDA 01" caption nor a focus frame. */
+:root:not([data-mare-contrast="high"]) body.mare-recife.mare-kanagawa .game[data-mode=solo] .mare-pane{
+  background:transparent!important;outline:0!important;border:0!important;padding:0!important;
+}
+body.mare-recife.mare-kanagawa .game[data-mode=solo] .mare-pane-head{display:none!important}
+:root:not([data-mare-contrast="high"]) body.mare-recife.mare-kanagawa .mare-pane-head{background:transparent!important}
+
+/* Pérola / Farol: the answer field is a full-width row with its label above. */
+body.mare-kanagawa .depth-panel label[for="entry"]{display:block;margin:20px 0 8px!important}
+body.mare-kanagawa .depth-panel .depth-entry{display:block;width:100%!important;max-width:520px;box-sizing:border-box;min-height:48px}
+
+/* Recife on laptop screens (≤1000px tall): keep the virtual keyboard in view. */
+@media(min-width:651px) and (max-height:1000px){
+  body.mare-kanagawa.mare-recife .return-link{margin-top:6px!important;margin-bottom:10px!important;padding:0!important}
+  body.mare-kanagawa.mare-recife .return-link .mare-game-symbol-lockup img{width:52px!important;height:52px!important}
+  body.mare-kanagawa.mare-recife .gameheading>p{display:none!important}
+  body.mare-kanagawa.mare-recife .game[data-mode=solo] .mare-boards{
+    width:min(100%,326px,max(250px,calc((100vh - 600px) * .86)))!important;
+  }
+  body.mare-kanagawa.mare-recife .bottomnote{margin-top:6px!important}
+}
+@media(min-width:651px){
+  body.mare-kanagawa.mare-forca .forca-illustration{max-height:210px!important;height:auto!important}
+}
+
+/* Close buttons kept a legacy dark fill under dark ink (≈1.3:1). */
+:root:not([data-mare-contrast="high"]) body.mare-kanagawa :is(.modal .close,#close,.mare-finale__close){
+  background:var(--kan-white)!important;color:var(--kan-deep)!important;
+  border:1px solid var(--kan-line)!important;box-shadow:none!important;
+}
+:root:not([data-mare-contrast="high"]) body.mare-kanagawa :is(.modal .close,#close,.mare-finale__close):is(:hover,:focus-visible){
+  background:var(--kan-mist)!important;border-color:#4a7e99!important;
+}
+
+/* Cardume loads its boards asynchronously: reserve the 4×4 grid's footprint
+   so the controls below don't jump when the tiles arrive (CLS). */
+body.mare-cardume #grid:empty{min-height:292px}
+@media(min-width:700px){body.mare-cardume #grid:empty{min-height:351px}}

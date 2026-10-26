@@ -31,6 +31,9 @@ def main():
             page.goto(base+game+'.html',wait_until='domcontentloaded')
             section=page.locator('.mare-content-control')
             section.wait_for()
+            # The setting is a collapsed disclosure below the board; open it like a player.
+            section.locator('summary').click()
+            assert section.evaluate('e=>e.open'),game+': disclosure did not open'
             # Async lexical/data banks must be ready before free-play actions.
             if game=='cardume':page.locator('#grid .tile').first.wait_for(timeout=14000)
             elif game=='concha':page.locator('#wheel button').first.wait_for(timeout=14000)
@@ -64,6 +67,8 @@ def main():
               report['viewportChecks']+=1
             page.set_viewport_size({'width':390,'height':844})
             page.reload(wait_until='domcontentloaded')
+            page.locator('.mare-content-control summary').click()
+            assert 'Maré funda' in page.locator('.mare-content-control summary').inner_text(),game+': summary does not reflect saved intensity'
             assert page.locator('#mare-intensity').input_value()=='intensa'
             # One route at least per difficulty on real UI.
             selector=page.locator('#mare-intensity')
