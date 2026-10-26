@@ -136,6 +136,7 @@ A aplicação é gerada em `_site/` e publicada pelo GitHub Pages. Os estilos de
 - [**Design system Kanagawa Light**](docs/KANAGAWA-LIGHT.md): princípios, paleta, interface e acessibilidade.
 - [**Design system de base**](docs/DESIGN-SYSTEM.md): componentes e evolução visual.
 - [**Pipeline de assets**](docs/ASSET-PIPELINE.md): como os estilos e arquivos são publicados.
+- [**Auditoria de outubro de 2026**](docs/AUDITORIA-2026-10.md): correções de interface, jogabilidade, desempenho offline e motion.
 - [**Testes e workflows**](.github/workflows/quality.yml): gameplay, Chromium, responsividade, WCAG e PWA.
 
 ## Créditos
@@ -143,6 +144,8 @@ A aplicação é gerada em `_site/` e publicada pelo GitHub Pages. Os estilos de
 O MARÉ é um projeto independente de jogos de palavras em português.
 
 O modo **Recife** utiliza vocabulário derivado de [pythonprobr/palavras](https://github.com/pythonprobr/palavras), com dados originados de um corretor ortográfico distribuído sob a licença [MPL-2.0](https://www.mozilla.org/en-US/MPL/2.0/).
+
+As fontes **DM Sans** e **Outfit** (SIL Open Font License 1.1, licenças em `assets/fonts/`) e a biblioteca de animação **GSAP** ([licença padrão GreenSock](https://gsap.com/standard-license)) são servidas pelo próprio site, para funcionar igual online e offline.
 
 A identidade Kanagawa Light presta homenagem à tradição das gravuras japonesas, com referência artística a *A Grande Onda de Kanagawa*. A ilustração de ondas do MARÉ é uma criação vetorial própria.
 
