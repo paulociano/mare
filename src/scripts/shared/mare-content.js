@@ -32,14 +32,27 @@
   const page=location.pathname.split('/').pop();
   const game=games[page],main=document.querySelector('main');
   if(!game||!main)return;
-  const section=document.createElement('section');
+  // Free-play setting, secondary to the round: a compact disclosure placed
+  // AFTER the board so it never pushes the puzzle below the fold or takes a
+  // grid column that belongs to the game's own side panel.
+  const section=document.createElement('details');
   section.className='mare-content-control';
-  section.setAttribute('aria-label','Escolher intensidade das expedições livres');
-  const text=document.createElement('div');
-  const eyebrow=document.createElement('strong');eyebrow.textContent='CURADORIA DAS MARÉS';
+  // Named region so the setting sits inside a landmark wherever it lands.
+  const region=document.createElement('section');
+  region.className='mare-content-region';
+  region.setAttribute('aria-label','Escolher intensidade das expedições livres');
+  region.append(section);
+  const summary=document.createElement('summary');
+  summary.className='mare-content-control__summary';
+  const summaryTitle=document.createElement('strong');summaryTitle.textContent='Curadoria das marés';
+  const current=document.createElement('span');current.className='mare-content-control__current';
+  const describe=()=>{current.textContent='Modo livre · '+(labels[get()]||'Original')};
+  describe();
+  summary.append(summaryTitle,current);
+  const text=document.createElement('div');text.className='mare-content-control__body';
   const note=document.createElement('p');
   note.textContent='Escolha o ritmo dos próximos desafios livres. O desafio diário não muda e seus resultados são preservados.';
-  text.append(eyebrow,note);
+  text.append(note);
   const actions=document.createElement('div');actions.className='mare-content-control__actions';
   const label=document.createElement('label');
   label.textContent='Intensidade ';
@@ -56,16 +69,18 @@
   apply.addEventListener('click',()=>{
    try{if(select.value)localStorage.setItem(KEY,select.value);else localStorage.removeItem(KEY)}
    catch{status.textContent='Preferência não pôde ser salva neste navegador.';return}
+   describe();
    const target=document.getElementById('free')||document.getElementById('new')||document.getElementById('next');
    if(target&&!target.disabled){
     target.click();
     status.textContent='Intensidade '+(labels[select.value]||'original')+' aplicada a uma expedição livre.';
    }else status.textContent='Preferência salva. Escolha uma nova expedição livre para usar.';
   });
-  actions.append(label,apply,status);section.append(text,actions);
-  // Keep primary game heading before supplementary configuration.
-  const first=main.firstElementChild;
-  if(first)first.after(section);else main.append(section);
+  actions.append(label,apply,status);text.append(actions);section.append(summary,text);
+  // Anchor before the "outros jogos" footer when it exists; otherwise after main.
+  const footer=document.querySelector('.mare-game-nav')?.closest('footer');
+  if(footer&&footer.parentElement)footer.before(region);
+  else main.after(region);
  }
  if(typeof document!=='undefined'){
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',mount,{once:true});

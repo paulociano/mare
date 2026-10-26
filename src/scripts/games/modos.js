@@ -4,6 +4,10 @@ const MODES={solo:{count:1,tries:6,label:'Clássico'},duo:{count:2,tries:7,label
 let mode = new URLSearchParams(location.search).get('modo') || localStorage.getItem('mare-mode') || 'solo';
 if(!MODES[mode])mode='solo';
 let targets=[], oldStatusTimeout, modalOpener=null, activePane=0;
+// One-shot motion cue consumed by the next render(): 'add' | 'reveal' | 'win'.
+let motionCue=null;
+const FLIP_STEP=110,FLIP_HALF=180;
+const motionOK=()=>!window.matchMedia('(prefers-reduced-motion: reduce)').matches&&document.documentElement.dataset.mareMotion!=='reduce';
 const game=document.querySelector('.game'),boardEl=document.getElementById('board'),statusEl=document.getElementById('status');
 // O contêiner contém vários grids; não é ele próprio um grid (WCAG ARIA 1.2).
 boardEl.setAttribute('role','group');
@@ -58,7 +62,10 @@ function setMode(m){
 }
 render=function(){
  const focusedKey=document.activeElement?.classList?.contains('key')?document.activeElement.getAttribute('aria-label'):null;
- boardEl.className='mare-boards';boardEl.innerHTML='';progress.textContent=targets.filter((_,i)=>wonBoard(i)).length+' de '+targets.length+' palavras descobertas · '+(MODES[mode].tries-state.guesses.length)+' tentativas restantes';
+ boardEl.className='mare-boards';boardEl.innerHTML='';const solvedCount=targets.filter((_,i)=>wonBoard(i)).length,left=MODES[mode].tries-state.guesses.length;
+ progress.textContent=solvedCount+' de '+targets.length+(targets.length===1?' palavra descoberta':' palavras descobertas')+' · '+left+(left===1?' tentativa restante':' tentativas restantes');
+ progress.style.setProperty('--mare-used',String(Math.min(1,state.guesses.length/MODES[mode].tries)));
+ progress.style.setProperty('--mare-solved',String(targets.length?solvedCount/targets.length:0));
  const max=MODES[mode].tries,scores={},ranks={absent:1,present:2,correct:3};
  targets.forEach((secret,i)=>{
   const done=wonBoard(i),pane=document.createElement('section');
@@ -73,34 +80,63 @@ render=function(){
    const evaluations=guess?grade(guess,secret):[];
    for(let c=0;c<5;c++){
     const tile=document.createElement('div');tile.className='tile'+(letters[c]?' filled':'')+(evaluations[c]?' '+evaluations[c]:'');
+    if((motionCue==='reveal'||motionCue==='win')&&guess&&r===state.guesses.length-1&&motionOK()&&evaluations[c]){
+     // Flip: the colour lands at the midpoint (edge-on), one tile after another.
+     const final=evaluations[c];tile.classList.remove(final);tile.classList.add('is-revealing');tile.style.setProperty('--i',String(c));
+     setTimeout(()=>tile.classList.add(final),c*FLIP_STEP+FLIP_HALF);
+    }
+    else if(motionCue==='add'&&!guess&&letters[c]&&c===letters.length-1)tile.classList.add('is-popping');
     tile.textContent=letters[c]||'';tile.setAttribute('role','gridcell');tile.setAttribute('aria-label',letters[c]?(letters[c]+' '+(evaluations[c]||'')):'vazio');row.append(tile);
    }
+   if(motionCue==='win'&&guess===secret&&r===state.guesses.length-1&&motionOK())row.classList.add('is-winning');
    grid.append(row);
    if(guess&&(!done||r<=state.guesses.indexOf(secret))) evaluations.forEach((v,c)=>{const k=guess[c];if(!scores[k]||ranks[v]>ranks[scores[k]])scores[k]=v});
   }
   pane.append(grid);boardEl.append(pane);
  });
+ const prior={};
+ if(motionCue==='reveal'||motionCue==='win'){
+  const earlier=state.guesses.slice(0,-1);
+  targets.forEach((secret,i)=>{const solvedAt=earlier.indexOf(secret);earlier.forEach((g,r)=>{if(solvedAt>=0&&r>solvedAt)return;grade(g,secret).forEach((v,c)=>{const k=g[c];if(!prior[k]||ranks[v]>ranks[prior[k]])prior[k]=v})})});
+ }
  keyboard.innerHTML='';
  for(const letters of ['QWERTYUIOP','ASDFGHJKL','↵ZXCVBNM⌫']){
   const row=document.createElement('div');row.className='keyrow';
   for(const letter of letters){
    const b=document.createElement('button');b.className='key'+(('↵⌫'.includes(letter))?' wide':'')+(scores[letter]?' '+scores[letter]:'');
-   b.textContent=letter==='↵'?'ENTER':letter==='⌫'?'APAGAR':letter;
+   if(letter==='↵')b.innerHTML='<span class="key-icon" aria-hidden="true">↵</span><span class="key-text">Enviar</span>';
+   else if(letter==='⌫')b.innerHTML='<span class="key-icon" aria-hidden="true">⌫</span><span class="key-text">Apagar</span>';
+   else b.textContent=letter;
+   if((motionCue==='reveal'||motionCue==='win')&&motionOK()&&scores[letter]&&prior[letter]!==scores[letter]){
+    // Keyboard hints update only after the row has finished flipping.
+    b.classList.remove(scores[letter]);if(prior[letter])b.classList.add(prior[letter]);
+    const target=scores[letter],previous=prior[letter];
+    setTimeout(()=>{if(previous)b.classList.remove(previous);b.classList.add(target,'is-settling')},5*FLIP_STEP+FLIP_HALF*2);
+   }
    b.setAttribute('aria-label',letter==='↵'?'Enviar':letter==='⌫'?'Apagar':letter);
    b.onclick=()=>type(letter);row.append(b);
   }keyboard.append(row);
  }
  if(mode==='quartet'){let picker=document.createElement('div');picker.className='mare-sonda-picker';picker.setAttribute('role','group');picker.setAttribute('aria-label','Ampliar tabuleiro');targets.forEach((_,i)=>{const b=document.createElement('button');b.textContent='Sonda '+(i+1)+(wonBoard(i)?' ✓':'');b.className=i===activePane?'chosen':'';b.setAttribute('aria-pressed',String(i===activePane));b.onclick=()=>{activePane=i;boardEl.dataset.focus=String(i);render()};picker.append(b)});boardEl.prepend(picker);boardEl.dataset.focus=String(activePane)}else boardEl.removeAttribute('data-focus');
  if(focusedKey){const next=[...keyboard.querySelectorAll('button')].find(b=>b.getAttribute('aria-label')===focusedKey);next?.focus()}
+ motionCue=null;
  if(!statusEl.dataset.notice)statusEl.textContent=state.finished?(targets.every((_,i)=>wonBoard(i))?'✦ Todos os tesouros encontrados!':'As palavras eram '+targets.join(', ')+'. Volte amanhã!'):state.guesses.length+'/'+max+' palpites';
 };
+function shakeCurrentRow(){
+ const rowIndex=state.guesses.length;
+ boardEl.querySelectorAll('.mare-pane:not(.solved) .mare-grid').forEach(grid=>{
+  const row=grid.children[rowIndex];if(!row)return;
+  row.classList.remove('is-invalid');void row.offsetWidth;row.classList.add('is-invalid');
+  row.addEventListener('animationend',()=>row.classList.remove('is-invalid'),{once:true});
+ });
+}
 type=function(ch){
  if(state.finished||document.getElementById('overlay').classList.contains('open'))return;
  if(ch==='⌫'||ch==='BACKSPACE')state.current=state.current.slice(0,-1);
  else if(ch==='↵'||ch==='ENTER'){
-  if(state.current.length<5){message('A palavra precisa ter 5 letras');return}
-  if(!DICTIONARY.has(state.current)){message('Palavra não encontrada no dicionário');return}
-  state.guesses.push(state.current);state.current='';
+  if(state.current.length<5){message('A palavra precisa ter 5 letras');shakeCurrentRow();return}
+  if(!DICTIONARY.has(state.current)){message('Palavra não encontrada no dicionário');shakeCurrentRow();return}
+  state.guesses.push(state.current);state.current='';motionCue='reveal';
   delete statusEl.dataset.notice;
   const victory=targets.every((_,i)=>wonBoard(i));
   if(victory||state.guesses.length>=MODES[mode].tries){
@@ -110,9 +146,12 @@ type=function(ch){
    // Registro canônico: o controlador dos três modos substitui type() do Recife.
    // Persistir antes de anunciar o resultado evita conquistas fantasmas.
    window.MareProgress?.record('recife',victory?'win':'loss',key);
-   render();setTimeout(()=>showResult(victory),400);return;
+   motionCue=victory?'win':'reveal';
+   // Let the flip and the win ripple land before the result dialog covers the board.
+   const settle=window.matchMedia('(prefers-reduced-motion: reduce)').matches||document.documentElement.dataset.mareMotion==='reduce'?400:1750;
+   render();setTimeout(()=>showResult(victory),settle);return;
   }
- }else if(/^[A-Z]$/.test(ch)&&state.current.length<5)state.current+=ch;
+ }else if(/^[A-Z]$/.test(ch)&&state.current.length<5){state.current+=ch;motionCue='add'}
  save();render();
 };
 message=function(value){
