@@ -161,7 +161,7 @@ function assertWellFormed(svg,label){
   const svg=api.sealSvg(game,level);assertWellFormed(svg,game+level);
   assert.ok(svg.includes('viewBox="0 0 120 120"'));
   assert.ok(svg.includes('aria-label='),game+level+': named for assistive tech');
-  assert.equal((svg.match(/<path d="M42 /g)||[]).length,level,game+level+': one wave per level');
+  assert.equal((svg.match(/<path d="M46 /g)||[]).length,level,game+level+': one wave per level');
  }
  for(const special of api.specials)for(const level of [0,1]){
   const svg=api.sealSvg(special.id,level);assertWellFormed(svg,special.id+level);

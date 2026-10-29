@@ -168,35 +168,47 @@
  /* ---------- SVG: one drawing, used on screen and in the PNG card ---------- */
  const esc=value=>String(value).replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
  const SERIF="Georgia,'Times New Roman',serif",SANS='system-ui,-apple-system,Segoe UI,sans-serif';
+ /* Medalhas: cada nível é um material diferente (prata-espuma, esmalte azul, ouro).
+    Sem gradientes nem ids, para o mesmo selo poder aparecer várias vezes na página
+    e dentro do cartão PNG sem conflito; o relevo vem de camadas e arcos translúcidos. */
  const PALETTE=Object.freeze({
-  0:{ring:'#b3c5c9',fill:'#f2e9d9',ink:'#5f7886'},
-  1:{ring:'#315f87',fill:'#d9ebee',ink:'#173e5e'},
-  2:{ring:'#173e5e',fill:'#315f87',ink:'#fffdf7'},
-  3:{ring:'#886020',fill:'#e4c987',ink:'#173e5e'}
+  0:{rim:'#a9bcc1',edge:'#8aa0a7',face:'#e9ece6',disc:'#f7f2e6',ink:'#4f6a78',hi:'#ffffff'},
+  1:{rim:'#6ba5ae',edge:'#3f7885',face:'#cfe8ea',disc:'#f1faf8',ink:'#173e5e',hi:'#ffffff'},
+  2:{rim:'#2a6a99',edge:'#123f5f',face:'#4a8cb8',disc:'#e8f3f9',ink:'#123f5f',hi:'#ffffff'},
+  3:{rim:'#d4ad57',edge:'#886020',face:'#ecd596',disc:'#fdf4d6',ink:'#173e5e',hi:'#fffbe8'}
  });
- const wave=(y,ink)=>'<path d="M42 '+y+'q4.5 -4.5 9 0t9 0t9 0t9 0" fill="none" stroke="'+ink+'" stroke-width="2.6" stroke-linecap="round"/>';
+ const pt=(r,a,cx=60,cy=60)=>[(cx+r*Math.cos(a)).toFixed(2),(cy+r*Math.sin(a)).toFixed(2)];
+ const wave=(y,ink)=>'<path d="M46 '+y+'q3.5 -3.5 7 0t7 0t7 0t7 0" fill="none" stroke="'+ink+'" stroke-width="2.3" stroke-linecap="round"/>';
+ const star=(cx,cy,r,fill)=>{
+  let d='';
+  for(let i=0;i<10;i++){const [x,y]=pt(i%2?r*.42:r,-Math.PI/2+i*Math.PI/5,cx,cy);d+=(i?'L':'M')+x+' '+y}
+  return '<path d="'+d+'Z" fill="'+fill+'" stroke="'+fill+'" stroke-width=".8" stroke-linejoin="round"/>';
+ };
  function emblem(key,level,pal){
   const game=GAMES.find(g=>g[0]===key);
   if(game){
-   let out='<text x="60" y="61" text-anchor="middle" font-family="'+SERIF+'" font-size="29" font-weight="700" letter-spacing="1" fill="'+pal.ink+'">'+esc(game[2])+'</text>';
-   const rows=level===1?[80]:level===2?[76,84]:level===3?[72,80,88]:[];
+   let out='<text x="60" y="59" text-anchor="middle" font-family="'+SERIF+'" font-size="23" font-weight="700" letter-spacing="1" fill="'+pal.ink+'">'+esc(game[2])+'</text>';
+   const rows=level===1?[71]:level===2?[69,76]:level===3?[67,73,79]:[];
    for(const y of rows)out+=wave(y,pal.ink);
    return out;
   }
-  if(key==='daily-treasure')
-   return '<path d="M60 33L65.5 54.5L87 60L65.5 65.5L60 87L54.5 65.5L33 60L54.5 54.5Z" fill="'+pal.ink+'"/><circle cx="60" cy="60" r="3.2" fill="'+pal.fill+'"/>';
+  if(key==='daily-treasure'){
+   let out='<path d="M60 36L65 55L84 60L65 65L60 84L55 65L36 60L55 55Z" fill="'+pal.ink+'" stroke="'+pal.ink+'" stroke-width="1" stroke-linejoin="round"/>';
+   out+='<path d="M60 46L62.2 57.8L74 60L62.2 62.2L60 74L57.8 62.2L46 60L57.8 57.8Z" fill="'+pal.disc+'"/>';
+   return out+'<circle cx="60" cy="60" r="3" fill="'+pal.ink+'"/>';
+  }
   if(key==='seven-streak'){
    let out='';
    for(let i=0;i<7;i++){
-    const a=Math.PI+i*Math.PI/6;
-    out+='<circle cx="'+(60+24*Math.cos(a)).toFixed(2)+'" cy="'+(68+24*Math.sin(a)).toFixed(2)+'" r="3.4" fill="'+pal.ink+'"/>';
+    const [x,y]=pt(19,Math.PI+i*Math.PI/6,60,66);
+    out+='<circle cx="'+x+'" cy="'+y+'" r="3.5" fill="'+pal.ink+'"/><circle cx="'+(x-.9)+'" cy="'+(y-.9)+'" r="1" fill="'+pal.hi+'" fill-opacity=".8"/>';
    }
-   return out+wave(84,pal.ink);
+   return out+wave(76,pal.ink)+wave(83,pal.ink);
   }
-  let out='<circle cx="60" cy="60" r="7" fill="none" stroke="'+pal.ink+'" stroke-width="2.4"/>';
+  let out='<circle cx="60" cy="60" r="6.5" fill="none" stroke="'+pal.ink+'" stroke-width="2.2"/><circle cx="60" cy="60" r="2" fill="'+pal.ink+'"/>';
   for(let i=0;i<12;i++){
-   const a=i*Math.PI/6;
-   out+='<circle cx="'+(60+23*Math.cos(a)).toFixed(2)+'" cy="'+(60+23*Math.sin(a)).toFixed(2)+'" r="3" fill="'+pal.ink+'"/>';
+   const [x,y]=pt(19,i*Math.PI/6);
+   out+='<circle cx="'+x+'" cy="'+y+'" r="3" fill="'+pal.ink+'"/><circle cx="'+(x-.8)+'" cy="'+(y-.8)+'" r=".9" fill="'+pal.hi+'" fill-opacity=".8"/>';
   }
   return out;
  }
@@ -204,13 +216,44 @@
   const lv=level>0?Math.min(LEVELS.length,level):0;
   const special=specialIds.has(key);
   const pal=PALETTE[special?(lv?3:0):lv];
-  let out='<circle cx="60" cy="60" r="49" fill="'+pal.ring+'"/>';
-  for(let i=0;i<24;i++){
-   const a=i*Math.PI/12;
-   out+='<circle cx="'+(60+49*Math.cos(a)).toFixed(2)+'" cy="'+(60+49*Math.sin(a)).toFixed(2)+'" r="6.4" fill="'+pal.ring+'"/>';
+  const tier=special?(lv?3:0):lv;
+  let out='';
+  /* sombra projetada sutil */
+  out+='<circle cx="61.2" cy="61.8" r="49" fill="#173e5e" fill-opacity=".16"/>';
+  /* aro recortado em 24 ondas */
+  out+='<circle cx="60" cy="60" r="49" fill="'+pal.rim+'"/>';
+  for(let i=0;i<24;i++){const [x,y]=pt(49,i*Math.PI/12);out+='<circle cx="'+x+'" cy="'+y+'" r="6.4" fill="'+pal.rim+'"/>'}
+  /* borda escura do aro e brilho do metal */
+  out+='<circle cx="60" cy="60" r="46.6" fill="none" stroke="'+pal.edge+'" stroke-width="1.2" stroke-opacity=".55"/>';
+  out+='<path d="M24 36A42 42 0 0 1 52 18.6" fill="none" stroke="'+pal.hi+'" stroke-width="2.6" stroke-linecap="round" stroke-opacity=".55"/>';
+  out+='<path d="M96 84A42 42 0 0 1 68 101.4" fill="none" stroke="#000" stroke-width="2.6" stroke-linecap="round" stroke-opacity=".14"/>';
+  /* face */
+  out+='<circle cx="60" cy="60" r="41.5" fill="'+pal.face+'" stroke="'+pal.edge+'" stroke-width="1.2" stroke-opacity=".7"/>';
+  if(tier===3){
+   /* raios do ouro */
+   for(let i=0;i<16;i++){
+    const a=i*Math.PI/8,[x1,y1]=pt(41,a-.1),[x2,y2]=pt(41,a+.1);
+    out+='<path d="M60 60L'+x1+' '+y1+'L'+x2+' '+y2+'Z" fill="'+pal.hi+'" fill-opacity=".42"/>';
+   }
+  }else if(tier===2){
+   /* cordão de pérolas */
+   for(let i=0;i<30;i++){const [x,y]=pt(36.4,i*Math.PI/15);out+='<circle cx="'+x+'" cy="'+y+'" r="1.45" fill="'+pal.hi+'" fill-opacity=".85"/>'}
+  }else if(tier===1){
+   /* bolhas de espuma */
+   [[-2.4,35,3],[-1.5,36,2],[-.6,34.5,3.4],[.5,36.5,2.2],[1.6,35,3],[2.7,36,2.2],[3.8,34.5,2.8],[4.8,36.4,2]].forEach(([a,r,s])=>{
+    const [x,y]=pt(r,a);out+='<circle cx="'+x+'" cy="'+y+'" r="'+s+'" fill="'+pal.hi+'" fill-opacity=".55" stroke="'+pal.edge+'" stroke-opacity=".5" stroke-width=".7"/>';
+   });
+  }else{
+   out+='<circle cx="60" cy="60" r="36.5" fill="none" stroke="'+pal.rim+'" stroke-width="1.3" stroke-dasharray="3 4"/>';
   }
-  out+='<circle cx="60" cy="60" r="43" fill="'+pal.fill+'"/>';
-  out+='<circle cx="60" cy="60" r="39.5" fill="none" stroke="'+pal.ring+'" stroke-width="1.4"'+(lv?'':' stroke-dasharray="3 4"')+'/>';
+  /* medalhão central */
+  out+='<circle cx="60" cy="60" r="29" fill="'+pal.disc+'" stroke="'+pal.edge+'" stroke-width="1.6"/>';
+  out+='<circle cx="60" cy="60" r="26.4" fill="none" stroke="'+pal.edge+'" stroke-width=".7" stroke-opacity=".45"/>';
+  out+='<path d="M37 47A25 25 0 0 1 52 36" fill="none" stroke="'+pal.hi+'" stroke-width="2" stroke-linecap="round" stroke-opacity=".9"/>';
+  /* coroa do nível: losango no esmalte, estrela no ouro */
+  if(!special&&tier===3)out+=star(60,16.2,5.2,pal.edge);
+  else if(!special&&tier===2)out+='<path d="M60 11.8L64.4 16.2L60 20.6L55.6 16.2Z" fill="'+pal.hi+'" stroke="'+pal.edge+'" stroke-width=".8"/>';
+  else if(special&&tier===3)out+=star(60,16.2,5.2,pal.edge);
   return out+emblem(key,lv,pal);
  }
  function labelFor(key,level){
