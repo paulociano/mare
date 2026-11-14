@@ -1,0 +1,22 @@
+/* MARÉ · moldura compacta das páginas de jogo no celular.
+   O tabuleiro sobe para a primeira tela: a faixa de apresentação perde o
+   sobretítulo e a descrição (que continua em "Como jogar") e fica com símbolo,
+   nome e modos. Em @layer para prevalecer sobre as folhas antigas; só layout. */
+@layer mare-shell{
+ /* Gestos do app instalado: puxar a página não recarrega a partida, e tocar
+    rápido em casas e teclas não seleciona texto nem dá zoom. */
+ body:is(.mar-app,.mare-recife){overscroll-behavior-y:contain}
+ body:is(.mar-app,.mare-recife) :is(#grid,#board,#keyboard,.keyboard,.concha-hive,.enigma-keys,.forca-keys,.crypto-board){-webkit-user-select:none;user-select:none;touch-action:manipulation;-webkit-touch-callout:none}
+
+ @media (max-width:650px){
+  body.mar-app :is(.hero,.heading,.intro,.concha-hero,.trilha-hero,.enigma-hero,.marujo-hero,.newgame-intro,.depth-intro){padding-top:10px!important;padding-bottom:10px!important;margin-top:0!important;margin-bottom:0!important;gap:8px!important;min-height:0!important}
+  body.mar-app :is(.hero,.heading,.intro,.concha-hero,.trilha-hero,.enigma-hero,.marujo-hero,.newgame-intro,.depth-intro) :is(p,.overline,[class*="eyebrow"]),body.mar-app :is(.hero,.heading,.intro,.concha-hero,.trilha-hero,.enigma-hero,.marujo-hero,.newgame-intro,.depth-intro)>span{display:none!important}
+  body.mar-app :is(.mare-game-symbol-lockup,.depth-title-lockup){margin:0!important}
+  body.mar-app :is(.mare-game-symbol-lockup,.depth-title-lockup) h1{font-size:1.7rem!important;line-height:1.05!important;margin:0!important}
+  /* Modos em uma fileira só, com o mesmo tamanho em todos os jogos. */
+  body.mar-app :is(.controls,.switch,.concha-tabs,.enigma-modes,.marujo-modes,.newgame-modes,.depth-modes){display:flex!important;flex-wrap:nowrap!important;gap:6px!important;margin-top:8px!important;margin-bottom:0!important}
+  body.mar-app :is(.controls,.switch,.concha-tabs,.enigma-modes,.marujo-modes,.newgame-modes,.depth-modes)>button{flex:1 1 0!important;min-width:0!important;min-height:44px!important;padding-left:8px!important;padding-right:8px!important;font-size:14px!important;white-space:nowrap!important;overflow:hidden;text-overflow:ellipsis}
+  body.mar-app :is(.newgame-modes,.depth-modes,.switch,.enigma-modes,.marujo-modes,.concha-tabs){width:100%!important}
+  body.mar-app .controls>button{white-space:normal!important;line-height:1.15!important;font-size:13px!important}
+ }
+}

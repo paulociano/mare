@@ -18,3 +18,19 @@ body.mare-criptograma{background-image:linear-gradient(180deg,#041622d2,#031521d
 /* Feedback imediato do código em Sinais. */
 .crypto-tile.crypto-correct{border-color:#93f3bc!important;background:#164b41!important;box-shadow:inset 0 -3px 0 #5cdf9a}
 .crypto-tile.crypto-correct .crypto-letter{color:#d9ffe6!important;font-weight:900}
+
+/* Sinais: teclado na tela para telas de toque (o campo de texto continua para teclado físico). */
+.crypto-keys{display:none}
+@media(hover:none),(pointer:coarse){
+ .crypto-keys{display:grid;grid-template-columns:repeat(9,minmax(0,1fr));gap:5px;margin:10px 0 4px;touch-action:manipulation;-webkit-user-select:none;user-select:none}
+ body.mar-app .crypto-keys .crypto-key{min-width:0;min-height:44px;padding:0;border-radius:8px;border:1px solid var(--kan-control-line,#88aabd);background:var(--kan-control,#e8f1f1);color:var(--kan-ink,#173e5e);font:700 16px 'DM Sans',system-ui,sans-serif}
+ body.mar-app .crypto-keys .crypto-key.is-used{opacity:.45}
+ body.mar-app .crypto-keys .crypto-key:active{transform:scale(.94)}
+ .crypto-entry input{display:none}
+}
+@media(prefers-reduced-motion:reduce){body.mar-app .crypto-keys .crypto-key:active{transform:none}}
+
+/* Sinais no tema claro: a casa correta era pensada para o fundo escuro antigo e
+   ficava com letra clara sobre casa clara. */
+body.mar-app.mare-kanagawa.mare-criptograma .crypto-tile.crypto-correct:not(.selected){background:var(--kan-green-soft,#dceee6)!important;border-color:var(--kan-green-line,rgba(43,107,92,.36))!important;box-shadow:inset 0 -3px 0 var(--kan-green,#2b6b5c)!important}
+body.mar-app.mare-kanagawa.mare-criptograma .crypto-tile.crypto-correct:not(.selected) .crypto-letter{color:var(--kan-green,#2b6b5c)!important}

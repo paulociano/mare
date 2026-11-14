@@ -34,3 +34,10 @@ body.mare-perola,body.mare-farol{background:linear-gradient(160deg,#061c2de8,#0b
 .depth-footer .mare-game-nav__link.is-active{border-color:#9df1dd;background:#19554d;color:#f3fff9!important}
 @media(max-width:760px){.depth-footer .mare-game-nav__grid{grid-template-columns:repeat(4,minmax(0,1fr))}}
 @media(max-width:450px){.depth-footer .mare-game-nav__grid{grid-template-columns:repeat(3,minmax(0,1fr))}.depth-title-lockup{gap:10px}}
+
+/* Pérola: letras embaralhadas como botões (toque monta a resposta). */
+.depth-scramble{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;letter-spacing:0;padding:16px 0}
+body.mar-app .depth-scramble .depth-letter{min-width:48px;min-height:52px;padding:0 6px;border-radius:12px;border:1px solid var(--kan-control-line,#88aabd);background:var(--kan-control,#e8f1f1);color:var(--kan-ink,#173e5e);font:800 1.6rem/1 'Outfit',system-ui,sans-serif;touch-action:manipulation;transition:transform var(--mare-t-fast,.12s) var(--mare-ease-out,ease-out),opacity var(--mare-t-fast,.12s) linear}
+body.mar-app .depth-scramble .depth-letter:active{transform:scale(.94)}
+body.mar-app .depth-scramble .depth-letter.is-used{opacity:.32;transform:scale(.92)}
+@media(prefers-reduced-motion:reduce){body.mar-app .depth-scramble .depth-letter{transition:none}body.mar-app .depth-scramble .depth-letter:active,body.mar-app .depth-scramble .depth-letter.is-used{transform:none}}

@@ -65,14 +65,22 @@ function dayLabel(iso){const m=/^(\d{4})-(\d{2})-(\d{2})$/.exec(String(iso));if(
   $('edition').textContent=mode==='daily'?'DESAFIO DIÁRIO · '+dayLabel(day):'MODO LIVRE';
   $('hint').textContent=bank[round].hint;
   $('next').hidden=mode==='daily';$('next').disabled=false;
-  $('submit').disabled=false;$('undo').hidden=type!=='farol';
+  $('submit').disabled=false;$('undo').hidden=false;$('undo').textContent=type==='perola'?'Apagar letra':'Desfazer última';
   $('entry').hidden=type!=='perola';$('tiles').hidden=type!=='farol';
   $('entry').value='';$('entry').disabled=false;
   $('daily').setAttribute('aria-pressed',String(mode==='daily'));
   $('free').setAttribute('aria-pressed',String(mode==='free'));
   if(type==='perola'){
    $('scramble').hidden=false;
-   $('scramble').textContent=shuffle(Array.from(bank[round].answer),(hash+round+13)).join('  ');
+   /* Letras tocáveis: montar a resposta com o polegar, sem abrir o teclado do sistema.
+       O campo de texto continua funcionando para quem prefere digitar. */
+    const pool=$('scramble');pool.replaceChildren();
+    for(const letter of shuffle(Array.from(bank[round].answer),(hash+round+13))){
+     const b=document.createElement('button');b.type='button';b.className='depth-letter';b.textContent=letter;
+     b.setAttribute('aria-label','Adicionar letra '+letter);
+     b.onclick=()=>{if(complete)return;$('entry').value+=letter;syncLetters()};
+     pool.append(b);
+    }
   }else{
    $('scramble').hidden=true;
    tiles=shuffle(bank[round].answer.split(' '),hash+round+23).map((word,id)=>({word,id}));
@@ -80,8 +88,18 @@ function dayLabel(iso){const m=/^(\d{4})-(\d{2})-(\d{2})$/.exec(String(iso));if(
   message('Monte a resposta usando a pista.');
   render();
  }
+ /* Marca como usadas as letras que já estão na resposta, digitadas ou tocadas. */
+ function syncLetters(){
+  if(type!=='perola')return;
+  const typed=Array.from(normalize($('entry').value).replace(/ /g,''));
+  for(const b of $('scramble').querySelectorAll('.depth-letter')){
+   const at=typed.indexOf(normalize(b.textContent));
+   if(at>=0)typed.splice(at,1);
+   b.disabled=complete||at>=0;b.classList.toggle('is-used',at>=0);
+  }
+ }
  function render(){
-  if(type!=='farol')return;
+  if(type!=='farol'){syncLetters();return}
   const pool=$('tiles');pool.replaceChildren();
   const chosen=$('chosen');chosen.replaceChildren();
   for(const tile of tiles){
@@ -113,7 +131,8 @@ function dayLabel(iso){const m=/^(\d{4})-(\d{2})-(\d{2})$/.exec(String(iso));if(
  }
  $('submit').addEventListener('click',submit);
  $('entry').addEventListener('keydown',e=>{if(e.key==='Enter')submit()});
- $('undo').addEventListener('click',()=>{selected.pop();render()});
+ $('undo').addEventListener('click',()=>{if(complete)return;if(type==='perola'){$('entry').value=Array.from($('entry').value).slice(0,-1).join('')}else selected.pop();render()});
+ $('entry').addEventListener('input',syncLetters);
  $('daily').addEventListener('click',()=>{mode='daily';start()});
  $('free').addEventListener('click',()=>{mode='free';start()});
  $('next').addEventListener('click',()=>{if(mode!=='free')return;save(safeNumber()+1);start()});
