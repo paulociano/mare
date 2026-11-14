@@ -20,3 +20,10 @@
   body.mar-app .controls>button{white-space:normal!important;line-height:1.15!important;font-size:13px!important}
  }
 }
+
+/* Primeira visita: destaque no botão "Como jogar" (mare-finesse.js). Fora da
+   camada para poder usar as cores do tema sem !important. */
+.mare-help-nudge{outline:2px solid var(--kan-coral,#bf5a50);outline-offset:3px}
+.mare-help-tip{position:absolute;z-index:30;left:8px;right:8px;margin-inline:auto;width:fit-content;max-width:240px;box-sizing:border-box;text-align:center;padding:6px 10px;border-radius:10px;background:var(--kan-ink,#173e5e);color:#fffdf7;font:600 13px/1.3 'DM Sans',system-ui,sans-serif;pointer-events:none;box-shadow:0 8px 20px rgba(23,62,94,.18)}
+@keyframes mare-help-ring{0%,100%{outline-offset:3px}50%{outline-offset:6px}}
+@media (prefers-reduced-motion:no-preference){:root:not([data-mare-motion="reduce"]) .mare-help-nudge{animation:mare-help-ring 1.6s var(--mare-ease-in-out,ease-in-out) 3}}

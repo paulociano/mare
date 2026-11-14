@@ -60,7 +60,7 @@ function dayLabel(iso){const m=/^(\d{4})-(\d{2})-(\d{2})$/.exec(String(iso));if(
  let tiles=[];
  function message(value){$('feedback').textContent=value}
  function start(){
-  const index=mode==='daily'?hash%(day==='2026-10-17'?(type==='perola'?17:15):bank.length):(globalThis.MareContent?.pick(type,bank.map(p=>type==='perola'?normalize(p.answer).length:p.answer.trim().split(/\s+/).length),safeNumber())??safeNumber()%bank.length);
+  const index=mode==='daily'?(day==='2026-10-17'?hash%(type==='perola'?17:15):(globalThis.MareContent?.daily?.(day,bank.length)??hash%bank.length)):(globalThis.MareContent?.pick(type,bank.map(p=>type==='perola'?normalize(p.answer).length:p.answer.trim().split(/\s+/).length),safeNumber())??safeNumber()%bank.length);
   round=index;tries=0;complete=false;selected=[];
   $('edition').textContent=mode==='daily'?'DESAFIO DIÁRIO · '+dayLabel(day):'MODO LIVRE';
   $('hint').textContent=bank[round].hint;

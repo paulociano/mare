@@ -26,7 +26,19 @@
   const selection=ranked.slice(from,to).map(e=>e.index);
   return selection[((ordinal%selection.length)+selection.length)%selection.length];
  }
- const api=Object.freeze({get,pick,labels});
+ /* Desafio diário sem repetição: percorre o banco inteiro antes de voltar ao
+    primeiro. O passo é coprimo com o tamanho do banco, então a ordem não é a
+    de autoria e cada desafio aparece exatamente uma vez a cada `count` dias.
+    (Um hash da data, usado antes, podia sortear o mesmo desafio em dias próximos.) */
+ function daily(day,count){
+  const match=/^(\d{4})-(\d{2})-(\d{2})$/.exec(String(day));
+  if(!match||!Number.isInteger(count)||count<1)return 0;
+  const number=Math.floor(Date.UTC(+match[1],+match[2]-1,+match[3])/86400000);
+  const gcd=(a,b)=>b?gcd(b,a%b):a;
+  const stride=[7,11,13,17,19,23,29].find(step=>gcd(step,count)===1)||1;
+  return (number%count)*stride%count;
+ }
+ const api=Object.freeze({get,pick,labels,daily});
  if(typeof window!=='undefined')window.MareContent=api;
  function mount(){
   const page=location.pathname.split('/').pop();

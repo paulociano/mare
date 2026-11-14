@@ -682,5 +682,537 @@
         "REGADOR"
       ]
     }
+  ],
+  [
+    {
+      "name": "Frutas tropicais",
+      "words": [
+        "MANGA",
+        "CAJU",
+        "GOIABA",
+        "ACEROLA"
+      ]
+    },
+    {
+      "name": "Peças de xadrez",
+      "words": [
+        "REI",
+        "DAMA",
+        "TORRE",
+        "BISPO"
+      ]
+    },
+    {
+      "name": "Estações do ano",
+      "words": [
+        "VERÃO",
+        "OUTONO",
+        "INVERNO",
+        "PRIMAVERA"
+      ]
+    },
+    {
+      "name": "Instrumentos de percussão",
+      "words": [
+        "PANDEIRO",
+        "ATABAQUE",
+        "ZABUMBA",
+        "AGOGÔ"
+      ]
+    }
+  ],
+  [
+    {
+      "name": "Rios brasileiros",
+      "words": [
+        "AMAZONAS",
+        "TIETÊ",
+        "XINGU",
+        "TOCANTINS"
+      ]
+    },
+    {
+      "name": "Queijos",
+      "words": [
+        "MINAS",
+        "COALHO",
+        "PRATO",
+        "PARMESÃO"
+      ]
+    },
+    {
+      "name": "Louças",
+      "words": [
+        "XÍCARA",
+        "PIRES",
+        "TIGELA",
+        "TRAVESSA"
+      ]
+    },
+    {
+      "name": "Dias da semana",
+      "words": [
+        "SEGUNDA",
+        "QUARTA",
+        "SEXTA",
+        "DOMINGO"
+      ]
+    }
+  ],
+  [
+    {
+      "name": "Répteis",
+      "words": [
+        "JACARÉ",
+        "LAGARTO",
+        "COBRA",
+        "IGUANA"
+      ]
+    },
+    {
+      "name": "Delícias de padaria",
+      "words": [
+        "PÃO",
+        "BROA",
+        "ROSCA",
+        "SONHO"
+      ]
+    },
+    {
+      "name": "Constelações",
+      "words": [
+        "ÓRION",
+        "CRUZEIRO",
+        "ESCORPIÃO",
+        "CENTAURO"
+      ]
+    },
+    {
+      "name": "Jogos de tabuleiro",
+      "words": [
+        "DAMAS",
+        "GAMÃO",
+        "LUDO",
+        "XADREZ"
+      ]
+    }
+  ],
+  [
+    {
+      "name": "Ritmos nordestinos",
+      "words": [
+        "BAIÃO",
+        "XOTE",
+        "MARACATU",
+        "COCO"
+      ]
+    },
+    {
+      "name": "Castanhas e nozes",
+      "words": [
+        "NOZ",
+        "AMÊNDOA",
+        "AVELÃ",
+        "PISTACHE"
+      ]
+    },
+    {
+      "name": "Partes do navio",
+      "words": [
+        "PROA",
+        "POPA",
+        "CONVÉS",
+        "MASTRO"
+      ]
+    },
+    {
+      "name": "Jeitos de pedir café",
+      "words": [
+        "EXPRESSO",
+        "CORTADO",
+        "PINGADO",
+        "CARIOCA"
+      ]
+    }
+  ],
+  [
+    {
+      "name": "Verduras",
+      "words": [
+        "ALFACE",
+        "COUVE",
+        "RÚCULA",
+        "AGRIÃO"
+      ]
+    },
+    {
+      "name": "Moedas",
+      "words": [
+        "REAL",
+        "EURO",
+        "DÓLAR",
+        "PESO"
+      ]
+    },
+    {
+      "name": "Calçados",
+      "words": [
+        "BOTA",
+        "CHINELO",
+        "SAPATO",
+        "TAMANCO"
+      ]
+    },
+    {
+      "name": "Ventos",
+      "words": [
+        "BRISA",
+        "VENDAVAL",
+        "MINUANO",
+        "ALÍSIO"
+      ]
+    }
+  ],
+  [
+    {
+      "name": "Raízes e tubérculos",
+      "words": [
+        "MANDIOCA",
+        "BATATA",
+        "INHAME",
+        "CENOURA"
+      ]
+    },
+    {
+      "name": "Signos",
+      "words": [
+        "ÁRIES",
+        "TOURO",
+        "GÊMEOS",
+        "LIBRA"
+      ]
+    },
+    {
+      "name": "Material de costura",
+      "words": [
+        "AGULHA",
+        "LINHA",
+        "DEDAL",
+        "TESOURA"
+      ]
+    },
+    {
+      "name": "Aves aquáticas",
+      "words": [
+        "PATO",
+        "GARÇA",
+        "CISNE",
+        "GAIVOTA"
+      ]
+    }
+  ],
+  [
+    {
+      "name": "Sobremesas",
+      "words": [
+        "PUDIM",
+        "MOUSSE",
+        "PAVÊ",
+        "SORVETE"
+      ]
+    },
+    {
+      "name": "Oceanos",
+      "words": [
+        "ATLÂNTICO",
+        "PACÍFICO",
+        "ÍNDICO",
+        "ÁRTICO"
+      ]
+    },
+    {
+      "name": "Lutas",
+      "words": [
+        "JUDÔ",
+        "BOXE",
+        "CAPOEIRA",
+        "CARATÊ"
+      ]
+    },
+    {
+      "name": "Peças do carro",
+      "words": [
+        "VOLANTE",
+        "PNEU",
+        "FREIO",
+        "MOTOR"
+      ]
+    }
+  ],
+  [
+    {
+      "name": "Grãos",
+      "words": [
+        "ARROZ",
+        "FEIJÃO",
+        "MILHO",
+        "LENTILHA"
+      ]
+    },
+    {
+      "name": "Fontes de luz",
+      "words": [
+        "VELA",
+        "LAMPIÃO",
+        "LANTERNA",
+        "ABAJUR"
+      ]
+    },
+    {
+      "name": "Instrumentos de medida",
+      "words": [
+        "RÉGUA",
+        "BALANÇA",
+        "TERMÔMETRO",
+        "TRENA"
+      ]
+    },
+    {
+      "name": "Felinos",
+      "words": [
+        "ONÇA",
+        "TIGRE",
+        "LINCE",
+        "PUMA"
+      ]
+    }
+  ],
+  [
+    {
+      "name": "Festas do calendário",
+      "words": [
+        "CARNAVAL",
+        "RÉVEILLON",
+        "PÁSCOA",
+        "NATAL"
+      ]
+    },
+    {
+      "name": "Peixes de rio",
+      "words": [
+        "PACU",
+        "TUCUNARÉ",
+        "PINTADO",
+        "DOURADO"
+      ]
+    },
+    {
+      "name": "Tons de azul",
+      "words": [
+        "ANIL",
+        "TURQUESA",
+        "CELESTE",
+        "MARINHO"
+      ]
+    },
+    {
+      "name": "Partes do olho",
+      "words": [
+        "ÍRIS",
+        "PUPILA",
+        "RETINA",
+        "CÓRNEA"
+      ]
+    }
+  ],
+  [
+    {
+      "name": "Bebidas quentes",
+      "words": [
+        "CHÁ",
+        "CAFÉ",
+        "CHOCOLATE",
+        "QUENTÃO"
+      ]
+    },
+    {
+      "name": "Árvores frutíferas",
+      "words": [
+        "CAJUEIRO",
+        "GOIABEIRA",
+        "PITANGUEIRA",
+        "JABUTICABEIRA"
+      ]
+    },
+    {
+      "name": "Jogos de cartas",
+      "words": [
+        "TRUCO",
+        "BURACO",
+        "PÔQUER",
+        "PACIÊNCIA"
+      ]
+    },
+    {
+      "name": "Recortes da costa",
+      "words": [
+        "BAÍA",
+        "CABO",
+        "ENSEADA",
+        "PENÍNSULA"
+      ]
+    }
+  ],
+  [
+    {
+      "name": "Membros da família",
+      "words": [
+        "AVÔ",
+        "TIA",
+        "PRIMO",
+        "SOBRINHA"
+      ]
+    },
+    {
+      "name": "Tipos de pão",
+      "words": [
+        "BAGUETE",
+        "CIABATTA",
+        "BRIOCHE",
+        "FRANCÊS"
+      ]
+    },
+    {
+      "name": "Elementos químicos",
+      "words": [
+        "HÉLIO",
+        "CARBONO",
+        "SÓDIO",
+        "OXIGÊNIO"
+      ]
+    },
+    {
+      "name": "Meses",
+      "words": [
+        "JANEIRO",
+        "ABRIL",
+        "AGOSTO",
+        "DEZEMBRO"
+      ]
+    }
+  ],
+  [
+    {
+      "name": "Animais da Amazônia",
+      "words": [
+        "BOTO",
+        "ARARA",
+        "PREGUIÇA",
+        "SUCURI"
+      ]
+    },
+    {
+      "name": "Sinais de pontuação",
+      "words": [
+        "VÍRGULA",
+        "PONTO",
+        "HÍFEN",
+        "ASPAS"
+      ]
+    },
+    {
+      "name": "Brinquedos",
+      "words": [
+        "PIÃO",
+        "PIPA",
+        "BONECA",
+        "IOIÔ"
+      ]
+    },
+    {
+      "name": "Unidades de medida",
+      "words": [
+        "METRO",
+        "LITRO",
+        "QUILO",
+        "GRAU"
+      ]
+    }
+  ],
+  [
+    {
+      "name": "Frutos do mar",
+      "words": [
+        "SIRI",
+        "LAGOSTA",
+        "CAMARÃO",
+        "OSTRA"
+      ]
+    },
+    {
+      "name": "Notas musicais",
+      "words": [
+        "DÓ",
+        "MI",
+        "FÁ",
+        "LÁ"
+      ]
+    },
+    {
+      "name": "Frutas vermelhas",
+      "words": [
+        "MORANGO",
+        "AMORA",
+        "CEREJA",
+        "FRAMBOESA"
+      ]
+    },
+    {
+      "name": "Áreas externas da casa",
+      "words": [
+        "VARANDA",
+        "QUINTAL",
+        "GARAGEM",
+        "TERRAÇO"
+      ]
+    }
+  ],
+  [
+    {
+      "name": "Ervas",
+      "words": [
+        "MANJERICÃO",
+        "HORTELÃ",
+        "SALSA",
+        "ALECRIM"
+      ]
+    },
+    {
+      "name": "Ritmos latinos",
+      "words": [
+        "RUMBA",
+        "MERENGUE",
+        "MAMBO",
+        "BOLERO"
+      ]
+    },
+    {
+      "name": "Fases da Lua",
+      "words": [
+        "NOVA",
+        "CHEIA",
+        "CRESCENTE",
+        "MINGUANTE"
+      ]
+    },
+    {
+      "name": "Corpos d'água",
+      "words": [
+        "LAGO",
+        "RIACHO",
+        "LAGOA",
+        "AÇUDE"
+      ]
+    }
   ]
 ]
