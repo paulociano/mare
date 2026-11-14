@@ -12,7 +12,7 @@
 .mare-access__icon{display:grid;place-items:center;background:#174a50;color:#b4ffe4;
  border:1px solid #71b8a7;border-radius:10px;height:35px;width:35px;flex:none}
 .mare-access__summary strong{font-size:14px;line-height:1.4}
-.mare-access__summary-caption{color:#b9d7d6;font-size:11px;line-height:1.4;margin-left:4px}
+.mare-access__summary-caption{color:#b9d7d6;font-size:12px;line-height:1.4;margin-left:4px}
 .mare-access__content{padding:0 20px 20px;display:grid;gap:14px}
 .mare-access__content>p{font-size:13px;line-height:1.6;color:#d2e8e4;margin:0}
 .mare-access__form{display:grid;gap:15px}
@@ -27,7 +27,7 @@
  border:1px solid #5b8a8c;border-radius:13px;cursor:pointer;min-width:0}
 .mare-access__toggle>span{display:grid;gap:5px;min-width:0}
 .mare-access__toggle strong{font-size:13px;line-height:1.4;color:#f2fff8}
-.mare-access__toggle small{font-size:11px;line-height:1.55;color:#c3dcdb}
+.mare-access__toggle small{font-size:12px;line-height:1.55;color:#c3dcdb}
 .mare-access__reset{display:inline-flex;align-items:center;justify-content:center;
  border:1px solid #99e8d0;border-radius:11px;padding:10px 17px;min-height:44px;
  background:#a9f2d8;color:#08343d;font:800 12px/1.4 system-ui,sans-serif;cursor:pointer;justify-self:start}

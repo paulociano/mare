@@ -41,5 +41,8 @@
   "backgroundsDirectory": "assets/backgrounds",
   "runtimeStyles": [
     "src/styles/shared/mare-diagnostics.css"
+  ],
+  "lazyOfflineFiles": [
+    "data/semantic-ranks.json"
   ]
 }

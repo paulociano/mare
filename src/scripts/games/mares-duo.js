@@ -1,4 +1,6 @@
 'use strict';
+/* '2026-11-14' → '14 de novembro' (o dia do desafio já vem no fuso de São Paulo). */
+function dayLabel(iso){const m=/^(\d{4})-(\d{2})-(\d{2})$/.exec(String(iso));if(!m)return String(iso);try{return new Intl.DateTimeFormat('pt-BR',{day:'numeric',month:'long',timeZone:'UTC'}).format(new Date(Date.UTC(+m[1],+m[2]-1,+m[3],12))).toUpperCase()}catch{return m[3]+'/'+m[2]}}
 (() => {
  const type=document.body.dataset.game;
  const puzzles={
@@ -60,7 +62,7 @@
  function start(){
   const index=mode==='daily'?hash%(day==='2026-10-17'?(type==='perola'?17:15):bank.length):(globalThis.MareContent?.pick(type,bank.map(p=>type==='perola'?normalize(p.answer).length:p.answer.trim().split(/\s+/).length),safeNumber())??safeNumber()%bank.length);
   round=index;tries=0;complete=false;selected=[];
-  $('edition').textContent=mode==='daily'?'DESAFIO DIÁRIO '+day:'MODO LIVRE';
+  $('edition').textContent=mode==='daily'?'DESAFIO DIÁRIO · '+dayLabel(day):'MODO LIVRE';
   $('hint').textContent=bank[round].hint;
   $('next').hidden=mode==='daily';$('next').disabled=false;
   $('submit').disabled=false;$('undo').hidden=type!=='farol';

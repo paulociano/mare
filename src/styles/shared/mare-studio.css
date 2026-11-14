@@ -65,7 +65,7 @@ body.mare-hub.mare-studio .mar-top nav a:is(:hover,:focus-visible){color:var(--s
   align-items:center;
   gap:12px;
   color:var(--studio-mint);
-  font-size:11px;
+  font-size:12px;
   font-weight:800;
   letter-spacing:.2em;
   text-transform:uppercase;
@@ -167,7 +167,7 @@ body.mare-hub.mare-studio .mar-top nav a:is(:hover,:focus-visible){color:var(--s
   z-index:1;
   right:26px;
   bottom:23px;
-  font-size:10px;
+  font-size:12px;
   letter-spacing:.18em;
   color:#a9c8c7;
 }
@@ -175,7 +175,7 @@ body.mare-hub.mare-studio .mar-top nav a:is(:hover,:focus-visible){color:var(--s
   position:absolute;
   top:35px;
   right:30px;
-  font:600 11px/1 'DM Sans',system-ui,sans-serif;
+  font:600 12px/1 'DM Sans',system-ui,sans-serif;
   letter-spacing:.18em;
   color:#bbf2e1;
   border:1px solid rgba(173,240,224,.33);
@@ -265,7 +265,7 @@ body.mare-hub.mare-studio .mar-catalog > article.mar-game > .mar-tag{
   border:1px solid rgba(158,221,207,.2);
   border-radius:999px;
   background:rgba(3,26,35,.34);
-  font-size:10px;
+  font-size:12px;
 }
 body.mare-hub.mare-studio .mar-catalog > article.mar-game > .mar-game-symbol{
   position:absolute!important;
@@ -317,7 +317,7 @@ body.mare-hub.mare-studio .mar-catalog > article.mar-game .mar-game-info p{
 body.mare-hub.mare-studio .mar-catalog > article.mar-game .mare-card-meta{
   margin:0 0 14px;
   color:#91c7c5;
-  font-size:.72rem;
+  font-size:.75rem;
 }
 body.mare-hub.mare-studio .mar-catalog > article.mar-game .mar-cta{
   min-height:44px;

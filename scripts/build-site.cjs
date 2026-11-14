@@ -100,14 +100,20 @@ fs.writeFileSync(path.join(out,'.nojekyll'),'');
 
 // PWA shell is generated only AFTER all assets are copied. Version includes
 // content digests, not a mutable deployment date; cache updates are atomic.
-const precache=[...copied].filter(file=>!file.endsWith('.map')).sort();
+// Arquivos grandes que só um jogo usa ficam fora do pacote inicial: o worker
+// os guarda na primeira visita ao jogo e os serve offline a partir daí.
+const lazy=(manifest.lazyOfflineFiles||[]).filter(file=>copied.has(file)).sort();
+const precache=[...copied].filter(file=>!file.endsWith('.map')&&!lazy.includes(file)).sort();
+const lazyDigest=crypto.createHash('sha256');
+for(const file of lazy){lazyDigest.update(file+'\0');lazyDigest.update(fs.readFileSync(path.join(out,file)));lazyDigest.update('\0')}
+const lazyVersion=lazyDigest.digest('hex').slice(0,18);
 const digest=crypto.createHash('sha256');
 for(const file of precache){
  digest.update(file+'\0');digest.update(fs.readFileSync(path.join(out,file)));digest.update('\0');
 }
 // Full offline shell budget; refuse unbounded precache growth.
 const offlineBytes=precache.reduce((sum,file)=>sum+fs.statSync(path.join(out,file)).size,0);
-assert.ok(offlineBytes<=12*1024*1024,'Pacote offline excede 12 MiB: '+offlineBytes);
+assert.ok(offlineBytes<=4*1024*1024,'Pacote offline excede 4 MiB: '+offlineBytes);
 const version=digest.digest('hex').slice(0,18);
 const worker=[
  "'use strict';",
@@ -115,6 +121,8 @@ const worker=[
  "const CACHE='mare-shell-"+version+"';",
  "const FILES="+JSON.stringify(precache)+";",
  "const PATHS=new Set(FILES);",
+ "const DATA='mare-data-"+lazyVersion+"';",
+ "const LAZY=new Set("+JSON.stringify(lazy)+");",
  "self.addEventListener('install',event=>{",
  " event.waitUntil((async()=>{",
  "  const cache=await caches.open(CACHE);",
@@ -125,7 +133,7 @@ const worker=[
  "self.addEventListener('activate',event=>{",
  " event.waitUntil((async()=>{",
  "  const keys=await caches.keys();",
- "  await Promise.all(keys.filter(k=>k.startsWith('mare-shell-')&&k!==CACHE).map(k=>caches.delete(k)));",
+ "  await Promise.all(keys.filter(k=>(k.startsWith('mare-shell-')&&k!==CACHE)||(k.startsWith('mare-data-')&&k!==DATA)).map(k=>caches.delete(k)));",
  "  await self.clients.claim();",
  " })());",
  "});",
@@ -139,6 +147,18 @@ const worker=[
  " const url=new URL(req.url);",
  " if(!url.pathname.startsWith(scope.pathname))return;",
  " const relative=url.pathname.slice(scope.pathname.length)||'index.html';",
+ " if(LAZY.has(relative)){",
+ "  event.respondWith((async()=>{",
+ "   const cache=await caches.open(DATA);",
+ "   const key=new URL(relative,scope).href;",
+ "   const hit=await cache.match(key);",
+ "   if(hit)return hit;",
+ "   const response=await fetch(req);",
+ "   if(response.ok)event.waitUntil(cache.put(key,response.clone()).catch(()=>{}));",
+ "   return response;",
+ "  })());",
+ "  return;",
+ " }",
  " if(!PATHS.has(relative))return;",
  " event.respondWith((async()=>{",
  "  const cache=await caches.open(CACHE);",

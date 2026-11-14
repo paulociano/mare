@@ -29,7 +29,7 @@ body.mare-hub .mar-game:hover .mar-game-symbol{transform:translateY(-5px) rotate
 body.mare-hub .mar-game .mar-cta{transition:background .2s,transform .2s,box-shadow .2s!important}
 body.mare-hub .mar-game .mar-cta:hover{transform:translateY(-2px);box-shadow:0 10px 22px #001a1b70!important}
 body.mare-hub .mar-game .mar-tag{letter-spacing:.075em}
-body.mare-hub .mar-game .mare-card-meta{display:flex;align-items:center;justify-content:space-between;gap:8px;color:#c9e9e4;font-weight:700;font-size:.7rem;letter-spacing:.02em;margin:10px 0 0}
+body.mare-hub .mar-game .mare-card-meta{display:flex;align-items:center;justify-content:space-between;gap:8px;color:#c9e9e4;font-weight:700;font-size:.75rem;letter-spacing:.02em;margin:10px 0 0}
 body.mare-hub .mar-game .mare-card-meta .mare-dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:#77e5cc;margin-right:6px;box-shadow:0 0 9px #47ddcc80}
 body.mare-hub .mar-game[hidden]{display:none!important}
 body.mare-hub .mare-empty{order:4;padding:20px 24px;border:1px dashed #74b4bd77;border-radius:16px;color:#d9ebec;text-align:center}

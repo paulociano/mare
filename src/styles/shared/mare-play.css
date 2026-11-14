@@ -131,7 +131,7 @@ body.mare-recife .return-link > a{
   border:1px solid var(--play-stroke);
   color:#cfe9e4!important;
   background:rgba(7,40,52,.5);
-  font-size:clamp(.74rem,1.5vw,.88rem)!important;
+  font-size:clamp(.75rem,1.5vw,.88rem)!important;
   font-weight:700;
   white-space:nowrap;
 }

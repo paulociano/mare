@@ -1396,7 +1396,7 @@ body.mare-kanagawa .mare-content-control__summary{
 body.mare-kanagawa .mare-content-control__summary::-webkit-details-marker{display:none}
 body.mare-kanagawa .mare-content-control__summary:hover{background:var(--kan-mist)}
 body.mare-kanagawa .mare-content-control__summary strong{
-  color:var(--kan-blue)!important;font:800 11px/1.4 var(--kan-sans)!important;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--kan-blue)!important;font:800 12px/1.4 var(--kan-sans)!important;letter-spacing:.14em;text-transform:uppercase;
 }
 body.mare-kanagawa .mare-content-control__current{
   display:inline-flex;align-items:center;gap:10px;color:var(--kan-secondary);font:600 13px/1.3 var(--kan-sans);

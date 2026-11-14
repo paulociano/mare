@@ -21,7 +21,7 @@ body.mare-hub .mare-logbook::before{
 }
 body.mare-hub .mare-logbook > *{position:relative;min-width:0}
 body.mare-hub .mare-explorer__intro{display:flex;flex-direction:column;align-items:stretch;gap:10px}
-body.mare-hub .mare-explorer__eyebrow{font:800 10px/1.45 system-ui,sans-serif;letter-spacing:.17em;color:#9fe9d7;text-transform:uppercase}
+body.mare-hub .mare-explorer__eyebrow{font:800 12px/1.45 system-ui,sans-serif;letter-spacing:.17em;color:#9fe9d7;text-transform:uppercase}
 body.mare-hub .mare-logbook h2{
  font:750 clamp(27px,3vw,43px)/1.09 Outfit,system-ui,sans-serif;
  letter-spacing:-.035em;color:#f1fcf9;margin:0;
@@ -44,7 +44,7 @@ body.mare-hub .mare-logbook__stat-value{
 }
 body.mare-hub .mare-logbook__stat:first-child .mare-logbook__stat-value{color:#9cf2d5}
 body.mare-hub .mare-logbook__stat-label{color:#e2f4f0;font-size:12px;font-weight:750}
-body.mare-hub .mare-logbook__stat-detail{color:#a2c4c9;font-size:10px;line-height:1.3}
+body.mare-hub .mare-logbook__stat-detail{color:#a2c4c9;font-size:12px;line-height:1.3}
 body.mare-hub .mare-logbook__level{margin-top:auto;padding-top:13px}
 body.mare-hub .mare-logbook__level-head{
  display:flex;justify-content:space-between;gap:10px;margin-bottom:10px;
@@ -70,11 +70,11 @@ body.mare-hub .mare-logbook__section-head strong{
 body.mare-hub .mare-explorer__badges{display:flex;flex-wrap:wrap;gap:7px}
 body.mare-hub .mare-explorer__badge{
  display:inline-flex;align-items:center;min-height:33px;
- padding:7px 10px;font-size:11px;font-weight:750;border-radius:10px;
+ padding:7px 10px;font-size:12px;font-weight:750;border-radius:10px;
  border:1px solid #5d7f8b;background:#143241;color:#b7cad0;
 }
 body.mare-hub .mare-explorer__badge.is-earned{background:#155144;border-color:#6ed7bb;color:#e5fff4}
-body.mare-hub .mare-logbook__disclaimer{margin-top:auto!important;font-size:11px!important;color:#b5d0d3!important}
+body.mare-hub .mare-logbook__disclaimer{margin-top:auto!important;font-size:12px!important;color:#b5d0d3!important}
 body.mare-hub .mare-logbook__empty{
  font-size:12px!important;color:#d8e9e4!important;padding:12px 14px;
  border-left:3px solid #8be0ca;background:rgba(29,106,102,.16);
@@ -108,7 +108,7 @@ body.mare-hub .mare-explorer__mission{
 body.mare-hub .mare-explorer__mission.is-complete{border-color:#77cbb8;background:#144740}
 body.mare-hub .mare-logbook__mission-name{display:flex;flex-direction:column;min-width:0;gap:3px}
 body.mare-hub .mare-logbook__mission-name strong{color:#f1f8f4;font-size:12px}
-body.mare-hub .mare-logbook__mission-name span{font-size:11px;color:#accbd0;line-height:1.4}
+body.mare-hub .mare-logbook__mission-name span{font-size:12px;color:#accbd0;line-height:1.4}
 body.mare-hub .mare-logbook__mission-count{font-size:12px;color:#f3d190;font-variant-numeric:tabular-nums;white-space:nowrap}
 body.mare-hub .mare-logbook__mission-track{
  grid-column:1/-1;height:5px;overflow:hidden;border-radius:99px;background:#255362;
@@ -121,7 +121,7 @@ body.mare-hub .mare-logbook__fleet-head{
  display:flex;justify-content:space-between;align-items:end;gap:10px;margin-bottom:12px;
 }
 body.mare-hub .mare-logbook__fleet-head h3{margin-bottom:0}
-body.mare-hub .mare-logbook__fleet-caption{color:#bad5d3;font-size:11px;max-width:180px;text-align:right}
+body.mare-hub .mare-logbook__fleet-caption{color:#bad5d3;font-size:12px;max-width:180px;text-align:right}
 body.mare-hub .mare-logbook__destinations{
  display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:9px;
 }
@@ -144,7 +144,7 @@ body.mare-hub .mare-logbook__destination-info{
  min-width:0;display:flex;flex-direction:column;gap:3px;
 }
 body.mare-hub .mare-logbook__destination-info strong{font-size:12px;color:#f2fff8}
-body.mare-hub .mare-logbook__destination-info small{font-size:10px;color:#a9cbd0;line-height:1.3}
+body.mare-hub .mare-logbook__destination-info small{font-size:12px;color:#a9cbd0;line-height:1.3}
 body.mare-hub .mare-logbook__destination-arrow{font-size:15px;color:#d0eee4;margin-left:auto}
 body.mare-hub .mare-logbook__actions{
  grid-column:1/-1;display:flex;align-items:center;flex-wrap:wrap;gap:12px;
@@ -176,7 +176,7 @@ body.mare-hub .mare-explorer__share-feedback{color:#d9f2e8;font-size:12px;overfl
  body.mare-hub .mare-logbook{padding:16px;border-radius:18px}
  body.mare-hub .mare-logbook__stats{gap:7px}
  body.mare-hub .mare-logbook__stat{padding:12px 10px}
- body.mare-hub .mare-logbook__stat-detail{font-size:9px}
+ body.mare-hub .mare-logbook__stat-detail{font-size:12px}
  body.mare-hub .mare-logbook__awards{grid-template-columns:1fr}
  body.mare-hub .mare-logbook__destination{padding:12px 9px;gap:7px}
  body.mare-hub .mare-logbook__destination-arrow{display:none}

@@ -189,7 +189,7 @@ body.mare-farol #chosen button{
  background:linear-gradient(135deg,#453728,#1d3240)!important;
 }
 .mare-finale__eyebrow{
- font-size:.69rem;
+ font-size:.75rem;
  text-transform:uppercase;
  letter-spacing:.16em;
  font-weight:800;
@@ -261,7 +261,7 @@ body.mare-farol #chosen button{
 }
 @media(max-width:540px){
  .mare-finale{inset:auto 10px 10px!important;width:calc(100vw - 20px);padding:18px 18px!important}
- body.mare-cardume #grid .tile{font-size:clamp(11px,2.8vw,14px)!important}
+ body.mare-cardume #grid .tile{font-size:clamp(12px,2.8vw,14px)!important}
  body.mare-criptograma #cipher .crypto-tile{width:clamp(28px,8.2vw,37px);min-height:54px}
  body.mare-recife #board{width:min(100%,310px)}
 }

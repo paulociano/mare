@@ -21,7 +21,7 @@ body.mare-hub.mare-studio .mare-selos{order:5}
 .mare-selos h2{font-size:clamp(24px,2.6vw,34px);line-height:1.15}
 .mare-selos h3{font-size:19px;line-height:1.25;margin-top:26px}
 .mare-selos p{margin:0;font-size:14px;line-height:1.6;color:var(--selos-muted)}
-.mare-selos__eyebrow{display:block;font:800 11px/1.4 system-ui,sans-serif;letter-spacing:.15em;color:var(--selos-indigo)}
+.mare-selos__eyebrow{display:block;font:800 12px/1.4 system-ui,sans-serif;letter-spacing:.15em;color:var(--selos-indigo)}
 .mare-selos__lead{max-width:68ch}
 .mare-selos__meter{
  display:grid;grid-template-columns:auto 1fr;align-items:baseline;gap:2px 10px;

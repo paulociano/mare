@@ -14,7 +14,7 @@ A ilustração \`assets/backgrounds/kanagawa-wave.svg\` é **um desenho vetorial
 - \`src/styles/shared/mare-studio.css\`: estrutura da homepage, herdada.
 - \`src/styles/shared/mare-play.css\`: shell dos 12 jogos, herdado.
 - \`src/styles/games/*.css\`: layout e feedback de gameplay específicos.
-- \`src/scripts/shared/mare-ocean.js\`: efeito WebGL antigo, desativado para o tema Kanagawa mas preservado de forma reversível.
+- O efeito WebGL antigo (`mare-ocean.js`, Three.js por CDN) foi removido em novembro de 2026: já não era executado no tema Kanagawa. Continua disponível no histórico do Git.
 - \`docs/ARCHITECTURE.md\`: rotas, build e limites de refatoração.
 
 O build consolida o CSS em um bundle fingerprintado por página; a folha de autoria não gera uma solicitação adicional.

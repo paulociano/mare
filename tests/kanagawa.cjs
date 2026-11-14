@@ -25,8 +25,7 @@ for(const route of manifest.pages){
  assert.ok(html.includes('<meta name="theme-color" content="#f8f3e8"'),route+': cor do navegador incompatível');
  assert.ok(html.includes('href="assets/brand/mare-favicon.svg"'),route+': favicon não preservado');
 }
-const ocean=fs.readFileSync('src/scripts/shared/mare-ocean.js','utf8');
-assert.ok(ocean.includes("classList.contains('mare-kanagawa')"),'O shader antigo deve estar desativado na nova identidade');
+assert.ok(!fs.existsSync('src/scripts/shared/mare-ocean.js'),'O shader antigo foi removido na identidade Kanagawa');
 const home=fs.readFileSync('index.html','utf8');
 assert.ok(home.includes('data-ocean-scene aria-hidden="true"'),'A gravura permanece decorativa');
 assert.equal((home.match(/<article class="mar-game /g)||[]).length,12);

@@ -13,7 +13,7 @@
 .mare-social h2{font-size:clamp(23px,2.5vw,33px);line-height:1.17}
 .mare-social h3{font-size:19px;line-height:1.25}
 .mare-social p{font-size:13px;line-height:1.6;color:var(--social-muted);margin:0}
-.mare-social__eyebrow{font:800 11px/1.4 system-ui,sans-serif;letter-spacing:.15em;color:var(--social-mint)}
+.mare-social__eyebrow{font:800 12px/1.4 system-ui,sans-serif;letter-spacing:.15em;color:var(--social-mint)}
 .mare-social__intro{max-width:70ch;margin-bottom:22px!important}
 .mare-social__layout{display:grid;grid-template-columns:minmax(0,1fr) minmax(285px,.85fr);gap:16px}
 .mare-social__choice,.mare-social__peer{
@@ -53,7 +53,7 @@
  background:#103a48;color:#f0fdf7!important;font-weight:650;
 }
 .mare-social__verdict{color:#b0f1d8!important;font-weight:750}
-.mare-social__foot{margin-top:17px!important;font-size:11px!important;max-width:90ch}
+.mare-social__foot{margin-top:17px!important;font-size:12px!important;max-width:90ch}
 .mare-social--hub{margin:26px 0 34px;order:2}
 .mare-social--game{
  width:min(1050px,calc(100% - 32px));margin:32px auto;
