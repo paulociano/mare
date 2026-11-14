@@ -419,8 +419,6 @@ body.mare-kanagawa:is(.mar-app,.mare-recife) :is(.mare-social,.mare-access__deta
 }
 /* Thin engraved-wave signature in unused space, not behind gameplay text. */
 body.mare-kanagawa:is(.mar-app,.mare-recife) :is(.depth-shell,.newgame-shell,.shell,.wrap){
-  background-image:linear-gradient(rgba(248,243,232,.93),rgba(248,243,232,.93)),
-    url('../../../assets/backgrounds/kanagawa-wave.svg');
   background-repeat:no-repeat;background-position:right top;background-size:100% 100%,min(560px,80vw) auto;
 }
 body.mare-kanagawa .mare-finale{

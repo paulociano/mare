@@ -1,21 +1,10 @@
 /* Shared game surfaces: preserve layouts, control geometry and game-specific colors. */
 :root{
- --mare-evo-panel:rgba(7,38,55,.88);
- --mare-evo-border:rgba(109,197,204,.34);
- --mare-evo-focus:#f1ca83;
  --mare-evo-radius:20px;
- --mare-evo-shadow:0 20px 54px rgba(0,12,25,.36);
 }
-body:is(.mar-app,.mare-recife){color-scheme:dark}
 body:is(.mar-app,.mare-recife) :is(button,a,input,[role="button"]):focus-visible{
  outline:3px solid var(--mare-evo-focus)!important;
  outline-offset:3px!important;
-}
-body:is(.mar-app,.mare-recife) :is(button,a,input){
- -webkit-tap-highlight-color:rgba(83,220,203,.16);
-}
-body:is(.mar-app,.mare-recife) :is(button,[role="button"]):not(:disabled){
- transition:transform .2s var(--mare-evo-ease),border-color .2s ease,box-shadow .2s ease,background-color .2s ease;
 }
 @media(hover:hover) and (pointer:fine){
  body:is(.mar-app,.mare-recife) :is(button,[role="button"]):not(:disabled):hover{transform:translateY(-2px)}
@@ -51,14 +40,6 @@ body:is(.mar-app,.mare-recife) :is(.notice,.status,[role="status"],[aria-live="p
    Source of truth for shared game buttons, inputs, panels, headers and focus.
 */
 :root{
-  --play-abyss:#06141f;
-  --play-layer:#0d2632;
-  --play-panel:#102d3b;
-  --play-panel-high:#153a48;
-  --play-ink:#f1f8f5;
-  --play-muted:#bed5d7;
-  --play-mint:#a1f3d9;
-  --play-sand:#e9c88b;
   --play-stroke:rgba(142,217,210,.31);
   --play-ease:cubic-bezier(.22,1,.36,1);
   --mare-evo-ease:cubic-bezier(.22,1,.36,1);
@@ -303,7 +284,6 @@ body.mare-cardume #grid .tile{
   word-break:normal;
   hyphens:auto;
   border:1px solid #628e9c;
-  border-radius:10px;
   background:#153f4e;
   color:#f0fcfb;
 }
@@ -311,7 +291,6 @@ body.mare-cardume #grid .tile[aria-pressed="true"]{
   background:var(--play-mint)!important;
   color:#07323a!important;
   border-color:#ecfff8!important;
-  box-shadow:inset 0 0 0 2px #e1fff1;
 }
 body.mare-cardume #grid .tile:focus-visible{
   outline:3px solid var(--play-sand)!important;

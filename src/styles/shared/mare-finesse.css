@@ -2,12 +2,6 @@
    Board-specific polish, never a replacement for gameplay states.
    No Three.js/canvas in puzzle surfaces. */
 :root{
- --finesse-surface:#102f3d;
- --finesse-surface-2:#163b4b;
- --finesse-line:rgba(165,234,216,.33);
- --finesse-accent:#a1f3d9;
- --finesse-warm:#e9c88b;
- --finesse-ink:#f4fff8;
  --finesse-ease:cubic-bezier(.22,1,.36,1);
 }
 body:is(.mar-app,.mare-recife){

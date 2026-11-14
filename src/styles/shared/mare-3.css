@@ -1,11 +1,8 @@
 /* MARÉ 3.0 / Oceanic Play Studio
    Single component layer. No external UI framework or images.
    Older styles remain temporarily for safe rollout of eight games. */
-:root{
-  color-scheme:dark;
-  --m3-bg:#071923;--m3-base:#0c2733;--m3-surface:#123443;
-  --m3-raised:#194451;--m3-stroke:rgba(178,233,226,.2);
-  --m3-ink:#f3faf7;--m3-muted:#aec8cc;--m3-accent:#87dfcf;
+:root{--m3-base:#0c2733;
+  --m3-raised:#194451;--m3-stroke:rgba(178,233,226,.2);--m3-accent:#87dfcf;
   --m3-warm:#efca82;--m3-radius:18px;--m3-shadow:0 12px 35px rgba(0,12,24,.18);
 }
 html{scroll-padding-top:20px}
@@ -34,7 +31,7 @@ body:is(.mare-hub,.mar-app) :is(h1,h2,h3){font-family:'Outfit',system-ui,sans-se
   padding:17px 0;border-bottom:1px solid var(--m3-stroke);
   background:transparent;backdrop-filter:none
 }
-.mare-hub .mar-logo{font-weight:700;font-size:26px;letter-spacing:.16em;line-height:1.1}
+.mare-hub .mar-logo{font-weight:700;font-size:26px;letter-spacing:.16em}
 .mare-hub .mar-logo small{font-size:12px;letter-spacing:.15em;margin-top:5px}
 .mare-hub .mar-top nav{gap:20px;text-transform:none;letter-spacing:0;font-size:13px}
 .mare-hub .mar-top nav a{color:#b9d9d8}
@@ -134,7 +131,6 @@ body:is(.mare-abismo,.mare-cardume,.mare-corrente,.mare-concha,.mare-trilha,.mar
 .mare-cardume .tile,.mare-trilha .trilha-grid button,.mare-enigma .enigma-cell,.mare-marujo .marujo-cell{
  box-shadow:none!important;transition:background .15s ease,border-color .15s ease!important
 }
-.mare-cardume .tile{border-radius:11px;min-height:clamp(55px,7vw,76px)}
 .mare-trilha .trilha-grid{width:min(100%,415px)}
 .mare-enigma .enigma-board{width:min(100%,475px)}
 .mare-marujo .marujo-grid{width:min(100%,495px)}

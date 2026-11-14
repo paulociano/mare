@@ -31,7 +31,6 @@ body.mare-hub .mare-logbook h3{
  letter-spacing:-.025em;color:#e8fdf7;margin:5px 0 15px;
 }
 body.mare-hub .mare-logbook p{margin:0;color:var(--log-muted);line-height:1.55;font-size:13px}
-body.mare-hub .mare-logbook__lead{max-width:58ch}
 body.mare-hub .mare-logbook__stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:9px;margin:14px 0 5px}
 body.mare-hub .mare-logbook__stat{
  min-width:0;padding:16px 13px 13px;background:rgba(3,22,33,.65);

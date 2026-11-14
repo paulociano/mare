@@ -21,21 +21,11 @@ body.mare-recife .recife-title-lockup{
 }
 
 /* Catálogo: título único no centro da ilustração, descrição fixa abaixo. */
-body.mare-hub .mar-catalog > article.mar-game{
- display:flex!important;flex-direction:column!important;
-}
-body.mare-hub .mar-catalog > article.mar-game > h2.recife-card-heading{
- display:flex!important;align-items:center!important;justify-content:center!important;
- align-self:stretch!important;flex:1 0 135px!important;min-height:135px!important;
- max-width:100%!important;width:100%!important;margin:8px 0 12px!important;padding:0!important;
- font-family:'Outfit',system-ui,sans-serif!important;
- font-size:clamp(2rem,3.5vw,3.55rem)!important;font-weight:900!important;
- line-height:1!important;letter-spacing:-.075em!important;text-align:center!important;
- white-space:nowrap!important;overflow-wrap:normal!important;word-break:normal!important;
+body.mare-hub .mar-catalog > article.mar-game > h2.recife-card-heading{justify-content:center!important;
+ align-self:stretch!important;
+ max-width:100%!important;width:100%!important;padding:0!important;
+ font-family:'Outfit',system-ui,sans-serif!important;font-weight:900!important;letter-spacing:-.075em!important;text-align:center!important;overflow-wrap:normal!important;word-break:normal!important;
  color:#a8f1e1!important;text-shadow:0 5px 0 #0d5965,0 12px 25px rgba(0,0,0,.5)!important;
-}
-body.mare-hub .mar-catalog > article.mar-game > .mar-game-info{
- flex:0 0 auto!important;margin-top:auto!important;width:100%!important;
 }
 /* Nomes longos precisam de espaço sem quebrar em duas linhas. */
 body.mare-hub .mar-catalog > article.mar-game:is(.mar-school,.mar-current) > h2.recife-card-heading{
@@ -43,20 +33,6 @@ body.mare-hub .mar-catalog > article.mar-game:is(.mar-school,.mar-current) > h2.
 }
 body.mare-hub .mar-catalog > article.mar-game:is(.mar-forca,.mar-criptograma) > h2.recife-card-heading{
  font-size:clamp(2rem,3.3vw,3.3rem)!important;
-}
-@media(max-width:650px){
- body.mare-hub .mar-catalog > article.mar-game > h2.recife-card-heading{
-  flex-basis:115px!important;min-height:115px!important;margin:4px 0 10px!important;
-  font-size:clamp(2rem,8.1vw,3rem)!important;
- }
- body.mare-hub .mar-catalog > article.mar-game:is(.mar-school,.mar-current) > h2.recife-card-heading{
-  font-size:clamp(1.65rem,6.9vw,2.6rem)!important;
- }
-}
-@media(max-width:350px){
- body.mare-hub .mar-catalog > article.mar-game > h2.recife-card-heading{
-  font-size:clamp(2.15rem,10vw,3.3rem)!important;
- }
 }
 
 /* Cartões dos dois novos jogos na mesma linguagem visual do Recife. */
@@ -79,13 +55,10 @@ body.mare-hub .mar-catalog > article.mar-game:is(.mar-perola,.mar-farol){min-hei
 }
 
 /* Identidade de cada jogo: símbolo acima do título em todos os cards. */
-body.mare-hub .mar-catalog > article.mar-game > .mar-game-symbol{display:block;align-self:center;width:clamp(70px,7vw,106px);height:100px;object-fit:contain;flex:0 0 auto;margin:2px auto 0;filter:drop-shadow(0 9px 18px rgba(0,10,19,.4))}
-body.mare-hub .mar-catalog > article.mar-game > h2.recife-card-heading{flex:0 0 auto!important;min-height:54px!important;margin:3px 0 12px!important;font-size:clamp(2rem,3vw,3.1rem)!important}
-body.mare-hub .mar-catalog > article.mar-game:is(.mar-school,.mar-current,.mar-forca,.mar-criptograma) > h2.recife-card-heading{font-size:clamp(1.8rem,2.7vw,2.9rem)!important}
-body.mare-hub .mar-catalog > article.mar-game{min-height:285px}
+body.mare-hub .mar-catalog > article.mar-game > .mar-game-symbol{filter:drop-shadow(0 9px 18px rgba(0,10,19,.4))}
 .mare-game-symbol-lockup{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
 .mare-game-symbol-lockup img{width:clamp(62px,8vw,86px);height:auto;flex:0 0 auto;filter:drop-shadow(0 7px 14px rgba(0,10,19,.3))}
-@media(max-width:650px){body.mare-hub .mar-catalog > article.mar-game > .mar-game-symbol{height:80px;width:80px}body.mare-hub .mar-catalog > article.mar-game > h2.recife-card-heading{font-size:clamp(1.85rem,8vw,2.6rem)!important}body.mare-hub .mar-catalog > article.mar-game:is(.mar-school,.mar-current) > h2.recife-card-heading{font-size:clamp(1.65rem,6.8vw,2.4rem)!important}}
+@media(max-width:650px){body.mare-hub .mar-catalog > article.mar-game:is(.mar-school,.mar-current) > h2.recife-card-heading{font-size:clamp(1.65rem,6.8vw,2.4rem)!important}}
 
 /* Catálogo uniforme: 12 cards do mesmo tamanho e sem imagens de cenário.
    A marca de cada jogo é o único elemento ilustrativo de destaque. */
