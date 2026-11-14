@@ -13,9 +13,9 @@ for(const page of manifest.pages){
  assert.ok(exists(filename),'Página ausente do pacote: '+filename);
  const html=read(filename);
  const styles=[...html.matchAll(/<link\b[^>]*rel=["']stylesheet["'][^>]*href=["']([^"']+)["']/g)];
- assert.equal(styles.length,1,filename+': publicação deve carregar somente um CSS consolidado');
- assert.match(styles[0][1],/^styles\/mare-[a-f0-9]{12}\.css$/,filename+': CSS sem fingerprint');
- const combined=read(styles[0][1]);
+ assert.ok(styles.length>=1&&styles.length<=7,filename+': esperado de 1 a 7 pacotes de CSS, há '+styles.length);
+ for(const style of styles)assert.match(style[1],/^styles\/mare-[a-f0-9]{12}\.css$/,filename+': CSS sem fingerprint');
+ const combined=styles.map(style=>read(style[1])).join('\n');
  assert.ok(combined.includes('/* Source: src/styles/shared/mare-3.css */'),filename+': camada base de componentes ausente do bundle');
  assert.ok(combined.includes('/* Source: src/styles/shared/mare-brand.css */'),filename+': camada da marca ausente do bundle');
  for(const asset of combined.matchAll(/url\(\s*['"]?(\.\.\/[^'")]+)['"]?\s*\)/g)){
@@ -37,13 +37,16 @@ for(const page of manifest.pages){
   }
  }
 }
-for(const file of manifest.requiredFiles)assert.ok(exists(file),'Obrigatório ausente do pacote: '+file);
+// Um arquivo obrigatório pode estar publicado como arquivo ou dentro de um pacote de scripts.
+const scriptBundles=fs.existsSync(path.join(out,'scripts'))?fs.readdirSync(path.join(out,'scripts')).map(name=>read('scripts/'+name)):[];
+const published=file=>exists(file)||scriptBundles.some(bundle=>bundle.includes('/* Source: '+file+' */'));
+for(const file of manifest.requiredFiles)assert.ok(published(file),'Obrigatório ausente do pacote: '+file);
 const activeCss=new Set(manifest.runtimeStyles||[]);
 for(const file of activeCss)assert.ok(exists(file),'CSS dinâmico ausente: '+file);
 for(const file of manifest.pages){
  const html=read(file+'.html');
  const assets=[...html.matchAll(/<link\b[^>]*rel=["']stylesheet["'][^>]*href=["']([^"']+)["']/g)];
- assert.equal(assets.length,1,'CSS não consolidado: '+file);
+ assert.ok(assets.every(asset=>asset[1].startsWith('styles/mare-')),'CSS não consolidado: '+file);
 }
 assert.ok(!exists('src/styles/shared/mare-3.css'),'CSS-fonte duplicado no pacote de publicação');
 assert.ok(!exists('src/styles/shared/mare-brand.css'),'CSS-fonte duplicado no pacote de publicação');
@@ -62,4 +65,26 @@ const app=JSON.parse(read('app.webmanifest'));
 assert.equal(app.start_url,'./');assert.equal(app.scope,'./');assert.equal(app.display,'standalone');
 for(const icon of app.icons){if(!icon.src.endsWith('.svg'))assert.ok(exists(icon.src),'Ícone instalável ausente: '+icon.src)}
 
-console.log('PASS: artefato Pages completo, links internos e assets essenciais');
+// Orçamento de entrega (plano de otimização, fase 1). Os limites têm folga sobre
+// o medido em novembro de 2026 e existem para a próxima fase não desfazer o ganho.
+const size=relative=>fs.statSync(path.join(out,relative)).size;
+const usedBy=new Map();
+const pageAssets=new Map();
+for(const page of manifest.pages){
+ const html=read(page+'.html');
+ const styles=[...html.matchAll(/<link\b[^>]*rel=["']stylesheet["'][^>]*href=["']([^"']+)["']/g)].map(match=>match[1]);
+ const scripts=[...html.matchAll(/<script\b[^>]*\bsrc=["']([^"']+)["']/g)].map(match=>match[1]);
+ pageAssets.set(page,{styles,scripts});
+ for(const file of styles){if(!usedBy.has(file))usedBy.set(file,new Set());usedBy.get(file).add(page)}
+}
+const allCss=fs.readdirSync(path.join(out,'styles')).reduce((sum,name)=>sum+size('styles/'+name),0);
+assert.ok(allCss<=450*1024,'CSS publicado excede 450 KiB somados: '+allCss);
+for(const [page,{styles,scripts}] of pageAssets){
+ const own=styles.filter(file=>usedBy.get(file).size<=2).reduce((sum,file)=>sum+size(file),0);
+ assert.ok(own<=48*1024,page+': CSS exclusivo da página excede 48 KiB: '+own);
+ assert.ok(scripts.length<=8,page+': mais de 8 scripts ('+scripts.length+')');
+ if(page!=='index')assert.ok(!read(page+'.html').includes('mare-gsap')&&!scripts.some(file=>read(file).includes('gsap-3.15.0.min.js')),page+': GSAP só deve ser carregado no hub');
+}
+assert.ok(size('sw.js')>0);
+
+console.log('PASS: artefato Pages completo, links internos, assets essenciais e orçamento de entrega');

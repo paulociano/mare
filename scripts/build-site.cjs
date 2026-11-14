@@ -34,54 +34,132 @@ for(const css of [...copied].filter(x=>x.endsWith('.css'))){
 }
 
 /*
- * Combine stylesheets after dependency discovery, preserving cascade order.
- * Sources remain individually testable; published pages need one CSS request.
- * Hoist @import rules because CSS requires them before normal rules.
+ * Consolida estilos e scripts compartilhados sem mudar a ordem declarada no HTML.
+ *
+ * Cada página lista seus arquivos na ordem da cascata. Arquivos vizinhos usados
+ * pelo mesmo conjunto de páginas viram um pacote; onde o conjunto muda, o pacote
+ * termina. A ordem das regras é exatamente a de autoria, mas o que é comum a
+ * todas as páginas fica em um arquivo só, baixado e guardado uma única vez, e
+ * trocar de jogo baixa apenas a folha daquele jogo.
  */
-const bundles=new Map();
+const hashOf=text=>crypto.createHash('sha256').update(text).digest('hex').slice(0,12);
+function segment(list,keyOf){
+ const runs=[];
+ for(const item of list){
+  const key=keyOf(item),last=runs[runs.length-1];
+  if(last&&last.key===key)last.items.push(item);else runs.push({key,items:[item]});
+ }
+ return runs;
+}
+function usageOf(perPage,idOf){
+ const usage=new Map();
+ for(const [page,list] of perPage)for(const item of list){
+  const id=idOf(item);if(!usage.has(id))usage.set(id,new Set());usage.get(id).add(page);
+ }
+ return id=>[...usage.get(id)].sort().join(',');
+}
+
+const styleLink=/<link\b[^>]*rel=["']stylesheet["'][^>]*href=["']([^"']+\.css(?:[?#][^"']*)?)["'][^>]*>/gi;
+const pageStyles=new Map();
 for(const page of pages){
- const filename=page+'.html';
- let html=fs.readFileSync(path.join(out,filename),'utf8');
- const links=[...html.matchAll(/<link\b[^>]*rel=["']stylesheet["'][^>]*href=["']([^"']+\.css(?:[?#][^"']*)?)["'][^>]*>/gi)];
- if(links.length===0)continue;
- const styles=links.map(match=>match[1].split(/[?#]/)[0]);
+ const html=fs.readFileSync(path.join(out,page+'.html'),'utf8');
+ const styles=[...html.matchAll(styleLink)].map(match=>match[1].split(/[?#]/)[0]);
  if(styles.some(file=>file.startsWith('/')||file.includes('..')||!copied.has(file))){
   throw new Error(page+': stylesheet fora do inventário');
  }
- const bundleKey=JSON.stringify(styles);
- let bundle=bundles.get(bundleKey);
- if(!bundle){
-  const imports=[],chunks=[];
-  for(const file of styles){
-   let css=fs.readFileSync(path.join(root,file),'utf8');
-   css=css.replace(/@import\s+url\(\s*(["'])(.*?)\1\s*\)\s*;/g,rule=>{
-    if(!imports.includes(rule))imports.push(rule);
-    return '';
-   });
-   // Bundles live in styles/ while sources live at the repository root.
-   // Rebase relative asset URLs without touching data, remote or fragment URLs.
-   css=css.replace(/url\(\s*(["']?)([^)"']+)\1\s*\)/g,(whole,quote,url)=>{
-    const value=url.trim();
-    if(/^(?:data:|https?:|\/|#)/i.test(value))return whole;
-    const rebased=path.posix.relative('styles',path.posix.normalize(path.posix.join(path.posix.dirname(file),value)));
-    return 'url('+quote+rebased+quote+')';
-   });
-   chunks.push('/* Source: '+file+' */\n'+css);
-  }
-  const combined=imports.join('\n')+'\n'+chunks.join('\n');
-  const id=crypto.createHash('sha256').update(bundleKey+'\0'+combined).digest('hex').slice(0,12);
-  bundle='styles/mare-'+id+'.css';
-  fs.mkdirSync(path.join(out,'styles'),{recursive:true});
-  fs.writeFileSync(path.join(out,bundle),combined);
-  copied.add(bundle);
-  bundles.set(bundleKey,bundle);
+ assert.equal(new Set(styles).size,styles.length,page+': stylesheet repetido');
+ pageStyles.set(page,styles);
+}
+const styleUsage=usageOf(pageStyles,file=>file);
+const bundles=new Map();
+function styleBundle(files){
+ const bundleKey=JSON.stringify(files);
+ if(bundles.has(bundleKey))return bundles.get(bundleKey);
+ const imports=[],chunks=[];
+ for(const file of files){
+  let css=fs.readFileSync(path.join(root,file),'utf8');
+  // Hoist @import rules because CSS requires them before normal rules.
+  css=css.replace(/@import\s+url\(\s*(["'])(.*?)\1\s*\)\s*;/g,rule=>{
+   if(!imports.includes(rule))imports.push(rule);
+   return '';
+  });
+  // Bundles live in styles/ while sources live at the repository root.
+  // Rebase relative asset URLs without touching data, remote or fragment URLs.
+  css=css.replace(/url\(\s*(["']?)([^)"']+)\1\s*\)/g,(whole,quote,url)=>{
+   const value=url.trim();
+   if(/^(?:data:|https?:|\/|#)/i.test(value))return whole;
+   const rebased=path.posix.relative('styles',path.posix.normalize(path.posix.join(path.posix.dirname(file),value)));
+   return 'url('+quote+rebased+quote+')';
+  });
+  chunks.push('/* Source: '+file+' */\n'+css);
  }
+ const combined=imports.join('\n')+'\n'+chunks.join('\n');
+ const bundle='styles/mare-'+hashOf(bundleKey+'\0'+combined)+'.css';
+ fs.mkdirSync(path.join(out,'styles'),{recursive:true});
+ fs.writeFileSync(path.join(out,bundle),combined);
+ copied.add(bundle);bundles.set(bundleKey,bundle);
+ return bundle;
+}
+
+// Scripts compartilhados são IIFEs estritas sem declarações globais, então podem
+// ser unidos. Cada um continua isolado: se um falhar, os seguintes ainda rodam
+// e o erro é relançado para o console e para os relatórios de erro.
+const scriptTag=/<script\b([^>]*?)\bsrc=["']([^"']+)["']([^>]*)><\/script>/gi;
+const sharedScript=file=>file.startsWith('src/scripts/shared/');
+const scriptMode=attrs=>/\bdefer\b/.test(attrs)?'defer':/\basync\b/.test(attrs)?'async':'sync';
+const pageScripts=new Map();
+for(const page of pages){
+ const html=fs.readFileSync(path.join(out,page+'.html'),'utf8');
+ pageScripts.set(page,[...html.matchAll(scriptTag)].map(match=>({file:match[2].split(/[?#]/)[0],mode:scriptMode(match[1]+' '+match[3])})));
+}
+const scriptId=item=>item.mode+':'+item.file;
+const scriptUsage=usageOf(pageScripts,scriptId);
+const scriptBundles=new Map(),bundledScripts=new Set();
+function scriptBundle(files){
+ const bundleKey=JSON.stringify(files);
+ if(scriptBundles.has(bundleKey))return scriptBundles.get(bundleKey);
+ const parts=files.map(file=>{
+  const code=fs.readFileSync(path.join(root,file),'utf8');
+  assert.ok(/^\s*'use strict';/.test(code),file+': script compartilhado precisa ser estrito para entrar no pacote');
+  assert.ok(!/^(?:const|let|var|function|class)\s/m.test(code),file+': script compartilhado não pode declarar globais');
+  return '/* Source: '+file+' */\ntry{\n'+code+'\n}catch(error){setTimeout(()=>{throw error})}';
+ });
+ const combined="'use strict';\n"+parts.join('\n')+'\n';
+ const bundle='scripts/mare-'+hashOf(bundleKey+'\0'+combined)+'.js';
+ fs.mkdirSync(path.join(out,'scripts'),{recursive:true});
+ fs.writeFileSync(path.join(out,bundle),combined);
+ copied.add(bundle);scriptBundles.set(bundleKey,bundle);
+ for(const file of files)bundledScripts.add(file);
+ return bundle;
+}
+
+const standaloneScripts=new Set();
+for(const page of pages){
+ const filename=page+'.html';
+ let html=fs.readFileSync(path.join(out,filename),'utf8');
+
+ const styleRuns=segment(pageStyles.get(page),styleUsage);
+ const styleFirst=new Map(styleRuns.map(run=>[run.items[0],styleBundle(run.items)]));
  // Replace only stylesheet links, keeping other link elements unchanged.
- let first=true;
- html=html.replace(/<link\b[^>]*rel=["']stylesheet["'][^>]*href=["'][^"']+\.css(?:[?#][^"']*)?["'][^>]*>/gi,()=>{
-  if(!first)return '';
-  first=false;
-  return '<link rel="stylesheet" href="'+bundle+'">';
+ html=html.replace(styleLink,(whole,href)=>{
+  const file=href.split(/[?#]/)[0];
+  return styleFirst.has(file)?'<link rel="stylesheet" href="'+styleFirst.get(file)+'">':'';
+ });
+
+ const scriptRuns=segment(pageScripts.get(page),item=>sharedScript(item.file)?scriptUsage(scriptId(item))+'|'+item.mode:'solo:'+item.file);
+ const scriptFirst=new Map(),scriptDrop=new Set();
+ for(const run of scriptRuns){
+  if(run.items.length<2){standaloneScripts.add(run.items[0].file);continue}
+  const bundle=scriptBundle(run.items.map(item=>item.file));
+  scriptFirst.set(run.items[0].file,{bundle,mode:run.items[0].mode});
+  for(const item of run.items.slice(1))scriptDrop.add(item.file);
+ }
+ html=html.replace(scriptTag,(whole,before,src)=>{
+  const file=src.split(/[?#]/)[0];
+  if(scriptDrop.has(file))return '';
+  const first=scriptFirst.get(file);
+  if(!first)return whole;
+  return '<script src="'+first.bundle+'"'+(first.mode==='sync'?'':' '+first.mode)+'></script>';
  });
  fs.writeFileSync(path.join(out,filename),html);
 }
@@ -94,7 +172,13 @@ for(const file of [...copied]){
  copied.delete(file);
 }
 for(const file of runtimeStyles)assert.ok(copied.has(file),'CSS dinâmico não publicado: '+file);
-console.log('CSS: '+bundles.size+' bundles para '+pages.length+' páginas');
+// O mesmo vale para scripts que só existem dentro de um pacote.
+for(const file of bundledScripts){
+ if(standaloneScripts.has(file)||!copied.has(file))continue;
+ fs.rmSync(path.join(out,file));
+ copied.delete(file);
+}
+console.log('CSS: '+bundles.size+' pacotes para '+pages.length+' páginas; JS compartilhado: '+scriptBundles.size+' pacotes');
 
 fs.writeFileSync(path.join(out,'.nojekyll'),'');
 

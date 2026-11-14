@@ -1,0 +1,34 @@
+/* MARÉ · movimento compartilhado entre as 13 rotas.
+   Só CSS: nada aqui depende de JavaScript, e navegadores sem suporte seguem
+   com a navegação comum. Toda regra respeita a preferência do sistema e a do
+   próprio MARÉ (data-mare-motion="reduce" e o modo foco). */
+
+/* Transição entre páginas: o símbolo do cartão do hub vira o símbolo do jogo. */
+@view-transition{navigation:auto}
+::view-transition-old(root),::view-transition-new(root){animation-duration:.22s;animation-timing-function:var(--mare-ease-out,cubic-bezier(.22,1,.36,1))}
+::view-transition-group(*){animation-duration:.34s;animation-timing-function:var(--mare-ease-out,cubic-bezier(.22,1,.36,1))}
+img[src$="/recife-mark.svg"]{view-transition-name:mare-mark-recife}
+img[src$="/abismo-mark.svg"]{view-transition-name:mare-mark-abismo}
+img[src$="/cardume-mark.svg"]{view-transition-name:mare-mark-cardume}
+img[src$="/corrente-mark.svg"]{view-transition-name:mare-mark-corrente}
+img[src$="/concha-mark.svg"]{view-transition-name:mare-mark-concha}
+img[src$="/trilha-mark.svg"]{view-transition-name:mare-mark-trilha}
+img[src$="/enigma-mark.svg"]{view-transition-name:mare-mark-enigma}
+img[src$="/marujo-mark.svg"]{view-transition-name:mare-mark-marujo}
+img[src$="/naufrago-mark.svg"]{view-transition-name:mare-mark-naufrago}
+img[src$="/sinais-mark.svg"]{view-transition-name:mare-mark-sinais}
+img[src$="/perola-mark.svg"]{view-transition-name:mare-mark-perola}
+img[src$="/farol-mark.svg"]{view-transition-name:mare-mark-farol}
+
+/* Entrada das páginas de jogo (antes feita com GSAP: 28 KB para três elementos). */
+@keyframes mare-enter{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:no-preference){
+ :root:not([data-mare-motion="reduce"]):not([data-mare-focus="on"]) body:not(.mare-hub) :is(.gameheading h1,.recife-title-lockup,.hero h1,.heading h1,main h1){animation:mare-enter .42s var(--mare-ease-out,cubic-bezier(.22,1,.36,1)) both}
+ :root:not([data-mare-motion="reduce"]):not([data-mare-focus="on"]) body:not(.mare-hub) .mare-game-nav{animation:mare-enter .42s var(--mare-ease-out,cubic-bezier(.22,1,.36,1)) .12s both}
+}
+@media (prefers-reduced-motion:reduce){
+ @view-transition{navigation:none}
+}
+:root:is([data-mare-motion="reduce"],[data-mare-focus="on"])::view-transition-group(*),
+:root:is([data-mare-motion="reduce"],[data-mare-focus="on"])::view-transition-old(*),
+:root:is([data-mare-motion="reduce"],[data-mare-focus="on"])::view-transition-new(*){animation:none!important}

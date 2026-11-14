@@ -5,9 +5,11 @@
 - **Fontes:** `src/scripts/games`, `src/scripts/shared`, `src/styles/games` e `src/styles/shared`.
 - **HTML:** 13 documentos na raiz para preservar rotas de usuários e links existentes.
 - **CSS de autoria:** módulos CSS pequenos por responsabilidade, mantidos separados para revisão e testes.
-- **CSS de produção:** um único stylesheet com hash de conteúdo por página, gerado em `_site/styles/mare-<hash>.css`. Sequências iguais de estilos produzem o mesmo bundle. A ordem declarada nos HTMLs permanece.
+- **CSS de produção:** pacotes com hash de conteúdo em `_site/styles/mare-<hash>.css`. Arquivos vizinhos usados pelo mesmo conjunto de páginas viram um pacote; onde o conjunto muda, o pacote termina. A ordem declarada nos HTMLs permanece, mas o que é comum às 13 páginas é baixado uma vez e trocar de jogo baixa só a folha daquele jogo (de 3 a 13 KB).
 - **CSS-fonte não é republicado:** o build descarta folhas originais após gerar os bundles. A única exceção é `src/styles/shared/mare-diagnostics.css`, carregado dinamicamente.
-- **JavaScript:** preserva o carregamento e os escopos explícitos dos arquivos por página, sem concatenação insegura de scripts com `defer` ou estados globais.
+- **JavaScript:** scripts de jogo são publicados como estão. Scripts compartilhados vizinhos (IIFEs estritas, sem declarações globais) são unidos em `_site/scripts/mare-<hash>.js`, cada um isolado em `try/catch` para que a falha de um não impeça os seguintes. Não há minificação: o ganho medido foi de 11% a 13% após gzip e exigiria uma dependência de build.
+- **Sob demanda:** `lazyOfflineFiles` no manifesto lista arquivos grandes de um único jogo (hoje o dicionário do Abismo). Ficam fora do pré-cache e são guardados pelo service worker na primeira visita.
+- **Orçamento:** `check-build.cjs` recusa CSS publicado acima de 450 KiB somados, mais de 48 KiB de CSS exclusivo por página, mais de 8 scripts por página e GSAP fora do hub. O build recusa pacote offline acima de 4 MiB.
 - **Cache:** o manifest da PWA usa hash dos arquivos gerados; não altera saves ou forçadamente recarrega partidas.
 - **Dados, imagens e dicionários:** conservados conforme o manifesto e as referências dos jogos.
 

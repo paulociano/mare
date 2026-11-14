@@ -37,8 +37,8 @@ def run():
               assert response and response.status==200,route+": non-200"
               page.locator("main").wait_for()
               result=page.evaluate("""async () => {
-                const stylesheet=[...document.querySelectorAll('link[rel="stylesheet"]')].find(x=>x.href.includes('/styles/mare-'));
-                const sheet=stylesheet?await (await fetch(stylesheet.href)).text():'';
+                const stylesheets=[...document.querySelectorAll('link[rel="stylesheet"]')].filter(x=>x.href.includes('/styles/mare-'));
+                const sheet=(await Promise.all(stylesheets.map(async x=>(await fetch(x.href)).text()))).join(' ');
                 const body=getComputedStyle(document.body);
                 const head=document.querySelector('h1');
                 const main=document.querySelector('main');
