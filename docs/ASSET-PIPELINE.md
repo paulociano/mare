@@ -9,7 +9,7 @@
 - **CSS-fonte não é republicado:** o build descarta folhas originais após gerar os bundles. A única exceção é `src/styles/shared/mare-diagnostics.css`, carregado dinamicamente.
 - **JavaScript:** scripts de jogo são publicados como estão. Scripts compartilhados vizinhos (IIFEs estritas, sem declarações globais) são unidos em `_site/scripts/mare-<hash>.js`, cada um isolado em `try/catch` para que a falha de um não impeça os seguintes. Não há minificação: o ganho medido foi de 11% a 13% após gzip e exigiria uma dependência de build.
 - **Sob demanda:** `lazyOfflineFiles` no manifesto lista arquivos grandes de um único jogo (hoje o dicionário do Abismo). Ficam fora do pré-cache e são guardados pelo service worker na primeira visita.
-- **Orçamento:** `check-build.cjs` recusa CSS publicado acima de 450 KiB somados, mais de 48 KiB de CSS exclusivo por página, mais de 8 scripts por página e GSAP fora do hub. O build recusa pacote offline acima de 4 MiB.
+- **Orçamento:** `check-build.cjs` recusa CSS publicado acima de 450 KiB somados, mais de 48 KiB de CSS exclusivo por jogo (64 KiB no hub), mais de 8 scripts por página e GSAP fora do hub. O build recusa pacote offline acima de 4 MiB.
 - **Cache:** o manifest da PWA usa hash dos arquivos gerados; não altera saves ou forçadamente recarrega partidas.
 - **Dados, imagens e dicionários:** conservados conforme o manifesto e as referências dos jogos.
 

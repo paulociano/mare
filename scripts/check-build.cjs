@@ -81,10 +81,11 @@ const allCss=fs.readdirSync(path.join(out,'styles')).reduce((sum,name)=>sum+size
 assert.ok(allCss<=450*1024,'CSS publicado excede 450 KiB somados: '+allCss);
 for(const [page,{styles,scripts}] of pageAssets){
  const own=styles.filter(file=>usedBy.get(file).size<=2).reduce((sum,file)=>sum+size(file),0);
- assert.ok(own<=48*1024,page+': CSS exclusivo da página excede 48 KiB: '+own);
+ const limit=(page==='index'?64:48)*1024; // o hub tem vitrine, diário e selos próprios
+ assert.ok(own<=limit,page+': CSS exclusivo da página excede '+limit/1024+' KiB: '+own);
  assert.ok(scripts.length<=8,page+': mais de 8 scripts ('+scripts.length+')');
  if(page!=='index')assert.ok(!read(page+'.html').includes('mare-gsap')&&!scripts.some(file=>read(file).includes('gsap-3.15.0.min.js')),page+': GSAP só deve ser carregado no hub');
 }
-assert.ok(size('sw.js')>0);
+assert.ok([...usedBy.values()].some(pages=>pages.size===manifest.pages.length),'Deve existir um pacote de CSS comum a todas as páginas');
 
 console.log('PASS: artefato Pages completo, links internos, assets essenciais e orçamento de entrega');

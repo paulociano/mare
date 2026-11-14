@@ -1,0 +1,88 @@
+/* MARÉ · hub: jogar primeiro.
+   Reordena e adensa a página inicial sem mover elementos no HTML: quem chega
+   vê o jogo sugerido e o catálogo antes de convites, diário e selos.
+
+   As regras ficam em uma camada com !important de propósito. Em CSS, uma
+   declaração !important dentro de @layer vence as !important fora de camadas,
+   então estas regras de layout prevalecem sobre as folhas antigas sem entrar
+   na disputa de especificidade. Só layout: cor e tipo continuam com o tema. */
+@layer mare-hub{
+ /* Ordem de leitura: apresentação, continuar/sugestão, catálogo, diário, selos, amigos. */
+ body.mare-hub main>.mare-studio-hero{order:-4!important}
+ body.mare-hub main>#continuar{order:-3!important}
+ body.mare-hub main>.mare-recommendation{order:-2!important}
+ body.mare-hub main>.mar-section-head{order:-1!important}
+ body.mare-hub main>.mare-discover{order:0!important}
+ body.mare-hub main>#jogos{order:1!important}
+ body.mare-hub main>.mare-empty{order:1!important}
+ body.mare-hub main>#diario-de-bordo{order:2!important}
+ body.mare-hub main>#colecao-de-selos{order:3!important}
+ body.mare-hub main>#desafios-entre-amigos{order:4!important}
+
+ /* O cartão inteiro é o link do jogo; os modos do Recife continuam clicáveis por cima. */
+ body.mare-hub .mar-game{position:relative!important}
+ body.mare-hub .mar-game .mar-game-info,body.mare-hub .mar-game .mar-cta{position:static!important;transform:none!important}
+ body.mare-hub .mar-game .mar-cta::after{content:""!important;position:absolute!important;inset:0!important;z-index:1;border-radius:inherit}
+ body.mare-hub .mar-game .mar-mode-links{position:relative;z-index:2}
+ body.mare-hub .mar-game:has(.mar-cta:focus-visible){outline:3px solid var(--kan-blue,#234e70);outline-offset:3px}
+ body.mare-hub .mar-game .mar-cta:focus-visible{outline:none!important}
+
+ /* Estado do dia no cartão (preenchido por hub.js a partir do diário local). */
+ .mar-game-today{display:inline-flex;align-items:center;gap:6px;align-self:flex-start;margin:0 0 8px;padding:3px 10px;border-radius:999px;border:1px solid var(--kan-green-line,rgba(43,107,92,.36));background:var(--kan-green-soft,#dceee6);color:var(--kan-green,#2b6b5c);font:700 12px/1.4 'DM Sans',system-ui,sans-serif;letter-spacing:.02em}
+ .mar-game-today::before{content:"";width:7px;height:7px;border-radius:50%;background:currentColor}
+
+ @media (max-width:650px){
+  /* Apresentação curta: título, uma chamada e a gravura como faixa. */
+  body.mare-hub .mare-studio-hero{min-height:0!important;padding:18px 16px 16px!important;gap:12px!important}
+  body.mare-hub .mare-studio-hero__copy{padding:0!important;gap:10px!important}
+  body.mare-hub .mare-studio-hero__copy h1{font-size:clamp(2rem,10vw,2.6rem)!important;line-height:1.02!important;margin:0!important}
+  body.mare-hub .mare-studio-hero__copy>p{margin:0!important;font-size:15px!important;line-height:1.45!important;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+  body.mare-hub .mare-studio-hero__actions{margin:0!important;gap:8px!important;flex-direction:row!important;flex-wrap:wrap!important}
+  body.mare-hub .mare-studio-hero__actions>a{flex:1 1 140px!important;min-height:46px!important;justify-content:center!important;text-align:center!important}
+  body.mare-hub .mare-studio-hero__visual{min-height:0!important;height:72px!important;flex:none!important}
+
+  /* Sugestão do dia em uma linha: nome do jogo e botão. */
+  body.mare-hub .mare-recommendation{flex-direction:row!important;align-items:center!important;gap:12px!important;padding:12px 14px!important;margin:10px 0 0!important}
+  body.mare-hub .mare-recommendation>div{flex:1 1 auto!important;min-width:0!important}
+  body.mare-hub .mare-recommendation__copy{display:none!important}
+  body.mare-hub .mare-recommendation__title{margin:0!important;font-size:16px!important}
+  body.mare-hub .mare-recommendation__link{flex:none!important;width:auto!important;min-height:44px!important;margin:0!important;padding:0 16px!important}
+
+  /* Filtros em uma fileira que rola de lado; o guia de primeira visita cede lugar
+     aos dois botões da apresentação, que já dizem por onde começar. */
+  body.mare-hub .mare-discover{margin:0 0 10px!important;padding:0!important;gap:0!important;border:0!important;background:none!important;box-shadow:none!important}
+  body.mare-hub .mare-discover-title,body.mare-hub .mare-guide{display:none!important}
+  body.mare-hub .mare-filters{display:flex!important;flex-wrap:nowrap!important;gap:8px!important;margin:0 -16px!important;padding:4px 16px!important;overflow-x:auto!important;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+  body.mare-hub .mare-filters::-webkit-scrollbar{display:none}
+  body.mare-hub .mare-filter{flex:none!important;min-height:44px!important;white-space:nowrap!important}
+
+  /* Catálogo em duas colunas: os 12 jogos em pouco mais de uma tela e meia. */
+  body.mare-hub .mar-section-head{margin:18px 0 6px!important;padding:0!important}
+  body.mare-hub .mar-section-head p{display:none!important}
+  body.mare-hub #jogos.mar-catalog{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:10px!important}
+  body.mare-hub .mar-game{min-height:0!important;padding:12px!important;gap:6px!important;display:grid!important;grid-template-columns:44px minmax(0,1fr)!important;grid-template-areas:"mark name" "info info"!important;grid-template-rows:auto 1fr!important;align-items:center!important;align-content:start!important}
+  body.mare-hub .mar-game .mar-tag{display:none!important}
+  body.mare-hub .mar-game .mar-game-symbol{grid-area:mark;width:44px!important;height:44px!important;margin:0!important;position:static!important}
+  body.mare-hub .mar-game>h2{grid-area:name;margin:0!important;font-size:1.25rem!important;line-height:1.1!important;overflow-wrap:anywhere}
+  body.mare-hub .mar-game .mar-game-info{grid-area:info;height:100%;display:flex!important;flex-direction:column!important;gap:8px!important;margin:0!important;padding:0!important;min-width:0}
+  body.mare-hub .mar-game .mar-game-info>p{margin:0!important;font-size:13px!important;line-height:1.35!important;min-height:2.7em;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+  body.mare-hub .mar-game .mar-mode-links,body.mare-hub .mar-game .mare-card-meta{display:none!important}
+  body.mare-hub .mar-game .mar-cta{min-height:40px!important;width:100%!important;margin:auto 0 0!important;padding:0 10px!important;justify-content:center!important;font-size:14px!important}
+  body.mare-hub .mar-game .mar-game-today{margin:0!important;order:-1}
+
+  /* Selos: quatro por linha, só medalha e nome. */
+  body.mare-hub .mare-selos__grid{grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:8px!important}
+
+  /* Navegação de app: as âncoras do topo viram barra fixa no rodapé. */
+  body.mare-hub .mar-top{padding-bottom:10px!important}
+  body.mare-hub .mar-top nav{position:fixed!important;left:0!important;right:0!important;bottom:0!important;top:auto!important;z-index:40!important;display:grid!important;grid-auto-flow:column!important;grid-auto-columns:minmax(0,1fr)!important;gap:0!important;margin:0!important;padding:4px 6px calc(4px + env(safe-area-inset-bottom,0px))!important;overflow:visible!important;background:var(--kan-white,#fffdf7)!important;border-top:1px solid var(--kan-line,rgba(35,78,112,.23))!important;border-radius:0!important;box-shadow:0 -8px 24px rgba(35,69,92,.1)!important}
+  body.mare-hub .mar-top nav a{min-height:48px!important;min-width:0!important;padding:4px 2px!important;display:flex!important;align-items:center!important;justify-content:center!important;text-align:center!important;font-size:12px!important;line-height:1.15!important;white-space:normal!important;border:0!important;background:none!important;border-radius:10px!important}
+  body.mare-hub .mar-top nav a[hidden]{display:none!important}
+  body.mare-hub{padding-bottom:calc(64px + env(safe-area-inset-bottom,0px))!important}
+  /* Alto contraste: a barra e os botões dos cartões seguem a paleta escura do modo. */
+  [data-mare-contrast="high"] body.mare-hub .mar-top nav{background:#061925!important;border-top-color:#b0ebdf!important}
+  [data-mare-contrast="high"] body.mare-hub .mar-top nav a{color:#fff!important}
+  [data-mare-contrast="high"] body.mare-hub .mar-game .mar-cta{background:#061925!important;color:#fff!important;border-color:#b0ebdf!important}
+  body.mare-hub :is(section,article)[id]{scroll-margin-bottom:72px}
+ }
+}

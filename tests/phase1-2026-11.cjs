@@ -37,9 +37,4 @@ for(const page of manifest.pages){
 // O build separa o que é comum do que é de cada jogo, sem reordenar a cascata.
 const build=read('scripts/build-site.cjs');
 for(const token of ['function segment(list,keyOf)','styleBundle(run.items)','scriptBundle(run.items.map','catch(error){setTimeout(()=>{throw error})}'])assert.ok(build.includes(token),'Build sem: '+token);
-if(fs.existsSync('_site/styles')){
- const shared=new Map();
- for(const page of manifest.pages)for(const m of read('_site/'+page+'.html').matchAll(/href="(styles\/mare-[a-f0-9]{12}\.css)"/g)){shared.set(m[1],(shared.get(m[1])||0)+1)}
- assert.ok([...shared.values()].some(count=>count===manifest.pages.length),'Deve existir um pacote de CSS comum às 13 páginas');
-}
 console.log('PASS: fase 1 — CSS comum + folha do jogo, scripts unidos, GSAP só no hub, transição entre páginas e pré-busca');

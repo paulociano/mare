@@ -42,4 +42,32 @@
       try { localStorage.setItem('mare-last-played', game.page); } catch {}
     });
   });
+
+  /* Estado do dia em cada cartão, lido do diário local (mare-progress.js carrega depois deste script). */
+  function markToday() {
+    const progress = window.MareProgress;
+    if (!progress || typeof progress.recent !== 'function' || typeof progress.dailyChallenge !== 'function') return;
+    let today = '', rounds = [];
+    try { today = progress.dailyChallenge().day; rounds = progress.recent(new Date(), 20); } catch { return; }
+    const state = new Map();
+    for (const round of rounds) {
+      if (round.day !== today) continue;
+      if (round.outcome === 'win' || !state.has(round.name)) state.set(round.name, round.outcome === 'win' ? 'win' : 'played');
+    }
+    document.querySelectorAll('#jogos .mar-game').forEach(card => {
+      const name = card.querySelector('h2')?.textContent.trim();
+      const info = card.querySelector('.mar-game-info');
+      const outcome = state.get(name);
+      card.querySelector('.mar-game-today')?.remove();
+      if (!outcome || !info) { delete card.dataset.today; return; }
+      card.dataset.today = outcome;
+      const badge = document.createElement('span');
+      badge.className = 'mar-game-today';
+      badge.textContent = outcome === 'win' ? 'Vencido hoje' : 'Jogado hoje';
+      info.prepend(badge);
+    });
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', markToday, { once: true });
+  else markToday();
+  window.addEventListener('pageshow', event => { if (event.persisted) markToday(); });
 })();
